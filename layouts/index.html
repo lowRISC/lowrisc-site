@@ -1,0 +1,35 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+    <div class="container">
+        <div class="row">
+            <div class="sixteen columns">
+              <br/>
+              <p>
+              <p>lowRISC is a not-for profit project aiming to produce a completely open-source SoC (System-on-Chip).
+             Our designs are based on the 64-bit <a 
+                href="http://riscv.org/">RISC-V</a> instruction
+              set architecture. <a href="http://www.lowrisc.org/about/">More...</a> To keep track of the project, follow <a 
+                href="https://twitter.com/lowRISC">@lowRISC</a> or 
+              join our
+              announcements list by entering your email 
+              below:</p>
+
+              <p><form class="subscribe-form" action="http://subscribe.lowrisc.org/subscribe" method="post">
+                <input name="email" type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="subscribe-button">Submit</button>
+              </form></p>
+                <div class="li-main-article-list">
+              <h1>Blog</h1>
+                    {{ range first 10 (where .Data.Pages "Type" "blog") }}
+                        <div class="li-article">
+                            {{ .Render "fullarticle"}}
+                        </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{ partial "footer.html" . }}
+{{ partial "tail.html" . }}
