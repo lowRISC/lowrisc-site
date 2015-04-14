@@ -6,7 +6,9 @@ showdisqus = true
 
 +++
 
-## Introduction 
+_By Wei Song_
+
+## Introduction
 
 
 [lowRISC][lowRISC] is a not-for-profit organisation whose goal is to
