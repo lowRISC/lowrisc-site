@@ -12,7 +12,7 @@
                     {{ $baseurl := .Site.BaseUrl }}
                     {{ range $key, $value := .Data.Terms }}
                         <li>
-                            <h4><a href="{{ $baseurl }}/{{ $data.Plural }}/{{ $key | urlize }}">{{ $key }}</a></h4>
+                            <h4><a href="{{ $baseurl }}{{ $data.Plural }}/{{ $key | urlize }}">{{ $key }}</a></h4>
                         </li>
                     {{ end }}
                 </ul>

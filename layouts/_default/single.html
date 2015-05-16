@@ -20,14 +20,14 @@
                             {{ with $categories }}
                                 Posted in
                                 {{ range $categories }}
-                                    <a href="{{ $baseurl }}/categories/{{ . | urlize }}">{{ . }}</a>
+                                    <a href="{{ $baseurl }}categories/{{ . | urlize }}">{{ . }}</a>
                                 {{ end }}
                             {{ end }}
 
                             {{ with $tags }}
                                 with tags
                                 {{ range $tags }}
-                                    <a href="{{ $baseurl }}/tags/{{ . | urlize }}">{{ . }}</a>
+                                    <a href="{{ $baseurl }}tags/{{ . | urlize }}">{{ . }}</a>
                                 {{ end }}
                             {{ end }}
                         </span>
