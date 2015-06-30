@@ -30,6 +30,18 @@ To keep track of the project, follow [@lowRISC](https://twitter.com/lowRISC) or 
 
 If you want to get in touch, please email info@lowrisc.org
 
+
+### Recent milestones<
+
+*May 2015:* This summer we have [six students working on Summer of Code projects](http://www.lowrisc.org/blog/2015/05/summer-of-code-students-for-lowrisc/). The coding period is from the end of May to the end of August.
+
+*Apr 2015:* We have shared our first [lowRISC preview release](http://www.lowrisc.org/blog/2015/04/lowrisc-tagged-memory-preview-release/), demonstrating support for tagged memory as described in [our memo]("http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores"/). This FPGA-compatible code release is accompanied by an [extensive tutorial](http://www.lowrisc.org/docs/tutorial/).
+
+*Mar 2015:* We are excited to announce we are taking part in the [Google Summer of Code](https://developers.google.com/open-source/soc/) 2015.  See our [ideas list](http://www.lowrisc.org/docs/gsoc-2015-ideas/) for a wide range of projects in different languages and covering pretty much every level of the hardware/software stack.
+
+*Dec 2014:* We have now released a document describing our plans for [tagged memory and minion cores in the lowRISC SoC](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
+
+
 ### The Team (founders)
 
 * Robert Mullins - Computer Laboratory, University of Cambridge, co-founder of Raspberry Pi
