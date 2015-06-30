@@ -6,6 +6,12 @@ title = "lowRISC"
 blog="/blog/:year/:month/:slug"
 
 [[menu.main]]
+    name = "Home"
+    identifier = "home"
+    url = "/home/"
+    weight = 1
+
+[[menu.main]]
     name = "About"
     identifier = "about"
     url = "/about/"
