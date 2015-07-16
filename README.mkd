@@ -1,0 +1,21 @@
+# lowrisc.org site source
+This site is created using the [Hugo static site 
+generator](http://gohugo.io/).
+
+If you would like to make changes:
+* Clone this repo
+* Ensure hugo is installed in your path (binaries are [available 
+here](https://github.com/spf13/hugo/releases))
+* Execute `hugo server --watch` and view the local build of the site in your 
+browser by going to `http://localhost:1313`. livereload.js is injected in to 
+the generated source in this mode, so you pages should be rebuilt and reloaded 
+as you save them.
+* Make your changes
+* Commit and push, make a pull request if you don't have push access
+
+To then update the live lowrisc.org website:
+* You can stop the `hugo server --watch` process now
+* Run `hugo` to do a clean build
+* Copy `public/*` in to a checkout of the [lowrisc.github.io 
+repo](https://github.com/lowRISC/lowrisc.github.io)
+* Commit and push
