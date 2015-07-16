@@ -43,7 +43,8 @@ The structure of the key source files is shown below:
 
 ### Step 1. Instruction encoding and decoding
 
-The two new instructions, load tag (`ltag`) and store tag (`stag`) are encoded using the I-type instruction format:
+The two new instructions, load tag (`ltag`) and store tag (`stag`) are encoded
+using the I-type and the S-type instruction formats:
 
 <img src="../figures/inst_def.png" alt="Drawing" style="width: 650px;"/>
 
