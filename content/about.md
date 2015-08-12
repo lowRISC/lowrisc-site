@@ -53,5 +53,6 @@ If you want to get in touch, please email info@lowrisc.org
 *   [Krste Asanovic (UC Berkeley)](http://www.eecs.berkeley.edu/~krste/)
 *   [Julius Baxter (OpenRISC)](http://juliusbaxter.net)
 *   [Bunnie Huang (Hacker)](http://en.wikipedia.org/wiki/Andrew_Huang)
+*   [Andrew Katz (Moorcrofts LLP)](https://www.moorcrofts.com/about/andrew-katz/)
 *   [Dominic Rizzo (Google)](http://www.linkedin.com/pub/dominic-rizzo/28/3a6/b35)
 *   [Michael Taylor (UCSD)](http://cseweb.ucsd.edu/~mbtaylor/)
