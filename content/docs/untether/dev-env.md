@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2015-10-14T14:18:00+01:00"
-title = "The development environment"
+title = "A guide to the development environment"
 parent = "/docs/untether/"
 prev = "/docs/untether/dev-env/"
 next = "/docs/untether/dev-env/"
@@ -10,7 +10,76 @@ showdisqus = true
 +++
 
 
-### File structure of the repository
+## System Requirement
+
+We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU
+GCC 4.8 installed. If necessary, create such a setup using VMware
+player or VirtualBox.
+
+The default simulator for RTL/Behavioural SystemVerilog simulation is [Verilator](http://www.veripool.org/wiki/verilator).
+Please download and install a latest version for the best SystemVerilog support.
+
+An FPGA demonstration is provided using the [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). The kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit).
+
+By default, all simulations produce waveform in the VCD format. GTKWave can be used to view VCD files.
+
+Here is software versions and exposed environment variables on my machine:
+
+     $ echo $0
+     bash
+
+     $ uname -s -v -r -i -o
+     Linux 3.13.0-66-generic #108-Ubuntu SMP Wed Oct 7 15:20:27 UTC 2015 x86_64 GNU/Linux
+
+     # make sure the RISCV variable is exposed
+     $ echo $RISCV
+     /local/tool/riscv
+
+     $ gcc --version
+     gcc (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
+     Copyright (C) 2013 Free Software Foundation, Inc.
+     This is free software; see the source for copying conditions.  There is NO
+     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     $ which verilator
+     /local/tool/verilator/bin/verilator
+
+     $ gtkwave --version
+     GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+
+     This is free software; see the source for copying conditions.  There is NO
+     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+     $ which vivado
+     /local/tool/Xilinx/Vivado/2015.3/bin/vivado
+
+     # make sure the XILINX_VIVADO variable is exposed
+     $ echo $XILINX_VIVADO
+     /local/tool/Xilinx/Vivado/2015.3
+
+## Download the Whole Development Environment
+
+The lowRISC chip git repository is hosted by the GitHub
+website. Instead of cloning individual sub-modules, we recommend
+cloning the entire repository to ensure all the sub-modules you
+acquire are compatible. Different versions of the sub-modules are not
+guaranteed to work.
+
+To clone the whole lowRISC chip git repository:
+
+    # clone the repository to your home directory:
+    cd ~/lowRISC/DIR
+    git clone https://github.com/lowrisc/lowrisc-chip.git
+    cd lowrisc-chip
+    git submodule update --init --recursive
+
+There are 3 main branches:
+
+ * *master* : The major release branch, default, most stable. After major releases, only bugfixes related to the latest release are merged.
+ * *dev* : The minor release branch, less stable. After major releases, new features are added to this branch waiting for the next major release.
+ * *update* : The active developing branch, non-stable. The branch for developing new features, testing bugfixes, and experimenting ideas.
+
+## Structure of the Development Environment
 
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 
  compiling the rocket system.
