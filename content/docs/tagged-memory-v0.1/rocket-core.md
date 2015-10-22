@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:12:50+01:00"
 title = "Rocket core overview"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/rocket-chip/"
-next = "/docs/tutorial/tags/"
+parent = ""
+prev = "rocket-chip"
+next = "tags"
 showdisqus = true
 
 +++

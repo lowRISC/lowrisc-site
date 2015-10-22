@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:42:11+01:00"
 title = "Running simulations using Spike"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/simulations/"
-next = "/docs/tutorial/emulator/"
+parent = ""
+prev = "simulations"
+next = "emulator"
 showdisqus = true
 
 +++
@@ -43,14 +43,14 @@ To run the three hello world programs in their corresponding modes:
 
     # requirements: riscv-isa-sim, riscv-fesvr, riscv-gcc, riscv-linux, root.bin
     # copy the program to the root image: 
-    sudo mount -o loop $TOP/riscv-tools/busybox-1.21.1/root.bin \ 
-    $TOP/riscv-tools/busybox-1.21.1/mnt
+    sudo mount -o loop $TOP/riscv-tools/busybox-1.21.1/root.bin \
+      $TOP/riscv-tools/busybox-1.21.1/mnt
     sudo cp hello.linux $TOP/riscv-tools/busybox-1.21.1/mnt/hello
     sudo umount $TOP/riscv-tools/busybox-1.21.1/mnt
 
     # boot Linux in Spike
     spike +disk=$TOP/riscv-tools/busybox-1.21.1/root.bin \
-    $TOP/riscv-tools/linux-3.14.13/vmlinux
+      $TOP/riscv-tools/linux-3.14.13/vmlinux
 
     # in the booted linux type: /hello
 

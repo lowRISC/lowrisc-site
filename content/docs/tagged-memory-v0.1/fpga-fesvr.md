@@ -2,8 +2,8 @@
 Description = ""
 date = "2015-04-12T16:24:16+01:00"
 title = "Building the front-end server"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/fpga-ramdisk/"
+parent = ""
+prev = "fpga-ramdisk"
 showdisqus = true
 
 +++

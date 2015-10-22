@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T16:19:10+01:00"
 title = "Building the boot image from scratch"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/future/"
-next = "/docs/tutorial/fpga-ramdisk/"
+parent = ""
+prev = "future"
+next = "fpga-ramdisk"
 showdisqus = true
 
 +++

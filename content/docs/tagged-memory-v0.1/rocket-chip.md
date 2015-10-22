@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:05:25+01:00"
 title = "Rocket chip overview"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/"
-next = "/docs/tutorial/rocket-core/"
+parent = ""
+prev = "index"
+next = "rocket-core"
 showdisqus = true
 
 +++
@@ -16,7 +16,7 @@ A high-level view of the rocket chip is shown below. The design
 contains multiple Rocket tiles consisting of a Rocket core and L1
 instruction and data caches. Our tagged memory implementation inserts
 a tag cache before the main memory interface. Our tagged memory additions
-are described in detail [here]({{< ref "docs/tutorial/tags.md" >}}). 
+are described in detail [here]({{< relref "tags.md" >}}). 
 
 <img src="../figures/rocket_chip.png" alt="Drawing" style="width: 650px;"/>
 
@@ -52,21 +52,21 @@ A manual describing the advanced
 parameter library within Chisel is also
 [available][Chisel-parameterization-manual].
 
-| Description         | Parameter Name | Default Value | Possible Value | Notes |
-| ------------------- | -------------- | ------------- | -------------- | ----- |
-| No. of Rocket tiles | NTILES         | 1             | >0             |       |
-| No. of banks        | NBANKS         | 1             | >0, power of 2 |       |
-| No. of MSHRS        | L1D_MSHRS      | 2             | >0             |       |
-| No. of sets in L1D  | L1D_SETS       | 128           | >0, power of 2 |       |
-| No. of ways in L1D  | L1D_WAYS       | 4             | >0, power of 2 |       |
-| No. of sets in L1I  | L1I_SETS       | 128           | >0, power of 2 |       |
-| No. of ways in L1I  | L1I_WAYS       | 2             | >0, power of 2 |       |
-| Size of data TLB    | NDTLBEntries   | 8             | >0, power of 2 |       |
-| Size of instr TLB   | NITLBEntries   | 8             | >0, power of 2 |       |
-| Size of BTB         | NBTBEntries    | 62            | >0             |       |
-| No. of trackers in coherence manager | L2_ACQ_XACTS | 7 | >0          |       |
-| Instantiate FPU?    | BuildFPU       | Some(() => Module(new FPU)) |  | Set to None to disable |
-| Coherence protocol  | Coherence      | new MSICoherence()=>new(NullRepresentation) | MI, MEI, MSI, MESI | |
+| Description                          | Parameter Name | Default Value                               | Possible Value     | Notes                  |
+| ------------------------------------ | -------------- | ------------------------------------------- | -----------------  | ---------------------- |
+| No. of Rocket tiles                  | NTILES         | 1                                           | >0                 |                        |
+| No. of banks                         | NBANKS         | 1                                           | >0, power of 2     |                        |
+| No. of MSHRS                         | L1D_MSHRS      | 2                                           | >0                 |                        |
+| No. of sets in L1D                   | L1D_SETS       | 128                                         | >0, power of 2     |                        |
+| No. of ways in L1D                   | L1D_WAYS       | 4                                           | >0, power of 2     |                        |
+| No. of sets in L1I                   | L1I_SETS       | 128                                         | >0, power of 2     |                        |
+| No. of ways in L1I                   | L1I_WAYS       | 2                                           | >0, power of 2     |                        |
+| Size of data TLB                     | NDTLBEntries   | 8                                           | >0, power of 2     |                        |
+| Size of instr TLB                    | NITLBEntries   | 8                                           | >0, power of 2     |                        |
+| Size of BTB                          | NBTBEntries    | 62                                          | >0                 |                        |
+| No. of trackers in coherence manager | L2_ACQ_XACTS   | 7                                           | >0                 |                        |
+| Instantiate FPU?                     | BuildFPU       | Some(() => Module(new FPU))                 |                    | Set to None to disable |
+| Coherence protocol                   | Coherence      | new MSICoherence()=>new(NullRepresentation) | MI, MEI, MSI, MESI |                        |
 
 <!-- Links -->
 

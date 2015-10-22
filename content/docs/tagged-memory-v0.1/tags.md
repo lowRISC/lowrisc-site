@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:16:58+01:00"
 title = "Tagged memory support"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/rocket-core/"
-next = "/docs/tutorial/new-instructions/"
+parent = ""
+prev = "rocket-core"
+next = "new-instructions"
 showdisqus = true
 
 +++
@@ -48,23 +48,23 @@ to be served in parallel.
 
 ### Tag cache parameters
 
-| Description     | Parameter Name   | Default Value | Possible Value |
-|-----------------|------------------|---------------|----------------|
-| No. of tag bits | TagBits          | 4             | >0, <=8        |
-| log2(Size of tag partition) | TagMemSize | 24            | [22..25]       |
-| Base address of tag partition | TagBaseAddr | 0x0F000000 |   |  |
-| No. of ways in tag cache | TagCacheWays | 8        | >0, power of 2 |      
-| No. of sets in tag cache | TagCacheSets | 64       | >0, power of 2 |      
-| No. of trackers | TagCacheTrackers | 1             | >0             |      
+| Description                   | Parameter Name   | Default Value | Possible Value |
+|-------------------------------|------------------|---------------|----------------|
+| No. of tag bits               | TagBits          | 4             | >0, <=8        |
+| log2(Size of tag partition)   | TagMemSize       | 24            | [22..25]       |
+| Base address of tag partition | TagBaseAddr      | 0x0F000000    |                |
+| No. of ways in tag cache      | TagCacheWays     | 8             | >0, power of 2 |
+| No. of sets in tag cache      | TagCacheSets     | 64            | >0, power of 2 |
+| No. of trackers               | TagCacheTrackers | 1             | >0             |
 
 The maximum number of tag bits per 64-bit double word currently supported is 8. 
 
-| No. of tag bits | Size of tag partition | Base address of partition |
+| No. of tag bits  | Size of tag partition | Base address of partition |
 |------------------|-----------------------|---------------------------|
-| 1 | 4MB (2^22)  | 0x0FC00000 |
-| 2 | 8MB (2^23)  | 0x0F800000 |
-| 4 | 16MB (2^24) | 0x0F000000 |
-| 8 | 32MB (2^25) | 0x0E000000 |
+| 1                | 4MB (2^22)            | 0x0FC00000                |
+| 2                | 8MB (2^23)            | 0x0F800000                |
+| 4                | 16MB (2^24)           | 0x0F000000                |
+| 8                | 32MB (2^25)           | 0x0E000000                |
 
 The number of tag bits does not need to be a power of two, although
 the size of the tag partition must be a power of 2, e.g. if 6 tag bits
@@ -97,7 +97,7 @@ testing. Future additions will allow both data and tag to be read
 atomically.
 
 A step-by-step guide describing how hardware and software support for these new instructions was added 
-is provided [here]({{< ref "docs/tutorial/new-instructions.md" >}}).
+is provided [here]({{< relref "new-instructions.md" >}}).
 
 ### Bibliography
 

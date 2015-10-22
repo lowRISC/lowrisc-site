@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:33:14+01:00"
 title = "Tagged memory tests"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/new-instructions/"
-next = "/docs/tutorial/setup/"
+parent = ""
+prev = "new-instructions"
+next = "setup"
 showdisqus = true
 
 +++

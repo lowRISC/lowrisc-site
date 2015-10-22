@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T16:22:20+01:00"
 title = "Modifying the contents of the RAMdisk"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/fpga-bootimage/"
-next = "/docs/tutorial/fpga-fesvr/"
+parent = ""
+prev = "fpga-bootimage"
+next = "fpga-fesvr"
 showdisqus = true
 
 +++
