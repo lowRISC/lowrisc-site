@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-10-14T14:18:00+01:00"
 title = "A guide to the development environment"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/dev-env/"
-next = "/docs/tutorial/dev-env/"
+parent = "/docs/untether-v0.2/"
+prev = "/docs/untether-v0.2/dev-env/"
+next = "/docs/untether-v0.2/dev-env/"
 showdisqus = true
 
 +++

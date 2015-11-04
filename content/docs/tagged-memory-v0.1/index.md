@@ -8,6 +8,8 @@ showdisqus = true
 
 _By Wei Song_
 
+**Release version 0.1**
+
 ## Introduction
 
 

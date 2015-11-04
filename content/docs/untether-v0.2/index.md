@@ -6,8 +6,7 @@ showdisqus = true
 
 +++
 
-Version 0.2.0
-10/2015
+**Release version 0.2**
 
 ## Introduction
 
@@ -25,7 +24,7 @@ Version 0.2.0
      * [RTL simulating]
      * [FPGA Simulating]
   6. [Release notes]
-     * [Version 0.1.0: tagged memory (04/2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
+     * [**Version 0.1**: tagged memory (04/2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
 
 ### Acknowledgements
 

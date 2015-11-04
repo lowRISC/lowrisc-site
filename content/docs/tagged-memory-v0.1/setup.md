@@ -63,6 +63,8 @@ To clone the whole lowRISC chip git repository (around 2.1 GB):
     cd ~/lowRISC/DIR
     git clone https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
+    # checkout the tagged-memory-v0.1 release
+    git checkout tagged-memory-v0.1
     git submodule update --init --recursive
 
 Ensure you have all the necessary packages installed before attempting

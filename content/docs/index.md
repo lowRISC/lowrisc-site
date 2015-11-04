@@ -10,7 +10,7 @@ title = "Documentation"
 The current code release builds on the Rocket RISC-V implementation to offer
 support for tagged memory (see the [release blog post](
 {{< relref "blog/lowrisc-tagged-memory-preview-release.md" >}})). We've put together an
-[extensive tutorial]({{< relref "docs/tutorial/index.md" >}}) on how to use this
+[extensive tutorial]({{< relref "docs/untether-v0.2/index.md" >}}) on how to use this
 code release as well as documenting many of the changes made.
 
 ## Memos
