@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T16:19:10+01:00"
 title = "Building the boot image from scratch"
-parent = ""
-prev = "future"
-next = "fpga-ramdisk"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/future/"
+next = "/docs/tagged-memory-v0.1/fpga-ramdisk/"
 showdisqus = true
 
 +++

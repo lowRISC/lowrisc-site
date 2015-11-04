@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:39:40+01:00"
 title = "Running simulations"
-parent = ""
-prev = "setup"
-next = "spike"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/setup/"
+next = "/docs/tagged-memory-v0.1/spike/"
 showdisqus = true
 
 +++

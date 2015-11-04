@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:12:50+01:00"
 title = "Rocket core overview"
-parent = ""
-prev = "rocket-chip"
-next = "tags"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/rocket-chip/"
+next = "/docs/tagged-memory-v0.1/tags/"
 showdisqus = true
 
 +++

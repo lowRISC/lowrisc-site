@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:35:46+01:00"
 title = "A guide to setting up the development environment"
-parent = ""
-prev = "tag-tests"
-next = "simulations"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/tag-tests/"
+next = "/docs/tagged-memory-v0.1/simulations/"
 showdisqus = true
 
 +++

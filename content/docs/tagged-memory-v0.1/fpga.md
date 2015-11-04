@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:52:33+01:00"
 title = "Running tests on the Zedboard FPGA"
-parent = ""
-prev = "verilog-fpga-sim"
-next = "future"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/verilog-fpga-sim/"
+next = "/docs/tagged-memory-v0.1/future/"
 showdisqus = true
 
 +++

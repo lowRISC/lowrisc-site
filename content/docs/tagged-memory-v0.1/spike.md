@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:42:11+01:00"
 title = "Running simulations using Spike"
-parent = ""
-prev = "simulations"
-next = "emulator"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/simulations/"
+next = "/docs/tagged-memory-v0.1/emulator/"
 showdisqus = true
 
 +++
