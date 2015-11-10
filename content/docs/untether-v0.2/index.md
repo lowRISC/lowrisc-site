@@ -6,6 +6,8 @@ showdisqus = true
 
 +++
 
+_By Wei Song_
+
 **Release version 0.2**
 
 ## Introduction
@@ -15,16 +17,16 @@ showdisqus = true
   1. [Overview of the Rocket chip]
   2. [Overview of the Rocket core]
   3. [The development environment]({{< relref "dev-env.md" >}})
-    * [Install Xilinx Vivado]
-    * [Install Verilator]
-    * [Compile and install RISC-V cross-compiler]
-    * [Compile and install the Spike Simulator]
-  4. [Running simulations]
-     * [Assembly simulation using the Spike Simulator]
-     * [RTL simulating]
-     * [FPGA Simulating]
-  6. [Release notes]
-     * [**Version 0.1**: tagged memory (04/2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
+    * [Install Xilinx Vivado] ({{<relref "xilinx.md">}})
+    * [Install Verilator] ({{<relref "verilator.md">}})
+    * [Compile and install RISC-V cross-compiler] ({{<relref "riscv_compile.md">}})
+    * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<relref "linux_compile.md">}})
+  4. [Simulations and FPGA Demo] ({{<relref "simulation.md">}})
+     * [Behavioural Simulation (Spike)]
+     * [RTL simulation]
+     * [FPGA Simulation and Test]
+  6. [Release notes] ({{<relref "release.md">}})
+     * [**Version 0.1**: tagged memory (04-2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
 
 ### Acknowledgements
 

@@ -3,8 +3,8 @@ Description = ""
 date = "2015-10-14T14:18:00+01:00"
 title = "A guide to the development environment"
 parent = "/docs/untether-v0.2/"
-prev = "/docs/untether-v0.2/dev-env/"
-next = "/docs/untether-v0.2/dev-env/"
+prev = ""
+next = "/docs/untether-v0.2/simulation/"
 showdisqus = true
 
 +++
@@ -12,9 +12,7 @@ showdisqus = true
 
 ## System Requirement
 
-We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU
-GCC 4.8 installed. If necessary, create such a setup using VMware
-player or VirtualBox.
+We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU GCC >= 4.8 installed. If necessary, create such a setup using VMware player or VirtualBox.
 
 The default simulator for RTL/Behavioural SystemVerilog simulation is [Verilator](http://www.veripool.org/wiki/verilator).
 Please download and install a latest version for the best SystemVerilog support.
@@ -33,7 +31,7 @@ Here is software versions and exposed environment variables on my machine:
 
      # make sure the RISCV variable is exposed
      $ echo $RISCV
-     /local/tool/riscv
+     /home/USER_NAME/proj/lowrisc-chip/riscv
 
      $ gcc --version
      gcc (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
@@ -56,6 +54,23 @@ Here is software versions and exposed environment variables on my machine:
      # make sure the XILINX_VIVADO variable is exposed
      $ echo $XILINX_VIVADO
      /local/tool/Xilinx/Vivado/2015.3
+
+Ensure you have all the necessary packages installed before attempting
+to build the RISC-V tools:
+
+    sudo apt-get install autoconf automake autotools-dev curl \
+      libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
+      flex texinfo gperf libncurses5-dev libusb-1.0-0
+
+To setup the necessary RISC-V variables use the setup script
+found at `lowrisc-chip/set_riscv_env.sh`:
+
+    # source this file
+    echo "Setting up RISC-V environment..."
+    # Variables for RISC-V
+    export TOP=$PWD 
+    export RISCV=$TOP/riscv
+    export PATH=$PATH:$RISCV/bin
 
 ## Download the Whole Development Environment
 
@@ -84,7 +99,6 @@ There are 3 main branches:
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 
  compiling the rocket system.
  * `chisel-components`: Extra chisel building blocks used in lowRISC chip.
- * `csrc`: SystemVerilog DPI functions for behavioural/FPGA simulations.
  * `fpga`: FPGA demo implementations
    * `board`: Demo projects for individual developement boards.
      * `kc705`: Xilinx KC705 developement board.
@@ -92,7 +106,6 @@ There are 3 main branches:
  * `junctions`: Peripheral components and IO devices associated with the RocketChip.
  * `project`: Global configuration for Chisel compilation.
  * `riscv-tools`: The cross-compilation and simulation tool chain.
-   * `lowrisc-tests`: lowRISC chip dedicated test environment.
    * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
    * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
    * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator)
@@ -101,7 +114,16 @@ There are 3 main branches:
  * `rocket`: The Chisel code for the Rocket core.
  * `socip`: The SystemVerilog/Verilog building blocks used in lowRISC chip.
    * `nasti`: A SystemVerilog implemenation of NASTI/NASTI-Lite on-chip interconnection.
- * `src`: The top level Chisel code of lowRISC chip.
+ * `src`: The top level code of lowRISC chip.
+   * `main`: The Chisel/Verilog code for hardware implementation.
+   * `test`: The Verilog/C++(DPI) test bench files
  * `uncore`: The Chisel code of the memory subsystem.
  * `vsim`: RTL/Behavioural SystemVerilog simulation environment.
- * `vsrc`: SystemVerilog code of lowRISC top and testbenches.
+
+## Compiling and installation of individual tools/packages
+
+ * [Install Xilinx Vivado] ({{<relref "xilinx.md">}})
+ * [Install Verilator] ({{<relref "verilator.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<relref "riscv_compile.md">}})
+ * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<relref "linux_compile.md">}})
+
