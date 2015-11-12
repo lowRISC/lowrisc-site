@@ -11,12 +11,12 @@ showdisqus = true
 
 This release works with four different simulators and provides an FPGA demo using the [Xilinx Kintex-7 KC705 evaluation kit] (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html).
 
- * [Behavioural Simulation (Spike)] ({{<relref "spike">}})<br/>
+ * [Behavioural Simulation (Spike)] ({{<relref "spike.md">}})<br/>
    A fast instruction level simulator. The "golden" implementation of Rocket cores. <br/>
    Peripheral support from the front-end server (not compatible with the FPGA implemantion).
 
- * [RTL simulation] ({{<relref "vsim">}})<br/>
-   RTL level simulation for the whole lowRISC SoC provided by [Verilator] ({{<relref "verilator">}}). <br/>
+ * [RTL simulation] ({{<relref "vsim.md">}})<br/>
+   RTL level simulation for the whole lowRISC SoC provided by [Verilator] ({{<relref "verilator.md">}}). <br/>
    Behaviour memory model and simple HTIF for ISA regression test and none-IO related applications.
    
  * [FPGA simulation] (../kc705#simulation)<br/>

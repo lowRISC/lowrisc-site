@@ -22,7 +22,7 @@ _By Wei Song_
     * [Compile and install RISC-V cross-compiler] ({{<relref "riscv_compile.md">}})
     * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<relref "linux_compile.md">}})
   4. [Simulations and FPGA Demo] ({{<relref "simulation.md">}})
-     * [Behavioural Simulation (Spike)]
+     * [Behavioural Simulation (Spike)] ({{<relref "spike.md">}})
      * [RTL simulation]
      * [FPGA Simulation and Test]
   6. [Release notes] ({{<relref "release.md">}})

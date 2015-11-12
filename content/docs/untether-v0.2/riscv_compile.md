@@ -38,7 +38,7 @@ Compiling and simulating programs in different modes depends on different tool s
   * Behaviour simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`.
   * RTL simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [verilator]({{<relref "verilator">}}).
+    `riscv-gnu-toolchain`(newlib); [verilator]({{<relref "verilator.md">}}).
   * FPGA simulation: <br/>
     `riscv-gnu-toolchain`(newlib); [vivado]({{<relref "xilinx.md">}}).
   * FPGA test: <br/>
