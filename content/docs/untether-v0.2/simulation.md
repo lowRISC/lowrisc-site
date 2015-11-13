@@ -19,11 +19,11 @@ This release works with four different simulators and provides an FPGA demo usin
    RTL level simulation for the whole lowRISC SoC provided by [Verilator] ({{<relref "verilator.md">}}). <br/>
    Behaviour memory model and simple HTIF for ISA regression test and none-IO related applications.
    
- * [FPGA simulation] (../kc705#simulation)<br/>
+ * [FPGA demo] ({{<relref "kc705.md">}})<br/>
+   A RISC-V boot test on KC705. <br/>
+   Peripherals: 1GB DDR3 DRAM, UART, SD+FAT32. <br/>
+
+ * [FPGA simulation] ({{<relref "kc705-sim.md">}})<br/>
    Pre-synthesis FPGA simulation for the whole lowRISC SoC provided by Xilinx ISim (a part of Xilinx Vivado). <br/>
    Providing the full peripheral simulation by different configuration.
-
- * [FPGA demo] (../kc705#demo)<br/>
-   A RISC-V boot test on KC705. <br/>
-   Peripherals: 1GB DDR3 DRAM, UART, SD+FAT32.
  

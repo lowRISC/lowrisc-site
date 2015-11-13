@@ -2,7 +2,7 @@
 Description = ""
 date = "2015-11-12T13:05:11+01:00"
 title = "RTL simulation"
-parent = "/docs/untether-v0.2/"
+parent = "/docs/untether-v0.2/simulation/"
 prev = "/docs/untether-v0.2/spike/"
 next = "/docs/untether-v0.2/kc705/"
 showdisqus = true
@@ -39,6 +39,7 @@ The simulator recognize the follwing arguments:
     +load=HEX_FILE          specify the hex file (memory image).
     +max-cycles=NUM         specify the maximal number of simulation cycles.
 
+<a name="elf2hex"></a>
 The `+vcd` and `+vcs_name` arguments are only effective with the debuggong simulator. Executables are translated to hex files (memory image) for simulation. `elf2hex` is a program provided by riscv-fesvr for this purpose.
 
     # rv64ui-p-add -> rv64ui-p-add.hex

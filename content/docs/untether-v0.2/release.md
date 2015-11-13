@@ -30,9 +30,9 @@ showdisqus = true
    * DDR3 RAM and Memory controller (XIlinx IP) is connected and tested.
    * Boot from on-chip BRAM.
  * Design environment
-   * A KC705 FPGA demo with RISC-V Linux boot.
+   * A KC705 FPGA demo with RISC-V Linux boot. [[FPGA demo]] ({{<relref "kc705.md">}})
    * Merge the latest (10-2015) cross-compiler updates from RISC-V.
-   * Replace VCS with opensourced Verilator.
+   * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<relref "vsim.md">}})
    * Rewrite all Makefile support.
  * Missing from last release [**Version 0.1**: tagged memory (04/2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
    * No tagged memory support (will be added back soon).

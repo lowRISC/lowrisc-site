@@ -23,8 +23,9 @@ _By Wei Song_
     * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<relref "linux_compile.md">}})
   4. [Simulations and FPGA Demo] ({{<relref "simulation.md">}})
      * [Behavioural Simulation (Spike)] ({{<relref "spike.md">}})
-     * [RTL simulation]
-     * [FPGA Simulation and Test]
+     * [RTL simulation] ({{<relref "vsim.md">}})
+     * [FPGA demo] ({{<relref "kc705.md">}})
+     * [FPGA simulation] ({{<relref "kc705-sim.md">}})
   6. [Release notes] ({{<relref "release.md">}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
 
