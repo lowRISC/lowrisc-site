@@ -1,4 +1,4 @@
-baseurl = "http://www.lowrisc.org"
+baseurl = "http://www.lowrisc.org/"
 languageCode = "en-us"
 title = "lowRISC"
 

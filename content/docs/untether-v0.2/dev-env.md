@@ -101,14 +101,14 @@ There are 3 main branches:
  * `chisel-components`: Extra chisel building blocks used in lowRISC chip.
  * `fpga`: FPGA demo implementations
    * `board`: Demo projects for individual developement boards.
-     * `kc705`: Xilinx KC705 developement board. [[FPGA Demo]]({{<relref "kc705.md">}})
+     * `kc705`: Xilinx KC705 developement board. [[FPGA Demo]]({{<ref "kc705.md">}})
  * `hardfloat`: The IEEE 754-2008 compliant floating-point unit.
- * `junctions`: Peripheral components and IO devices associated with the RocketChip.
+ * `junctions`: Peripheral components and I/O devices associated with the RocketChip.
  * `project`: Global configuration for Chisel compilation.
- * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<relref "riscv_compile.md">}})
+ * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "riscv_compile.md">}})
    * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
    * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
-   * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "spike.md">}})
+   * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<ref "spike.md">}})
    * `riscv-opcodes`: The enumeration of all RISC-V opcodes executable by the Spike simulator.
    * `riscv-tests`: Tests for the Rocket core.
  * `rocket`: The Chisel code for the Rocket core.
@@ -118,12 +118,12 @@ There are 3 main branches:
    * `main`: The Chisel/Verilog code for hardware implementation.
    * `test`: The Verilog/C++(DPI) test bench files
  * `uncore`: The Chisel code of the memory subsystem.
- * `vsim`: RTL/Behavioural SystemVerilog simulation environment. [[RTL simulation]] ({{<relref "vsim.md">}})
+ * `vsim`: RTL/Behavioural SystemVerilog simulation environment. [[RTL simulation]] ({{<ref "vsim.md">}})
 
 ## Compiling and installation of individual tools/packages
 
- * [Install Xilinx Vivado] ({{<relref "xilinx.md">}})
- * [Install Verilator] ({{<relref "verilator.md">}})
- * [Compile and install RISC-V cross-compiler] ({{<relref "riscv_compile.md">}})
- * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<relref "linux_compile.md">}})
+ * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
+ * [Install Verilator] ({{<ref "verilator.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
+ * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}})
 

@@ -67,7 +67,7 @@ There are multiple pre-build test cases to test the Rocket core. To run the pre-
 
 To simulate the hello program in the three different modes (assume the
 program is compiled according to the instructions at the beginning of [this 
-document]({{< relref "spike.md" >}})):
+document]({{< ref "spike.md" >}})):
 
 ### Bare metal mode
 

@@ -12,10 +12,10 @@ showdisqus = true
 
  * Rocket-core (Chisel)
    * Merge the latest (10-2015) updates from RISC-V.
-   * Add uncached read/write in L1 D$ (support memory mapped IO).
+   * Add uncached read/write in L1 D$ (support memory mapped I/O).
    * Remove the HTIF CSR read/write port.
    * Redefine CSRs `mtime`, `mtohost`, `mfromhost`, `mreset` to PCRs.
-   * Add memory map, IO map, and IRQ PCRs.
+   * Add memory map, I/O map, and IRQ PCRs.
    * Add a global PCR controller shared by all Rocket-cores.
    * Nearly remove all functions of HTIF (only needed for bare-metal mode)
    * Add soft reset to Rocket-cores, L2 $.
@@ -30,14 +30,14 @@ showdisqus = true
    * DDR3 RAM and Memory controller (XIlinx IP) is connected and tested.
    * Boot from on-chip BRAM.
  * Design environment
-   * A KC705 FPGA demo with RISC-V Linux boot. [[FPGA demo]] ({{<relref "kc705.md">}})
+   * A KC705 FPGA demo with RISC-V Linux boot. [[FPGA demo]] ({{<ref "kc705.md">}})
    * Merge the latest (10-2015) cross-compiler updates from RISC-V.
-   * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<relref "vsim.md">}})
+   * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<ref "vsim.md">}})
    * Rewrite all Makefile support.
- * Missing from last release [**Version 0.1**: tagged memory (04/2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
+ * Missing from last release [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
    * No tagged memory support (will be added back soon).
    * No support for ZedBoard (will evaluate the possibility to support it further).
 
 ### Previous releases
 
- * [**Version 0.1**: tagged memory (04-2015)]({{< relref "docs/tagged-memory-v0.1/index.md" >}})
+ * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})

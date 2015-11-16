@@ -16,7 +16,7 @@ hasn't currently been modified to include tagged memory support.
 
 In this release, due to the peripheral mismatch between the original Rocket-chip and untethered lowRISC SoC, Spike can only be used to run a Linux Kernel and programs without using peripherals.
 
-Please see [Compile and install RISC-V cross-compiler] ({{<relref "riscv_compile.md">}}") for the installation of Spike.
+Please see [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}}") for the installation of Spike.
 
 ### Using Spike
 
@@ -64,7 +64,7 @@ Since there is no peripheral support in the bare metal mode, return value is the
 
 #### Boot a RISC-V Linux
 
-Before boot a Linux, please make sure the Linux image (`vmlinux`) and the ramdisk (`root.bin`) are available. Please see [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<relref "linux_compile.md">}}") for more details.
+Before boot a Linux, please make sure the Linux image (`vmlinux`) and the ramdisk (`root.bin`) are available. Please see [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}}") for more details.
 
     cd $TOP/riscv-tools/
     spike +disk=busybox-1.21.1/root.bin bbl linux-3.14.41/vmlinux

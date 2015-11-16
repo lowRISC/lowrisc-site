@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2015-11-13T17:00:00+01:00"
-title = "FPGA Demo"
+title = "FPGA Simulation"
 parent = "/docs/untether-v0.2/simulation/"
 prev = "/docs/untether-v0.2/kc705/"
 showdisqus = true

@@ -38,20 +38,20 @@ Compiling and simulating programs in different modes depends on different tool s
   * Behaviour simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`.
   * RTL simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [verilator]({{<relref "verilator.md">}}).
+    `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "verilator.md">}}).
   * FPGA simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<relref "xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "xilinx.md">}}).
   * FPGA test: <br/>
     N/A
  * **Newlib (supervisor) mode**:
   * Behaviour simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`; `riscv-pk`.
   * RTL simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [verilator]({{<relref "verilator.md">}}).
+    `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "verilator.md">}}).
   * FPGA simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<relref "xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "xilinx.md">}}).
   * FPGA test: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<relref "xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "xilinx.md">}}).
  * **Linux (user) mode**
   * Behaviour simulation: <br/>
     `riscv-gnu-toolchain`(newlib+linux); `riscv-isa-sim`; `riscv-fesvr`; `riscv-pk`; [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
@@ -60,7 +60,7 @@ Compiling and simulating programs in different modes depends on different tool s
   * FPGA simulation: <br/>
     N/A
   * FPGA test: <br/>
-    `riscv-gnu-toolchain`(newlib+linux); [vivado]({{<relref "xilinx.md">}}); [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
+    `riscv-gnu-toolchain`(newlib+linux); [vivado]({{<ref "xilinx.md">}}); [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
 
 ### Building the RISC-V cross-compilation tools
 

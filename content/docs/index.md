@@ -9,18 +9,18 @@ title = "Documentation"
 
 The current code release builds on the Rocket RISC-V implementation to offer
 support for tagged memory (see the [release blog post](
-{{< relref "blog/lowrisc-tagged-memory-preview-release.md" >}})). We've put together an
-[extensive tutorial]({{< relref "docs/untether-v0.2/index.md" >}}) on how to use this
+{{< ref "blog/lowrisc-tagged-memory-preview-release.md" >}})). We've put together an
+[extensive tutorial]({{< ref "docs/untether-v0.2/index.md" >}}) on how to use this
 code release as well as documenting many of the changes made.
 
 ## Memos
 
 Our [first memo](
-{{< relref "memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
+{{< ref "memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
 plans for tagged memory and minion cores in lowRISC.
 
 ## Other
 
 Student applications are now closed, but you may be interested in our [project
-idea list for Google Summer of Code 2015]({{< relref "gsoc-2015-ideas.md" >}}).
+idea list for Google Summer of Code 2015]({{< ref "gsoc-2015-ideas.md" >}}).
 

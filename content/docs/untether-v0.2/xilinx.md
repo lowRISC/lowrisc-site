@@ -12,11 +12,11 @@ showdisqus = true
 
 The Xilinx Vivado design suite can be downloaded from [http://www.xilinx.com/support/download.html](http://www.xilinx.com/support/download.html) free of charge for registrated users (registration is also free). For Ubuntu Linux, we recommend downloading the "Vivado 2015.3: Full Installer For Linux Single File Download Image Including SDK" (TAR/GZIP - 6.92 GB). Please move and extract the downloaded TAR/GZIP file, then run the `xsetup` script provided by the installation image.
 
-During the installation process, when asked for "Select Edition to Install", please choose "Vivado Design Edition". When choosing which packages to install, please add "Software Development Kit". It is not required to install XIlinx Vivado in system directories, so please choose any installation directory preferred. The total install space required is around 21 GB.
+During the installation process, when asked for "Select Edition to Install", please choose "Vivado Design Edition". When choosing which packages to install, please add "Software Development Kit". It is not required to install Xilinx Vivado in system directories, so please choose any installation directory preferred. The total install space required is around 21 GB.
 
 ### License
 
-A license is required to use the Xilinx Vivado suite. For users who bought a FPGA developement kit, such as the KC705 kit, a voucher should be enclosed. This voucher will allow the user to generate a site and device locked license (version limited as well). Such a license will allow a user to implement designs targeting the sepecific FPGA used in the developement kit, such as Kintex-7 FPGAs for the KC705 kit. This license is a version limited one. Users are allowed to install and update the Xilinx Vivado suite for one year. Once the license is expired, the old XIlinx Vivado is still usable but not updatable.
+A license is required to use the Xilinx Vivado suite. For users who bought a FPGA developement kit, such as the KC705 kit, a voucher should be enclosed. This voucher will allow the user to generate a site and device locked license (version limited as well). Such a license will allow a user to implement designs targeting the sepecific FPGA used in the developement kit, such as Kintex-7 FPGAs for the KC705 kit. This license is a version limited one. Users are allowed to install and update the Xilinx Vivado suite for one year. Once the license is expired, the old Xilinx Vivado is still usable but not updatable.
 
 To generate a license using a voucher, login Xilinx and visit [http://www.xilinx.com/getlicense](http://www.xilinx.com/getlicense).
 
