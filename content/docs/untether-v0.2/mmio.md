@@ -9,6 +9,8 @@ showdisqus = true
 
 +++
 
+**Note: this initial implementation of MMIO is subject to significant further optimizations.**
+
 Although peripherals are mapped into the memory space, they cannot be accessed in the same way as cachable memory due to the consistency requirement of I/O operations and the possible side-effect of I/O read and write. To safely access the I/O psace of peripherals, a memory mapeed I/O gives core pipeline uncached access to I/O space (bypassing both L1 and L2) while enforcing I/O operations in the program order.
 
 To bypass L1 and L2 for I/O operations, they must be extracted from the normal memory operations and processed separately in L1 D$. The fllowing figure shows a L1 D$ with the MMIO support (probe and write-back units are removed to highlight the MMIO). The components in blue are used for MMIO.

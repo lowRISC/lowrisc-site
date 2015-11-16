@@ -9,7 +9,9 @@ showdisqus = true
 
 +++
 
-Here explains the procedure required to bootload a RISC-V Linux.
+**Note: the content of this part is subject to changes due to the lack of specification.**
+
+Here explains the procedure required to bootload a RISC-V Linux in this release.
 
 #### System Status after power-on
 
