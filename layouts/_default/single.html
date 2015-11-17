@@ -4,12 +4,15 @@
 {{ $baseurl := .Site.BaseURL }}
 {{ $categories := .Params.categories }}
 {{ $tags := .Params.tags }}
+{{ $parent := (print $baseurl .Params.parent) }}
+{{ $prev := (print $baseurl .Params.prev) }}
+{{ $next := (print $baseurl .Params.next) }}
 
     <div class="container">
         <div class="row">
             <div class="sixteen columns">
                 <article class="li-article">
-                {{ range where .Site.Pages "RelPermalink" .Params.parent }}
+                {{ range where .Site.Pages "Permalink" $parent }}
                   <p>
                     <a href="{{ .Permalink }}">⇡ {{ .Title }}</a>
                   </p>
@@ -20,14 +23,14 @@
                             {{ with $categories }}
                                 Posted in
                                 {{ range $categories }}
-                                    <a href="{{ $baseurl }}categories/{{ . | urlize }}">{{ . }}</a>
+                                    <a href="{{ $baseurl }}/categories/{{ . | urlize }}">{{ . }}</a>
                                 {{ end }}
                             {{ end }}
 
                             {{ with $tags }}
                                 with tags
                                 {{ range $tags }}
-                                    <a href="{{ $baseurl }}tags/{{ . | urlize }}">{{ . }}</a>
+                                    <a href="{{ $baseurl }}/tags/{{ . | urlize }}">{{ . }}</a>
                                 {{ end }}
                             {{ end }}
                         </span>
@@ -48,7 +51,7 @@
       <div class="eight columns">
         <div class="li-pagination-previous">
           &nbsp;
-          {{ range where .Site.Pages "RelPermalink" .Params.prev }}
+          {{ range where .Site.Pages "Permalink" $prev }}
           Previous<br />
           &nbsp;
           <a href="{{.Permalink}}"> {{.Title}}</a>
@@ -58,7 +61,7 @@
       <div class="eight columns">
         <div class="li-pagination-next">
           &nbsp;
-          {{ range where .Site.Pages "RelPermalink" .Params.next }}
+          {{ range where .Site.Pages "Permalink" $next }}
           Next<br />
           &nbsp;
           <a href="{{.Permalink}}"> {{.Title}}</a>
