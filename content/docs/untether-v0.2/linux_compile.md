@@ -23,10 +23,11 @@ can be found [here](https://github.com/riscv/riscv-linux#linuxrisc-v):
     git init
     git remote add origin https://github.com/lowrisc/riscv-linux.git
     git fetch
+    git checkout -f -t origin/master
     make ARCH=riscv defconfig
     make ARCH=riscv -j vmlinux
 
-After the compilation, you should be able to find the following files:
+After the compilation, you should be able to find the Linux kernel image:
 
     ./vmlinux
 
@@ -54,4 +55,8 @@ built using the following script:
 
     $TOP/riscv-tools/make_root.sh
 
-More details can be found [here](https://github.com/riscv/riscv-tools). 
+More details can be found [here](https://github.com/riscv/riscv-tools).
+
+### Test images in Spike
+
+Now it should be possible to boot Linux in Spike. See [Boot a RISC-V Linux](../spike#spike-boot).

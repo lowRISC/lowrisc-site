@@ -51,7 +51,7 @@ To run a test case without VCD:
 
     DefaultConfig-sim +max-cycles=100000000 +load=rv64ui-p-add.hex | spike-dasm > rv64ui-p-add.log
 
-where rv64ui-p-add.log has the instruction trace.
+where `rv64ui-p-add.log` has the instruction trace.
 
 If a VCD is required:
 
@@ -66,6 +66,10 @@ To run a regression test:
 
     cd $TOP/vsim
     make run-asm-tests
+
+If any test case ever failed, again using `rv64ui-p-add` as an example, a VCD for this test case can be generated:
+
+    make output/rv64ui-p-add.verilator.vcd
 
 ### Other useful Makefile targets
 

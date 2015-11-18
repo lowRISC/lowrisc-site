@@ -62,6 +62,7 @@ Spike can be used to run the ISA regression test cases provide in `$TOP/riscv-to
 
 Since there is no peripheral support in the bare metal mode, return value is the only way to see the result of a test case. `0` is OK while non-zero identifies the failed test case.
 
+<a name="spike-boot"></a>
 #### Boot a RISC-V Linux
 
 Before boot a Linux, please make sure the Linux image (`vmlinux`) and the ramdisk (`root.bin`) are available. Please see [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}}") for more details.

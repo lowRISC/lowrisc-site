@@ -11,14 +11,14 @@ showdisqus = true
 An overview of Berkeley's RISC-V "Rocket Chip" SoC Generator can be found [here](http://riscv.org/workshop-jan2015/riscv-rocket-chip-generator-workshop-jan2015.pdf).
 
 A high-level view of the `untethered` Rocket chip is shown below. The design
-contains multiple Rocket tiles consisting of a Rocket core and L1
-instruction and data caches. All tiles share a row of unified and banked L2 caches and an I/O bus.
+contains multiple Rocket tiles each of which consists of a Rocket core and L1
+instruction and data caches. All tiles share a unified and banked L2 cache and an I/O bus.
 The Rocket (Chisel) side of the SoC is encapsulated in a Chisel island whose features are configurable using the top-level configuration file `$TOP/src/main/scala/Configs.scala` (see [Configuration parameters]({{< ref "parameter.md" >}}) for more details).
-Two NASTI/NASTI-Lite interfaces are exposed to the FPGA peripherals. The NASTI interface is used by the L2 caches for read/write memory, while the NASTI-Lite interface is used by the I/O bus for peripheral accesses.
+Two NASTI/NASTI-Lite interfaces are exposed to the FPGA peripherals. They implement a limited subset of the AXI/AXI-Lite bus functions. The NASTI interface is used by the L2 cache for memory reads and writes, while the NASTI-Lite interface is used by the I/O bus for peripheral accesses.
 The NASTI on-chip interconnects are implemented in parameterized SystemVerilog located in `$TOP/socip/nasti`. 
 
 <a name="figure-overview"></a>
-<img src="../figures/lowrisc_soc.png" alt="Drawing" style="width: 450px;"/>
+<img src="../figures/lowrisc_soc.png" alt="Drawing" style="width: 600px;"/>
 
  * **On-FPGA Boot RAM** <br/>
   (`0x00000000 - 0x0000FFFF`) <br/>

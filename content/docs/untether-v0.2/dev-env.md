@@ -62,16 +62,6 @@ to build the RISC-V tools:
       libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
       flex texinfo gperf libncurses5-dev libusb-1.0-0
 
-To setup the necessary RISC-V variables use the setup script
-found at `lowrisc-chip/set_riscv_env.sh`:
-
-    # source this file
-    echo "Setting up RISC-V environment..."
-    # Variables for RISC-V
-    export TOP=$PWD 
-    export RISCV=$TOP/riscv
-    export PATH=$PATH:$RISCV/bin
-
 ## Download the Whole Development Environment
 
 The lowRISC chip git repository is hosted by the GitHub
@@ -86,6 +76,10 @@ To clone the whole lowRISC chip git repository:
     cd ~/lowRISC/DIR
     git clone https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
+    # === BEGIN ===
+    # for release preview ONLY
+    git checkout dev
+    # === END ===
     git submodule update --init --recursive
 
 There are 3 main branches:
@@ -93,6 +87,19 @@ There are 3 main branches:
  * *master* : The major release branch, default, most stable. After major releases, only bugfixes related to the latest release are merged.
  * *dev* : The minor release branch, less stable. After major releases, new features are added to this branch waiting for the next major release.
  * *update* : The active developing branch, non-stable. The branch for developing new features, testing bugfixes, and experimenting ideas.
+
+To setup the necessary RISC-V variables use the setup script
+found at `lowrisc-chip/set_riscv_env.sh`:
+
+    # source this file
+    echo "Setting up RISC-V environment..."
+    # Variables for RISC-V
+    if [ "$TOP" == "" ]; then
+        echo "\$TOP is not available. So set it to the current directory $PWD."
+        export TOP=$PWD
+    fi
+    export RISCV=$TOP/riscv
+    export PATH=$PATH:$RISCV/bin
 
 ## Structure of the Development Environment
 

@@ -22,7 +22,7 @@ point for deritivative open-source and commercial designs.
 This tutorial introduces a standalone implementation of the [Rocket chip][RocketChip].
 The original Rocket chip relies on a companion processor
 for accessing peripheral devices and I/O. This design replaces the companion
-processor with actual peripheral devices on FPGA providing an `untethered`
+processor with actual peripheral devices on FPGA providing an 'untethered'
 SoC that is able to boot a [RISC-V Linux][RISCVLinux]. A demo is provided using
 the [Xilinx Kintex-7 KC705 evaluation kit]
 (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). 
@@ -56,6 +56,8 @@ test programs either in simulation or on an FPGA.
 
   * [Setting up the RISC-V tools](https://github.com/riscv/riscv-tools/blob/master/README.md)
   * [Tagged memory and minion cores in the lowRISC SoC (lowRISC-MEMO 2014-001)](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
+  * [The RISC-V Instruction Set Manual -- Volume I: User-Level ISA](http://riscv.org/download.html#tab_spec_user_isa)
+  * [The RISC-V Instruction Set Manual -- Volume II: Privileged Architecture](http://riscv.org/download.html#tab_spec_privileged_isa)
 
 ### Acknowledgements
 

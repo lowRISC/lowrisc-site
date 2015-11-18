@@ -13,7 +13,7 @@ below. All configuration parameters are located in
 `src/scala/main/Configs.scala`. 
 
 Further details on how to parameterize Rocket Chip can be found
-[here](https://github.com/ucb-bar/rocket-chip#-how-can-i-parameterize-my-rocket-chip). 
+[here](https://github.com/ucb-bar/rocket-chip#-how-can-i-parameterize-my-rocket-chip) (note that now lowRISC has its own chip generator). 
 A manual describing the advanced
 parameter library within Chisel is also
 [available][Chisel-parameterization-manual].
@@ -21,8 +21,7 @@ parameter library within Chisel is also
 | Description                          | Parameter Name | Default Value        | Possible Value (a) |
 | ------------------------------------ | -------------- | -------------------- | -----------------  |
 | No. of Rocket tiles                  | NTILES         | 1                    | a > 0              |
-| No. of banks                         | NBANKS         | 1                    | a > 0, power of 2  |
-| No. of MSHRS                         | L1D_MSHRS      | 2                    | a > 0              |
+| No. of MSHRS in L1 D$                | L1D_MSHRS      | 2                    | a > 0              |
 | No. of sets in L1 D$                 | L1D_SETS       | 64                   | a > 0, power of 2  |
 | No. of ways in L1 D$                 | L1D_WAYS       | 4                    | a > 0, power of 2  |
 | No. of sets in L1 I$                 | L1I_SETS       | 64                   | a > 0, power of 2  |
@@ -31,6 +30,7 @@ parameter library within Chisel is also
 | No. of trackers in L2$               | L2_XACTORS     | 2                    | a > 0              |
 | No. of sets in L2$                   | L2_SETS        | 256                  | a > 0, power of 2  |
 | No. of ways in L2$                   | L2_WAYS        | 8                    | a > 0, power of 2  |
+| No. of banks in L2$                  | NBANKS         | 1                    | a > 0, power of 2  |
 | Instantiate FPU?                     | BuildFPU       | true                 | true/false         |
 | No. of memory sections               | NMemSections   | 2                    | 0 < a <= 4         |
 | Initial memory base                  | InitMemBase    | `0x00000000`         |                    |
