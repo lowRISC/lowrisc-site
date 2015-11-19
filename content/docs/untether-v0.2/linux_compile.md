@@ -29,7 +29,7 @@ can be found [here](https://github.com/riscv/riscv-linux#linuxrisc-v):
 
 After the compilation, you should be able to find the Linux kernel image:
 
-    ./vmlinux
+    ls -l vmlinux
 
 
 <a name="busybox"></a>
@@ -46,7 +46,7 @@ binary must be generated at first:
     cp $TOP/riscv-tools/busybox_config .config
     make -j
 
-If the compilation finishes successful, the BusyBox binary is generated in the same directory.
+If the compilation finishes successfully, the BusyBox binary is generated in the same directory.
 
     ls -l busybox
 

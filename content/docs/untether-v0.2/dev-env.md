@@ -10,19 +10,20 @@ showdisqus = true
 +++
 
 
-## System Requirement
+## System requirement
 
-We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU GCC >= 4.8 installed. If necessary, create such a setup using VMware player or VirtualBox.
+We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU GCC >= 4.8 installed. If necessary, create such a setup using [VMware Workstation Player](https://www.vmware.com/products/player/) or [VirtualBox](https://www.virtualbox.org/).
 
 The default simulator for RTL/Behavioural SystemVerilog simulation is [Verilator](http://www.veripool.org/wiki/verilator).
 Please download and install a latest version for the best SystemVerilog support.
 
 An FPGA demonstration is provided using the [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). The kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit).
 
-By default, all simulations produce waveform in the VCD format. GTKWave can be used to view VCD files.
+By default, all simulations produce waveform in the VCD format. [GTKWave](http://gtkwave.sourceforge.net/) can be used to view VCD files.
 
-Here is software versions and exposed environment variables on my machine:
+Here shows software versions and environment variables on my machine:
 
+     # it is better to use bash
      $ echo $0
      bash
 
@@ -62,9 +63,9 @@ to build the RISC-V tools:
       libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
       flex texinfo gperf libncurses5-dev libusb-1.0-0
 
-## Download the Whole Development Environment
+## Download the code release
 
-The lowRISC chip git repository is hosted by the GitHub
+The [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip) is hosted by the GitHub
 website. Instead of cloning individual sub-modules, we recommend
 cloning the entire repository to ensure all the sub-modules you
 acquire are compatible. Different versions of the sub-modules are not
@@ -101,11 +102,10 @@ found at `lowrisc-chip/set_riscv_env.sh`:
     export RISCV=$TOP/riscv
     export PATH=$PATH:$RISCV/bin
 
-## Structure of the Development Environment
+## Structure of the git repository
 
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 
  compiling the rocket system.
- * `chisel-components`: Extra chisel building blocks used in lowRISC chip.
  * `fpga`: FPGA demo implementations
    * `board`: Demo projects for individual developement boards.
      * `kc705`: Xilinx KC705 developement board. [[FPGA Demo]]({{<ref "kc705.md">}})
@@ -115,8 +115,9 @@ found at `lowrisc-chip/set_riscv_env.sh`:
  * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "riscv_compile.md">}})
    * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
    * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
-   * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<ref "spike.md">}})
+   * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "docs/untether-v0.2/spike.md">}})
    * `riscv-opcodes`: The enumeration of all RISC-V opcodes executable by the Spike simulator.
+   * `riscv-pk`: The proxy kernel need for running legacy programs in the Spike simulator.
    * `riscv-tests`: Tests for the Rocket core.
  * `rocket`: The Chisel code for the Rocket core.
  * `socip`: The SystemVerilog/Verilog building blocks used in lowRISC chip.

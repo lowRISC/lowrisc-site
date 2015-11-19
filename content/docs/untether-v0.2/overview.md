@@ -36,7 +36,7 @@ The NASTI on-chip interconnects are implemented in parameterized SystemVerilog l
 
 ## Further reading
 
- * [Rocket core]({{< ref "rocket-core.md" >}})
+ * [Rocket core]({{< relref "docs/untether-v0.2/rocket-core.md" >}})
  * [Memory mapped I/O (MMIO)]({{< ref "mmio.md" >}})
  * [Memory and I/O maps, soft reset, and interrupts]({{< ref "pcr.md" >}})
  * [Bootload procedure]({{< ref "bootload.md" >}})

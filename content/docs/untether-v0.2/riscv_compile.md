@@ -23,7 +23,7 @@ Programs can be compiled and run in three different modes:
  * **Bare metal mode**: <br/>
    *Simulation only* <br/>
    Programs run in this mode have no peripheral support.<br/>
-   This mode is used only for ISA regression test. The resturn value of a program indicates the result of an ISA test case. 0 is success while none-zero indentify the No. of the failing case.
+   This mode is used only for ISA regression test. The return value of a program indicates the result of an ISA test case. 0 is success while none-zero indentifies the No. of the failing case.
  * **Newlib (supervisor) mode**: <br/>
    *Simulation and FPGA* <br/>
    Programs run in this mode have the full control (supervisor priority) of peripherals (limited in simulation) but are single-threaded.<br/>
@@ -81,7 +81,7 @@ The RISC-V GCC/Newlib Toolchain Installation Manual can be found
 
 ### Building the Linux GCC
 
-The build script above provide the newlib GCC but not the Linux GCC, which needed for compiling programs in Linux (user) mode. To build a Linux GCC compiler:
+The build script above provides the newlib GCC but not the Linux GCC, which is needed for compiling programs in Linux (user) mode. To build a Linux GCC compiler:
 
     # set up the RISCV environment variables
     cd $TOP/riscv-tools/riscv-gnu-toolchain

@@ -11,7 +11,7 @@ showdisqus = true
 
 This release works with four different simulators and provides an FPGA demo using the [Xilinx Kintex-7 KC705 evaluation kit] (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html).
 
- * [Behavioural Simulation (Spike)] ({{<ref "spike.md">}})<br/>
+ * [Behavioural Simulation (Spike)] ({{<relref "docs/untether-v0.2/spike.md">}})<br/>
    A fast instruction level simulator. The "golden" implementation of Rocket cores. <br/>
    Peripheral support from the front-end server (not compatible with the FPGA implemantion).
 

@@ -34,10 +34,10 @@ test programs either in simulation or on an FPGA.
 ### Contents
 
   1. [Overview of the Rocket chip]({{< ref "overview.md" >}})
-    * [Rocket core]({{< ref "rocket-core.md" >}})
+    * [Rocket core]({{< ref "docs/untether-v0.2/rocket-core.md" >}})
     * [Memory mapped I/O (MMIO)]({{< ref "mmio.md" >}})
     * [Memory and I/O maps, soft reset, and interrupts]({{< ref "pcr.md" >}})
-    * [Bootload procedure]({{< ref "bootload.md" >}})
+    * [Bootload procedure]({{< relref "bootload.md" >}})
     * [Configuration parameters]({{< ref "parameter.md" >}})
   2. [The development environment]({{< ref "dev-env.md" >}})
     * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
@@ -45,7 +45,7 @@ test programs either in simulation or on an FPGA.
     * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
     * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}})
   3. [Simulations and FPGA Demo] ({{<ref "simulation.md">}})
-     * [Behavioural Simulation (Spike)] ({{<ref "spike.md">}})
+     * [Behavioural Simulation (Spike)] ({{<relref "docs/untether-v0.2/spike.md">}})
      * [RTL simulation] ({{<ref "vsim.md">}})
      * [FPGA demo] ({{<ref "kc705.md">}})
      * [FPGA simulation] ({{<ref "kc705-sim.md">}})
