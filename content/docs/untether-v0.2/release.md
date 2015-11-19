@@ -27,7 +27,7 @@ showdisqus = true
    * A NASTI on-chip interconnect (crossbar, buffer, Lite/NASTI bridge) is provided using SystemVerilog.
    * UART (Xilinx IP) connected and tested.
    * SD (Xilinx SPI IP) connected and tested. Software support for FatFS is provided.
-   * DDR3 RAM and Memory controller (XIlinx IP) is connected and tested.
+   * DDR3 RAM and Memory controller (Xilinx IP) is connected and tested.
    * Boot from on-chip BRAM.
  * Design environment
    * A KC705 FPGA demo with RISC-V Linux boot. [[FPGA demo]] ({{<ref "kc705.md">}})

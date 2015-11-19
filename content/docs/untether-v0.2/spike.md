@@ -14,7 +14,7 @@ showdisqus = true
 ISA simulator. It models a RISC-V core and cache system. Note that our fork 
 hasn't currently been modified to include tagged memory support.
 
-In this release, due to the peripheral mismatch between the original Rocket-chip and untethered lowRISC SoC, Spike can only be used to run a Linux Kernel and programs without using peripherals.
+In this release, due to the peripheral mismatch between the original Rocket-chip and untethered lowRISC SoC, Spike can only be used to run a Linux Kernel and non-I/O related programs.
 
 Please see [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}}") for the installation of Spike.
 
@@ -52,9 +52,9 @@ Note: to use the `-g` argument Spike has to be compiled with the
 
 #### Bare metal mode
 
-Spike can be used to run the ISA regression test cases provide in `$TOP/riscv-tools/riscv-tests`.
+Spike can be used to run the ISA regression test cases provided in `$TOP/riscv-tools/riscv-tests/isa`.
 
-    cd $TOP/riscv-tools/riscv-tests
+    cd $TOP/riscv-tools/riscv-tests/isa
     make rv64ui-p-add
     spike rv64ui-p-add
     # show the rsturn value

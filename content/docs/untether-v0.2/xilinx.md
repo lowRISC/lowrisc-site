@@ -8,7 +8,7 @@ showdisqus = true
 
 +++
 
-### Download and install XIlinx Vivado
+### Download and install Xilinx Vivado
 
 The Xilinx Vivado design suite can be downloaded from [http://www.xilinx.com/support/download.html](http://www.xilinx.com/support/download.html) free of charge for registered users (registration is also free). For Ubuntu Linux, we recommend downloading the "Vivado 2015.3: Full Installer For Linux Single File Download Image Including SDK" (TAR/GZIP - 6.92 GB). Please move and extract the downloaded TAR/GZIP file, then run the `xsetup` script provided by the installation image.
 

@@ -11,7 +11,7 @@ showdisqus = true
 An FPGA simulation is provided using the Xilinx ISim simulator. However, due to the lack of behavioural models for all peripherals, this FPGA simulation covers only part of the whole SoC.
 
    * All part of the Rocket cores, L1/L2 caches and on-chip interconnects are simulated.
-   * A full DDR3 simulation model is available from XIlinx, but extremely slow.
+   * A full DDR3 simulation model is available from Xilinx (disabled by default) but extremely slow.
    * A behavioural DDR3 simulation is provided using SystemVerilog DPI interfaces (chosen in default).
    * In simulation, both UART and SD (SPI) I/Os are constantly driven or open.
 
@@ -50,11 +50,11 @@ into
     set_property verilog_define [list FPGA FPGA_FULL] $obj
     #set_property verilog_define [list FPGA] $obj
 
-which effectively defaine the `FPGA_FULL` macro for FPGA simulation.
+which effectively defines the `FPGA_FULL` macro for FPGA simulation.
 
-Please rebuild the whole FPGA project to update the chenages:
+Please rebuild the whole FPGA project to update the change:
 
     make cleanall
     make project
 
-Unless DDR3 interface is the debugging target, it is strongly suggested NOT to enable this option.
+Unless DDR3 interface is the debugging target, it is strongely suggested NOT to enable this option.
