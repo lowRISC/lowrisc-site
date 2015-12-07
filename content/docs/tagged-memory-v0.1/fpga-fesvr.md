@@ -2,8 +2,9 @@
 Description = ""
 date = "2015-04-12T16:24:16+01:00"
 title = "Building the front-end server"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/fpga-ramdisk/"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/fpga-ramdisk/"
+next = "/docs/tagged-memory-v0.1/"
 showdisqus = true
 
 +++

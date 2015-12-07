@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:52:33+01:00"
 title = "Running tests on the Zedboard FPGA"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/verilog-fpga-sim/"
-next = "/docs/tutorial/future/"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/verilog-fpga-sim/"
+next = "/docs/tagged-memory-v0.1/future/"
 showdisqus = true
 
 +++
@@ -182,9 +182,9 @@ These binaries can be run directly, e.g.
 
 ## Going further
 
- * [Rebuilding the boot image]({{< ref "docs/tutorial/fpga-bootimage.md" >}})
- * [Modifying the contents of the RAMDisk]({{< ref "docs/tutorial/fpga-ramdisk.md" >}})
- * [Building the front-end server]({{< ref "docs/tutorial/fpga-fesvr.md" >}})
+ * [Rebuilding the boot image]({{< ref "fpga-bootimage.md" >}})
+ * [Modifying the contents of the RAMDisk]({{< ref "fpga-ramdisk.md" >}})
+ * [Building the front-end server]({{< ref "fpga-fesvr.md" >}})
  * [Building the ARM Linux kernel](https://github.com/ucb-bar/fpga-zynq#36--building-linux-for-the-arm-ps)
 
 <!-- Links -->

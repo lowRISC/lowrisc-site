@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:28:01+01:00"
 title = "Adding HW/SW support for the load and store tag instructions"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/tags/"
-next = "/docs/tutorial/tag-tests/"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/tags/"
+next = "/docs/tagged-memory-v0.1/tag-tests/"
 showdisqus = true
 
 +++

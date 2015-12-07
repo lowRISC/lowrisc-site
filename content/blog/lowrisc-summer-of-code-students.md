@@ -90,7 +90,7 @@ source IP cores, including most devices on
 [opencores.org](http://opencores.org/). The Berkeley
 [Rocket](https://github.com/ucb-bar/rocket-chip) RISC-V implementation uses 
 their own 'TileLink' protocol (we provide a [brief 
-overview](http://www.lowrisc.org/docs/tutorial/rocket-chip/). By providing a 
+overview](http://www.lowrisc.org/docs/tagged-memory-v0.1/rocket-chip/). By providing a 
 reusable bridge, this project will allow the easy reuse of opencores devices 
 and leverage the many man-years of effort that has already gone in to them.
 

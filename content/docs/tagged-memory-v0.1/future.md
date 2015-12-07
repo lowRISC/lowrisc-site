@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-13T14:27:08+01:00"
 title = "Future work"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/fpga/"
-next = "/docs/tutorial/fpga-bootimage/"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/fpga/"
+next = "/docs/tagged-memory-v0.1/fpga-bootimage/"
 showdisqus = true
 
 +++

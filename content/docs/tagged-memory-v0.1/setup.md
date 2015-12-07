@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-04-12T15:35:46+01:00"
 title = "A guide to setting up the development environment"
-parent = "/docs/tutorial/"
-prev = "/docs/tutorial/tag-tests/"
-next = "/docs/tutorial/simulations/"
+parent = "/docs/tagged-memory-v0.1/"
+prev = "/docs/tagged-memory-v0.1/tag-tests/"
+next = "/docs/tagged-memory-v0.1/simulations/"
 showdisqus = true
 
 +++
@@ -63,14 +63,16 @@ To clone the whole lowRISC chip git repository (around 2.1 GB):
     cd ~/lowRISC/DIR
     git clone https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
+    # checkout the tagged-memory-v0.1 release
+    git checkout tagged-memory-v0.1
     git submodule update --init --recursive
 
 Ensure you have all the necessary packages installed before attempting
 to build the RISC-V tools:
 
-       sudo apt-get install autoconf automake autotools-dev curl \ 
-         libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \ 
-         flex texinfo gperf libncurses5-dev gcc-multilib u-boot-tools \ 
+       sudo apt-get install autoconf automake autotools-dev curl \
+         libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
+         flex texinfo gperf libncurses5-dev gcc-multilib u-boot-tools \
          openjdk-7-jre
 
 ### Environment variables
@@ -158,7 +160,7 @@ can be found [here](https://github.com/riscv/riscv-linux#linuxrisc-v):
     # set up the RISCV environment variables
     cd $TOP/riscv-tools
     curl https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.14.13.tar.xz \
-     | tar -xJ
+      | tar -xJ
     cd linux-3.14.13
     git init
     git remote add origin https://github.com/riscv/riscv-linux.git
