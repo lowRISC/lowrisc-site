@@ -25,7 +25,13 @@ for accessing peripheral devices and I/O. This design replaces the companion
 processor with actual peripheral devices on FPGA providing an 'untethered'
 SoC that is able to boot a [RISC-V Linux][RISCVLinux]. A demo is provided using
 the [Xilinx Kintex-7 KC705 evaluation kit]
-(http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). 
+(http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). Another demo using a
+low-end board [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/) is in 
+preparation and will be released soon.
+
+Please note that this release has a freash start from the latest RISC-V Rocket-chip; therefore,
+it is not implemented with the tagged memory provided in the previous release. We plan to
+re-implement the tagged memory with more features in the early half of next year.
 
 The tutorial also acts as an introduction to the RISC-V tools and provides
 a step-by-step guide to setting up the environment necessary to run

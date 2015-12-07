@@ -36,7 +36,7 @@ showdisqus = true
    * Rewrite all Makefile support.
  * Missing from last release [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
    * No tagged memory support (will be added back soon).
-   * No support for ZedBoard (will evaluate the possibility to support it further).
+   * No support for ZedBoard.
 
 ### Previous releases
 
