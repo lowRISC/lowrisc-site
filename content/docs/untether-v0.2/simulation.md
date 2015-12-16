@@ -9,7 +9,7 @@ showdisqus = true
 
 +++
 
-This release works with three different simulators and provides an FPGA demo using the [Xilinx Kintex-7 KC705 evaluation kit] (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html).
+This release works with three different simulators and provides an FPGA demo using either a [Xilinx Kintex-7 KC705 evaluation kit] (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/).
 
  * [Behavioural Simulation (Spike)] ({{<relref "docs/untether-v0.2/spike.md">}})<br/>
    A fast instruction level simulator. The "golden" implementation of Rocket cores. <br/>
@@ -19,11 +19,12 @@ This release works with three different simulators and provides an FPGA demo usi
    RTL level simulation for the whole lowRISC SoC provided by [Verilator] ({{<ref "verilator.md">}}). <br/>
    Behaviour memory model and simple HTIF for ISA regression test.
    
- * [FPGA demo] ({{<ref "kc705.md">}})<br/>
-   A RISC-V Linux demo on KC705. <br/>
-   Peripherals: 1GB DDR3 DRAM, UART, SD+FAT32. <br/>
+ * [FPGA demo] ({{<ref "fpga-demo.md">}})<br/>
+   A RISC-V Linux demo on KC705/NEXYS4-DDR. <br/>
+   Peripherals (KC705): 1GB DDR3 DRAM, UART, SD+FAT32. <br/>
+   Peripherals (NEXYS4-DDR): 128MB DDR2 DRAM, UART, MicroSD+FAT32. <br/>
 
- * [FPGA simulation] ({{<ref "kc705-sim.md">}})<br/>
+ * [FPGA simulation] ({{<ref "fpga-sim.md">}})<br/>
    Pre-synthesis FPGA simulation for the whole lowRISC SoC provided by Xilinx ISim (a part of Xilinx Vivado). <br/>
    Providing the full peripheral simulation with different configuration options.
  

@@ -16,9 +16,11 @@ During the installation process, when asked for "Select Edition to Install", ple
 
 ### License
 
-A license is required to use the Xilinx Vivado suite. For users who bought an FPGA developement kit, such as the KC705 kit, a voucher should be enclosed. This voucher will allow the user to generate a site and device locked license (version limited as well). Such a license will allow a user to implement designs targeting the sepecific FPGA used in the developement kit, such as Kintex-7 FPGAs for the KC705 kit. This license is a version limited one. Users are allowed to install and update the Xilinx Vivado suite for one year. Once the license is expired, the old Xilinx Vivado is still usable but not updatable.
+A license is required to use the Xilinx Vivado suite. For users who bought an FPGA developement kit, such as the KC705 kit, a voucher may be enclosed. This voucher will allow the user to generate a site and device locked license (version limited as well). Such a license will allow a user to implement designs targeting the sepecific FPGA used in the developement kit, such as Kintex-7 FPGAs for the KC705 kit. This license is a version limited one. Users are allowed to install and update the Xilinx Vivado suite for one year. Once the license is expired, the old Xilinx Vivado is still usable but not updatable.
 
-To generate a license using a voucher, login Xilinx and visit [http://www.xilinx.com/getlicense](http://www.xilinx.com/getlicense).
+For users of low-end boards, such as the NEXYS4-DDR, please apply a free WebPACK license which allows implementations targeting certain Artix-7, Kintex-7 and Zynq-7000 FPGAs [[vivado-webpack](http://www.xilinx.com/products/design-tools/vivado/vivado-webpack.html)].
+
+To generate a license using a voucher or a WebPACK license, login Xilinx and visit [http://www.xilinx.com/getlicense](http://www.xilinx.com/getlicense).
 
 ### Enviroment settings
 
@@ -46,7 +48,9 @@ The default JTAG and configuration method for the KC705 kit is the UART-JTAG cab
 
 KC705 has a Silicon Labs CP2103GM USB-to-UART bridge. To utilize this bridge, please download the driver from [http://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip](http://www.silabs.com/Support%20Documents/Software/Linux_3.x.x_VCP_Driver_Source.zip). Follow the instructions in the "CP210x_VCP_Linux_3.13.x_Release_Notes.txt" enclosed in the driver package.
 
-The USB-UART bridge is normally shown in Ubuntu as /dev/ttyUSB0. [Screen](https://wiki.archlinux.org/index.php/Working_with_the_serial_console#Screen) or [CuteCom](http://cutecom.sourceforge.net/) can be used to connect to this console.
+The FTDI USB-UART bridge chip used on NEXYS4-DDR is supported in Ubuntu 14.04 and does not require extra driver installation.
+
+The USB-UART bridge is normally shown in Ubuntu as /dev/ttyUSB0 ~ /dev/ttyUSB3. [Screen](https://wiki.archlinux.org/index.php/Working_with_the_serial_console#Screen) or [CuteCom](http://cutecom.sourceforge.net/) can be used to connect to this console.
 
 By default, users are not allowed to connect to /dev/ttyUSB0 due to the lack of permission. The easiest way of resolving this issue is to add yourself to the dialout group.
 
