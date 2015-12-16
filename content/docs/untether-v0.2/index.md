@@ -24,10 +24,9 @@ The original Rocket chip relies on a companion processor
 for accessing peripheral devices and I/O. This design replaces the companion
 processor with actual peripheral devices on FPGA providing an 'untethered'
 SoC that is able to boot a [RISC-V Linux][RISCVLinux]. A demo is provided using
-the [Xilinx Kintex-7 KC705 evaluation kit]
-(http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). Another demo using a
-low-end board [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/) is in 
-preparation and will be released soon.
+either a [Xilinx Kintex-7 KC705 evaluation kit]
+(http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html)
+or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/).
 
 Please note that this release has a freash start from the latest RISC-V Rocket-chip; therefore,
 it is not implemented with the tagged memory provided in the previous release. We plan to
@@ -53,8 +52,8 @@ test programs either in simulation or on an FPGA.
   3. [Simulations and FPGA Demo] ({{<ref "simulation.md">}})
      * [Behavioural Simulation (Spike)] ({{<relref "docs/untether-v0.2/spike.md">}})
      * [RTL simulation] ({{<ref "vsim.md">}})
-     * [FPGA demo] ({{<ref "kc705.md">}})
-     * [FPGA simulation] ({{<ref "kc705-sim.md">}})
+     * [FPGA demo] ({{<ref "fpga-demo.md">}})
+     * [FPGA simulation] ({{<ref "fpga-sim.md">}})
   4. [Release notes] ({{<ref "release.md">}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
 
@@ -78,6 +77,8 @@ and
 Andrew Waterman
 for fielding numerous questions from us about the implementation
 details of the Rocket core and chip.
+
+Also thanks to Stefan Wallentowitz who has provided advice for this release.
 
 <!-- Links -->
 

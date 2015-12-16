@@ -17,7 +17,7 @@ We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU GCC >= 4.
 The default simulator for RTL/Behavioural SystemVerilog simulation is [Verilator](http://www.veripool.org/wiki/verilator).
 Please download and install a latest version for the best SystemVerilog support.
 
-An FPGA demonstration is provided using the [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html). The kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit).
+An FPGA demonstration is provided using either a [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/). The KC705 kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit). As for the users of the Nexys4-DDR boards, please acquire a free license and install the WebPACK edition of Vivado.
 
 By default, all simulations produce waveform in the VCD format. [GTKWave](http://gtkwave.sourceforge.net/) can be used to view VCD files.
 
@@ -101,14 +101,17 @@ found at `lowrisc-chip/set_riscv_env.sh`:
     fi
     export RISCV=$TOP/riscv
     export PATH=$PATH:$RISCV/bin
+    # choose the FPGA board (KC705 in default)
+    export FPGA_BOARD=kc705
 
 ## Structure of the git repository
 
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 
  compiling the rocket system.
  * `fpga`: FPGA demo implementations
-   * `board`: Demo projects for individual developement boards.
-     * `kc705`: Xilinx KC705 developement board. [[FPGA Demo]]({{<ref "kc705.md">}})
+   * `board`: Demo projects for individual developement boards. [[FPGA Demo]]({{<ref "fpga-demo.md">}})
+     * `kc705`: Files for the Xilinx KC705 developement board.
+     * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
  * `hardfloat`: The IEEE 754-2008 compliant floating-point unit.
  * `junctions`: Peripheral components and I/O devices associated with the RocketChip.
  * `project`: Global configuration for Chisel compilation.

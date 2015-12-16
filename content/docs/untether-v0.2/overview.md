@@ -23,9 +23,9 @@ The NASTI on-chip interconnects are implemented in parameterized SystemVerilog l
  * **On-FPGA Boot RAM** <br/>
   (`0x00000000 - 0x0000FFFF`) <br/>
   On-FPGA Block RAM, 64 KB [[AXI Block RAM (BRAM) Controller v4.0]] (http://www.xilinx.com/support/documentation/ip_documentation/axi_bram_ctrl/v4_0/pg078-axi-bram-ctrl.pdf).
- * **DDR3 DRAM**  <br/>
+ * **DDR DRAM**  <br/>
   (`0x40000000 - 0x7FFFFFFF`) <br/>
-  Off-FPGA DDR3 DRAM, 1 GB [[Zynq-7000 AP SoC and 7 Series Devices Memory Interface Solutions v2.4]](http://www.xilinx.com/support/documentation/ip_documentation/mig_7series/v2_4/ug586_7Series_MIS.pdf).
+  Off-FPGA DRAM, KC705 DDR3 1 GB, NEXYS4-DDR DDR2 128 MB [[Zynq-7000 AP SoC and 7 Series Devices Memory Interface Solutions v2.4]](http://www.xilinx.com/support/documentation/ip_documentation/mig_7series/v2_4/ug586_7Series_MIS.pdf).
  * **UART**  <br/>
   (`0x80000000 - 0x8000FFFF`) <br/>
   Xilinx AXI UART 16550 [[AXI UART 16550 v2.0]](http://www.xilinx.com/support/documentation/ip_documentation/axi_uart16550/v2_0/pg143-axi-uart16550.pdf).

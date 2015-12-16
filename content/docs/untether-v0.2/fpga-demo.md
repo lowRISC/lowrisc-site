@@ -4,12 +4,14 @@ date = "2015-11-13T10:31:00+01:00"
 title = "FPGA Demo"
 parent = "/docs/untether-v0.2/simulation/"
 prev = "/docs/untether-v0.2/vsim/"
-next = "/docs/untether-v0.2/kc705-sim/"
+next = "/docs/untether-v0.2/fpga-sim/"
 showdisqus = true
 
 +++
 
-A comprehensive FPGA demo of the untethered lowRISC SoC is provided using the Xilinx KC705 kit.
+A comprehensive FPGA demo of the untethered lowRISC SoC is provided using either the Xilinx KC705 kit or the NEXYS4-DDR board.
+
+Depending on the board, please set variable $FPGA_BOARD to the board name. It is set to kc705 in `lowrisc-chip/set_riscv_env.sh`. 
 
 ### File structure of the FPGA demo
 
@@ -17,7 +19,7 @@ A comprehensive FPGA demo of the untethered lowRISC SoC is provided using the Xi
  * `driver`: Bare metal driver programs used by bootloaders.
  * `examples`: Some bare metal test programs for FPGA peripherals.
   * `boot`: Bootloader test, also serves as the on-chip boot program used by the FPGA demo.
-  * `dram`: Test program for DDR3 RAM interface.
+  * `dram`: Test program for DDR RAM interface.
   * `hello`: A simple hello world program using the UART interface.
   * `reset`: A simulation-only test for the soft-reset process.
   * `sdcard`: Test the SD (SPI mode) interface and the [FatFS](http://elm-chan.org/fsw/ff/00index_e.html) (Fat 32) support.
@@ -35,7 +37,7 @@ A comprehensive FPGA demo of the untethered lowRISC SoC is provided using the Xi
 
 To generate a bitstream:
 
-    cd $TOP/fpga/board/kc705
+    cd $TOP/fpga/board/$FPGA_BOARD
     make bitstream
 
 This make target automatically processes all compiling process from Chisel compilation to bitstream generation. The final bit stream is located at `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.bit`. However, in most cases, this bitstream may NOT be the one downloaded to the FPGA. Users can freely change the boot BRAM image after a bitstream is generated.
@@ -46,7 +48,7 @@ For installing the USB-JTAG and USB-UART bridge, please see [[Install Xilinx Viv
 
 Four runnable bare-metal examples are provided for users to run on FPGA. To compile an example and replace the bitstream with a new boot image, just use the example name as the make target.
 
-    cd $TOP/fpga/board/kc705
+    cd $TOP/fpga/board/$FPGA_BOARD
     # compile and load the "hello" example
     make hello
 
@@ -64,7 +66,7 @@ After downloading the bitstream, the UART interface should print:
 
 #### DRAM self-test
 
-This example executes a read/write check of the DDR3 RAM. The check results are constantly printed to UART.
+This example executes a read/write check of the DDR RAM. The check results are constantly printed to UART.
 
 Following is the result from UART:
 
@@ -116,9 +118,9 @@ Following is the result from UART:
 
 #### Boot test
 
-This example copies the content of a executable named "`boot`" from a SD card to DDR3 RAM and then boots it from DDR3 RAM.
+This example copies the content of a executable named "`boot`" from a SD card to DDR RAM and then boots it from DDR RAM.
 
-This example also served as the initial bootloader for the RISC-V Linux FPGA demo. It copies the revised BBL from SD to DDR3 RAM.
+This example also served as the initial bootloader for the RISC-V Linux FPGA demo. It copies the revised BBL from SD to DDR RAM.
 
 Here is the UART print if we store a hello world executable to SD as the `boot` program.
 
@@ -135,7 +137,7 @@ Here is the UART print if we store a hello world executable to SD as the `boot` 
 
 For first time users, please try the pre-compiled RISC-V and ramdisk images.
 
-    cd $TOP/fpga/board/kc705
+    cd $TOP/fpga/board/$FPGA_BOARD
     # insert and mount a SD card
     # Ensure the SD card is formatted in FAT 32
 
@@ -143,7 +145,7 @@ For first time users, please try the pre-compiled RISC-V and ramdisk images.
     . preload_image.sh /PATH/TO/SD/
 
     # umount the SD card
-    # insert the SD card to KC705
+    # insert the SD card to KC705 or NEXYS4-DDR
 
     # compile and load the on-chip boot
     make boot
@@ -226,7 +228,7 @@ After compilation, load the kernel and ramdisk to SD:
 
 For generating BBL:
 
-    cd $TOP/fpga/board/kc705
+    cd $TOP/fpga/board/$FPGA_BOARD
     make bbl
     cp bbl/bbl /PATH/TO/SD/boot
 
