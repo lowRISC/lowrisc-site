@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-10T16:33:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Behavioural Simulation (Spike)"
 parent = "/docs/untether-v0.2/simulation/"
 next = "/docs/untether-v0.2/vsim/"
@@ -16,7 +16,8 @@ hasn't currently been modified to include tagged memory support.
 
 In this release, due to the peripheral mismatch between the original Rocket-chip and untethered lowRISC SoC, Spike can only be used to run a Linux Kernel and non-I/O related programs.
 
-Please see [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}}") for the installation of Spike.
+Please see [Compile and install the RISC-V cross-compiler] ({{<ref 
+"riscv_compile.md">}}") for the installation of Spike.
 
 ### Using Spike
 
@@ -57,15 +58,19 @@ Spike can be used to run the ISA regression test cases provided in `$TOP/riscv-t
     cd $TOP/riscv-tools/riscv-tests/isa
     make rv64ui-p-add
     spike rv64ui-p-add
-    # show the rsturn value
+    # show the return value
     echo $?
 
-Since there is no peripheral support in the bare metal mode, return value is the only way to see the result of a test case. `0` is OK while non-zero identifies the failed test case.
+Since there is no peripheral support in the bare metal mode, the return value 
+is the only way to see the result of a test case. `0` indicates success while 
+non-zero identifies the failed test case.
 
 <a name="spike-boot"></a>
-#### Boot a RISC-V Linux
+#### Booting RISC-V Linux
 
-Before boot a Linux, please make sure the Linux image (`vmlinux`) and the ramdisk (`root.bin`) are available. Please see [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}}") for more details.
+Before booting Linux, please make sure the Linux image (`vmlinux`) and the 
+ramdisk (`root.bin`) are available. Please see [Compile RISC-V Linux and
+ramdisk `root.bin`] ({{<ref "linux_compile.md">}}") for more details.
 
     cd $TOP/riscv-tools/
     spike +disk=busybox-1.21.1/root.bin bbl linux-3.14.41/vmlinux

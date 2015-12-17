@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-16T11:35:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Configuration parameters"
 parent = "/docs/untether-v0.2/overview/"
 prev = "/docs/untether-v0.2/bootload/"

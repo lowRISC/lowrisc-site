@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-10T15:31:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Simulations and FPGA Demo"
 parent = "/docs/untether-v0.2/"
 prev = "/docs/untether-v0.2/dev-env/"
@@ -16,8 +16,8 @@ This release works with three different simulators and provides an FPGA demo usi
    Peripheral support from the front-end server (not compatible with the FPGA implemantion).
 
  * [RTL simulation] ({{<ref "vsim.md">}})<br/>
-   RTL level simulation for the whole lowRISC SoC provided by [Verilator] ({{<ref "verilator.md">}}). <br/>
-   Behaviour memory model and simple HTIF for ISA regression test.
+   RTL-level simulation for the whole lowRISC SoC provided by [Verilator] ({{<ref "verilator.md">}}). <br/>
+   Behavioural memory model and simple HTIF for ISA regression test.
    
  * [FPGA demo] ({{<ref "fpga-demo.md">}})<br/>
    A RISC-V Linux demo on KC705/NEXYS4-DDR. <br/>

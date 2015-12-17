@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-10T13:24:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Install Verilator"
 parent = "/docs/untether-v0.2/dev-env/"
 prev = "/docs/untether-v0.2/xilinx/"
@@ -21,13 +21,15 @@ Verilator is already available through `apt-get` on Ubuntu but we recommend comp
 
 For downloading and compiling Verilator, please following the instructions of [http://www.veripool.org/projects/verilator/wiki/Installing](http://www.veripool.org/projects/verilator/wiki/Installing). "Building from tarball" should fit the purpose.
 
-Following is an example script for setting up environment for Verilator.
+Below is an example script for setting up the environment for Verilator:
 
     # assume Verilator is installed to /local/tool/verilator
     export VERILATOR_ROOT=/local/tool/verilator
     export PATH=$PATH:$VERILATOR_ROOT/bin
 
-When Verilator is installed locally, some soft-links are missing which stops the compilation of simulation. If compiler errors similar to the fllowing appear,
+When Verilator is installed locally, some soft-links are missing which stops 
+the compilation of simulation. If compiler errors similar to the following 
+appear,
 
     make[1]: *** No rule to make target `<Verilator install path>/include/verilated.mk'. Stop.
     Can't open perl script "<Verilator install path>/bin/verilator_includer": No such file or directory

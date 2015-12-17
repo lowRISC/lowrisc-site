@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-10T15:31:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Release Notes"
 parent = "/docs/untether-v0.2/"
 prev = "/docs/untether-v0.2/simulation/"
@@ -16,9 +16,9 @@ showdisqus = true
    * Remove the HTIF CSR read/write port.
    * Redefine CSRs `mtime`, `mtohost`, `mfromhost`, `mreset` to PCRs.
    * Add memory map, I/O map, and IRQ PCRs.
-   * Add a global PCR controller shared by all Rocket-cores.
-   * Nearly remove all functions of HTIF (only needed for bare-metal mode)
-   * Add soft reset to Rocket-cores, L2 $.
+   * Add a global PCR controller shared by all Rocket cores.
+   * Nearly remove all functions of the HTIF (only needed for bare-metal mode)
+   * Add soft reset to Rocket cores, L2$.
    * Rewrite TileLink/NASTI and TileLink/NASTI-Lite interfaces.
    * Add 64-bit IRQ inputs.
    * Rewrite and simplify top level connections and parameter definitions.
@@ -34,7 +34,7 @@ showdisqus = true
    * Merge the latest (10-2015) cross-compiler updates from RISC-V.
    * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<ref "vsim.md">}})
    * Rewrite all Makefile support.
- * Missing from last release [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+ * Missing from this release vs the previous [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
    * No tagged memory support (will be added back soon).
    * No support for ZedBoard.
 

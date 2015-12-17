@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-10-20T14:14:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Untethered lowRISC tutorial"
 showdisqus = true
 
@@ -17,7 +17,7 @@ produce a fully open source System-on-Chip (SoC) in volume. We are
 building upon RISC-V processor core implementations from the RISC-V
 team at UC Berkeley.  We will produce a SoC design to populate a
 low-cost community development board and to act as an ideal starting
-point for deritivative open-source and commercial designs.
+point for derivative open-source and commercial designs.
 
 This tutorial introduces a standalone implementation of the [Rocket chip][RocketChip].
 The original Rocket chip relies on a companion processor
@@ -28,9 +28,10 @@ either a [Xilinx Kintex-7 KC705 evaluation kit]
 (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html)
 or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/).
 
-Please note that this release has a freash start from the latest RISC-V Rocket-chip; therefore,
-it is not implemented with the tagged memory provided in the previous release. We plan to
-re-implement the tagged memory with more features in the early half of next year.
+Please note that this release is based on recent upstream Rocket-chip sources 
+and therefore it does not currently include the tagged memory support provided 
+in our previous release. We plan to re-integrate tagged memory support with 
+additional optimisations in the early half of next year.
 
 The tutorial also acts as an introduction to the RISC-V tools and provides
 a step-by-step guide to setting up the environment necessary to run
