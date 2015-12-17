@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-10T14:10:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Compile and install RISC-V cross-compiler"
 parent = "/docs/untether-v0.2/dev-env/"
 prev = "/docs/untether-v0.2/verilator/"
@@ -35,7 +35,7 @@ Programs can be compiled and run in three different modes:
 Compiling and simulating programs in different modes depends on different tool sets.
 
  * **Bare metal mode**
-  * Behaviour simulation: <br/>
+  * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`.
   * RTL simulation: <br/>
     `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "verilator.md">}}).
@@ -44,7 +44,7 @@ Compiling and simulating programs in different modes depends on different tool s
   * FPGA test: <br/>
     N/A
  * **Newlib (supervisor) mode**:
-  * Behaviour simulation: <br/>
+  * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`; `riscv-pk`.
   * RTL simulation: <br/>
     `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "verilator.md">}}).
@@ -53,7 +53,7 @@ Compiling and simulating programs in different modes depends on different tool s
   * FPGA test: <br/>
     `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "xilinx.md">}}).
  * **Linux (user) mode**
-  * Behaviour simulation: <br/>
+  * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib+linux); `riscv-isa-sim`; `riscv-fesvr`; `riscv-pk`; [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
   * RTL simulation: <br/>
     N/A
@@ -81,7 +81,9 @@ The RISC-V GCC/Newlib Toolchain Installation Manual can be found
 
 ### Building the Linux GCC
 
-The build script above provides the newlib GCC but not the Linux GCC, which is needed for compiling programs in Linux (user) mode. To build a Linux GCC compiler:
+The build script above provides a GCC build using the Newlib libc but not the 
+GNU libc, which is needed for compiling programs to run in user mode on Linux.
+To build a Linux GCC compiler:
 
     # set up the RISCV environment variables
     cd $TOP/riscv-tools/riscv-gnu-toolchain

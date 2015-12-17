@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-10-14T14:18:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "A guide to the development environment"
 parent = "/docs/untether-v0.2/"
 prev = ""
@@ -19,7 +19,8 @@ Please download and install a latest version for the best SystemVerilog support.
 
 An FPGA demonstration is provided using either a [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/). The KC705 kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit). As for the users of the Nexys4-DDR boards, please acquire a free license and install the WebPACK edition of Vivado.
 
-By default, all simulations produce waveform in the VCD format. [GTKWave](http://gtkwave.sourceforge.net/) can be used to view VCD files.
+By default, all simulations produce waveforms in the VCD format.  
+[GTKWave](http://gtkwave.sourceforge.net/) can be used to view VCD files.
 
 Here shows software versions and environment variables on my machine:
 
@@ -65,8 +66,8 @@ to build the RISC-V tools:
 
 ## Download the code release
 
-The [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip) is hosted by the GitHub
-website. Instead of cloning individual sub-modules, we recommend
+The [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip) is 
+hosted on GitHub . Instead of cloning individual sub-modules, we recommend
 cloning the entire repository to ensure all the sub-modules you
 acquire are compatible. Different versions of the sub-modules are not
 guaranteed to work.
@@ -87,7 +88,8 @@ There are 3 main branches:
 
  * *master* : The major release branch, default, most stable. After major releases, only bugfixes related to the latest release are merged.
  * *dev* : The minor release branch, less stable. After major releases, new features are added to this branch waiting for the next major release.
- * *update* : The active developing branch, non-stable. The branch for developing new features, testing bugfixes, and experimenting ideas.
+ * *update* : The active development branch, non-stable. The branch for 
+ developing new features, testing bugfixes, and experimenting with new ideas.
 
 To setup the necessary RISC-V variables use the setup script
 found at `lowrisc-chip/set_riscv_env.sh`:
@@ -109,8 +111,9 @@ found at `lowrisc-chip/set_riscv_env.sh`:
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 
  compiling the rocket system.
  * `fpga`: FPGA demo implementations
-   * `board`: Demo projects for individual developement boards. [[FPGA Demo]]({{<ref "fpga-demo.md">}})
-     * `kc705`: Files for the Xilinx KC705 developement board.
+   * `board`: Demo projects for individual development boards. [[FPGA 
+     Demo]]({{<ref "fpga-demo.md">}})
+     * `kc705`: Files for the Xilinx KC705 development board.
      * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
  * `hardfloat`: The IEEE 754-2008 compliant floating-point unit.
  * `junctions`: Peripheral components and I/O devices associated with the RocketChip.
@@ -124,7 +127,7 @@ found at `lowrisc-chip/set_riscv_env.sh`:
    * `riscv-tests`: Tests for the Rocket core.
  * `rocket`: The Chisel code for the Rocket core.
  * `socip`: The SystemVerilog/Verilog building blocks used in lowRISC chip.
-   * `nasti`: A SystemVerilog implemenation of NASTI/NASTI-Lite on-chip interconnection.
+   * `nasti`: A SystemVerilog implementaion of NASTI/NASTI-Lite on-chip interconnection.
  * `src`: The top level code of lowRISC chip.
    * `main`: The Chisel/Verilog code for hardware implementation.
    * `test`: The Verilog/C++(DPI) test bench files

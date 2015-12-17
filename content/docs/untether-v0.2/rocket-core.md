@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-16T15:32:50+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Rocket core overview"
 parent = "/docs/untether-v0.2/overview/"
 next = "/docs/untether-v0.2/mmio/"
@@ -17,7 +17,7 @@ Further details of the RISC-V Rocket core pipeline can be found
 [here](http://www-inst.eecs.berkeley.edu/~cs250/fa13/handouts/lab2-riscv.pdf#13). See
 p.13 of this document for a detailed diagram of Rocket's
 microarchitecture. The Rocket core is sometimes described as a 6-stage
-pipeline with the addition of a 'pcgen' stage. While it is useful to
+pipeline with the addition of a `pcgen` stage. While it is useful to
 layout the figure in this way, the stage is perhaps best considered as
 part of the other stages and is not a distinct pipeline stage in the
 traditional sense.

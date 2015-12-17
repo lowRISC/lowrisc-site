@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-13T10:31:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "FPGA Demo"
 parent = "/docs/untether-v0.2/simulation/"
 prev = "/docs/untether-v0.2/vsim/"
@@ -19,7 +19,7 @@ Depending on the board, please set variable $FPGA_BOARD to the board name. It is
  * `driver`: Bare metal driver programs used by bootloaders.
  * `examples`: Some bare metal test programs for FPGA peripherals.
   * `boot`: Bootloader test, also serves as the on-chip boot program used by the FPGA demo.
-  * `dram`: Test program for DDR RAM interface.
+  * `dram`: Test program for the DDR RAM interface.
   * `hello`: A simple hello world program using the UART interface.
   * `reset`: A simulation-only test for the soft-reset process.
   * `sdcard`: Test the SD (SPI mode) interface and the [FatFS](http://elm-chan.org/fsw/ff/00index_e.html) (Fat 32) support.
@@ -68,7 +68,7 @@ After downloading the bitstream, the UART interface should print:
 
 This example executes a read/write check of the DDR RAM. The check results are constantly printed to UART.
 
-Following is the result from UART:
+Below is the result from the UART:
 
     DRAM test program.
     Write block @0 using key 0
@@ -104,7 +104,8 @@ Following is the result from UART:
 
 #### SD card read test
 
-This example reads a file named `test.txt` stored on a SD card (formatted in FAT 32) and then prints the content of this file to UART.
+This example reads a file named `test.txt` stored on a SD card (formatted in 
+FAT32) and then prints the content of this file to UART.
 
 Following is the result from UART:
 
@@ -122,7 +123,8 @@ This example copies the content of a executable named "`boot`" from a SD card to
 
 This example also served as the initial bootloader for the RISC-V Linux FPGA demo. It copies the revised BBL from SD to DDR RAM.
 
-Here is the UART print if we store a hello world executable to SD as the `boot` program.
+Here is the UART output if we store a hello world executable to SD as the 
+`boot` program.
 
     lowRISC boot program
     =====================================
@@ -139,7 +141,7 @@ For first time users, please try the pre-compiled RISC-V and ramdisk images.
 
     cd $TOP/fpga/board/$FPGA_BOARD
     # insert and mount a SD card
-    # Ensure the SD card is formatted in FAT 32
+    # Ensure the SD card is formatted in FAT32
 
     # download and copy the pre-compiled image
     . preload_image.sh /PATH/TO/SD/
@@ -156,7 +158,7 @@ For first time users, please try the pre-compiled RISC-V and ramdisk images.
     # open Vivado and download bit file:
     # lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.new.bit
 
-If everything runs OK, here is the print from UART terminal:
+Here is the output from the UART for a successful boot:
 
     lowRISC boot program
     =====================================
@@ -212,13 +214,14 @@ If everything runs OK, here is the print from UART terminal:
 
 #### Prepare your own images
 
-Three files are needed on SD for booting a RISC-V Linux:
+Three files are needed on SD for booting RISC-V Linux:
 
  * `boot`: The bootloader (a revised Berkeley bootloader, BBL) for loading Linux kernel.
  * `vmlinux`: The RISC-V Linux kernel.
  * `root.bin`: The ramdisk image.
 
-For generating your own `vmlinux` and `root.bin`, please see [[Compile the RISC-V Linux and the ramdisk `root.bin`]] ({{<ref "linux_compile.md">}}).
+For generating your own `vmlinux` and `root.bin`, please see [[Compiling 
+RISC-V Linux and the ramdisk `root.bin`]] ({{<ref "linux_compile.md">}}).
 
 After compilation, load the kernel and ramdisk to SD:
 

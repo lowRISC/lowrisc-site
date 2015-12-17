@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-13T10:31:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Overview of the Rocket chip"
 parent = "/docs/untether-v0.2/"
 next = "/docs/untether-v0.2/dev-env/"

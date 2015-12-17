@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-10T15:14:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Compile the RISC-V Linux and the ramdisk `root.bin`"
 parent = "/docs/untether-v0.2/dev-env/"
 prev = "/docs/untether-v0.2/riscv_compile/"
@@ -12,7 +12,7 @@ showdisqus = true
 ### RISC-V Linux
 
 The Linux kernel can be simulated using Spike or booted on an FPGA. To
-compile your own Linux kernel, using the following script (more instructions
+compile your own Linux kernel, use the following script (more instructions
 can be found [here](https://github.com/riscv/riscv-linux#linuxrisc-v):
 
     # set up the RISCV environment variables
@@ -59,4 +59,5 @@ More details can be found [here](https://github.com/riscv/riscv-tools).
 
 ### Test images in Spike
 
-Now it should be possible to boot Linux in Spike. See [Boot a RISC-V Linux](../spike#spike-boot).
+Now it should be possible to boot Linux in Spike. See [Booting RISC-V 
+Linux](../spike#spike-boot).

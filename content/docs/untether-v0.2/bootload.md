@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-16T11:56:00+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Bootload procedure"
 parent = "/docs/untether-v0.2/overview/"
 prev = "/docs/untether-v0.2/pcr/"
@@ -9,18 +9,19 @@ showdisqus = true
 
 +++
 
-**Note: the content of this part is subject to changes due to the lack of specification.**
+**Note: the content of this section is subject to change as the specification develops.**
 
-Here explains the procedure required to boot a RISC-V Linux.
+This document explains the procedure required to boot the RISC-V Linux port.
 
 #### System status after power-on
 
-After a hard (power off/on) reset, the whole SoC, including all PCRs are reset to their intial values:
+After a hard (power off/on) reset, the whole SoC, including all PCRs are reset 
+to their initial values:
 
  * **Pipeline**: Flushed.
  * **L1 I$**: Invalidated, PC <= `0x00000000_00000200`.
  * **L1 D$**: Invalidated.
- * **L2**: Invalidate.
+ * **L2**: Invalidated.
  * **PCRs**: reset and interrupt disabled.
 
 
@@ -34,9 +35,18 @@ After a hard (power off/on) reset, the whole SoC, including all PCRs are reset t
 
 #### Copy BBL from SD to DDR RAM
 
-The actual bootloader for RISC-V Linux is a revised Berkeley bootloader (BBL). Since the size of BBL is larger than 64 KB (the size of the on-chip boot RAM), it is stored on an SD card and needed to be copied to DDR RAM. An example program named 'boot' (`$TOP/fpga/board/$FPGA_BOARD/examples/boot.c`) is provided as the first stage bootloader. Please see [FPGA demo - Boot RISC-V Linux](../fpga-demo#boot) for more information.
+The actual bootloader for RISC-V Linux is a revised Berkeley bootloader (BBL). 
+Since the size of BBL is larger than 64 KB (the size of the on-chip boot RAM), 
+it is stored on an SD card and copied to DDR RAM during boot. An example 
+program named 'boot' (`$TOP/fpga/board/$FPGA_BOARD/examples/boot.c`) is 
+provided as the first stage bootloader. Please see [FPGA demo - Boot RISC-V 
+Linux](../fpga-demo#boot) for more information.
 
-Before copying BBL to DDR, it is neccessary to map DDR to I/O space in order to bypass L1/2 caches. Otherwise, some parts of BBL may remain in caches and become lost when the first stage bootloader 'boot' resets the SoC to tranmit control to BBL. The mapping used for BBL copying should be looked like:
+Before copying the BBL to DRAM, it is necessary to map the DRAM to I/O space 
+in order to bypass L1/2 caches. Otherwise, some parts of BBL may remain in 
+caches and become lost when the first stage bootloader 'boot' resets the SoC 
+to transfer control to the BBL. The mapping used for BBL copying should look 
+like:
 
 |                          |  actual address spaces         | mapped address spaces       | Type  |
 | ----------------------   | ------------------------------ | --------------------------- | ----- |
@@ -51,7 +61,8 @@ The BBL is then copied from SD to DDR DRAM starting from address `0x40000000`.
 
 #### Soft reset
 
-After copying BBL to DDR, the first stage bootloader maps the DDR RAM to boot memory, consequently the on-chip BRAM is hidden.
+After copying the BBL to DDR, the first-stage bootloader maps the DDR RAM to 
+boot memory. Consequently the on-chip BRAM is hidden.
 
 |                          |  actual address spaces         | mapped address spaces       | Type  |
 | ----------------------   | ------------------------------ | --------------------------- | ----- |
@@ -67,11 +78,16 @@ Once the mapping is done, the first stage bootloader issues a soft reset:
  * **Pipeline**: Flushed.
  * **L1 I$**: Invalidated, PC <= `0x00000000_00000200`.
  * **L1 D$**: Invalidated.
- * **L2**: Invalidate.
+ * **L2**: Invalidated.
  * **PCRs**: *Remain unchanged*.
 
 #### BBL
 
-BBL runs after the soft reset as DDR is now mapped to the boot address `0x00000200`. The major function of BBL is to initialize all peripherals, set up the page table and virtual memory, load the Linux kernel from SD to virtual memory, and finally boot the kernel.
+BBL runs after the soft reset as DDR is now mapped to the boot address 
+`0x00000200`. The major function of the BBL is to initialize all peripherals, 
+set up the page table and virtual memory, load the Linux kernel from SD to 
+virtual memory, and finally boot the kernel.
 
-During the kernel execution, BBL runs underlyingly as a hypervisor, serving all peripheral requests from Linux using the actaul FPGA hardware.
+During the kernel execution, BBL continues running underneath the kernel as a 
+hypervisor, serving all peripheral requests from Linux using the actual FPGA 
+hardware.

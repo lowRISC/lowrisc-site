@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-11-16T15:44:50+01:00"
+date = "2015-12-17T17:00:00+00:00"
 title = "Memory and I/O maps, soft reset, and interrupts"
 parent = "/docs/untether-v0.2/overview/"
 prev = "/docs/untether-v0.2/mmio/"
@@ -9,7 +9,7 @@ showdisqus = true
 
 +++
 
-**Note: the content of this part is subject to changes due to the lack of specification.**
+**Note: the content of this section is subject to change as the specification develops.**
 
 This `untethered` release starts to regulate the shared resources among cores, such as interrupts, memory and I/O maps, global timers, etc. A subset of control status register (CSR) space is defined as processor control registers (PCRs), whose values and accesses are shared by all cores and controlled by a global PCR control unit (`PCRControl`). The connections of the PCR control units is shown below.
 
@@ -23,19 +23,32 @@ The CSR file in each core has a dedicated request channel to the global PCR cont
 
 #### PCR read/write response (`pcr_resp`)
 
-Upon receving a request from `pcr_req`, the PCR control unit processes the request and sends back a response through the `pcr_resp` port connected to the requesting core when it is finished. When it is a read request, the PCR value is sent back in the response.
+Upon receiving a request from `pcr_req`, the PCR control unit processes the 
+request and sends back a response through the `pcr_resp` port connected to the 
+requesting core when it is finished. When it is a read request, the PCR value 
+is sent back in the response.
 
 #### Broadcast of PCR update (`pcr_update`)
 
-Operations on some PCRs trigger changes of the global status, such as changing the I/O map. In this case, the updated PCR is boardcasted to all components potentially affected by this change. In this implementation, every L1 D$ has an `ioaddr` module for identifying I/O requests. To enforce the address mapping defined in the memory map, a memory address converter (`conv`) is added just below the L2 arbiter. Besides CSR modules, all `ioaddr` modules and the memory address converter receive PCR updates to track the changes in I/O and memory maps.
+Operations on some PCRs trigger changes of the global status, such as changing 
+the I/O map. In this case, the updated PCR is broadcast to all components 
+potentially affected by this change. In this implementation, every L1 D$ has 
+an `ioaddr` module for identifying I/O requests. To enforce the address 
+mapping defined in the memory map, a memory address converter (`conv`) is 
+added just below the L2 arbiter. Besides CSR modules, all `ioaddr` modules and 
+the memory address converter receive PCR updates to track the changes in I/O 
+and memory maps.
 
 #### IRQ (`irq`)
 
-All cores share the same interrupt sources but they can enable/disable inidividual interrupt separately. When an interrupt arrives, it is forward to all cores who have enabled it.
+All cores share the same interrupt sources but they can enable/disable 
+individual interrupts separately. When an interrupt arrives, it is forwarded 
+to all cores who have enabled it.
 
 #### Soft reset (`soft_reset`)
 
-When a soft reset is triggered (a write to CSR `reset`), a reset signal is broadcasted to all cores and L2.
+When a soft reset is triggered (a write to CSR `reset`), a reset signal is 
+broadcast to all cores and the L2.
 
 ## Individual PCRs
 
@@ -44,9 +57,9 @@ All PCRs are readable or writable in machine mode ONLY.
 | Name           | Address | Operation  | Reset value  | Description                                                        |
 | -------------- | ------- | ---------- | ------------ | ------------------------------------------------------------------ |
 | time           | `0x701` | Read Only  | 0            | Global wall clock.                                                 |
-| tohost         | `0x780` | Read/Write | 0            | Lagecy, only used in ISA regression test to identify return value. |
-| fromhost       | `0x781` | Read/Write | 0            | Lagecy, not used.                                                  |
-| reset          | `0x782` | Read/Write | 0            | When write, trigger a soft reset. Always read 0.                   |
+| tohost         | `0x780` | Read/Write | 0            | Legacy, only used in ISA regression test to identify return value. |
+| fromhost       | `0x781` | Read/Write | 0            | Legacy, not used.                                                  |
+| reset          | `0x782` | Read/Write | 0            | When written, trigger a soft reset. Always reads 0.                |
 | mem_base0      | `0x7a0` | Read/Write | InitMemBase  | Base address of memory section 0.                                  |
 | mem_mask0      | `0x7a1` | Read/write | InitMemMask  | Address mask of memory section 0.                                  |
 | mem_phy0       | `0x7a2` | Read/Write | InitPhyBase  | Physical base address of memory section 0.                         |
@@ -59,7 +72,7 @@ All PCRs are readable or writable in machine mode ONLY.
 | mem_base3      | `0x7ac` | Read/Write | 0            | Base address of memory section 3.                                  |
 | mem_mask3      | `0x7ad` | Read/write | 0            | Address mask of memory section 3.                                  |
 | mem_phy3       | `0x7ae` | Read/Write | 0            | Physical base address of memory section 3.                         |
-| mem_update     | `0x7af` | Read/Write | 0            | When write, trigger memory map update. Always read 0.              |
+| mem_update     | `0x7af` | Read/Write | 0            | When written, trigger memory map update. Always reads 0.           |
 | io_base0       | `0x7b0` | Read/Write | InitIOBase   | Base address of I/O section 0.                                     |
 | io_mask0       | `0x7b1` | Read/write | InitIOMask   | Address mask of I/O section 0.                                     |
 | io_base1       | `0x7b4` | Read/Write | 0            | Base address of I/O section 1.                                     |
@@ -68,7 +81,7 @@ All PCRs are readable or writable in machine mode ONLY.
 | io_mask2       | `0x7b9` | Read/write | 0            | Address mask of I/O section 2.                                     |
 | io_base3       | `0x7bc` | Read/Write | 0            | Base address of I/O section 3.                                     |
 | io_mask3       | `0x7bd` | Read/write | 0            | Address mask of I/O section 3.                                     |
-| io_update      | `0x7bf` | Read/Write | 0            | When write, trigger I/O map update. Always read 0.                 |
+| io_update      | `0x7bf` | Read/Write | 0            | When written, trigger I/O map update. Always reads 0.              |
 | int_en0        | `0x7c0` | Read/Write | 0            | IRQ enable for core 0.                                             |
 | int_pending0   | `0x7c1` | Read Only  | N/A          | Pending IRQ for core 0.                                            |
 | int_en1        | `0x7c2` | Read/Write | 0            | IRQ enable for core 1.                                             |
@@ -90,7 +103,10 @@ All PCRs are readable or writable in machine mode ONLY.
 
 The current wall clock counts at 50MHz. The value of this wall clock is updated to all cores every 20 cycles. The wall clock is not writable.
 
-When a core read CSR `time`, an actual read to the wall clock is initiated. However, the timer comparer in each core is compared against the infrequently updated local copy, which inccurs a 20 cycle inaccuracy in the worst case.
+When a core reads the CSR `time`, an actual read of the wall clock is 
+initiated.  However, the timer comparator in each core is compared against the 
+infrequently updated local copy, which incurs a 20 cycle inaccuracy in the 
+worst case.
 
 ## To/from host
 
@@ -102,15 +118,22 @@ Writing any value to `reset` triggers a soft reset.
 
 ## Memory map
 
-This implementation supports up to 4 separate memory sections. The space of any two sections should not be overlapped.
+This implementation supports up to 4 separate memory sections. The space of 
+any two sections should not overlap.
 
-For each section, `mem_base` defines the base address appeared to the core; `mem_mask` defines the actual size of the section; `mem_phy` defines the base address appeared to on-chip interconnects. When `mem_mask` is 0, the section is disabled (size of 0). For any address (`addr`), it belongs to a memory section if `(addr & ~mem_mask) == mem_base`. The translated address to on-chip interconnects is `(addr & mem_mask) | mem_phy`.
+For each section, `mem_base` defines the base address as seen by the core; 
+`mem_mask` defines the actual size of the section; `mem_phy` defines the base 
+address as seen by on-chip interconnects. When `mem_mask` is 0, the section is 
+disabled (size of 0). For any address (`addr`), it belongs to a memory section 
+if `(addr & ~mem_mask) == mem_base`. The translated address to on-chip 
+interconnects is `(addr & mem_mask) | mem_phy`.
 
 The update of a memory section should be an atomic operation. To ease this requirement, any write to a memory map is buffered. The actual update to the memory map is triggered by a write to `mem_update`.
 
 ## I/O map
 
-This implementation supports up to 4 separate I/O sections. The space of any two sections should not be overlapped.
+This implementation supports up to 4 separate I/O sections. The space of any 
+two sections should not overlap.
 
 For each section, `io_base` defines the base address; `io_mask` defines the actual size of the section. When `io_mask` is 0, the section is disabled (size of 0). For any address (`addr`), it belongs to an I/O section if `(addr & ~io_mask) == io_base`. There is no address translation for I/O addresses.
 
