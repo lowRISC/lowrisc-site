@@ -71,7 +71,9 @@ enclosed in the driver package.
 
 The FTDI USB-UART bridge chip used on NEXYS4-DDR is supported in Ubuntu 14.04 and does not require extra driver installation.
 
-The USB-UART bridge is normally shown in Ubuntu as /dev/ttyUSB0 ~ /dev/ttyUSB3. [Screen](https://wiki.archlinux.org/index.php/Working_with_the_serial_console#Screen) or [CuteCom](http://cutecom.sourceforge.net/) can be used to connect to this console.
+The USB-UART bridge is normally shown in Ubuntu as /dev/ttyUSB0 ~ /dev/ttyUSB3. [Microcom](http://manpages.ubuntu.com/manpages/lucid/man1/microcom.1.html), [CuteCom](http://cutecom.sourceforge.net/) or [Screen](https://wiki.archlinux.org/index.php/Working_with_the_serial_console#Screen) can be used to connect to this console.
+
+    microcom -p /dev/ttyUSB0 -s 115200
 
 By default, users are not allowed to connect to /dev/ttyUSB0 due to the lack of permission. The easiest way of resolving this issue is to add yourself to the dialout group.
 
