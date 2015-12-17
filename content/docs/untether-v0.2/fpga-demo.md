@@ -60,6 +60,10 @@ This is a simple example testing the UART interface.
 
 By default, the UART interface is configured to 115200Hz, 8-bit data and 1 bit odd parity check.
 
+Currently we recommend to use `microcom` (available in `apt-get`) to connect UART.
+
+    microcom -p /dev/ttyUSB0 -s 115200
+
 After downloading the bitstream, the UART interface should print:
 
     Hello World!

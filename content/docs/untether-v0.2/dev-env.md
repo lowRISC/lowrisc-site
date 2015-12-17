@@ -78,10 +78,6 @@ To clone the whole lowRISC chip git repository:
     cd ~/lowRISC/DIR
     git clone https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
-    # === BEGIN ===
-    # for release preview ONLY
-    git checkout dev
-    # === END ===
     git submodule update --init --recursive
 
 There are 3 main branches:

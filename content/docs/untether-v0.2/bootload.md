@@ -35,7 +35,10 @@ to their initial values:
 
 #### Copy BBL from SD to DDR RAM
 
-The actual bootloader for RISC-V Linux is a revised Berkeley bootloader (BBL). 
+The actual bootloader for RISC-V Linux is a revised Berkeley bootloader (BBL)
+located at `$TOP/fpga/board/$FPGA_BOARD/bbl/`.
+The original BBL can be found at `$TOP/riscv-tools/riscv-pk/pk/`, which is still needed for running Spike simulations.
+ 
 Since the size of BBL is larger than 64 KB (the size of the on-chip boot RAM), 
 it is stored on an SD card and copied to DDR RAM during boot. An example 
 program named 'boot' (`$TOP/fpga/board/$FPGA_BOARD/examples/boot.c`) is 
