@@ -21,7 +21,7 @@ boards.
 
 Please note that the codebase temporarily lacks support for tagged memory 
 included in the [previous release]({{< ref "docs/tagged-memory-v0.1/index.md" 
->}}) which describes in some We plan to re-integrate tagged memory support 
+>}}). We plan to re-integrate tagged memory support 
 with additional optimisations early next year. You can find a detailed list of 
 changes in the [release notes]({{< ref "docs/untether-v0.2/release.md" >}}).
 One highlight is support for [RTL simulation using the open-source Verilator 
