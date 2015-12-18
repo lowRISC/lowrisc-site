@@ -27,7 +27,7 @@ changes in the [release notes]({{< ref "docs/untether-v0.2/release.md" >}}).
 One highlight is support for [RTL simulation using the open-source Verilator 
 tool]({{< ref "docs/untether-v0.2/vsim.md" >}}).
 
-This development milestone should make it easier for other to contribute. If 
+This development milestone should make it easier for others to contribute. If 
 you're looking to get stuck in, you might want to consider looking at tasks 
 such as:
 
