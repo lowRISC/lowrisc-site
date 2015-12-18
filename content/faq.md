@@ -95,9 +95,10 @@ course of 2016.
 
 #### How can I contribute?
 
-  In the coming months we will be launching mailing lists, a Wiki and of 
-  course a source code repository to publicly coordinate development of the 
-  project. This will include both hardware and software work. We hope to 
-  have interesting, evidence-backed debates about implementation options out 
-  in the open.
-  
+  We really appreciate contributions of code or ideas to our software and 
+  hardware development efforts. Take a look at our mailing list and source 
+  repos. See our [community page]({{< ref "community.md" >}}) for pointers to 
+  our code repositories and development mailing lists. If you're looking for 
+  ideas on where to start, perhaps look at our [Phabricator 
+  instance](http://phab.lowrisc.org) or introduce yourself on the mailing list 
+  detailing your interests.
