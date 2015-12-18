@@ -261,3 +261,44 @@ For generating BBL:
 
     # clean the whole project
     make cleanall
+
+## FPGA resource utilization
+
+#### KC705
+
+Core clock rate: 50 MHz
+
+Overall resource utilization: LUT 27%, Register 8%, BRAM 17% DSP 3%
+
+|                    |LUT     |Register      |BRAM      |DSP    |
+|--------------------|--------|--------------|----------|-------|
+|Overall             |54783   |32200         |74        |24     |
+|* DDR3 Controller   |15389   |12258         |1         |0      |
+|* NASTI Crossbar    |2254    |288           |0         |0      |
+|* Rocket chip       |35421   |17343         |57        |24     |
+|*** Rocket Tile     |23272   |11911         |21        |24     |
+|***** Core          |4228    |1598          |0         |4      |
+|***** FPU           |12626   |4150          |0         |20     |
+|***** L1 D$         |2705    |2402          |11        |0      |
+|***** L1 I$         |3477    |3545          |10        |0      |
+|*** L2$             |9086    |3264          |36        |0      |
+
+#### NEXYS4-DDR
+
+Core clock rate: 25 MHz
+
+Overall resource utilization: LUT 69%, Register 19%, BRAM 54% DSP 10%
+
+|                    |LUT     |Register      |BRAM      |DSP    |
+|--------------------|--------|--------------|----------|-------|
+|Overall             |43716   |23489         |73        |24     |
+|* DDR2 Controller   |4433    |3574          |0         |0      |
+|* NASTI Crossbar    |2235    |288           |0         |0      |
+|* Rocket chip       |35330   |17343         |57        |24     |
+|*** Rocket Tile     |23188   |11911         |21        |24     |
+|***** Core          |4228    |1598          |0         |4      |
+|***** FPU           |12566   |4150          |0         |20     |
+|***** L1 D$         |2686    |2402          |11        |0      |
+|***** L1 I$         |3473    |3545          |10        |0      |
+|*** L2$             |9079    |3264          |36        |0      |
+
