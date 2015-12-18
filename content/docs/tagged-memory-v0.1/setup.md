@@ -5,6 +5,7 @@ title = "A guide to setting up the development environment"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/tag-tests/"
 next = "/docs/tagged-memory-v0.1/simulations/"
+aliases = "/docs/tutorial/setup/"
 showdisqus = true
 
 +++

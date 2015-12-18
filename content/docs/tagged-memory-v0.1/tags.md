@@ -5,6 +5,7 @@ title = "Tagged memory support"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/rocket-core/"
 next = "/docs/tagged-memory-v0.1/new-instructions/"
+aliases = "/docs/tutorial/tags/"
 showdisqus = true
 
 +++

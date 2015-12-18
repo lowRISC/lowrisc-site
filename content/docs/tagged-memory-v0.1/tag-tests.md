@@ -5,6 +5,7 @@ title = "Tagged memory tests"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/new-instructions/"
 next = "/docs/tagged-memory-v0.1/setup/"
+aliases = "/docs/tutorial/tag-tests/"
 showdisqus = true
 
 +++

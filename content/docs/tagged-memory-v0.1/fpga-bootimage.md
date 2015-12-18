@@ -5,6 +5,7 @@ title = "Building the boot image from scratch"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/future/"
 next = "/docs/tagged-memory-v0.1/fpga-ramdisk/"
+aliases = "/docs/tutorial/fpga-bootimage/"
 showdisqus = true
 
 +++

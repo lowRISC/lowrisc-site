@@ -5,6 +5,7 @@ title = "Building the front-end server"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/fpga-ramdisk/"
 next = "/docs/tagged-memory-v0.1/"
+aliases = "/docs/tutorial/fpga-fesvr/"
 showdisqus = true
 
 +++

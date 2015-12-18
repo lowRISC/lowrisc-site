@@ -3,6 +3,7 @@ Description = ""
 date = "2015-04-12T14:18:41+01:00"
 title = "lowRISC tagged memory tutorial"
 showdisqus = true
+aliases = "/docs/tutorial/"
 
 +++
 

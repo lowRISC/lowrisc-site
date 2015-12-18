@@ -5,6 +5,7 @@ title = "Running simulations using Spike"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/simulations/"
 next = "/docs/tagged-memory-v0.1/emulator/"
+aliases = "/docs/tutorial/spike/"
 showdisqus = true
 
 +++

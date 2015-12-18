@@ -5,6 +5,7 @@ title = "Future work"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/fpga/"
 next = "/docs/tagged-memory-v0.1/fpga-bootimage/"
+aliases = "/docs/tutorial/future/"
 showdisqus = true
 
 +++

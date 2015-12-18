@@ -5,6 +5,7 @@ title = "Modifying the contents of the RAMdisk"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/fpga-bootimage/"
 next = "/docs/tagged-memory-v0.1/fpga-fesvr/"
+aliases = "/docs/tutorial/fpga-ramdisk/"
 showdisqus = true
 
 +++

@@ -5,6 +5,7 @@ title = "Rocket core overview"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/rocket-chip/"
 next = "/docs/tagged-memory-v0.1/tags/"
+aliases = "/docs/tutorial/rocket-core/"
 showdisqus = true
 
 +++

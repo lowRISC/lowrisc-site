@@ -5,6 +5,7 @@ title = "Running simulations"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/setup/"
 next = "/docs/tagged-memory-v0.1/spike/"
+aliases = "/docs/tutorial/simulations/"
 showdisqus = true
 
 +++

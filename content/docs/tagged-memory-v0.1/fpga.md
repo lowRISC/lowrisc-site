@@ -5,6 +5,7 @@ title = "Running tests on the Zedboard FPGA"
 parent = "/docs/tagged-memory-v0.1/"
 prev = "/docs/tagged-memory-v0.1/verilog-fpga-sim/"
 next = "/docs/tagged-memory-v0.1/future/"
+aliases = "/docs/tutorial/fpga/"
 showdisqus = true
 
 +++
