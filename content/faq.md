@@ -35,7 +35,7 @@ encouraged to make informal enquiries about the post to Rob Mullins
 
 *   _Release of an initial FPGA version:_ Done! See the [tagged memory 
 release]({{< ref "docs/tagged-memory-v0.1/index.md" >}}) and the [untethered 
-release]({{< ref "docs/untethered-v0.2/index.md" >}}).
+release]({{< ref "docs/untether-v0.2/index.md" >}}).
 *   _Production of a test chip:_ we expect to tape out a test chip during the 
 course of 2016.
 *   _Tape out of production silicon:_ this is likely to happen, at      the earliest, a year after the first test chip (in 2017).
