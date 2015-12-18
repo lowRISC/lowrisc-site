@@ -47,15 +47,15 @@ It is possible to simulate the actual behaviour of the DDR interface but it is e
 To enable the full DDR simulation model, revise `script/make_project.tcl`, 
 changing
 
-    #set_property verilog_define [list FPGA FPGA_FULL] $obj
+    #set_property verilog_define [list FPGA FPGA_FULL KC705] $obj
     set_property verilog_define [list FPGA] $obj
 
 into
 
-    set_property verilog_define [list FPGA FPGA_FULL] $obj
+    set_property verilog_define [list FPGA FPGA_FULL KC705] $obj
     #set_property verilog_define [list FPGA] $obj
 
-which effectively defines the `FPGA_FULL` macro for FPGA simulation.
+which effectively defines the `FPGA_FULL` and `KC705` macros for FPGA simulation. For NEXYS4-DDR, replace macro `KC705` with `NEXYS4`.
 
 Please rebuild the whole FPGA project to update the change:
 
