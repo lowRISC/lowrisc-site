@@ -10,8 +10,10 @@ title = "FAQ"
 
 #### Are you hiring?
 
-We aren't currently advertising to fill a position, but we're always 
-interested in hearing from good people. Please send CVs to info@lowrisc.org.  
+We hope to put out a job advert for a new member of the team at the University 
+of Cambridge Computer Laboratory in early 2016. Interested applicants are 
+encouraged to make informal enquiries about the post to Rob Mullins 
+<Robert.Mullins@cl.cam.ac.uk>.
 
 #### Are contract or remote working arrangements on offer?
 
@@ -31,9 +33,12 @@ interested in hearing from good people. Please send CVs to info@lowrisc.org.
   As with most tech projects, the most accurate answer is "When it's ready". 
   However, it's useful to consider some of the main milestones:
 
-*   _Release of an initial FPGA version:_ we expect to do this in      the next 6 months, and then further development will be fully open to      the community.
-*   _Production of a test chip:_ we expect to tape out a test chip towards the end      of 2015.
-*   _Tape out of production silicon:_ this is likely to happen, at      the earliest, a year after the first test chip (in 2016).
+*   _Release of an initial FPGA version:_ Done! See the [tagged memory 
+release]({{< ref "docs/tagged-memory-v0.1/index.md" >}}) and the [untethered 
+release]({{< ref "docs/untethered-v0.2/index.md" >}}).
+*   _Production of a test chip:_ we expect to tape out a test chip during the 
+course of 2016.
+*   _Tape out of production silicon:_ this is likely to happen, at      the earliest, a year after the first test chip (in 2017).
 
 #### Why RISC-V and not OpenRISC/SPARCv8/MIPS/...?
 
