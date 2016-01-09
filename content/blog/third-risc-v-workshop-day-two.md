@@ -6,7 +6,10 @@ title = "Third RISC-V Workshop: Day Two"
 +++
 Today is the second day of the [third RISC-V 
 workshop](http://riscv.org/workshop-jan2016.html). Again, I'll be keeping a 
-semi-live blog of talks and announcements throughout the day.
+semi-live blog of talks and announcements throughout the day. See
+[here](http://www.lowrisc.org/blog/2016/01/third-risc-v-workshop-day-one) for 
+notes from the first day.
+
 
 ## RISC-V ASIC and FPGA implementations: Richard Herveille
 * Look for freedom of design. Want to free migrate between FPGAs, structured 
@@ -28,7 +31,9 @@ current CYCLONE-V. Achieved a 70% power reduction.
 extensions, and add multi-threading and multi-issue.
 
 ## lowRISC: plans for RISC-V in 2016: Alex Bradbury
-* Slides to be posted soon! Apologies for not live-blogging my own talk.
+* Find my slides 
+[here](https://speakerdeck.com/asb/lowrisc-plans-for-risc-v-in-2016).
+Apologies for not live-blogging my own talk.
 
 ## A 32-bit 100MHz RISC-V microcontroller with 10-bit SAR ADC in 130nm GP: Elkim Roa
 * Current goal: a low-footprint RISC-V microcontroller like EFM32 or SAMD11 
