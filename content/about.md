@@ -33,6 +33,13 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
+**Dec 2015:** We have 
+[untethered](http://www.lowrisc.org/blog/2015/12/untethered-lowrisc-release/) 
+the Rocket SoC, which now runs standalone on the KC705 and Nexys4DDR FPGAs.
+This release also includes support for simulation using Verilator and is 
+accompanied by [extensive documentation]({{< ref "docs/untether-v0.2/index.md" 
+>}}).
+
 **May 2015:** This summer we have [six students working on Summer of Code projects](http://www.lowrisc.org/blog/2015/05/summer-of-code-students-for-lowrisc/). The coding period is from the end of May to the end of August.
 
 **Apr 2015:** We have shared our first [lowRISC preview 
