@@ -9,7 +9,7 @@ showdisqus = true
 
 +++
 
-This release works with three different simulators and provides an FPGA demo using either a [Xilinx Kintex-7 KC705 evaluation kit] (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/).
+This release works with three different simulators and provides an FPGA demo using either a [Xilinx Kintex-7 KC705 evaluation kit] (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
 
  * [Behavioural Simulation (Spike)] ({{<relref "docs/untether-v0.2/spike.md">}})<br/>
    A fast instruction level simulator. The "golden" implementation of Rocket cores. <br/>

@@ -26,7 +26,8 @@ processor with actual peripheral devices on FPGA providing an 'untethered'
 SoC that is able to boot a [RISC-V Linux][RISCVLinux]. A demo is provided using
 either a [Xilinx Kintex-7 KC705 evaluation kit]
 (http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html)
-or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://digilentinc.com/nexys4ddr/).
+or a low-end [Nexys™4 DDR Artix-7 FPGA Board]
+(http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
 
 Please note that this release is based on recent upstream Rocket-chip sources 
 and therefore it does not currently include the tagged memory support provided 
