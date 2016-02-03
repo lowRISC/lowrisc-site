@@ -5,16 +5,16 @@ title = "About lowRISC"
 +++
   
 
-  lowRISC is producing fully open hardware systems. From the processor core
-  to the development board, our goal is to create a completely open computing
-  eco-system.
+  lowRISC is creating a fully open-sourced, Linux-capable, RISC-V-based
+  SoC, that can be used either directly or as the basis for a custom design.
+  We aim to tape out our first volume chip this year.
 
   Our open-source SoC (System-on-a-Chip)
   designs will be based on the 64-bit [RISC-V](http://riscv.org/) instruction
   set architecture. Volume silicon manufacture is planned
   as is a low-cost development board. There are more details on our plans in 
     [these slides from a recent 
-    talk](https://speakerdeck.com/asb/lowrisc-the-path-to-an-open-source-soc)
+    talk](https://speakerdeck.com/asb/lowrisc-plans-for-risc-v-in-2016)
 
   lowRISC is a not-for-profit organisation working closely with the University
   of Cambridge and the open-source community.
