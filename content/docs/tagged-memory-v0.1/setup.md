@@ -179,7 +179,7 @@ After the compilation, you should be able to find the following files:
 
 Requirements: `riscv-gcc` must be available 
 
-[BusyBox](www.busybox.net) is used in the root image to provide the
+[BusyBox](https://busybox.net) is used in the root image to provide the
 basic shell environment. To build your own root image, the BusyBox
 binary must be generated at first:
 
