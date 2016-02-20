@@ -263,3 +263,28 @@ using something like [Electron](http://electron.atom.io/).
 **Language:** Your choice (C++, Python, Javascript, ..?)
 
 **Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de>
+
+## Generic hardware/software interface for software-defined radio
+
+**Summary:** Identify and implement useful hardware blocks to support 
+software-defined radio.
+
+The lowRISC project employs a configurable I/O-Subsystem for low speed I/O.
+This project hops to provide something similar for wireless connectivity 
+(2.5G, Wifi, Bluetooth, ZigBee, etc.). The goal is to define a minimal subset 
+of hardware elements as building blocks, so that they can be controlled and 
+configured for different wireless standards. 
+
+**Links:**
+
+* [Software-defined radio](https://en.wikipedia.org/wiki/Software-defined_radio)
+* [Myriad RF](https://myriadrf.org/)
+
+**Details:**
+
+**Skill level:** advanced
+
+**Language:** Verilog/VHDL/Chisel, C
+
+**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de> and David May 
+<david@simless.com>
