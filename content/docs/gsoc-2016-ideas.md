@@ -215,17 +215,26 @@ its quality.
 
 **Mentor:** Wei Song <ws327@cam.ac.uk>
 
-## Implement a trusted execution environment
+## Implement a Trusted Execution Environment
 
-**Summary:** Port an existing open-source Trusted Execution environment to the 
+**Summary:** Port an existing open-source Trusted Execution Environment to the 
 lowRISC platform.
 
-[OP-TEE](https://wiki.linaro.org/WorkingGroups/Security/OP-TEE) is an 
-open-source Trusted Execution Environment which seems like a good target for 
-porting to RISC-V and the lowRISC minion cores. This project is potentially 
-very large, so the key part of any proposal would be to break it down in to 
-manageable chunks and to define sensible milestones and an achievable target 
-for the end of the summer.
+A Trusted Execution Environment (TEE) is running in parallel to the so
+called RichOS like Linux and executes security-sensitive tasks. Global
+Platform has standardized TEE and
+[OP-TEE](https://wiki.linaro.org/WorkingGroups/Security/OP-TEE) is an
+open-source GP-compliant TEE, which seems like a good target for
+porting to RISC-V and the lowRISC minion cores. There are different
+options to implement the TEE and another important component is the
+trusted firmware to boot both the secure and the non-secure world. It
+is also thinkable to port OP-TEE as components running on an L4
+Microkernel, such as seL4 which
+[has been ported in last years GSoC](http://heshamelmatary.blogspot.de/2015/10/a-talk-about-my-gsoc-project-with.html).
+
+This project is potentially very large and it is important to discuss
+alternatives and define a good subset in the discussion with us before
+applying.
 
 **Links:**
 
@@ -238,7 +247,7 @@ for the end of the summer.
 
 **Language:** C
 
-**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de>
+**Mentor:** Stefan Wallentowitz <stefan@simless.com>
 
 ## Trace-debug analysis tool
 
@@ -286,5 +295,5 @@ configured for different wireless standards.
 
 **Language:** Verilog/VHDL/Chisel, C
 
-**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de> and David May 
+**Mentor:** Stefan Wallentowitz <stefan@simless.com> and David May 
 <david@simless.com>
