@@ -220,8 +220,8 @@ its quality.
 **Summary:** Port an existing open-source Trusted Execution Environment to the 
 lowRISC platform.
 
-A Trusted Execution Environment (TEE) is running in parallel to the so
-called RichOS like Linux and executes security-sensitive tasks. Global
+A Trusted Execution Environment (TEE) runs in parallel to the general purpose 
+OS ('Rich OS') like Linux and executes security-sensitive tasks. Global
 Platform has standardized TEE and
 [OP-TEE](https://wiki.linaro.org/WorkingGroups/Security/OP-TEE) is an
 open-source GP-compliant TEE, which seems like a good target for
