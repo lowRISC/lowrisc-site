@@ -4,30 +4,41 @@ title = "lowRISC project ideas for GSoC 2016"
 +++
 
 
-lowRISC is hoping to take part in the [2016 
-  Google Summer of Code](https://summerofcode.withgoogle.com/) as a mentoring organisation. We are 
-working with a number of our friends in the open source hardware community, 
-acting as an 'umbrella' organisation to provide a wider range of projects. 
-For an introduction to GSoC, see [the 
-  GSoC FAQ](https://developers.google.com/open-source/gsoc/faq).
-
-We will find out if we have been accepted as a mentoring organisation on the 29th of February 2016.
-If you have an idea for a project you would like to mentor, please either contact asb@lowrisc.org or post to the 
-[lowrisc-dev 
-  mailing list](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).
+lowRISC is taking part in the [2016 Google Summer of 
+Code](https://summerofcode.withgoogle.com/) as a mentoring organisation. We 
+are working with a number of our friends in the open source hardware 
+community, acting as an 'umbrella' organisation to provide a wider range of 
+projects.  For an introduction to GSoC, see [the GSoC 
+FAQ](https://developers.google.com/open-source/gsoc/faq). You can find our 
+[GSoC organisation page 
+here](https://summerofcode.withgoogle.com/organizations/6271463900315648/).
+See the [full program 
+timeline](https://summerofcode.withgoogle.com/how-it-works/) for key dates.
+Student applications are open between March 14th and March 25th.
 
 See [last year's idea list]({{< ref "gsoc-2015-ideas.md" >}}) for more 
-potential projects.
+potential projects. We also recommend you check out the projects being 
+mentored by [our friends at the FOSSi 
+Foundation](http://fossi-foundation.org/gsoc16-ideas.html). Additional 
+projects mentored by other organisations that may benefit lowRISC and the open 
+source hardware eocsystem include
+[multi-threaded TCG in QEMU](http://qemu-project.org/Google_Summer_of_Code_2016#Multi-threaded_TCG_Projects),
+[developing a RISC-V processor model for 
+ArchC](http://www.archc.org/gsoc-2016.html),
+[improving the RISC-V port of Coreboot](https://www.coreboot.org/Project_Ideas#coreboot_on_the_open_source_Berkeley_RISC_V_processor),
+or [working on cross-bootstrap in Debian](https://wiki.debian.org/SummerOfCode2016/Projects#SummerOfCode2016.2FProjects.2FCrossBootstrap.Cross_Bootstrap).
 
 # Project ideas (in no particular order)
 
-**Your project here:** If you have a project idea relevant to 
-  lowRISC, don't worry that it's not listed here. For a good student with an 
-  interesting project we'll almost definitely have an appropriate mentor. You 
-  are strongly recommended to get in touch either on the mailing list or 
-  directly to discuss the idea though.  Some projects might be better handled 
-  under a different mentoring organisation, e.g. a PyPy port to RISC-V would 
-  make more sense under the Python Software Foundation.
+## Your project here
+
+If you have a project idea relevant to lowRISC, don't worry that it's not 
+listed here. For a good student with an interesting project we'll almost 
+definitely have an appropriate mentor. You are strongly recommended to get in 
+touch either on the mailing list or directly to discuss the idea though.  Some 
+projects might be better handled under a different mentoring organisation, 
+e.g. a PyPy port to RISC-V would make more sense under the Python Software 
+Foundation.
 
 ## Porting musl libc to RISC-V
 
