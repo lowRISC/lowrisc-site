@@ -27,6 +27,7 @@ source hardware eocsystem include
 ArchC](http://www.archc.org/gsoc-2016.html),
 [improving the RISC-V port of Coreboot](https://www.coreboot.org/Project_Ideas#coreboot_on_the_open_source_Berkeley_RISC_V_processor),
 or [working on cross-bootstrap in Debian](https://wiki.debian.org/SummerOfCode2016/Projects#SummerOfCode2016.2FProjects.2FCrossBootstrap.Cross_Bootstrap).
+Also see the [MyHDL projects](http://dev.myhdl.org/gsoc/gsoc_2016.html).
 
 # Project ideas (in no particular order)
 
