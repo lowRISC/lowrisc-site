@@ -297,3 +297,64 @@ configured for different wireless standards.
 
 **Mentor:** Stefan Wallentowitz <stefan@simless.com> and David May 
 <david@simless.com>
+
+## Implement a SPIR-V front end for Nyuzi
+
+**Summary:** Support the new SPIR-V intermediate language for the Nyuzi GPGPU.
+
+[SPIR-V](https://www.khronos.org/spir) is an intermediate language for 
+parallel computation. Supporting SPIR-V on Nyuzi would allow a variety of 
+parallel languages to target it. There is already an LLVM back-end for Nyuzi, 
+so this task would consist of writing a front end that parses SPIR-V and 
+converts it to the LLVM intermediate code form, using Nyuzi specific 
+intrinsics for handling branch divergence.
+
+**Links:**
+
+* [Nyuzi GPGPU](https://github.com/jbush001/NyuziProcessor)
+* [A description of handling branch divergence using the Nyuzi LLVM 
+backend](latchup.blogspot.com/2014/12/branch-divergence-in-parallel-kernels.html)
+* [Sample code for a parallel language front-end on 
+Nyuzi](https://github.com/jbush001/NyuziToolchain/tree/master/tools/spmd-compile)
+* [Source code for SPIR-V tools](https://github.com/KhronosGroup/SPIRV-Tools)
+
+**Details:**
+
+**Skill level:** advanced
+
+**Language:** C++
+
+**Mentor:** Jeff Bush <jeffbush001@gmail.com>
+
+## Port an operating system kernel to Nyuzi
+
+**Summary:** Port an OS kernel of your choice to the Nyuzi GPGPU to put the 
+recently added MMU and supervisor mode through its paces.
+
+Nyuzi currently runs programs on bare metal and doesn't have a real operating 
+system. Supervisor mode and MMU support have recently been implemented in 
+hardware. Porting an operating system would be useful both to test the 
+hardware implementation and to enable more complex use cases.
+
+This project would consist of:
+
+* Selecting an operating system such as FreeBSD or L4, or potentially creating 
+a custom OS (Linux may be challenging because of its size and because it is 
+heavily GCC dependent and Nyuzi uses an LLVM based toolchain). Ideally, the 
+kernel should support virtual memory, multiple processes, and system/user 
+mode.
+* Writing Nyuzi specific drivers and BSP code for it, - Bring up and debugging 
+it in the emulator and Verilog simulation (or, as a bonus, on FPGA)
+* Potentially fixing hardware bugs and adding new hardware features if needed
+
+**Links:**
+
+* [Nyuzi GPGPU](https://github.com/jbush001/NyuziProcessor)
+
+**Details:**
+
+**Skill level:** advanced
+
+**Language:** C
+
+**Mentor:** Jeff Bush <jeffbush001@gmail.com>
