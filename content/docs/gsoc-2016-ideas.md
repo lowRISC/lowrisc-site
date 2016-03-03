@@ -270,8 +270,10 @@ support](http://opensocdebug.org/) in to the lowRISC SoC. This provides a
 powerful way to debug complicated multi-threaded applications as well as to 
 help diagnose hardware implementation issues. This project would involve 
 implementing a program on Linux to parse this data and present it in a useful 
-way to aid debugging. This could be done in Python, C++, even in JavaScript 
-using something like [Electron](http://electron.atom.io/).
+way to aid debugging. We're open to proposals using the
+language and UI toolkit of your preference, but think TypeScript
+and [Electron](http://electron.atom.io/) would form a particularly interesting
+starting point.
 
 **Links:**
 
@@ -281,7 +283,7 @@ using something like [Electron](http://electron.atom.io/).
 
 **Skill level:** intermediate
 
-**Language:** Your choice (C++, Python, Javascript, ..?)
+**Language:** Your choice (C++, Python, TypeScript, ..?)
 
 **Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de>
 
