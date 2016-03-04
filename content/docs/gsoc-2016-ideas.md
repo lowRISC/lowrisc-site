@@ -285,7 +285,8 @@ starting point.
 
 **Language:** Your choice (C++, Python, TypeScript, ..?)
 
-**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de>
+**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de> and Bruce Mitchener 
+<bruce.mitchener@gmail.com>
 
 ## Generic hardware/software interface for software-defined radio
 
