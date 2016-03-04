@@ -92,88 +92,43 @@ dummies](https://events.linuxfoundation.org/sites/events/files/slides/petazzoni-
 
 **Mentor:** Roy Spliet <rs855@cam.ac.uk>
 
-## Schematic Viewer for Netlists (SVG/JavaScript)
+## Contributions to the Yosys ecosystem
+[Yosys](http://www.clifford.at/yosys/) is a framework for Verilog RTL 
+synthesis.  The following list is incomplete and is meant to inspire student 
+proposals. Do not simply pick one of the projects on this list! We are 
+interested in genuinely original student proposals. Please contact Clifford 
+Wolf early in the process to discuss your ideas.
 
-**Summary:** Write a JavaScript library that fills an SVG element with an
-interactive schematic view for a circuit that is provided by a netlist in a
-JSON format.
+**Ideas regarding [Project IceStorm](http://www.clifford.at/icestorm/) (the 
+FOSS iCE40 FPGA flow)**
 
-Although usable independent from Yosys, the main application for
-this will be in educational Web tools for teaching digital circuit design, that
-are based on YosysJS. There it will replace an ad-hoc display mechanism based
-on GraphViz. Unlike the existing GraphViz solution, the new schematic viewer
-should render proper schematic symbols for flip-flops and gates and enable
-users to modify the placement of symbols (by moving them around interactively).
-Additional goals would be integration of more advanced features that would
-directly benefit the educational users, such as the ability to evaluate the
-circuit with given input values (in this case the JSON netlist would also
-include evaluable models of all circuit elements, such as an
-and-inverter-graph).
+* Improvements in Arachne-pnr place and route tool, such as
+	* Analytical (e.g. quadratic wirelength) placement
+	* Support for LUT cascade feature
+	* Support for BRAM cascade feature
+	* Improved inference of `SB_IO` cells
+	* Timing driven place and route
+	* Speedups (OpenCL?)
+* Alternative iCE40 place and route flow (e.g. using VPR/VTR)
+* Additional support for more iCE40 devices (e.g. UltraLite)
+* In-hardware validation flow for chip databases
 
-**Links:**
+**Ideas regarding [Yosys](http://www.clifford.at/yosys/)**
 
-*   [Yosys website](http://www.clifford.at/yosys/)
-*   [Yosys subreddit](http://www.reddit.com/r/yosys)
-*   [YosysJS](http://www.clifford.at/yosys/yosysjs.html)
-*   ['Viewing RTL as schematic'](https://www.google.co.uk/search?q=view+rtl+as+schematic) (related prior work)
-*   Wavedrom library: [waveforms](http://wavedrom.com/tutorial.html) and
-        [schematics](http://wavedrom.com/tutorial2.html)
+* Additional front- and back-ends
+* New architectures (e.g. additional FPGA families)
+* New non-synthesis flows (verification, etc.)
+* New yosys commands and other features
 
-**Details:**
+**Ideas regarding [YosysJS](http://www.clifford.at/yosys/yosysjs.html)**
 
-**Skill level:** intermediate
-
-**Language:** Javascript
-
-**Mentor:** Clifford Wolf <clifford@clifford.at>
-
-## An alternative flow for ice40 place and route
-
-**Summary:** Make use of VPR/VTR to implement a new place and route flow.
-
-[Project IceStorm](http://www.clifford.at/icestorm/) currently provides a full 
-flow from Verilog to the Lattice iCE40 FPGAs making use of 
-[Yosys](http://www.clifford.at/yosys/) for synthesis and 
-[arachne-pnr](https://github.com/cseed/arachne-pnr) for place and route. It 
-would be interesting to instead use VPR from the [Verilog to 
-Routing](https://github.com/verilog-to-routing/vtr-verilog-to-routing) flow 
-for place and route.
-
-**Links:**
-
-* [Project 
-IceStorm](https://github.com/verilog-to-routing/vtr-verilog-to-routing)
-* [Yosys](http://www.clifford.at/yosys/)
-* 
-[Verilog-to-Routing](https://github.com/verilog-to-routing/vtr-verilog-to-routing)
-
-**Details:**
-
-**Skill level:** advanced
-
-**Language:** C++
-
-**Mentor:** Clifford Wolf <clifford@clifford.at>
-
-## Other Yosys-related projects
-
-Clifford is really interested in mentoring projects that build on Yosys or 
-IceStorm of the students own devising. Please do reach out to discuss any 
-ideas. Some other ideas that haven't been described in more detail include 
-retargeting Yosys for other FPGA architectures and new Yosys front-ends or 
-back-ends.
-
-**Links:**
-
-* [Project 
-IceStorm](https://github.com/verilog-to-routing/vtr-verilog-to-routing)
-* [Yosys](http://www.clifford.at/yosys/)
-
-**Details:**
+* Interactive schematic viewer running in the web browser
+* Puzzle games and other web-based Verilog training tools
+* Port of Icarus Verilog to JavaScript (using EMCC)
 
 **Skill level:** intermediate/advanced
 
-**Language:** C++, Verilog
+**Language:** C++, Javascript
 
 **Mentor:** Clifford Wolf <clifford@clifford.at>
 
