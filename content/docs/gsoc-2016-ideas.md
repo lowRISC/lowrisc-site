@@ -51,7 +51,12 @@ prominently Alpine. This project would involve porting musl to the 32-bit and
 64-bit RISC-V instruction set architecture. An unoptimised port should require
 less than 1KLOC, so after achieving this initial milestone time should be spent
 both building out the musl benchmark suite and implementing optimised
-implementations for key functions.
+implementations for key functions. A partially complete port of Musl is 
+actually [available here](https://github.com/lluixhi/musl-riscv), so although 
+there will be work in completing a port and preparing it for upstreaming, we 
+are particularly interested in proposals that go beyond a functioning port and 
+consider interesting things that could be done regarding testing, 
+benchmarking, and so on.
 
 **Links:**
 
