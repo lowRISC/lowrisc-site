@@ -333,3 +333,87 @@ it in the emulator and Verilog simulation (or, as a bonus, on FPGA)
 **Language:** C
 
 **Mentor:** Jeff Bush <jeffbush001@gmail.com>
+
+## CMSIS-DSP on PULPino
+
+**Summary:** Implement a subset of the ARM CMSIS DSP library on the Pulpino
+platform
+
+Pulpino is an open-source design containing a 32-bit RISC-V implementation
+enhanced with DSP extensions. The ARM CMSIS DSP library is a set of common
+signal processing functions. The implementation will consist in selecting a
+reasonable subset of the library, implementing it on Pulpino, finely optimizing
+it to take advantage of PULP's DSP extensions, and benchmarking it against
+an ARM implementation on a Cortex M4. This will help measuring the impact of
+the existing extensions and drive future extensions. The work could also be
+extended to the parallelization of this subset on the Pulp platform.
+
+**Links:**
+
+* [PULP](http://www.pulp-platform.org)
+* [CMSIS-DSP](http://www.keil.com/pack/doc/CMSIS/DSP/html/index.html)
+
+**Details:**
+
+**Skill level:** intermediate
+
+**Language:** C
+
+**Mentor:** Germain Haugou <haugoug@iis.ee.ethz.ch>
+
+## Doom on PULPino
+
+**Summary:** Porting DOOM on the PULPino platform
+
+In this project, we set the challenging objective of porting the DOOM game to
+PULPino - an open-source microcontroller platform based on a 32-bit RISC-V
+implementation with DSP extensions. The project will consist in 1) porting the
+main game engine on RISC-V, optimizing it by means of the PULPino DSP
+extensions; 2) test it using an artificial set of inputs, such as mouse data
+collected from running DOOM on a normal workstation, and check consistency with
+the expected outputs, 3) design of a simple interface for the Zedboard version
+of PULPino in Vivado, to enable using simple buttons for the input and a
+compatible HDMI display for the output.
+
+The project could easily be extended to provide a more advanced interface (e.g.
+a mouse) if you are interested in HW design.
+
+**Links:**
+
+* [PULP](http://www.pulp-platform.org)
+* [DOOM](https://github.com/id-Software/DOOM)
+
+**Details:**
+
+**Skill level:** intermediate/high
+
+**Language:** C, some Vivado FPGA work (no or very small amount of RTL coding)
+
+**Mentor:** Francesco Conti <f.conti@unibo.it>
+
+## Arduino to Pulpino library porting
+
+**Summary:** Porting the Arduino software libraries to PULPino.
+
+PULPino is a small RISC-V based platform that has been published as open-source
+recently. The platform is using a highly optimized RISC-V core and contains all
+the necessary peripherals usually found on modern microcontrollers including
+SPI, I2C, GPIO and UART. PULPino is currently available for RTL simulation,
+FPGA (ZedBoard) and a first low-volume test chip was taped out in January. The
+goal of this project is to make PULPino compatible with the Arduino ecosystem
+and port the required libraries to the PULPino RISC-V  platform. If time
+permits a PCB for the test-chip can be created durig the project and/or some
+applications using the Arduino compatiblity layer can be developed.
+
+**Links:**
+
+* [PULP](http://www.pulp-platform.org)
+* [Arduino software](https://www.arduino.cc/en/Main/Software)
+
+**Details:**
+
+**Skill level:** intermediate
+
+**Language:** C/C++
+
+**Mentor:** Andreas Traber <atraber@iis.ee.ethz.ch>
