@@ -166,3 +166,9 @@ need to load it with the simulation:
     ${TOP}/vsim/DebugConfig-sim +load=${TOP}/fpga/board/nexys4/examples/trace.hex
 
 Then 
+
+### Scripting the command line interface
+
+### Loading the ELF to memory
+
+### Python scripting

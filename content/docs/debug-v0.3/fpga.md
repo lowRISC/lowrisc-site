@@ -9,4 +9,8 @@ showdisqus = true
 
 +++
 
+### Generate the bitstream
 
+### Program the FPGA
+
+### Connect daemon and run a debug session
