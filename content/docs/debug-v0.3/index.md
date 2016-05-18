@@ -1,0 +1,62 @@
++++
+Description = ""
+date = "2016-05-16T12:00:00+00:00"
+title = "Tutorial for the debug preview of lowRISC"
+showdisqus = true
+
++++
+
+_By Stefan Wallentowitz and Wei Song_
+
+**Release version 0.3** (05-2016)
+
+## Introduction
+
+[lowRISC][lowRISC] is a not-for-profit organisation whose goal is to
+produce a fully open source System-on-Chip (SoC) in volume. We are
+building upon RISC-V processor core implementations from the RISC-V
+team at UC Berkeley. We will produce a SoC design to populate a
+low-cost community development board and to act as an ideal starting
+point for derivative open-source and commercial designs.
+
+In previous tutorials you can learn about
+[tagged memory][TaggedMemoryTutorial] or how to run the design on an
+FPGA as [untethered system][UntetheredTutorial].
+
+This tutorial adds further functionality towards the final SoC design
+by adding a debug infrastructure. It contains a technology preview of
+what we plan and gives some background on the trace debugging
+techniques. A demo is provided using a low-end
+[Nexys™4 DDR Artix-7 FPGA Board]
+(http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
+
+### Contents
+
+  1. [Overview of the debug infrastructure]({{< ref "overview.md" >}})
+    * [Debug interface]({{< ref "interface.md" >}})
+    * [Debug modules]({{< ref "debugmodules.md" >}})
+	* [Debug software and methodology]({{< ref "softwaremethodology.md" >}})
+
+  2. [Prepare the environment]({{< ref "environment.md" >}})
+    * [Generic lowRISC setup]({{< ref "lowriscsetup.md" >}})
+    * [Open SoC Debug software]({{< ref "osdsoftware.md" >}})
+
+  3. [Debug walkthrough]({{< ref "walkthrough.md" >}})
+    * [Connecting to RTL simulation and enumeration]({{< ref "simulation.md" >}})
+    * [A debug session]({{< ref "debugsession.md" >}})
+	* [Running on the FPGA]({{< ref "fpga.md" >}})
+
+  4. [Release notes] ({{<ref "release.md">}})
+     * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
+     * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+
+### Other useful sources of information
+
+  * [Open SoC Debug (Overview slides)](http://opensocdebug.org/slides/2015-11-12-overview/)
+
+<!-- Links -->
+
+[lowRISC]: http://www.lowrisc.org/
+[TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/index.md" >}}
+[UntetheredTutorial]: {{< ref "docs/untether-v0.2/index.md" >}}
+
