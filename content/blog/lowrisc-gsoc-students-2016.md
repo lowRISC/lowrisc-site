@@ -10,7 +10,7 @@ The 2016 Google Summer of Code is now
 delighted to be working with five students, covering a variety of interesting 
 projects. They have all introduced themselves over the past few weeks on [our 
 project mailing 
-list[(https://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).
+list](https://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).
 Many thanks to everyone who applied, to the mentors who volunteered, and to 
 Google for sponsoring this programme. If your application was unsuccessful, I 
 hope you'll try again next year.
