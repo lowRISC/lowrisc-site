@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-12-17T17:00:00+00:00"
+date = "2016-06-10T16:00:00+00:00"
 title = "Compile the RISC-V Linux and the ramdisk `root.bin`"
 parent = "/docs/untether-v0.2/dev-env/"
 prev = "/docs/untether-v0.2/riscv_compile/"
@@ -23,7 +23,7 @@ can be found [here](https://github.com/riscv/riscv-linux#linuxrisc-v):
     git init
     git remote add origin https://github.com/lowrisc/riscv-linux.git
     git fetch
-    git checkout -f -t origin/master
+    git checkout -f -t origin/untether-v0.2
     make ARCH=riscv defconfig
     make ARCH=riscv -j vmlinux
 
