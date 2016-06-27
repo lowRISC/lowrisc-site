@@ -89,7 +89,7 @@ To build a Linux GCC compiler:
     mkdir build
     cd build
     ../configure --prefix=$RISCV
-    make -j linux
+    make -j "$(nproc)" linux
 
 After the compilation, the Linux GCC binaries should be available:
 
