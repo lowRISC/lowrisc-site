@@ -71,7 +71,7 @@ Then the waveform is stored in `rv64ui-p-add.vcd`.
 To run a regression test:
 
     cd $TOP/vsim
-    make -j run-asm-tests
+    make -j$(nproc) run-asm-tests
 
 If any test case ever failed, again using `rv64ui-p-add` as an example, a VCD for this test case can be generated:
 

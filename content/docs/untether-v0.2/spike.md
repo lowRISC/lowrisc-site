@@ -46,7 +46,7 @@ Note: to use the `-g` argument Spike has to be compiled with the
     mkdir build
     cd build
     ../configure --prefix=$RISCV --with-fesvr=$RISCV --enable-histogram
-    make -j
+    make -j$(nproc)
     make install
 
 ### Running Spike

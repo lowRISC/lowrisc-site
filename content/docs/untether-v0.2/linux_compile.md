@@ -44,7 +44,7 @@ binary must be generated at first:
     curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2 | tar -xj
     cd busybox-1.21.1
     cp $TOP/riscv-tools/busybox_config .config
-    make -j
+    make -j$(nproc)
 
 If the compilation finishes successfully, the BusyBox binary is generated in the same directory.
 
