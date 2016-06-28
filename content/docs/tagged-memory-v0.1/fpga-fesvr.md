@@ -21,7 +21,7 @@ To compile your own front-end server:
     mkdir build_fpga
     cd build_fpga
     ../configure --host=arm-xilinx-linux-gnueabi
-    make -j
+    make -j$(nproc)
 
 Once compilation has completed, you should find the following files:
 

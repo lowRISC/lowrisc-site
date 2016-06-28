@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-12-17T17:00:00+00:00"
+date = "2016-06-10T16:00:00+00:00"
 title = "Compile the RISC-V Linux and the ramdisk `root.bin`"
 parent = "/docs/untether-v0.2/dev-env/"
 prev = "/docs/untether-v0.2/riscv_compile/"
@@ -23,7 +23,7 @@ can be found [here](https://github.com/riscv/riscv-linux#linuxrisc-v):
     git init
     git remote add origin https://github.com/lowrisc/riscv-linux.git
     git fetch
-    git checkout -f -t origin/master
+    git checkout -f -t origin/untether-v0.2
     make ARCH=riscv defconfig
     make ARCH=riscv -j vmlinux
 
@@ -44,7 +44,7 @@ binary must be generated at first:
     curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2 | tar -xj
     cd busybox-1.21.1
     cp $TOP/riscv-tools/busybox_config .config
-    make -j
+    make -j$(nproc)
 
 If the compilation finishes successfully, the BusyBox binary is generated in the same directory.
 
