@@ -87,22 +87,11 @@ There are 3 main branches:
  * *update* : The active development branch, non-stable. The branch for 
  developing new features, testing bugfixes, and experimenting with new ideas.
 
-To setup the necessary RISC-V variables use the setup script
-found at `lowrisc-chip/set_riscv_env.sh`:
+Setup the necessary RISC-V variables with:
 
-    # source this file
-    echo "Setting up lowRISC/RISC-V environment..."
-    echo "Make sure you source this script at the top of lowrisc-chip."
-    # Variables for lowRISC/RISC-V
-    if [ "$TOP" == "" ]; then
-        echo "\$TOP is not available."
-        echo "Set \$TOP to the top of lowrisc-chip which is the current directory."
-        export TOP=$PWD
-    fi
-    export RISCV=$TOP/riscv
-    export PATH=$PATH:$RISCV/bin
-    # choose the FPGA board (KC705 in default)
-    export FPGA_BOARD=kc705
+    cd lowrisc-chip
+    export TOP="$(pwd)"
+    . set_riscv_env.sh
 
 ## Structure of the git repository
 
