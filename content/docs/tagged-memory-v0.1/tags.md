@@ -98,7 +98,7 @@ testing. Future additions will allow both data and tag to be read
 atomically.
 
 A step-by-step guide describing how hardware and software support for these new instructions was added 
-is provided [here]({{< ref "new-instructions.md" >}}).
+is provided [here]({{< ref "docs/tagged-memory-v0.1/new-instructions.md" >}}).
 
 ### Bibliography
 

@@ -26,7 +26,7 @@ highlight the MMIO). The components in blue are used for MMIO.
 <img src="../figures/dcache_mmio.png" alt="Drawing" style="width: 600px;"/>
 
 The `ioaddr` is an address checker controlled by the global I/O space mapping 
-(see [Memory and I/O maps, soft reset, and interrupts]({{< ref "pcr.md" >}})). 
+(see [Memory and I/O maps, soft reset, and interrupts]({{< ref "docs/untether-v0.2/pcr.md" >}})).
 According to the I/O mapping, `ioaddr` identifies I/O requests in all D$ 
 misses (`ioaddr.io` fires when `s1_req.addr` hits in I/O space). Since all I/O 
 operations are uncached, they all miss in D$ and are caught by `ioaddr`, which 

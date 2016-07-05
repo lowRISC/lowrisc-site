@@ -110,13 +110,13 @@ found at `lowrisc-chip/set_riscv_env.sh`:
  compiling the rocket system.
  * `fpga`: FPGA demo implementations
    * `board`: Demo projects for individual development boards. [[FPGA 
-     Demo]]({{<ref "fpga-demo.md">}})
+     Demo]]({{<ref "docs/untether-v0.2/fpga-demo.md">}})
      * `kc705`: Files for the Xilinx KC705 development board.
      * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
  * `hardfloat`: The IEEE 754-2008 compliant floating-point unit.
  * `junctions`: Peripheral components and I/O devices associated with the RocketChip.
  * `project`: Global configuration for Chisel compilation.
- * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "riscv_compile.md">}})
+ * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/untether-v0.2/riscv_compile.md">}})
    * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
    * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
    * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "docs/untether-v0.2/spike.md">}})
@@ -130,12 +130,12 @@ found at `lowrisc-chip/set_riscv_env.sh`:
    * `main`: The Chisel/Verilog code for hardware implementation.
    * `test`: The Verilog/C++(DPI) test bench files
  * `uncore`: The Chisel code of the memory subsystem.
- * `vsim`: RTL/Behavioural SystemVerilog simulation environment. [[RTL simulation]] ({{<ref "vsim.md">}})
+ * `vsim`: RTL/Behavioural SystemVerilog simulation environment. [[RTL simulation]] ({{<ref "docs/untether-v0.2/vsim.md">}})
 
 ## Compiling and installation of individual tools/packages
 
- * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
- * [Install Verilator] ({{<ref "verilator.md">}})
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
- * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}})
+ * [Install Xilinx Vivado] ({{<ref "docs/untether-v0.2/xilinx.md">}})
+ * [Install Verilator] ({{<ref "docs/untether-v0.2/verilator.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<ref "docs/untether-v0.2/riscv_compile.md">}})
+ * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "docs/untether-v0.2/linux_compile.md">}})
 

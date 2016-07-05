@@ -17,7 +17,7 @@ A high-level view of the rocket chip is shown below. The design
 contains multiple Rocket tiles consisting of a Rocket core and L1
 instruction and data caches. Our tagged memory implementation inserts
 a tag cache before the main memory interface. Our tagged memory additions
-are described in detail [here]({{< ref "tags.md" >}}). 
+are described in detail [here]({{< ref "docs/tagged-memory-v0.1/tags.md" >}}). 
 
 <img src="../figures/rocket_chip.png" alt="Drawing" style="width: 650px;"/>
 
