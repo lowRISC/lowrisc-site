@@ -5,6 +5,18 @@ title = "Documentation"
 
 +++
 
+## lowRISC debugging tutorial
+
+#### Release version 0.3, 07-2016
+
+In this code release we present a first prototype of the lowRISC debug
+infrastructure. It extends the `untethered` lowRISC system with the
+means to control the system, load programs and trace the software
+execution. The [tutorial]({{< ref "docs/debug-v0.3/index.md" >}})
+outlines the debug system and the future directions we are
+planning. It demonstrates the debugging with the RTL simulation and on
+the Nexys4 DDR FPGA board.
+
 ## Untethered lowRISC tutorial
 
 #### Release version 0.2, 12-2015
