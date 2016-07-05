@@ -63,8 +63,8 @@ test programs either in simulation or on an FPGA.
 
   * [Setting up the RISC-V tools](https://github.com/riscv/riscv-tools/blob/master/README.md)
   * [Tagged memory and minion cores in the lowRISC SoC (lowRISC-MEMO 2014-001)](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
-  * [The RISC-V Instruction Set Manual -- Volume I: User-Level ISA](http://riscv.org/download.html#tab_spec_user_isa)
-  * [The RISC-V Instruction Set Manual -- Volume II: Privileged Architecture](http://riscv.org/download.html#tab_spec_privileged_isa)
+  * [The RISC-V Instruction Set Manual -- Volume I: User-Level ISA](https://riscv.org/specifications/)
+  * [The RISC-V Instruction Set Manual -- Volume II: Privileged Architecture](https://riscv.org/specifications/privileged-isa/)
 
 ### Acknowledgements
 

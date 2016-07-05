@@ -6,7 +6,7 @@ title = "Second RISC-V Workshop: Day Two"
 +++
 
 It's the second day of the [second RISC-V 
-workshop](http://riscv.org/workshop-jun2015.html) today in Berkeley, 
+workshop](https://riscv.org/2015/06/preliminary-agenda-for-the-2nd-risc-v-workshop-is-posted/) today in Berkeley,
 California.  I'll be keeping a semi-live blog of talks and announcements 
 throughout the day.
 

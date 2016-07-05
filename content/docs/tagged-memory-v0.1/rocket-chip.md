@@ -11,7 +11,7 @@ showdisqus = true
 +++
 
 
-An overview of Berkeley's RISC-V "Rocket Chip" SoC Generator can be found [here](http://riscv.org/workshop-jan2015/riscv-rocket-chip-generator-workshop-jan2015.pdf).
+An overview of Berkeley's RISC-V "Rocket Chip" SoC Generator can be found [here](https://1nv67s1krw3279i5yp7fko14-wpengine.netdna-ssl.com/wp-content/uploads/2015/01/riscv-rocket-chip-generator-workshop-jan2015.pdf).
 
 A high-level view of the rocket chip is shown below. The design
 contains multiple Rocket tiles consisting of a Rocket core and L1

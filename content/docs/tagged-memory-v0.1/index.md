@@ -101,7 +101,7 @@ details of the Rocket core and chip.
 <!-- References --> 
 
 <a name="RocketChip"></a>
-[1]: Yunsup Lee, "RISC-V Rocket Chip Generator", RISC-V workshop, January 2015 [slides](http://riscv.org/workshop-jan2015/riscv-rocket-chip-generator-workshop-jan2015.pdf)
+[1]: Yunsup Lee, "RISC-V Rocket Chip Generator", RISC-V workshop, January 2015 [slides](https://1nv67s1krw3279i5yp7fko14-wpengine.netdna-ssl.com/wp-content/uploads/2015/01/riscv-rocket-chip-generator-workshop-jan2015.pdf)
 
 <a name="Oakland:2015"></a>
 [2] Robert N. M. Watson, Jonathan
