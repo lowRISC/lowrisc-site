@@ -18,7 +18,7 @@ with the debug system.
 To generate a bitstream change to the FPGA directory and use `make` to
 build it:
 
-    cd ${TOP}/fpga/board/nexys4_ddr
+    cd $TOP/fpga/board/nexys4_ddr
     make bitstream
 
 This will take some time (20-60 minutes depending on your
@@ -66,3 +66,15 @@ everything works you will see the same output as in the simulation:
 
 ### Build Linux
 
+    cd $TOP/riscv-tools
+    curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.1.25.tar.xz| tar -xJ
+    curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2| tar -xj
+    cd linux-4.1.25
+    git init
+    git remote add origin https://github.com/lowrisc/riscv-linux.git
+    git fetch
+    git checkout -f -t origin/debug-v0.3
+
+    # then actually just go to any directory
+    $TOP/riscv-tools/make_root.sh
+    # it will generate boot.bin and copy it there

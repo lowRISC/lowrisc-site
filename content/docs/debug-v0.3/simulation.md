@@ -15,7 +15,7 @@ The RTL simulation is a compiled simulation of the entire system with
 cycle accuracy. You can generate the sources and build the simulation
 using:
 
-    make -C ${TOP}/vsim
+    CONFIG=DebugConfig make -C $TOP/vsim sim
 
 The build will take a few minutes.
 
@@ -23,7 +23,7 @@ The build will take a few minutes.
 
 Next you can launch the RTL simulation:
 
-    ${TOP}/vsim/DebugConfig-sim
+    $TOP/vsim/DebugConfig-sim
 
 You will see the following output:
 
@@ -31,12 +31,18 @@ You will see the following output:
 
 The simulation waits for the Open SoC Debug software to connect.
 
-You may want to debug the system with a waveform (vcd), which you can
-get by adding the `+vcd` parameter.
+You may want to debug the system with a waveform (vcd), which you need to
+compile a debug simulator and add the `+vcd` parameters.
 
-    ${TOP}/vsim/DebugConfig-sim
+    # compile a debug simulator
+    CONFIG=DebugConfig make -C $TOP/vsim sim-debug
+    # run simulation
+    $TOP/vsim/DebugConfig-sim-debug +vcd +vcd_name=sim.vcd
 
-The vcd will only be logged while a debug tool is connected.
+The debugger allows you to load a program at run-time but you may want to
+pre-load a program using the `+load` parameter.
+
+    $TOP/vsim/DebugConfig-sim +load=prorgam
 
 ### Connect the debug daemon
 

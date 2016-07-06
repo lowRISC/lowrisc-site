@@ -15,7 +15,7 @@ infrastructure. Essentially, there are two methods to debug a
 processor:
 
  * With *run-control debugging* the developer controls the processor
-   core by setting breakpoints and stepping through instruction. This
+   core by setting breakpoints and stepping through instructions. This
    is what most people understand as debugging and `gdb` is probably
    the dominant tool for it.
 
@@ -85,7 +85,7 @@ headed:
    second. *(Cross-)Triggers and filters* help reducing the trace size
    and focus on the problem.
 
- * *On-chip trace processing* with a (dedicated) Minion core can be
+ * *On-chip trace processing* with a (dedicated) minion core can be
    used to aggregate and process basic trace information to high level
    information (knowledge).
 

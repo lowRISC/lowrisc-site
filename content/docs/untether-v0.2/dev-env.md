@@ -17,7 +17,7 @@ We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU GCC >= 4.
 The default simulator for RTL/Behavioural SystemVerilog simulation is [Verilator](http://www.veripool.org/wiki/verilator).
 Please download and install a latest version for the best SystemVerilog support.
 
-An FPGA demonstration is provided using either a [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/). The KC705 kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit). As for the users of the Nexys4-DDR boards, please acquire a free license and install the WebPACK edition of Vivado.
+An FPGA demonstration is provided using either a [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/). The KC705 kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.4(64-bit). As for the users of the Nexys4-DDR boards, please acquire a free license and install the WebPACK edition of Vivado.
 
 By default, all simulations produce waveforms in the VCD format.  
 [GTKWave](http://gtkwave.sourceforge.net/) can be used to view VCD files.
@@ -51,18 +51,19 @@ Here shows software versions and environment variables on my machine:
      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
      $ which vivado
-     /local/tool/Xilinx/Vivado/2015.3/bin/vivado
+     /local/tool/Xilinx/Vivado/2015.4/bin/vivado
 
      # make sure the XILINX_VIVADO variable is exposed
      $ echo $XILINX_VIVADO
-     /local/tool/Xilinx/Vivado/2015.3
+     /local/tool/Xilinx/Vivado/2015.4
 
 Ensure you have all the necessary packages installed before attempting
 to build the RISC-V tools:
 
     sudo apt-get install autoconf automake autotools-dev curl \
       libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
-      flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev
+      flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev \
+      git
 
 ## Download the code release
 
@@ -76,7 +77,8 @@ To clone the whole lowRISC chip git repository:
 
     # clone the repository to your home directory:
     cd ~/lowRISC/DIR
-    git clone https://github.com/lowrisc/lowrisc-chip.git
+    # get the branch untether-v0.2
+    git clone -b untether-v0.2 https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
     git submodule update --init --recursive
 
@@ -104,6 +106,7 @@ found at `lowrisc-chip/set_riscv_env.sh`:
     # choose the FPGA board (KC705 in default)
     export FPGA_BOARD=kc705
 
+<a name="gitstruct"></a>
 ## Structure of the git repository
 
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 

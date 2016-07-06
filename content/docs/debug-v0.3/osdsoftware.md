@@ -17,10 +17,10 @@ it only involves a few steps.
 First you need to build and install the glip software to connect to
 the FPGA or simulation.
 
-    cd ${TOP}/opensocdebug/glip
+    cd $TOP/opensocdebug/glip
     ./autogen.sh
 	mkdir build; cd build
-	../configure --prefix=${TOP}/tools
+	../configure --prefix=$OSD_ROOT --enable-tcp --enable-uart
 	make && make install
 
 ### Build Open SoC Debug software
@@ -29,10 +29,10 @@ Then the actual Open SoC Debug software is installed. You can leave
 out the python bindings, but you will loose a very convenient way to
 interact with the debug system.
 
-    cd ${TOP}/opensocdebug/software
+    cd $TOP/opensocdebug/software
     ./autogen.sh
 	mkdir build; cd build
-	../configure --prefix=${TOP}/tools --enable-python-bindings
+	../configure --prefix=$OSD_ROOT --enable-python-bindings
 	make && make install
 
 Done!

@@ -15,7 +15,7 @@ learn the different basic features to interact with the system.
 
 Before you begin, you should be example programs:
 
-    make -C ${TOP}/fpga/board/nexys4/examples hello.hex trace.hex
+    FPGA_DIR=$TOP/vsim make -C $TOP/fpga/bare_metal/examples hello.riscv trace.riscv
 
 ### Resetting the system
 
@@ -28,7 +28,7 @@ what you learned before:
 
  * Start simulation with preloaded software (terminal 1):
 
-        ${TOP}/vsim/DebugConfig-sim +load=${TOP}/fpga/board/nexys4/examples/hello.hex
+        $TOP/vsim/DebugConfig-sim +load=$TOP/fpga/bare_metal/examples/hello.riscv
 
  * Connect the daemon (terminal 2):
 
@@ -49,7 +49,7 @@ The command has reset the entire system. If you run the simulation
 with vcd output (add `+vcd` to the parameters) you can see how it is
 reset. `reset` actually controls the CPU and a different system
 reset. With the parameter `-halt` you can keep the CPU reset asserted
-to kepp the CPUs inactive while you load a program to the memory or
+and inactive while you load a program to the memory or
 configure the debug modules. Running `start` de-asserts the CPU reset
 then:
 
@@ -66,7 +66,7 @@ emulation module that has the same physical interface, but transports
 the characters over the debug infrastructure.
 
 In the command line you can start a terminal that displays the output
-by executing `terminal <moduleid>`. You need to set the module id as
+by executing `terminal <module id>`. You need to set the module id as
 enumerated (here: `2`). This will open an `xterm` and direct output to
 it.
 
@@ -95,7 +95,7 @@ giving the ELF currently executed on the core.
 
     osd> reset -halt
     osd> terminal 2
-	osd> ctm log ctm.log /full/path/to/lowrisc-chip/fpga/boards/examples/hello.riscv
+	osd> ctm log ctm.log path/to/hello.riscv
 	osd> start
 	osd> quit
 
@@ -163,7 +163,7 @@ without stalling the system.
 The code `trace.c` from the examples emits four of such events. You
 need to load it with the simulation:
 
-    ${TOP}/vsim/DebugConfig-sim +load=${TOP}/fpga/board/nexys4/examples/trace.hex
+    $TOP/vsim/DebugConfig-sim +load=$TOP/fpga/bare_metal/examples/trace.riscv
 
 Then 
 

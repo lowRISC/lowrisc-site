@@ -9,12 +9,8 @@ showdisqus = true
 
 +++
 
-The environment needed for this tutorial is mostly similar to the
-previous tutorial, so you basically can reuse most of the prepared
-tools.
-
-We still recommend you work with a 64-bit Ubuntu (14.04 or 16.04
-LTS). Everything except using the FPGA boars should also work
+We still recommend you work with a 64-bit Ubuntu (14.04 LTS).
+Everything except using the FPGA boards should also work
 out-of-box in a virtual machine.
 
 For more details follow the
@@ -32,16 +28,16 @@ Ensure you have all the necessary packages installed:
 The code is hosted in the
 [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip). All
 external repositories are fetched as submodules. You need to clone the
-proper branch (`debug`):
+proper branch (`debug-v0.3`):
 
-    git clone -b debug https://github.com/lowrisc/lowrisc-chip.git
+    git clone -b debug-v0.3 https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
 	git submodule update --init --recursive
 
 ### Structure of the git repository
 
 The structure is similar to the one described
-[here](/docs/untether-v0.2/dev-env/#structure-of-the-git-repository:332a00eb4e29c66523efb552bbd30a5d). Essentially
+[here](/docs/untether-v0.2/dev-env/#gitstruct). Essentially
 one folder was added that contains the Open SoC Debug repositories:
 
  * `opensocdebug`: Open SoC Debug and dependencies
@@ -51,13 +47,18 @@ one folder was added that contains the Open SoC Debug repositories:
 
 ### Next steps
 
-For the build and each time you need to set the environment variable
-`$TOP` to the `lowrisc-chip` base folder. You then need to set your
-environment with the script `set_env.sh` (formerly
-`set_riscv_env.sh`). In the base directory:
+To set the correct environment variables for running lowRISC, you need to
+source the script `set_env.sh` (formerly `set_riscv_env.sh`) in the base directory:
 
-    export TOP=`pwd`
     source set_env.sh
+
+It is possible to override the default values by exporting variables before sourcing the script.
+The following variables are overridable:
+
+    $TOP                Path to the lowrisc-chip directory ($PWD).
+    $RISCV              Path to the riscv toolchain ($TOP/riscv).
+    $OSD_ROOT           Path to the Open SoC Debug tools ($TOP/tools).
+    $FPGA_BOARD         The tager FPGA board (nexys4_ddr).
 
 Next, you should follow the following steps:
 
