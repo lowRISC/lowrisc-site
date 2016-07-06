@@ -32,21 +32,21 @@ techniques. A demo is provided using a low-end
 
 ### Contents
 
-  1. [Overview of the debug infrastructure]({{< ref "overview.md" >}})
-    * [Debug interface]({{< ref "interface.md" >}})
-    * [Debug modules]({{< ref "debugmodules.md" >}})
-	* [Debug software and methodology]({{< ref "softwaremethodology.md" >}})
+  1. [Overview of the debug infrastructure]({{< ref "docs/debug-v0.3/overview.md" >}})
+    * [Debug interface]({{< ref "docs/debug-v0.3/interface.md" >}})
+    * [Debug modules]({{< ref "docs/debug-v0.3/debugmodules.md" >}})
+	* [Debug software and methodology]({{< ref "docs/debug-v0.3/softwaremethodology.md" >}})
 
-  2. [Prepare the environment]({{< ref "environment.md" >}})
-    * [Generic lowRISC setup]({{< ref "lowriscsetup.md" >}})
-    * [Open SoC Debug software]({{< ref "osdsoftware.md" >}})
+  2. [Prepare the environment]({{< ref "docs/debug-v0.3/environment.md" >}})
+    * [Generic lowRISC setup]({{< ref "docs/debug-v0.3/lowriscsetup.md" >}})
+    * [Open SoC Debug software]({{< ref "docs/debug-v0.3/osdsoftware.md" >}})
 
-  3. [Debug walkthrough]({{< ref "walkthrough.md" >}})
-    * [Connecting to RTL simulation and enumeration]({{< ref "simulation.md" >}})
-    * [A debug session]({{< ref "debugsession.md" >}})
-	* [Running on the FPGA]({{< ref "fpga.md" >}})
+  3. [Debug walkthrough]({{< ref "docs/debug-v0.3/walkthrough.md" >}})
+    * [Connecting to RTL simulation and enumeration]({{< ref "docs/debug-v0.3/simulation.md" >}})
+    * [A debug session]({{< ref "docs/debug-v0.3/debugsession.md" >}})
+	* [Running on the FPGA]({{< ref "docs/debug-v0.3/fpga.md" >}})
 
-  4. [Release notes] ({{<ref "release.md">}})
+  4. [Release notes] ({{<ref "docs/debug-v0.3/release.md">}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
 
