@@ -48,17 +48,17 @@ Compiling and simulating programs in different modes depends on different tool s
   * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`.
   * RTL simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "verilator.md">}}).
+    `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "docs/untether-v0.2/verilator.md">}}).
  * **Newlib (supervisor) mode**:
   * FPGA simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "docs/untether-v0.2/xilinx.md">}}).
   * FPGA run: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "docs/untether-v0.2/xilinx.md">}}).
  * **Linux (user) mode**
   * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib+linux); `riscv-isa-sim`; `riscv-fesvr`; `riscv-pk`; [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
   * FPGA run: <br/>
-    `riscv-gnu-toolchain`(newlib+linux); [vivado]({{<ref "xilinx.md">}}); [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
+    `riscv-gnu-toolchain`(newlib+linux); [vivado]({{<ref "docs/untether-v0.2/xilinx.md">}}); [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
 
 ### Building the RISC-V cross-compilation tools
 
@@ -89,7 +89,7 @@ To build a Linux GCC compiler:
     mkdir build
     cd build
     ../configure --prefix=$RISCV
-    make -j linux
+    make -j$(nproc) linux
 
 After the compilation, the Linux GCC binaries should be available:
 

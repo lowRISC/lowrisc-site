@@ -4,7 +4,7 @@ date = "2015-06-29T17:02:57+01:00"
 title = "Second RISC-V Workshop: Day One"
 
 +++
-The [second RISC-V workshop](http://riscv.org/workshop-jun2015.html) is going 
+The [second RISC-V workshop](https://riscv.org/2015/06/preliminary-agenda-for-the-2nd-risc-v-workshop-is-posted/) is going
 on today and tomorrow in Berkeley, California. I'll be keeping a semi-live 
 blog of talks and announcements throughout the day.
 
@@ -65,7 +65,7 @@ instruction decoding to a single RV32 instruction.
 of 24 that have little impact on current compiler-generated code, but could be 
 useful for some use cases.
 * You can read the RVC spec 
-[here](http://riscv.org/spec/riscv-compressed-spec-v1.7.pdf).
+[here](https://riscv.org/specifications/compressed-isa/).
 * Points out that Thumb2 is only a 32-bit address ISA. Although it is slightly 
 smaller than RV32C, the RISC-V compressed spec has the benefit of supporting 
 64-bit addressing.
@@ -148,7 +148,7 @@ that a minimal V implementation would be very space efficient.
 
 * Aims to provide a clean split between layers of the stack.
 * You can read the privileged spec 
-[here](http://riscv.org/spec/riscv-privileged-spec-v1.7.pdf).
+[here](https://riscv.org/specifications/privileged-isa/).
 * Supports four privilege modes. User, Supervisor, Hypervisor and Machine 
 mode.
 * For a simple embedded system that only needs M-mode there is a low 

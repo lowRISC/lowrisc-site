@@ -40,31 +40,31 @@ test programs either in simulation or on an FPGA.
 
 ### Contents
 
-  1. [Overview of the Rocket chip]({{< ref "overview.md" >}})
+  1. [Overview of the Rocket chip]({{< ref "docs/untether-v0.2/overview.md" >}})
     * [Rocket core]({{< ref "docs/untether-v0.2/rocket-core.md" >}})
-    * [Memory mapped I/O (MMIO)]({{< ref "mmio.md" >}})
-    * [Memory and I/O maps, soft reset, and interrupts]({{< ref "pcr.md" >}})
-    * [Bootload procedure]({{< relref "bootload.md" >}})
-    * [Configuration parameters]({{< ref "parameter.md" >}})
-  2. [The development environment]({{< ref "dev-env.md" >}})
-    * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
-    * [Install Verilator] ({{<ref "verilator.md">}})
-    * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
-    * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}})
-  3. [Simulations and FPGA Demo] ({{<ref "simulation.md">}})
+    * [Memory mapped I/O (MMIO)]({{< ref "docs/untether-v0.2/mmio.md" >}})
+    * [Memory and I/O maps, soft reset, and interrupts]({{< ref "docs/untether-v0.2/pcr.md" >}})
+    * [Bootload procedure]({{< relref "docs/untether-v0.2/bootload.md" >}})
+    * [Configuration parameters]({{< ref "docs/untether-v0.2/parameter.md" >}})
+  2. [The development environment]({{< ref "docs/untether-v0.2/dev-env.md" >}})
+    * [Install Xilinx Vivado] ({{<ref "docs/untether-v0.2/xilinx.md">}})
+    * [Install Verilator] ({{<ref "docs/untether-v0.2/verilator.md">}})
+    * [Compile and install RISC-V cross-compiler] ({{<ref "docs/untether-v0.2/riscv_compile.md">}})
+    * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "docs/untether-v0.2/linux_compile.md">}})
+  3. [Simulations and FPGA Demo] ({{<ref "docs/untether-v0.2/simulation.md">}})
      * [Behavioural Simulation (Spike)] ({{<relref "docs/untether-v0.2/spike.md">}})
-     * [RTL simulation] ({{<ref "vsim.md">}})
-     * [FPGA demo] ({{<ref "fpga-demo.md">}})
-     * [FPGA simulation] ({{<ref "fpga-sim.md">}})
-  4. [Release notes] ({{<ref "release.md">}})
+     * [RTL simulation] ({{<ref "docs/untether-v0.2/vsim.md">}})
+     * [FPGA demo] ({{<ref "docs/untether-v0.2/fpga-demo.md">}})
+     * [FPGA simulation] ({{<ref "docs/untether-v0.2/fpga-sim.md">}})
+  4. [Release notes] ({{<ref "docs/untether-v0.2/release.md">}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
 
 ### Other useful sources of information
 
   * [Setting up the RISC-V tools](https://github.com/riscv/riscv-tools/blob/master/README.md)
   * [Tagged memory and minion cores in the lowRISC SoC (lowRISC-MEMO 2014-001)](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
-  * [The RISC-V Instruction Set Manual -- Volume I: User-Level ISA](http://riscv.org/download.html#tab_spec_user_isa)
-  * [The RISC-V Instruction Set Manual -- Volume II: Privileged Architecture](http://riscv.org/download.html#tab_spec_privileged_isa)
+  * [The RISC-V Instruction Set Manual -- Volume I: User-Level ISA](https://riscv.org/specifications/)
+  * [The RISC-V Instruction Set Manual -- Volume II: Privileged Architecture](https://riscv.org/specifications/privileged-isa/)
 
 ### Acknowledgements
 

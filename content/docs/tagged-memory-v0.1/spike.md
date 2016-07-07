@@ -80,7 +80,7 @@ Note: to use the `-g` argument Spike has to be compiled with the
     mkdir build
     cd build
     ../configure --prefix=$RISCV --with-fesvr=$RISCV --enable-histogram
-    make -j
+    make -j$(nproc)
     make install
 
 The Spike simulator supports an interactive debug mode. To invoke

@@ -8,7 +8,7 @@ showdisqus = true
 
 _By Stefan Wallentowitz and Wei Song_
 
-**Release version 0.3** (05-2016)
+**Release version 0.3** (07-2016)
 
 ## Introduction
 
@@ -21,7 +21,7 @@ point for derivative open-source and commercial designs.
 
 In previous tutorials you can learn about
 [tagged memory][TaggedMemoryTutorial] or how to run the design on an
-FPGA as [untethered system][UntetheredTutorial].
+FPGA as an [untethered system][UntetheredTutorial].
 
 This tutorial adds further functionality towards the final SoC design
 by adding a debug infrastructure. It contains a technology preview of

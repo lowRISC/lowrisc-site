@@ -144,7 +144,7 @@ To build the cross-compiler:
     mkdir build
     cd build
     ../configure --prefix=$RISCV
-    make -j linux
+    make -j$(nproc) linux
 
 After the compilation, the compiler should be available: 
 
@@ -188,7 +188,7 @@ binary must be generated at first:
     curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2 | tar -xj
     cd busybox-1.21.1
     cp $TOP/riscv-tools/busybox_config .config
-    make -j
+    make -j$(nproc)
 
 If the compilation finishes successful, the BusyBox binary is generated in the same directory.
 

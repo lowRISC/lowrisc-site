@@ -10,8 +10,7 @@ showdisqus = true
 
 ### Download and install Xilinx Vivado
 
-The Xilinx Vivado design suite can be downloaded from [http://www.xilinx.com/support/download.html](http://www.xilinx.com/support/download.html) free of charge for registered users (registration is also free). For Ubuntu Linux, we recommend downloading the "Vivado 2015.3: Full Installer For Linux Single File Download Image Including SDK" (TAR/GZIP - 6.92 GB). Please move and extract the downloaded TAR/GZIP file, then run the `xsetup` script provided by the installation image.
-
+The Xilinx Vivado design suite can be downloaded from [http://www.xilinx.com/support/download.html](http://www.xilinx.com/support/download.html) free of charge for registered users (registration is also free). For Ubuntu Linux, we recommend Vivado 2015.4. 
 During the installation process, when asked for "Select Edition to Install", 
 please choose "Vivado Design Edition". When choosing which packages to 
 install, please add "Software Development Kit". It is not required to install 
@@ -46,7 +45,7 @@ Here is an example script for setting up the Xilinx Vivado suite.
     #!/bin/bash
     # source the prepared script, assume Xilinx is installed to
     # /local/tool/Xilinx
-    source /local/tool/Xilinx/Vivado/2015.3/settings64.sh
+    source /local/tool/Xilinx/Vivado/2015.4/settings64.sh
     # exporting XILINX_VIVADO is required for FPGA simulation
     export XILINX_VIVADO
     # setup the license

@@ -17,7 +17,7 @@ We recommend you work with a 64-bit Ubuntu (14.04 LTS) system with GNU GCC >= 4.
 The default simulator for RTL/Behavioural SystemVerilog simulation is [Verilator](http://www.veripool.org/wiki/verilator).
 Please download and install a latest version for the best SystemVerilog support.
 
-An FPGA demonstration is provided using either a [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/). The KC705 kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.3(64-bit). As for the users of the Nexys4-DDR boards, please acquire a free license and install the WebPACK edition of Vivado.
+An FPGA demonstration is provided using either a [Xilinx Kintex-7 FPGA KC705 evaluation kit](http://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html) or a low-end [Nexys™4 DDR Artix-7 FPGA Board](http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/). The KC705 kit comes with a device and node locked license for [Xilinx Vivado Design Suite](http://www.xilinx.com/products/design-tools/vivado.html). The default version for FPGA demonstration project is Vivado 2015.4(64-bit). As for the users of the Nexys4-DDR boards, please acquire a free license and install the WebPACK edition of Vivado.
 
 By default, all simulations produce waveforms in the VCD format.  
 [GTKWave](http://gtkwave.sourceforge.net/) can be used to view VCD files.
@@ -51,18 +51,19 @@ Here shows software versions and environment variables on my machine:
      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
      $ which vivado
-     /local/tool/Xilinx/Vivado/2015.3/bin/vivado
+     /local/tool/Xilinx/Vivado/2015.4/bin/vivado
 
      # make sure the XILINX_VIVADO variable is exposed
      $ echo $XILINX_VIVADO
-     /local/tool/Xilinx/Vivado/2015.3
+     /local/tool/Xilinx/Vivado/2015.4
 
 Ensure you have all the necessary packages installed before attempting
 to build the RISC-V tools:
 
     sudo apt-get install autoconf automake autotools-dev curl \
       libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
-      flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev
+      flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev \
+      git
 
 ## Download the code release
 
@@ -76,7 +77,8 @@ To clone the whole lowRISC chip git repository:
 
     # clone the repository to your home directory:
     cd ~/lowRISC/DIR
-    git clone https://github.com/lowrisc/lowrisc-chip.git
+    # get the branch untether-v0.2
+    git clone -b untether-v0.2 https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
     git submodule update --init --recursive
 
@@ -104,19 +106,20 @@ found at `lowrisc-chip/set_riscv_env.sh`:
     # choose the FPGA board (KC705 in default)
     export FPGA_BOARD=kc705
 
+<a name="gitstruct"></a>
 ## Structure of the git repository
 
  * `chisel`: The [Chisel](https://chisel.eecs.berkeley.edu/) compiler used for 
  compiling the rocket system.
  * `fpga`: FPGA demo implementations
    * `board`: Demo projects for individual development boards. [[FPGA 
-     Demo]]({{<ref "fpga-demo.md">}})
+     Demo]]({{<ref "docs/untether-v0.2/fpga-demo.md">}})
      * `kc705`: Files for the Xilinx KC705 development board.
      * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
  * `hardfloat`: The IEEE 754-2008 compliant floating-point unit.
  * `junctions`: Peripheral components and I/O devices associated with the RocketChip.
  * `project`: Global configuration for Chisel compilation.
- * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "riscv_compile.md">}})
+ * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/untether-v0.2/riscv_compile.md">}})
    * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
    * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
    * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "docs/untether-v0.2/spike.md">}})
@@ -130,12 +133,12 @@ found at `lowrisc-chip/set_riscv_env.sh`:
    * `main`: The Chisel/Verilog code for hardware implementation.
    * `test`: The Verilog/C++(DPI) test bench files
  * `uncore`: The Chisel code of the memory subsystem.
- * `vsim`: RTL/Behavioural SystemVerilog simulation environment. [[RTL simulation]] ({{<ref "vsim.md">}})
+ * `vsim`: RTL/Behavioural SystemVerilog simulation environment. [[RTL simulation]] ({{<ref "docs/untether-v0.2/vsim.md">}})
 
 ## Compiling and installation of individual tools/packages
 
- * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
- * [Install Verilator] ({{<ref "verilator.md">}})
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
- * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "linux_compile.md">}})
+ * [Install Xilinx Vivado] ({{<ref "docs/untether-v0.2/xilinx.md">}})
+ * [Install Verilator] ({{<ref "docs/untether-v0.2/verilator.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<ref "docs/untether-v0.2/riscv_compile.md">}})
+ * [Compile the RISC-V Linux and the ramdisk `root.bin`] ({{<ref "docs/untether-v0.2/linux_compile.md">}})
 

@@ -30,9 +30,9 @@ showdisqus = true
    * DDR RAM and Memory controller (Xilinx IP) is connected and tested.
    * Boot from on-chip BRAM.
  * Design environment
-   * A KC705/NEXYS4-DDR FPGA demo with RISC-V Linux boot. [[FPGA demo]] ({{<ref "fpga-demo.md">}})
+   * A KC705/NEXYS4-DDR FPGA demo with RISC-V Linux boot. [[FPGA demo]] ({{<ref "docs/untether-v0.2/fpga-demo.md">}})
    * Merge the latest (10-2015) cross-compiler updates from RISC-V.
-   * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<ref "vsim.md">}})
+   * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<ref "docs/untether-v0.2/vsim.md">}})
    * Rewrite all Makefile support.
  * Missing from this release vs the previous [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
    * No tagged memory support (will be added back soon).

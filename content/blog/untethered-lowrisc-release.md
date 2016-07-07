@@ -48,5 +48,5 @@ Interested applicants are encouraged to make informal enquiries about the post
 to Rob Mullins <Robert.Mullins@cl.cam.ac.uk>.
 
 We hope to see many of you at the [3rd RISC-V 
-Workshop](http://riscv.org/workshop-jan2016.html) in January, where Wei Song 
+Workshop](https://riscv.org/2015/12/prelim-agenda-3rd-risc-v-workshop/) in January, where Wei Song
 and Alex Bradbury will be presenting about lowRISC.

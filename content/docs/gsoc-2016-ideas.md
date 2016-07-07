@@ -16,7 +16,7 @@ See the [full program
 timeline](https://summerofcode.withgoogle.com/how-it-works/) for key dates.
 Student applications are open between March 14th and March 25th.
 
-See [last year's idea list]({{< ref "gsoc-2015-ideas.md" >}}) for more 
+See [last year's idea list]({{< ref "docs/gsoc-2015-ideas.md" >}}) for more
 potential projects. We also recommend you check out the projects being 
 mentored by [our friends at the FOSSi 
 Foundation](http://fossi-foundation.org/gsoc16-ideas.html). Additional 

@@ -39,11 +39,11 @@ code release as well as documenting many of the changes made.
 ## Memos
 
 Our [first memo](
-{{< ref "memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
+{{< ref "docs/memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
 plans for tagged memory and minion cores in lowRISC.
 
 ## Other
 
 Student applications are now closed, but you may be interested in our [project
-idea list for Google Summer of Code 2015]({{< ref "gsoc-2015-ideas.md" >}}).
+idea list for Google Summer of Code 2015]({{< ref "docs/gsoc-2015-ideas.md" >}}).
 

@@ -15,16 +15,16 @@ This release works with three different simulators and provides an FPGA demo usi
    A fast instruction level simulator. The "golden" implementation of Rocket cores. <br/>
    Peripheral support from the front-end server (not compatible with the FPGA implemantion).
 
- * [RTL simulation] ({{<ref "vsim.md">}})<br/>
-   RTL-level simulation for the whole lowRISC SoC provided by [Verilator] ({{<ref "verilator.md">}}). <br/>
+ * [RTL simulation] ({{<ref "docs/untether-v0.2/vsim.md">}})<br/>
+   RTL-level simulation for the whole lowRISC SoC provided by [Verilator] ({{<ref "docs/untether-v0.2/verilator.md">}}). <br/>
    Behavioural memory model and simple HTIF for ISA regression test.
    
- * [FPGA demo] ({{<ref "fpga-demo.md">}})<br/>
+ * [FPGA demo] ({{<ref "docs/untether-v0.2/fpga-demo.md">}})<br/>
    A RISC-V Linux demo on KC705/NEXYS4-DDR. <br/>
    Peripherals (KC705): 1GB DDR3 DRAM, UART, SD+FAT32. <br/>
    Peripherals (NEXYS4-DDR): 128MB DDR2 DRAM, UART, MicroSD+FAT32. <br/>
 
- * [FPGA simulation] ({{<ref "fpga-sim.md">}})<br/>
+ * [FPGA simulation] ({{<ref "docs/untether-v0.2/fpga-sim.md">}})<br/>
    Pre-synthesis FPGA simulation for the whole lowRISC SoC provided by Xilinx ISim (a part of Xilinx Vivado). <br/>
    Providing the full peripheral simulation with different configuration options.
  

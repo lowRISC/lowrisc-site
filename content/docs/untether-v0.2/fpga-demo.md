@@ -42,7 +42,7 @@ To generate a bitstream:
 
 This make target automatically processes all compiling process from Chisel compilation to bitstream generation. The final bit stream is located at `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.bit`. However, in most cases, this bitstream may NOT be the one downloaded to the FPGA. Users can freely change the boot BRAM image after a bitstream is generated.
 
-For installing the USB-JTAG and USB-UART bridge, please see [[Install Xilinx Vivado]] ({{<ref "xilinx.md">}}).
+For installing the USB-JTAG and USB-UART bridge, please see [[Install Xilinx Vivado]] ({{<ref "docs/untether-v0.2/xilinx.md">}}).
 
 #### Compile and run bare metal examples
 
@@ -225,7 +225,7 @@ Three files are needed on SD for booting RISC-V Linux:
  * `root.bin`: The ramdisk image.
 
 For generating your own `vmlinux` and `root.bin`, please see [[Compiling 
-RISC-V Linux and the ramdisk `root.bin`]] ({{<ref "linux_compile.md">}}).
+RISC-V Linux and the ramdisk `root.bin`]] ({{<ref "docs/untether-v0.2/linux_compile.md">}}).
 
 After compilation, load the kernel and ramdisk to SD:
 

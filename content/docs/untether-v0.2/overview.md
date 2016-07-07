@@ -8,12 +8,12 @@ showdisqus = true
 
 +++
 
-An overview of Berkeley's RISC-V "Rocket Chip" SoC Generator can be found [here](http://riscv.org/workshop-jan2015/riscv-rocket-chip-generator-workshop-jan2015.pdf).
+An overview of Berkeley's RISC-V "Rocket Chip" SoC Generator can be found [here](https://1nv67s1krw3279i5yp7fko14-wpengine.netdna-ssl.com/wp-content/uploads/2015/01/riscv-rocket-chip-generator-workshop-jan2015.pdf).
 
 A high-level view of the `untethered` Rocket chip is shown below. The design
 contains multiple Rocket tiles each of which consists of a Rocket core and L1
 instruction and data caches. All tiles share a unified and banked L2 cache and an I/O bus.
-The Rocket (Chisel) side of the SoC is encapsulated in a Chisel island whose features are configurable using the top-level configuration file `$TOP/src/main/scala/Configs.scala` (see [Configuration parameters]({{< ref "parameter.md" >}}) for more details).
+The Rocket (Chisel) side of the SoC is encapsulated in a Chisel island whose features are configurable using the top-level configuration file `$TOP/src/main/scala/Configs.scala` (see [Configuration parameters]({{< ref "docs/untether-v0.2/parameter.md" >}}) for more details).
 Two NASTI/NASTI-Lite interfaces are exposed to the FPGA peripherals. They implement a limited subset of the AXI/AXI-Lite bus functions. The NASTI interface is used by the L2 cache for memory reads and writes, while the NASTI-Lite interface is used by the I/O bus for peripheral accesses.
 The NASTI on-chip interconnects are implemented in parameterized SystemVerilog located in `$TOP/socip/nasti`. 
 
@@ -37,8 +37,8 @@ The NASTI on-chip interconnects are implemented in parameterized SystemVerilog l
 ## Further reading
 
  * [Rocket core]({{< relref "docs/untether-v0.2/rocket-core.md" >}})
- * [Memory mapped I/O (MMIO)]({{< ref "mmio.md" >}})
- * [Memory and I/O maps, soft reset, and interrupts]({{< ref "pcr.md" >}})
- * [Bootload procedure]({{< ref "bootload.md" >}})
- * [Configuration parameters]({{< ref "parameter.md" >}})
+ * [Memory mapped I/O (MMIO)]({{< ref "docs/untether-v0.2/mmio.md" >}})
+ * [Memory and I/O maps, soft reset, and interrupts]({{< ref "docs/untether-v0.2/pcr.md" >}})
+ * [Bootload procedure]({{< ref "docs/untether-v0.2/bootload.md" >}})
+ * [Configuration parameters]({{< ref "docs/untether-v0.2/parameter.md" >}})
 
