@@ -59,7 +59,7 @@ debug modules with a separate network. Currently we use one debug ring
 as a compromise between throughput and resource utilization. The
 following figure focuses on the debug system.
 
-<a name="figure-overview"></a>
+<a name="figure-debugsystem"></a>
 <img src="../figures/debug_system.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
 
 The figure also shows the connection to the host PC that communicates
