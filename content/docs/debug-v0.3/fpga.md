@@ -25,8 +25,10 @@ You need two download two files:
  * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin):
    Linux, Busybox and bootloader packaged in one image.
 
-First, write the bitstream:
+Download and write the bitstream:
 
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/chip_top.bit > chip_top.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin > boot.bin
     vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" chip_top.bit
 
 ## Option 2: Build bitstream and Linux image
