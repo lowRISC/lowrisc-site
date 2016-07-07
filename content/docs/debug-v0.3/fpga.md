@@ -13,6 +13,24 @@ In this final step, we want to test the debug on the FPGA board. The
 debug system will use the UART connection at 3 MBaud to communicate
 with the debug system.
 
+You have the choice to build the FPGA bitstream and Linux yourself or
+use the pre-builts provided by us.
+
+## Option 1: Pre-built bitstream and Linux image
+
+You need two download two files:
+
+ * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/chip_top.bin):
+   FPGA bitstream
+ * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin):
+   Linux, Busybox and bootloader packaged in one image.
+
+First, write the bitstream:
+
+    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" chip_top.bit
+
+## Option 2: Build bitstream and Linux image
+
 ### Generate the bitstream
 
 To generate a bitstream change to the FPGA directory and use `make` to
@@ -33,7 +51,22 @@ download the bitstream to the FPGA:
 
 Done!
 
-### Connect daemon and run a debug session
+### Build Linux
+
+    cd $TOP/riscv-tools
+    curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.1.25.tar.xz| tar -xJ
+    curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2| tar -xj
+    cd linux-4.1.25
+    git init
+    git remote add origin https://github.com/lowrisc/riscv-linux.git
+    git fetch
+    git checkout -f -t origin/debug-v0.3
+
+    # then actually just go to any directory
+    $TOP/riscv-tools/make_root.sh
+    # it will generate boot.bin and copy it there
+
+## Connect daemon and run a debug session
 
 Now you can connect to the debug system similar to the simulation
 before. In one terminal start the debug daemon:
@@ -63,18 +96,3 @@ everything works you will see the same output as in the simulation:
      [5]: STM
        version: 0000
     Wait for connection
-
-### Build Linux
-
-    cd $TOP/riscv-tools
-    curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.1.25.tar.xz| tar -xJ
-    curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2| tar -xj
-    cd linux-4.1.25
-    git init
-    git remote add origin https://github.com/lowrisc/riscv-linux.git
-    git fetch
-    git checkout -f -t origin/debug-v0.3
-
-    # then actually just go to any directory
-    $TOP/riscv-tools/make_root.sh
-    # it will generate boot.bin and copy it there
