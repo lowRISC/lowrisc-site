@@ -33,25 +33,24 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
+**July 2016**: (Upcoming) New lowRISC code release including support for trace 
+debug.
+
+**June 2016**: Presented a brief [tutorial at 
+DAC](http://www2.dac.com/events/eventdetails.aspx?id=200-28) on prototyping 
+RISC-V SoCs using lowRISC and Xilinx FPGAs.
+
+**June 2016**: We were thrilled to be given five student slots in the 2016 
+Google Summer of code. See 
+[here](http://www.lowrisc.org/blog/2016/06/lowriscs-2016-google-summer-of-code-students/) 
+for more information about their projects.
+
 **Dec 2015:** We have 
 [untethered](http://www.lowrisc.org/blog/2015/12/untethered-lowrisc-release/) 
 the Rocket SoC, which now runs standalone on the KC705 and Nexys4DDR FPGAs.
 This release also includes support for simulation using Verilator and is 
 accompanied by [extensive documentation]({{< ref "docs/untether-v0.2/index.md" 
 >}}).
-
-**May 2015:** This summer we have [six students working on Summer of Code projects](http://www.lowrisc.org/blog/2015/05/summer-of-code-students-for-lowrisc/). The coding period is from the end of May to the end of August.
-
-**Apr 2015:** We have shared our first [lowRISC preview 
-release](http://www.lowrisc.org/blog/2015/04/lowrisc-tagged-memory-preview-release/), 
-demonstrating support for tagged memory as described in [our 
-memo](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/).
-This FPGA-compatible code release is accompanied by an [extensive 
-tutorial](http://www.lowrisc.org/docs/tutorial/).
-
-**Mar 2015:** We are excited to announce we are taking part in the [Google Summer of Code](https://developers.google.com/open-source/soc/) 2015.  See our [ideas list](http://www.lowrisc.org/docs/gsoc-2015-ideas/) for a wide range of projects in different languages and covering pretty much every level of the hardware/software stack.
-
-**Dec 2014:** We have now released a document describing our plans for [tagged memory and minion cores in the lowRISC SoC](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
 
 
 ### The Team (founders)
