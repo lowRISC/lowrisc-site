@@ -38,8 +38,8 @@ system using the debug daemon:
 Then connect with the CLI in another terminal and boot Linux:
 
     osd-cli
-    > terminal 2
-	> reset
+    osd> terminal 2
+	osd> reset
 
 Now Linux should boot and you can interact with the terminal! In case
 you experience issues with the boot procedure, try to reset again or
@@ -61,10 +61,10 @@ FPGA:
 Now you can connect the daemon again and load the binary from the CLI:
 
     osd-cli
-    > reset -halt
-    > terminal 2
-    > mem loadelf boot.bin 3
-	> start
+    osd> reset -halt
+    osd> terminal 2
+    osd> mem loadelf boot.bin 3
+	osd> start
 
 The terminal should again boot Linux. To update the image simply
 perform the same action again.

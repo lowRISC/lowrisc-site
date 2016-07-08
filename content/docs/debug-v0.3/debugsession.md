@@ -28,7 +28,7 @@ what you learned before:
 
  * Start simulation with preloaded software (terminal 1):
 
-        $TOP/vsim/DebugConfig-sim +load=$TOP/fpga/bare_metal/examples/hello.riscv
+        $TOP/vsim/DebugConfig-sim +load=$TOP/fpga/bare_metal/examples/hello.riscv +waitdebug
 
  * Connect the daemon (terminal 2):
 
@@ -95,7 +95,7 @@ giving the ELF currently executed on the core.
 
     osd> reset -halt
     osd> terminal 2
-	osd> ctm log ctm.log path/to/hello.riscv
+	osd> ctm log ctm.log 4 path/to/hello.riscv
 	osd> start
 	osd> quit
 
@@ -152,23 +152,141 @@ Now you can inspect the output file `ctm.log`:
 	Overflow, missed 4 events
 	[..]
 
-
-
 ### Minimally-invasive software debugging
 
 As introduced, lowRISC adds a software trace debugging technique that
 is minimally invasive by only adding a few cycles each time called
 without stalling the system.
 
-The code `trace.c` from the examples emits four of such events. You
-need to load it with the simulation:
+The code `trace.c` from the examples emits four of such events:
 
-    $TOP/vsim/DebugConfig-sim +load=$TOP/fpga/bare_metal/examples/trace.riscv
+    #include <stdint.h>
 
-Then 
+    #define STM_TRACE(id, value) \
+      { \
+        asm volatile ("mv   a0,%0": :"r" ((uint64_t)value) : "a0");	\
+        asm volatile ("csrw 0x8f0, %0" :: "r"(id));	\
+      }
+
+    static void trace_event0() {
+      STM_TRACE(0, 0x42);
+    }
+
+    static void trace_event1(uint64_t value) {
+      STM_TRACE(1, value);
+    }
+
+    static void trace_event2(uint64_t id, uint64_t value) {
+      STM_TRACE(id, value);
+    }
+
+    int main() {
+      STM_TRACE(0x1234, 0xdeadbeef);
+    
+      trace_event0();
+      trace_event1(23);
+      trace_event2(0xabcd, 0x0123456789abcdef);
+    }
+
+You need to load it with the simulation:
+
+    $TOP/vsim/DebugConfig-sim +waitdebug +load=$TOP/fpga/bare_metal/examples/trace.riscv
+
+Then open the CLI and run:
+
+    osd> reset -halt
+	osd> stm log stm.log 5
+	osd> start
+	osd> quit
+
+You need to wait a few seconds between start and quit. This will
+generate in `stm.log`:
+
+	
 
 ### Scripting the command line interface
 
+You can execute commands at startup of the CLI by creating a script,
+e.g. this `startup.script`:
+
+    reset -halt
+    terminal 2
+
+By calling the CLI with this as a startup script the commands are
+executed before you enter the shell:
+
+    osd-cli -s startup.script
+    execute: reset -halt
+    execute: terminal 2
+    osd> 
+
+Similarly, you can run CLI in batch mode, e.g., with `run.script`:
+
+    reset -halt
+    stm log stm.log 5
+	ctm log ctm.log 4 path/to/hello.riscv
+	start
+	wait 10
+	quit
+
+Calling the CLI in batch mode will run the demos from above and wait
+for 10 seconds before quitting:
+
+    osd-cli -b run.script
+    execute: reset -halt
+    execute: stm log stm.log 5
+    execute: ctm log ctm.log 4 
+    execute: start
+    execute: wait 10
+    execute: quit
+
 ### Loading the ELF to memory
 
+Until now we have started the simulation with the ELF program
+pre-loaded into the memory. We can also load the ELF into the memory
+in the CLI:
+
+    osd-cli
+    osd> mem loadelf path/to/hello.riscv 3
+	osd> terminal 2
+	osd> start
+
 ### Python scripting
+
+To make the debugging really convenient we have python bindings, so
+that you can run automated debug sessions with re-usable scripts. An
+example script is given as
+`$TOP/tools/share/opensocdebug/examples/runelf.py`:
+
+    import opensocdebug 
+    import sys
+
+    if len(sys.argv) < 2:
+        print "Usage: runelf.py <filename>"
+        exit(1)
+
+    elffile = sys.argv[1]
+    
+    osd = opensocdebug.Session()
+
+    osd.reset(halt=True)
+
+    for m in osd.get_modules("STM"):
+        m.log("stm{:03x}.log".format(m.get_id()))
+
+    for m in osd.get_modules("CTM"):
+        m.log("ctm{:03x}.log".format(m.get_id()), elffile)
+
+    for m in osd.get_modules("MAM"):
+        m.loadelf(elffile)
+
+    osd.start()
+    osd.wait(10)
+
+You can see that it does pretty much what we did here in the
+tutorial. But it is more flexible as it works with other systems too
+and is more powerful when integrated with your testing environment.
+
+Just run:
+
+    python $TOP/tools/share/opensocdebug/examples/runelf.py path/to/hello.riscv
