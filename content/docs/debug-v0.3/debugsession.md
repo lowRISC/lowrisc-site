@@ -202,7 +202,11 @@ Then open the CLI and run:
 You need to wait a few seconds between start and quit. This will
 generate in `stm.log`:
 
-	
+    0002574e 1234 00000000deadbeef
+    00025784 0000 0000000000000042
+    0002579c 0001 0000000000000017
+    000257d2 abcd 0123456789abcdef
+
 
 ### Scripting the command line interface
 
