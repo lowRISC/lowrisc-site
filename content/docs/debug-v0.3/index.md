@@ -46,7 +46,11 @@ techniques. A demo is provided using a low-end
     * [A debug session]({{< ref "docs/debug-v0.3/debugsession.md" >}})
 	* [Running on the FPGA]({{< ref "docs/debug-v0.3/fpga.md" >}})
 
-  4. [Release notes] ({{<ref "docs/debug-v0.3/release.md">}})
+  4. [SoC structure updates]({{< ref "docs/debug-v0.3/soc_struct.md" >}})
+    * [Address map]({{< ref "docs/debug-v0.3/addrmap.md" >}})
+    * [How to add a new peripherial]({{< ref "docs/debug-v0.3/add_device.md" >}})
+
+  5. [Release notes] ({{<ref "docs/debug-v0.3/release.md">}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
 

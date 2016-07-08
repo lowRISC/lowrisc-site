@@ -4,7 +4,7 @@ date = "2016-05-16T12:00:00+00:00"
 title = "Running on the FPGA"
 parent = "/docs/debug-v0.3/walkthrough/"
 prev = "/docs/debug-v0.3/debugsession/"
-next = "/docs/debug-v0.3/release/"
+next = "/docs/debug-v0.3/soc_struct/"
 showdisqus = true
 
 +++
