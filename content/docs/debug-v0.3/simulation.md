@@ -21,9 +21,10 @@ The build will take a few minutes.
 
 ### Start the RTL simulation
 
-Next you can launch the RTL simulation:
+Next you can launch the RTL simulation and wait for the debug tool to
+connect:
 
-    $TOP/vsim/DebugConfig-sim
+    $TOP/vsim/DebugConfig-sim +waitdebug
 
 You will see the following output:
 
@@ -42,7 +43,7 @@ compile a debug simulator and add the `+vcd` parameters.
 The debugger allows you to load a program at run-time but you may want to
 pre-load a program using the `+load` parameter.
 
-    $TOP/vsim/DebugConfig-sim +load=prorgam
+    $TOP/vsim/DebugConfig-sim +load=program
 
 ### Connect the debug daemon
 
@@ -68,7 +69,8 @@ enumeration of the system, which leads to following output:
        version: 0000
        data width: 16, address width: 32
        number of regions: 1
-         [0] base address: 0x0000000000000000, memory size: 1073741824 Bytes
+         [0] base address: 0x0000000000000000, memory size: 65536 Bytes
+         [1] base address: 0x0000000040000000, memory size: 134217728 Bytes
      [4]: CTM
        version: 0000
      [5]: STM
@@ -81,7 +83,8 @@ Memory Access Module (MAM) extra information is available, namely the
 data and address width and the available memory regions. Thats all the
 daemon does, it then waits for a tool to connect.
 
-On the first terminal (simulation) you can see that the daemon has connected:
+On the first terminal (simulation) you can see that the daemon has
+connected:
 
 	Client connected
 

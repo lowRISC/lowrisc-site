@@ -13,25 +13,63 @@ In this final step, we want to test the debug on the FPGA board. The
 debug system will use the UART connection at 3 MBaud to communicate
 with the debug system.
 
-You have the choice to build the FPGA bitstream and Linux yourself or
-use the pre-builts provided by us.
-
-## Option 1: Pre-built bitstream and Linux image
+## Run the standalone FPGA
 
 You need two download two files:
 
- * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/chip_top.bin):
+ * [nexys4ddr_fpga_standalone.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_standalone.bit):
    FPGA bitstream
  * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin):
    Linux, Busybox and bootloader packaged in one image.
 
 Download and write the bitstream:
 
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/chip_top.bit > chip_top.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_standalone.bit > nexys4ddr_fpga_standalone.bit
     curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin > boot.bin
-    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" chip_top.bit
+	
+    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga_standalone.bit
 
-## Option 2: Build bitstream and Linux image
+Now copy the binary file to the SD card. It must be a FAT32 formatted
+SD card. Insert the SD card into the slot. After that connect to the
+system using the debug daemon:
+
+    opensocdebugd uart device=/dev/ttyUSB0 speed=3000000
+
+Then connect with the CLI in another terminal and boot Linux:
+
+    osd-cli
+    > terminal 2
+	> reset
+
+Now Linux should boot and you can interact with the terminal! In case
+you experience issues with the boot procedure, try to reset again or
+close the debug connection and try a hard reset of the board.
+
+## Run the FPGA with debug initialization
+
+To save the procedure to move the SD card from board to computer for
+each change, it is also possible to load the image directly to RAM
+from the debug system.
+
+For that we currently have a different bootloader, that simply jumps
+to DDR. You can again download the pre-built bitstream and program the
+FPGA:
+
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_debug.bit > nexys4ddr_fpga_debug.bit
+	vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga_debug.bit
+
+Now you can connect the daemon again and load the binary from the CLI:
+
+    osd-cli
+    > reset -halt
+    > terminal 2
+    > mem loadelf boot.bin 3
+	> start
+
+The terminal should again boot Linux. To update the image simply
+perform the same action again.
+
+## Build bitstream and Linux image
 
 ### Generate the bitstream
 
@@ -51,8 +89,6 @@ download the bitstream to the FPGA:
 
     make program
 
-Done!
-
 ### Build Linux
 
     cd $TOP/riscv-tools
@@ -68,33 +104,21 @@ Done!
     $TOP/riscv-tools/make_root.sh
     # it will generate boot.bin and copy it there
 
-## Connect daemon and run a debug session
+### Bootloader variants
 
-Now you can connect to the debug system similar to the simulation
-before. In one terminal start the debug daemon:
+You can update the bootloader in the bitstream image. Simply run
 
-    opensocdebugd uart device=/dev/ttyUSB0 speed=3000000
+    make boot
 
-You may need to change the device and check the permissions. If
-everything works you will see the same output as in the simulation:
+to generate
+`lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top_new.bit` with
+the bootloader that boots from SD.
 
-	Open SoC Debug Daemon
-	Backend: uart
-	System ID: dead
-	6 debug modules found:
-	 [0]: HOST
-       version: 0000
-     [1]: SCM
-       version: 0000
-     [2]: DEM-UART
-       version: 0000
-     [3]: MAM
-       version: 0000
-       data width: 16, address width: 32
-       number of regions: 1
-         [0] base address: 0x0000000000000000, memory size: 1073741824 Bytes
-     [4]: CTM
-       version: 0000
-     [5]: STM
-       version: 0000
-    Wait for connection
+If you instead want to use the debug bootloader where you initialize
+the DDR via the debug system, run:
+
+    make jump
+
+This will generate
+`lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top_new.bit` with
+that bootloader.
