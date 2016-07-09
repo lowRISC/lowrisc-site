@@ -19,3 +19,5 @@ Thanks to the continuous development from the RISC-V group in Berkeley, there ar
 
 * **A global memory space regulator: address map**
 <br>A static data structure is added into the Rocket-chip
+
+*To be finished soon.*

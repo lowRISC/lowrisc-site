@@ -144,7 +144,7 @@ each trace event is two instructions:
     /* Write value to a0 (first parameter) register */
     asm volatile ("mv a0,%0": :"r" ((uint64_t)value) : "a0");
 	/* Write id to the STM CSR register */
-    asm volatile ("csrw 0x8f0, %0" :: "r"(id));
+    asm volatile ("csrw 0x8ff, %0" :: "r"(id));
 
 This sequence can also be emitted by user applications while still
 being thread safe (the register access will be restored and the CSR

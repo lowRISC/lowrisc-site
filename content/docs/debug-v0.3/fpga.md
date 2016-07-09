@@ -13,52 +13,30 @@ In this final step, we want to test the debug on the FPGA board. The
 debug system will use the UART connection at 3 MBaud to communicate
 with the debug system.
 
-## Run the standalone FPGA
+## Run the pre-built FPGA demo with trace debugger
 
-You need two download two files:
+The files you may needed:
 
- * [nexys4ddr_fpga_standalone.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_standalone.bit):
-   FPGA bitstream
+ * [nexys4ddr_fpga_debug.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_debug.bit):
+   The debug enabled FPGA bitstream
  * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin):
    Linux, Busybox and bootloader packaged in one image.
+ * [nexys4ddr_bram_boot.riscv](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_bram_boot.riscv):
+   A 1st bootloader to copy a program from SD to DDR RAM.
 
-Download and write the bitstream:
-
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_standalone.bit > nexys4ddr_fpga_standalone.bit
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin > boot.bin
-	
-    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga_standalone.bit
-
-Now copy the binary file to the SD card. It must be a FAT32 formatted
-SD card. Insert the SD card into the slot. After that connect to the
-system using the debug daemon:
-
-    opensocdebugd uart device=/dev/ttyUSB0 speed=3000000
-
-Then connect with the CLI in another terminal and boot Linux:
-
-    osd-cli
-    osd> terminal 2
-	osd> reset
-
-Now Linux should boot and you can interact with the terminal! In case
-you experience issues with the boot procedure, try to reset again or
-close the debug connection and try a hard reset of the board.
-
-## Run the FPGA with debug initialization
-
-To save the procedure to move the SD card from board to computer for
-each change, it is also possible to load the image directly to RAM
-from the debug system.
-
-For that we currently have a different bootloader, that simply jumps
-to DDR. You can again download the pre-built bitstream and program the
-FPGA:
+Download and write the bitstream
 
     curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_debug.bit > nexys4ddr_fpga_debug.bit
-	vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga_debug.bit
+	curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin > boot.bin
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_bram_boot.riscv > nexys4ddr_bram_boot.riscv
+    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga_debug.bit
 
-Now you can connect the daemon again and load the binary from the CLI:
+There are two ways to boot a RISC-V Linux. For both cases, we need to open the debug daemon to load programs and connect to the UART console.
+
+#### Directly load Linux to DDR RAM
+
+ The pre-built FPGA bitstream has a jump program as the 1st stage bootloader (in an on-chip BRAM) which just jump to DDR RAM.
+ We need to load the Linux image to the DDR RAM.
 
     osd-cli
     osd> reset -halt
@@ -69,7 +47,54 @@ Now you can connect the daemon again and load the binary from the CLI:
 The terminal should again boot Linux. To update the image simply
 perform the same action again.
 
-## Build bitstream and Linux image
+You can get a pre-built image of [jump](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_bram_jump.riscv).
+
+#### Load Linux from SD card
+
+ Other than manually loading a Linux to the DDR RAM using the debugger, we can use the pre-built `nexys4ddr_bram_boot.riscv` to load Linux from SD.
+ Note: make sure the Linux image `boot.bin` is copied to SD beforehand.
+
+    osd-cli
+    osd> reset -halt
+    osd> terminal 2
+    osd> mem loadelf nexys4ddr_bram_boot.riscv 3
+	osd> start
+
+You should be able to see the boot program copy the boot.bin from SD to DDR RAM and then boot it.
+
+## Run a standalone FPGA demo (no debugger support)
+
+We still keep the option to build a fully standalone implementation that does not rely on a debugger.
+
+You need two download two files:
+
+ * [nexys4ddr_fpga_standalone.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_standalone.bit):
+   FPGA bitstream
+ * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin):
+   Linux, Busybox and bootloader packaged in one image.
+
+Download and write the bitstream:
+
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/nexys4ddr_fpga_standalone.bit > fpga.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.3/boot.bin > boot.bin
+	
+
+Now copy both binary files to the SD card and configure the Nexys4-DDR boot option to SD card (JP1 to USB/SD). Power up the FPGA board and open a terminal:
+
+    microcom -p /dev/ttyUSB0 -s 115200
+
+You should be able to see the Linux boots from SD card.
+
+A script is provided to load your SD card without manually downloading the binary files:
+
+    $TOP/fpga/board/nexys4_ddr/preload_image.sh /PATH/TO/SD/
+
+You can also write the bitstream to FPGA by JTAG (JP1 to JTAG)
+
+    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" fpga.bit
+
+
+## Build your own bitstream and images
 
 ### Generate the bitstream
 
@@ -79,8 +104,12 @@ build it:
     cd $TOP/fpga/board/nexys4_ddr
     make bitstream
 
+The generated bitstream is located at `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.bit`.
 This will take some time (20-60 minutes depending on your
-computer).
+computer). By default a debug enabled bitstream is generated. To generate a standalone bitstream, change the `CONFIG` target in Makefile to Nexys4Config and rerun the steps:
+
+    make cleanall
+    make bitstream
 
 ### Program the FPGA
 
@@ -99,26 +128,23 @@ download the bitstream to the FPGA:
     git remote add origin https://github.com/lowrisc/riscv-linux.git
     git fetch
     git checkout -f -t origin/debug-v0.3
-
-    # then actually just go to any directory
+    cd $TOP/fpga/board/nexys4_ddr
     $TOP/riscv-tools/make_root.sh
-    # it will generate boot.bin and copy it there
+
+If everything runs OK, you should have a boot.bin file.
 
 ### Bootloader variants
 
-You can update the bootloader in the bitstream image. Simply run
+You can regenerate the 1st bootloader and put it into the FPGA bitstream.
 
-    make boot
-
-to generate
-`lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top_new.bit` with
-the bootloader that boots from SD.
-
-If you instead want to use the debug bootloader where you initialize
-the DDR via the debug system, run:
+To generate `nexys4ddr_bram_jump.riscv`:
 
     make jump
 
-This will generate
-`lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top_new.bit` with
-that bootloader.
+The bootloader is generated as `$TOP/fpga/bare_metal/examples/jump.riscv`, and it is automatically loaded in a new bitstream at
+
+    lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.new.bit
+
+To have the `nexys4ddr_bram_boot.riscv`, change the make target to boot. Similarly it is automatically loaded to the "new" bitstream.
+
+

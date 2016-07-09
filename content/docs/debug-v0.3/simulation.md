@@ -69,8 +69,8 @@ enumeration of the system, which leads to following output:
        version: 0000
        data width: 16, address width: 32
        number of regions: 1
-         [0] base address: 0x0000000000000000, memory size: 65536 Bytes
-         [1] base address: 0x0000000040000000, memory size: 134217728 Bytes
+         [0] base address: 0x0000000040000000, memory size: 65536 Bytes
+         [1] base address: 0x0000000080000000, memory size: 134217728 Bytes
      [4]: CTM
        version: 0000
      [5]: STM
