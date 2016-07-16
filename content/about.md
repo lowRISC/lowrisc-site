@@ -7,7 +7,7 @@ title = "About lowRISC"
 
   lowRISC is creating a fully open-sourced, Linux-capable, RISC-V-based
   SoC, that can be used either directly or as the basis for a custom design.
-  We aim to tape out our first volume chip this year.
+  We aim to complete our SoC design this year.
 
   Our open-source SoC (System-on-a-Chip)
   designs will be based on the 64-bit [RISC-V](http://riscv.org/) instruction
