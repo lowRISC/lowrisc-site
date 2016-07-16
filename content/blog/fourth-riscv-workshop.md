@@ -27,7 +27,7 @@ like to do that
 
 ## RISC-V interrupts: Krste Asanović
 * Want a standard that is useful in high performance Unix-like systems (fast 
-cores, smart devices), low/mid embedded systems (slow cores, dumb debices), 
+cores, smart devices), low/mid embedded systems (slow cores, dumb devices),
 and high-performance realtime systems (can't waste time on interrupt overhead)
 * Design goals: simplicity, support all kinds of platforms, allow tradeoffs 
 between performance and implementation cost, be flexible to support 
