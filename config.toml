@@ -2,6 +2,9 @@ baseurl = "http://www.lowrisc.org"
 languageCode = "en-us"
 title = "lowRISC"
 
+[blackfriday]
+plainIDAnchors = false
+
 [permalinks]
 blog="/blog/:year/:month/:slug"
 
