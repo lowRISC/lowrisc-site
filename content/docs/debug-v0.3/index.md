@@ -46,8 +46,8 @@ techniques. A demo is provided using a low-end
     * [A debug session]({{< ref "docs/debug-v0.3/debugsession.md" >}})
 	* [Running on the FPGA]({{< ref "docs/debug-v0.3/fpga.md" >}})
 
-  4. [SoC structure updates]({{< ref "docs/debug-v0.3/soc_struct.md" >}})
-    * [Address map]({{< ref "docs/debug-v0.3/addrmap.md" >}})
+  4. Other
+    * [SoC structure updates]({{< ref "docs/debug-v0.3/soc_struct.md" >}})
     * [How to add a new peripherial]({{< ref "docs/debug-v0.3/add_device.md" >}})
 
   5. [Release notes] ({{<ref "docs/debug-v0.3/release.md">}})
