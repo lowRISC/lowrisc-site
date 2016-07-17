@@ -44,25 +44,25 @@ This should result in two extra macros defined in `dev_map.h`:
 
 Finally, we need to add the BRAM in the SystemVerilog top-level connection at `$TOP/src/main/verilog/chip_top.sv`:
 
-      + // secondary BRAM
-      +
-      + nasti_channel
-      +   #(
-      +   .ADDR_WIDTH  ( `ROCKET_PADDR_WIDTH       ),
-      +   .DATA_WIDTH  ( `LOWRISC_IO_DAT_WIDTH     ))
-      + io_extra_bram_lite();
-      + 
-      + nasti_bram extra_bram
-      +   (
-      +    .*,
-      +    .nasti ( io_extra_bram_lite )
-      +   );
-      + 
+    +   // secondary BRAM
+    +  
+    +   nasti_channel
+    +     #(
+    +     .ADDR_WIDTH  ( `ROCKET_PADDR_WIDTH       ),
+    +     .DATA_WIDTH  ( `LOWRISC_IO_DAT_WIDTH     ))
+    +   io_extra_bram_lite();
+    +   
+    +   nasti_bram extra_bram
+    +     (
+    +      .*,
+    +      .nasti ( io_extra_bram_lite )
+    +     );
+    +   
         /////////////////////////////////////////////////////////////
         // IO crossbar
      
-      - localparam NUM_DEVICE = 4;
-      + localparam NUM_DEVICE = 5;
+    -   localparam NUM_DEVICE = 4;
+    +   localparam NUM_DEVICE = 5;
      
         // output of the IO crossbar
         nasti_channel
@@ -72,13 +72,13 @@ Finally, we need to add the BRAM in the SystemVerilog top-level connection at `$
             .DATA_WIDTH  ( `LOWRISC_IO_DAT_WIDTH     ))
         io_cbo_lite();
      
-      - nasti_channel ios_dmm4(), ios_dmm5(), ios_dmm6(), ios_dmm7(); // dummy channels
-      + nasti_channel ios_dmm5(), ios_dmm6(), ios_dmm7(); // dummy channels
+    -   nasti_channel ios_dmm4(), ios_dmm5(), ios_dmm6(), ios_dmm7(); // dummy channels
+    +   nasti_channel ios_dmm5(), ios_dmm6(), ios_dmm7(); // dummy channels
      
         nasti_channel_slicer #(NUM_DEVICE)
         io_slicer (.s(io_cbo_lite), .m0(io_host_lite), .m1(io_uart_lite), .m2(io_spi_lite),
-      -            .m3(io_bram_lite), .m4(ios_dmm4), .m5(ios_dmm5), .m6(ios_dmm6), .m7(ios_dmm7));
-      +            .m3(io_bram_lite), .m4(io_extra_bram_lite), .m5(ios_dmm5), .m6(ios_dmm6), .m7(ios_dmm7));
+    -              .m3(io_bram_lite), .m4(ios_dmm4), .m5(ios_dmm5), .m6(ios_dmm6), .m7(ios_dmm7));
+    +              .m3(io_bram_lite), .m4(io_extra_bram_lite), .m5(ios_dmm5), .m6(ios_dmm6), .m7(ios_dmm7));
      
         // the io crossbar
         nasti_crossbar
