@@ -33,6 +33,8 @@ Download and write the bitstream
 
 There are two ways to boot a RISC-V Linux. For both cases, we need to open the debug daemon to load programs and connect to the UART console.
 
+    opensocdebugd uart device=/dev/ttyUSB0 speed=3000000
+
 #### Directly load Linux to DDR RAM
 
  The pre-built FPGA bitstream has a jump program as the 1st stage bootloader (in an on-chip BRAM) which just jump to DDR RAM.

@@ -5,11 +5,11 @@ title = "Documentation"
 
 +++
 
-## lowRISC debugging tutorial
+## Code Releases
 
-#### Release version 0.3, 07-2016
-
-In this code release we present a first prototype of the lowRISC debug
+* [lowRISC with a trace debugger]({{< ref "docs/debug-v0.3/index.md" >}})
+<br>*Release version 0.3, 07-2016*
+<br>In this code release we present a first prototype of the lowRISC debug
 infrastructure. It extends the `untethered` lowRISC system with the
 means to control the system, load programs and trace the software
 execution. The [tutorial]({{< ref "docs/debug-v0.3/index.md" >}})
@@ -17,20 +17,16 @@ outlines the debug system and the future directions we are
 planning. It demonstrates the debugging with the RTL simulation and on
 the Nexys4 DDR FPGA board.
 
-## Untethered lowRISC tutorial
-
-#### Release version 0.2, 12-2015
-
-A code release providing a standalone lowRISC by `untethering` the Rocket chip.
+* [Untethered lowRISC]({{< ref "docs/untether-v0.2/index.md" >}})
+<br>*Release version 0.2, 12-2015*
+<br>A code release providing a standalone lowRISC by `untethering` the Rocket chip.
 Cores in the original Rocket chip relies on a  companion processor to access I/O devices.
 This release repalce this companion core with actual FPGA peripherals.
 A [tutorial]({{< ref "docs/untether-v0.2/index.md" >}}) explains how to use this code release and explains the underlying structural changes.
 
-## lowRISC tagged memory tutorial
-
-#### Release version 0.1, 04-2015
-
-A code release builds on the Rocket RISC-V implementation to offer
+* [lowRISC with tagged memory]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+<br> *Release version 0.1, 04-2015*
+<br>A code release builds on the Rocket RISC-V implementation to offer
 support for tagged memory (see the [release blog post](
 {{< ref "blog/lowrisc-tagged-memory-preview-release.md" >}})). We've put together an
 [extensive tutorial]({{< ref "docs/tagged-memory-v0.1/index.md" >}}) on how to use this
