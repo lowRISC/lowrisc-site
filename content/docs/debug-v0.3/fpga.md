@@ -166,7 +166,7 @@ Generate bitstreams for bare-metal tests:
  * **trace** A software trace demo.
 
 For each bare-metal test `<test>`, the executable is generated to 
-`$TOP/fpga/bare_metal/examples/<test>.riscv`. It is also converted into a hex 
+`examples/<test>.riscv`. It is also converted into a hex
 file and copied to `src/boot.mem`, which then changes the default program for 
 `make bitstream` and `make simulation`. The updated bitstream is generated at 
 `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.new.bit`

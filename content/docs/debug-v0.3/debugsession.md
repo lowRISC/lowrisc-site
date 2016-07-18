@@ -15,7 +15,7 @@ learn the different basic features to interact with the system.
 
 Before you begin, you should build the example programs:
 
-    FPGA_DIR=$TOP/vsim make -C $TOP/fpga/bare_metal/examples hello.riscv trace.riscv
+    make -C $TOP/fpga/bare_metal/examples hello.riscv trace.riscv
 
 ### Resetting the system
 
@@ -47,11 +47,10 @@ in the following) and leave the command line again:
 
 The command has reset the entire system. If you run the simulation
 with vcd output (add `+vcd` to the parameters) you can see how it is
-reset. `reset` actually controls the CPU and a different system
-reset. With the parameter `-halt` you can keep the CPU reset asserted
-and inactive while you load a program to the memory or
-configure the debug modules. Running `start` de-asserts the CPU reset
-then:
+reset. `reset` asserts both reset signals for CPU and the rest of the SoC.
+With the parameter `-halt`, the CPU reset remains asserted to allow loading
+programs to memory or configuring debug modules.
+Running `start` de-asserts the CPU reset then:
 
     osd> reset -halt
     osd> [.. some other commands ..]
