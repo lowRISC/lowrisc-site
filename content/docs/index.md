@@ -14,7 +14,7 @@ infrastructure. It extends the `untethered` lowRISC system with the
 means to control the system, load programs and trace the software
 execution. The [tutorial]({{< ref "docs/debug-v0.3/index.md" >}})
 outlines the debug system and the future directions we are
-planning. It demonstrates the debugging with the RTL simulation and on
+planning. It demonstrates debugging with the RTL simulation and on
 the Nexys4 DDR FPGA board.
 
 * [Untethered lowRISC]({{< ref "docs/untether-v0.2/index.md" >}})

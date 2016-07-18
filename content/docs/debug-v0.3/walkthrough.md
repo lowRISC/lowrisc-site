@@ -10,9 +10,9 @@ showdisqus = true
 +++
 
 In this main part of this tutorial you will learn about the debug
-features we add in lowRISC. After introducing the
+features we have added to lowRISC. After introducing the
 [debug enumeration and the general software usage with the RTL simulation]({{<
 ref "simulation.md" >}}), we will introduce the different features in
-[examplary debug sessions]({{< ref "debugsession.md" >}}). Finally, a
+[example debug sessions]({{< ref "debugsession.md" >}}). Finally, a
 full [FPGA example]({{< ref "fpga.md" >}}) is given based on the Nexys
 4 board.

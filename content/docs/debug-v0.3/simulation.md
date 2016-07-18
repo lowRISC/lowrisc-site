@@ -32,7 +32,7 @@ You will see the following output:
 
 The simulation waits for the Open SoC Debug software to connect.
 
-You may want to debug the system with a waveform (vcd), which you need to
+You may want to debug the system with a waveform (vcd), for which you need to
 compile a debug simulator and add the `+vcd` parameters.
 
     # compile a debug simulator

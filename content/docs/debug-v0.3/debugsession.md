@@ -10,20 +10,20 @@ showdisqus = true
 +++
 
 Once you have an Open SoC Debug daemon running and it connected to a
-target system, you can do debug session. In the following you will
+target system, you can initiate a debug session. In the following you will
 learn the different basic features to interact with the system.
 
-Before you begin, you should be example programs:
+Before you begin, you should build the example programs:
 
     FPGA_DIR=$TOP/vsim make -C $TOP/fpga/bare_metal/examples hello.riscv trace.riscv
 
 ### Resetting the system
 
 In the first step we will start the command line interface and reset
-the system. With starting the command line interface it automatically
+the system. When starting the command line interface it automatically
 connects to the daemon.
 
-So the steps to connect to the verilated RTL simulation are based on
+The steps to connect to the verilated RTL simulation are based on
 what you learned before:
 
  * Start simulation with preloaded software (terminal 1):
@@ -61,7 +61,7 @@ So now we want to see that in action.
 
 ### Capturing UART output
 
-As described before, the UART controller has been replaces with an
+As described before, the UART controller has been replaced with an
 emulation module that has the same physical interface, but transports
 the characters over the debug infrastructure.
 
@@ -77,9 +77,9 @@ third command and after the fourth again:
     osd> reset -halt
     osd> terminal 2
     osd> start
-	osd> reset
+    osd> reset
 
-So, now you can run the programs as before and reset the system
+Now you can run the programs as before and reset the system
 without touching a board, but the real power comes with the other
 modules.
 
@@ -95,9 +95,9 @@ giving the ELF currently executed on the core.
 
     osd> reset -halt
     osd> terminal 2
-	osd> ctm log ctm.log 4 path/to/hello.riscv
-	osd> start
-	osd> quit
+    osd> ctm log ctm.log 4 path/to/hello.riscv
+    osd> start
+    osd> quit
 
 Now you can inspect the output file `ctm.log`:
 
@@ -155,7 +155,7 @@ Now you can inspect the output file `ctm.log`:
 ### Minimally-invasive software debugging
 
 As introduced, lowRISC adds a software trace debugging technique that
-is minimally invasive by only adding a few cycles each time called
+is minimally invasive by only adding a few cycles each time it is called
 without stalling the system.
 
 The code `trace.c` from the examples emits four of such events:
@@ -195,9 +195,9 @@ You need to load it with the simulation:
 Then open the CLI and run:
 
     osd> reset -halt
-	osd> stm log stm.log 5
-	osd> start
-	osd> quit
+    osd> stm log stm.log 5
+    osd> start
+    osd> quit
 
 You need to wait a few seconds between start and quit. This will
 generate in `stm.log`:
@@ -252,8 +252,8 @@ in the CLI:
 
     osd-cli
     osd> mem loadelf path/to/hello.riscv 3
-	osd> terminal 2
-	osd> start
+    osd> terminal 2
+    osd> start
 
 ### Python scripting
 
@@ -288,9 +288,9 @@ example script is given as
     osd.wait(10)
 
 You can see that it does pretty much what we did here in the
-tutorial. But it is more flexible as it works with other systems too
+tutorial. However it is more flexible as it works with other systems too
 and is more powerful when integrated with your testing environment.
 
-Just run:
+To try this example, just run:
 
     python $TOP/tools/share/opensocdebug/examples/runelf.py path/to/hello.riscv

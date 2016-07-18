@@ -32,7 +32,7 @@ proper branch (`debug-v0.3`):
 
     git clone -b debug-v0.3 https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
-	git submodule update --init --recursive
+    git submodule update --init --recursive
 
 ### Structure of the git repository
 

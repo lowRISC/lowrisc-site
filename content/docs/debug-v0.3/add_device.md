@@ -9,11 +9,12 @@ showdisqus = true
 
 +++
 
-This document demonstrates the steps needed to add a second BRAM on the IO NASTI bus.
+This document details the steps needed to add a second BRAM on the IO NASTI 
+bus.
 
 ### A secondary BRAM
 
-Here shows the top-level connection of the BRAM to be added.
+Below is the top-level connection of the BRAM to be added.
 
     module nasti_bram (
 	  input  clk, rstn,
@@ -123,4 +124,4 @@ Finally, we need to add the BRAM in the SystemVerilog top-level connection at `$
     +   defparam io_crossbar.BASE4 = `DEV_MAP__io_ext_extra_bram__BASE;
     +   defparam io_crossbar.MASK4 = `DEV_MAP__io_ext_extra_bram__MASK;
 
-OK. Now the secondary BRAM should be ready for use.
+That's it! Now the secondary BRAM should be ready for use.

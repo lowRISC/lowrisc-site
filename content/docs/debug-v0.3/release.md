@@ -11,20 +11,20 @@ showdisqus = true
 ### Release notes
 
  * Rocket-core (Chisel)
-   * Add core trace and software trace modules in each Rocket cores using Chisel black-boxes.
-   * Add Chisel debug network in Rocket-chip to connect the debug modules in cores.
+   * Add core trace and software trace modules in each Rocket core using Chisel black-boxes.
+   * Add Chisel debug network to Rocket-chip to connect the debug modules in cores.
    * Add a trace CSR (swtrace) for software trace triggering.
    * Merge the latest (05-2016) updates from RISC-V.
-   * Use the shared TileLink MEM network and reduce code discrepancy with the upstream RISC-V to the minimal.
+   * Use the shared TileLink MEM network and reduce code discrepancy with the upstream Rocket to be minimal.
    * Updated `Configs.scala` and `LowRISCChip.scala` to utilize new features from the upstream RISC-V.
  * lowRISC-chip
    * Add trace debugger from Open SoC Debug.
    * Upgrade the IO side NASTI to a full NASTI interface.
    * Rewrite the NASTI to NASTI-Lite interface in socip.
-   * Re-struct the SystemVerilog top level to use macros from Chisel compiler.
+   * Re-structure the SystemVerilog top level to use macros from Chisel compiler.
  * Design environment
    * A NEXYS4-DDR FPGA demo.
-   * Better Makefile supports.
+   * Better Makefile support.
  * Missing from this release vs the previous
    * No tagged memory support (will be added back soon).
    * No support for ZedBoard and KC705.

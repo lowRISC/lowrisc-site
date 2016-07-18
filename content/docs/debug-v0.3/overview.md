@@ -9,7 +9,7 @@ showdisqus = true
 +++
 
 For this release we have set the goal to create the basic debug
-infrastructure for lowRISC. Before we go into the details, we want to
+infrastructure for lowRISC. Before going into the details, we want to
 give you an overview about where we are heading with the debug
 infrastructure. Essentially, there are two methods to debug a
 processor:
@@ -21,10 +21,10 @@ processor:
 
  * *Trace debugging* differs from that by sampling the processor
    execution (program counter etc.) and generating a "trace" of the
-   program execution. Most importantly that happens non-intrusively,
+   program execution. Most importantly this happens non-intrusively,
    meaning there is no impact on the program execution. Especially for
-   multicore system-on-chip that enables debugging of concurrency
-   issues or performance bottlenecks. Finally, also other hardware
+   multicore system-on-chip, it enables debugging of concurrency
+   issues or performance bottlenecks. Finally, other hardware
    elements like a DMA or memory controller can be easily extended to
    generate traces.
 
@@ -43,7 +43,7 @@ defined the following functionalities we want to support:
  * Reset the system and cores remotely
 
  * Serial communication (console) via the debug system
-   
+
 In the picture below you can find an updated overview of the lowRISC
 system architecture. If you compare it to the
 [previous SoC overview]({{< ref "docs/untether-v0.2/overview.md" >}}) you
@@ -69,7 +69,7 @@ between the host and the debug system is abstracted by using the
 bi-directional FIFO interface and different physical interfaces like
 UART, USB and JTAG.
 
-We take out the work on the debug infrastructure as part of the
+Work on the the debug infrastructure has been produced as part of the
 [Open SoC Debug](http://www.opensocdebug.org) project, where you can
 also find a
 [broader introduction](http://opensocdebug.org/docs/overview/). The
@@ -81,7 +81,7 @@ headed:
  * Once a *run-control interface* is available for the Rocket core we
    will include it as a debug module.
 
- * Full system traces fastly blow up to multiple gigabyte per
+ * Full system traces quickly blow up to multiple gigabyte per
    second. *(Cross-)Triggers and filters* help reducing the trace size
    and focus on the problem.
 
@@ -92,9 +92,9 @@ headed:
  * *Trace buffering and output* on a separate high speed port or to
    DRAM broadens the use cases of the debug system.
 
-Please [get in touch with us]({{< ref "community.md" >}}) if you want
-have ideas and opinions about future directions we should take. Now
-its time to learn more about the debug system or jump into using it:
+Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas 
+and opinions about future directions we should take. Now
+it's time to learn more about the debug system or jump into using it:
 
  * More details
   * [Debug interface]({{< ref "docs/debug-v0.3/interface.md" >}})

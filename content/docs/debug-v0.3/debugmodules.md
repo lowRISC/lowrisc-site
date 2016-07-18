@@ -10,8 +10,8 @@ showdisqus = true
 +++
 
 In the following we will give you a brief overview of the debug
-modules employed in this release. They are all at the first
-implementation state, but contain the basic functionality we will
+modules employed in this release. They are all at a relatively early stage of 
+implementation, but contain the basic functionality we will
 extend over the next months. Please find more details about the
 modules at [Open SoC Debug](http://opensocdebug.org).
 
@@ -35,8 +35,8 @@ e.g., the information about the memory layout, the reset control, etc.
 
 ### System Control Module (SCM)
 
-The SCM is the only mandatory module. On the one hand it provides the
-*system information*:
+The SCM is the only mandatory module. One of its main functions is to
+provide the *system information*:
 
  * A system ID, which can be used by debug tools to identify the
    hardware platform
@@ -65,7 +65,7 @@ incoherent to the caches. The host can read and write single words
 with a byte strobe or read and write bursts of words.
 
 In this tutorial we use the MAM to initialize the memory, but the use
-cases are by far not limited to this.
+cases are not limited to this.
 
 <a name="figure-mam"></a>
 <img src="../figures/debug_module_mam.png" alt="MAM" style="padding: 20px 0px;"/>
@@ -108,9 +108,9 @@ the figure to generate two kinds of trace events:
    assembly), but still this is speculative and the ELF is needed to
    determine which of the jumps were actually related.
 
-This already generates a good amount of trace events and with
-increasing information to gain from core trace better filtering and
-compression will be mandatory.
+This already generates a high volume of trace events and with
+increasing information, better filtering and
+compression will be mandatory to take full advantage of tracing.
 
 <a name="figure-ctm"></a>
 <img src="../figures/debug_module_ctm.png" alt="CTM" style="padding: 20px 0px;"/>
@@ -120,7 +120,7 @@ compression will be mandatory.
 We introduce another kind of trace beside the core trace. The latter
 is generated independently from the actual software and is thereby
 non-intrusive. A better directed approach is to instrument the
-software with trace events, for example you could instrument your dma
+software with trace events, for example you could instrument your DMA
 driver like this:
 
     uint8_t *buffer = malloc(42);

@@ -19,7 +19,7 @@ is used by the Open SoC Debug (osd) infrastructure.
 <a name="figure-osdglip"></a>
 <img src="../figures/osd_glip.png" alt="OSD and glip" style="padding: 20px 0px;"/>
 
-The basic interface abstraction of glip is a simple FIFO with 16 bit
+The basic interface abstraction of glip is a simple FIFO with 16-bit
 data and ready/valid flow control. The underlying glip backend
 implementation maps this interface to a protocol for different
 physical interfaces. It also adds a reset signal that can be used to
@@ -61,8 +61,8 @@ semantic routing and protocol (header) information in the first words.
 
 On the software side glip provides an interface to read and write
 16-bit words to the hardware FIFOs, each in a blocking and
-non-blocking variant. Sending debug packets is then assembling the
-header and payload in `uint16_t` arrays and sending them with
+non-blocking variant. Sending debug packets is then performed by assembling 
+the header and payload in `uint16_t` arrays and sending them with
 `glip_write`. A thread receives the packets and dispatches them to
 handlers that were registers for the different modules. You find more
 details on the software interface in the
