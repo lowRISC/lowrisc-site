@@ -117,7 +117,7 @@ The tag cache itself is set-associative. A block diagram of the new tag cache mo
 <img src="../figures/tag_cache.png" alt="Drawing" style="width: 500px;"/>
 
 TileLink "acquire" transactions, indicating a read or write operation,
-are recieved by the tag cache module. The tag cache then generates the
+are received by the tag cache module. The tag cache then generates the
 necessary requests to main memory. The series of actions performed
 upon receiving a read "acquire" message are shown below:
 

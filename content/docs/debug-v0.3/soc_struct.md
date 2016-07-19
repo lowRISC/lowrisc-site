@@ -45,7 +45,7 @@ like:<br><br>
 <br>Note that the base address of each memory section is calculated automatically during the Chisel compilation. For a detail look of the address map, please read the related part in `$TOP/src/main/scala/Configs.scala` (initialization of the address map) and `$TOP/junctions/src/main/scala/addrmap.scala` (implementation of the address map).
 
 * **Boot ROM**
-<br>A boot ROM is added into the SoC, which should always located at the reset address (0x00000000 by default). The current boot ROM has two parts: The first several instructions redirect PC to the on-chip BRAM if it is enabled or to the DDR RAM. The reset of the ROM has a configuration string, which stores a simplified device tree. This configuration string identifies the number and types of processors on chip along with the address map. For the standalone FPGA demo, the configuration string should read as:<br><br>
+<br>A boot ROM is added into the SoC, which should always located at the reset address (0x00000000 by default). The current boot ROM has two parts: The first several instructions redirect PC to the on-chip BRAM if it is enabled or to the DDR RAM. The rest of the ROM has a configuration string, which stores a simplified device tree. This configuration string identifies the number and types of processors on chip along with the address map. For the standalone FPGA demo, the configuration string should read as:<br><br>
 &nbsp;&nbsp;`platform {`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`vendor lowRISC;`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arch rocket;`<br>

@@ -20,10 +20,10 @@ preferred. The installation requires around 21 GB of disk space.
 ### License
 
 A license is required to use the Xilinx Vivado suite. For users who bought an 
-FPGA developement kit, such as the KC705 kit, a voucher may be enclosed. This 
+FPGA development kit, such as the KC705 kit, a voucher may be enclosed. This 
 voucher will allow the user to generate a site and device locked license 
 (version limited as well). Such a license will allow a user to implement 
-designs targeting the sepecific FPGA used in the developement kit, such as 
+designs targeting the sepecific FPGA used in the development kit, such as 
 Kintex-7 FPGAs for the KC705 kit. This license is a version limited one. Users 
 are allowed to install and update the Xilinx Vivado suite for one year. Once 
 the license is expired, the old Xilinx Vivado is still usable but not 
@@ -38,7 +38,7 @@ To generate a license using a voucher or a WebPACK license, login to Xilinx
 and visit 
 [http://www.xilinx.com/getlicense](http://www.xilinx.com/getlicense).
 
-### Enviroment settings
+### Environment settings
 
 Here is an example script for setting up the Xilinx Vivado suite.
 
