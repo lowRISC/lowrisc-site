@@ -363,7 +363,7 @@ vector instructions, ... GCC support is present for these.
 much more to come. The full PULP will be released in December, an in the 
 meantime you can use the PULPino core.
 
-## The DOVER Edge: A Metadata-Enhanced RISC-V Architecture: Andrew DeHon
+## The DOVER Edge: A Metadata-Enhanced RISC-V Architecture: André DeHon
 * How do we handle the 'edge' of a metadata tagged system? e.g. I/O to the 
 untagged world, legacy devices, DMA.
 * PUMP is a metadata processing engine that checks tags upon every instruction 
