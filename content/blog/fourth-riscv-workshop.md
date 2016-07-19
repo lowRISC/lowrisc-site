@@ -226,7 +226,7 @@ now, and get used to high variability in main memory response time.
 quantum-resistant security for low resource devices using group theoretic 
 cryptography.
 * Using the Microsemi Smartfusion2+ board as the test platform.
-* With a software-only port, their WalnutDSA was 63x faster thn Micro-ECC.
+* With a software-only port, their WalnutDSA was 63x faster than Micro-ECC.
 * Adding a custom instruction to accelerate it only added 2% area on the FPGA 
 and gave another 3x increase in speed.
 

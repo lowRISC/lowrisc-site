@@ -166,7 +166,7 @@ routers. Each cluster has a 300 bit connection to the Hoplite router (with a
 the router per processor is only 40 LUTs.
 * Can fit 32 GRVI Phalanx PEs on an Artix-7-35T.
 * Want to support different accelerated parallel programming models: SPMD, 
-MIMD, MP. All potentially accelerated by custom GRVI And cluster fucntion 
+MIMD, MP. All potentially accelerated by custom GRVI And cluster function 
 units, custom memory or interconnects, custom accelerators on the NOC.
 * Next steps: debug/trace over NoC, Hoplite/AXI4 bridges, OpenCL stack, 
 potential bridge to Chisel RISC-V infrastructure?
