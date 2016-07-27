@@ -10,7 +10,7 @@ Financial Markets](http://www.imc.nl/) who are also helping to advise this
 summer project._
 
 At the time of our [last blog post]({{< ref
-"blog/lowrisc-imc-interns-second-update.md" >}}), we had just finished VGA and
+"blog/lowrisc-imc-interns-week-one.md" >}}), we had just finished VGA and
 were working on implementing the frame buffer. Over the last 2 weeks, we have
 made significant progress, completing the frame buffer and starting video decode.
 
