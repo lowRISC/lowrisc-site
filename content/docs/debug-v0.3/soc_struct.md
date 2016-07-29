@@ -39,7 +39,7 @@ like:<br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"prci0", 0x00003000-0x00003fff, RW>`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"ext", 0x40000000-0x7fffffff>`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"bram", 0x40000000-0x4000ffff, RWX>`<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"flash", 0x41000000-0x40ffffff, RWX>`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"flash", 0x41000000-0x40ffffff, RX>`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"uart", 0x42000000-0x42001fff, RW>`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"spi", 0x42002000-0x42003fff, RW>`<br>
 &nbsp;&nbsp;`<"mem", 0x80000000-0xffffffff, RWX>`<br>
