@@ -96,6 +96,26 @@ You can also write the bitstream to FPGA by JTAG (JP1 to JTAG)
 
     vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" fpga.bit
 
+## Mount an SD card inside RISC-V Linux
+
+To discover whether an SD is recognized by the kernel:
+
+    cat /proc/partitions
+
+If an SD card is formated in FAT32 and inserted, it should look like:
+
+     179        0    7707648 mmcblk0
+     179        1    7706624 mmcblk0p1
+
+To mount this card:
+
+    mknod /dev/mmcblk0p1 b 179 1
+    mkdir /mnt
+    mount /dev/mmcblk0p1 /mnt
+
+After you finished with the SD card, remember to unmount it.
+
+    umount /mnt
 
 ## Build your own bitstream and images
 
@@ -129,13 +149,15 @@ download the bitstream to the FPGA:
 ### Build Linux
 
     cd $TOP/riscv-tools
-    curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.1.25.tar.xz| tar -xJ
-    curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2| tar -xj
-    cd linux-4.1.25
+    curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.6.2.tar.xz | tar -xJ
+    curl -L http://busybox.net/downloads/busybox-1.21.1.tar.bz2 | tar -xj
+    cd linux-4.6.2
     git init
     git remote add origin https://github.com/lowrisc/riscv-linux.git
     git fetch
     git checkout -f -t origin/debug-v0.3
+    # lowRISC-specific hack for enabling power pin for SD card
+    patch -p1 < spi_sd_power_hack.patch
     cd $TOP/fpga/board/nexys4_ddr
     $TOP/riscv-tools/make_root.sh
 
@@ -155,7 +177,7 @@ Open the Vivado GUI using the current project.
 #### `make bitstream`
 Generate the default bitstream according to the `CONFIG` in Makefile and the program loaded in `src/boot.mem`. The default bitstream is generated at `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.bit`
 
-#### `make <hello|dram|sdcard|boot|jump|trace>`
+#### `make <hello|dram|sdcard|boot|jump|trace|flash>`
 Generate bitstreams for bare-metal tests:
 
  * **hello** A hello world program.
@@ -164,6 +186,7 @@ Generate bitstreams for bare-metal tests:
  * **boot** A 1st bootloader that loads `boot.bin` from SD to DDR RAM and executes `boot.bin` afterwards.
  * **jump** A 1st stage booloader that directly jumps to DDR RAM.
  * **trace** A software trace demo.
+ * **flash** Read the content of the on-board Flash.
 
 For each bare-metal test `<test>`, the executable is generated to 
 `examples/<test>.riscv`. It is also converted into a hex

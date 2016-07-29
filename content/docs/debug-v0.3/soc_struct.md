@@ -39,8 +39,9 @@ like:<br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"prci0", 0x00003000-0x00003fff, RW>`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"ext", 0x40000000-0x7fffffff>`<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"bram", 0x40000000-0x4000ffff, RWX>`<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"uart", 0x40010000-0x40011fff, RW>`<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"spi", 0x40012000-0x40013fff, RW>`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"flash", 0x41000000-0x40ffffff, RWX>`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"uart", 0x42000000-0x42001fff, RW>`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<"spi", 0x42002000-0x42003fff, RW>`<br>
 &nbsp;&nbsp;`<"mem", 0x80000000-0xffffffff, RWX>`<br>
 <br>Note that the base address of each memory section is calculated automatically during the Chisel compilation. For a detail look of the address map, please read the related part in `$TOP/src/main/scala/Configs.scala` (initialization of the address map) and `$TOP/junctions/src/main/scala/addrmap.scala` (implementation of the address map).
 
