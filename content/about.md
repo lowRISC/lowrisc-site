@@ -33,8 +33,8 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
-**July 2016**: (Upcoming) New lowRISC code release including support for trace 
-debug.
+**July 2016**: New lowRISC [code release]({{< ref "docs/debug-v0.3/index.md" 
+>}}) including support for trace debug.
 
 **June 2016**: Presented a brief [tutorial at 
 DAC](http://www2.dac.com/events/eventdetails.aspx?id=200-28) on prototyping 
