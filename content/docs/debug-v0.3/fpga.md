@@ -10,7 +10,7 @@ showdisqus = true
 +++
 
 In this final step, we want to test the debug functionality on an FPGA board.
-The debug system will use the UART connection at 3 MBaud to communicate with 
+The debug system will use the UART connection at 12 MBaud to communicate with 
 the debug system.
 
 ## Run the pre-built FPGA demo with a trace debugger
@@ -33,7 +33,7 @@ Download and write the bitstream
 
 There are two ways to boot a RISC-V Linux. For both cases, we need to open the debug daemon to load programs and connect to the UART console.
 
-    opensocdebugd uart device=/dev/ttyUSB0 speed=3000000
+    opensocdebugd uart device=/dev/ttyUSB0 speed=12000000
 
 #### Directly load Linux to DDR RAM
 
