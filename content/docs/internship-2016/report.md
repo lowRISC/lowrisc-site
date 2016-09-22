@@ -255,20 +255,21 @@ In this section, we will cover the infrastructure of our General Purpose
 Stream Pipelined Accelerator (SPA).
 
 ### 7.1 Concept
-The infrastructure is changed a few times and it is changed from a specific 
-video accelerator to an general purpose accelerator infrastructure supporting 
-all kinds of AXI4-Stream compatible processors.
+Over the course of development the design has evolved. We started with a much 
+more specialised video accelerator, but have ultimately arrived at a more
+purpose accelerator infrastructure supporting all kinds of AXI4-Stream 
+compatible processors.
 
 The fundamental idea behind this accelerator idea is streams. In our case, 
-most data comes independently with other data, so they can be abstracted as 
-streams. For streams, we can make use of pipelining the reduce number of clock 
-cycles needed to process data. All accelerators in this infrastructure have a 
-pair of AXI4-Stream interface as their only I/O. Data is piped into the 
-accelerator by AXI4-Stream slave port on the accelerator, and piped out from 
-AXI4-Stream master port. Our infrastructure has no direct communication with 
-the accelerators, but uses packet concept in AXI4-Stream as the boundary 
-between data. The infrastructure is only responsible for packet routing and 
-data moving.
+most data can be processed independently, so can be abstracted as separate 
+streams streams. For streams, we can make use of pipelining the reduce number 
+of clock cycles needed to process data. All accelerators in this 
+infrastructure have a pair of AXI4-Stream interface as their only I/O.  Data 
+is piped into the accelerator by AXI4-Stream slave port on the accelerator, 
+and piped out from AXI4-Stream master port. Our infrastructure has no direct 
+communication with the accelerators, but uses packet concept in AXI4-Stream as 
+the boundary between data. The infrastructure is only responsible for packet 
+routing and data moving.
 
 ### 7.2 Architecture
 <img src="../accelerator_arch.png" style="width: 500px"/>
@@ -696,7 +697,15 @@ A number of project objectives were described in section 4.2. In this section we
 
 - *Decoding MPEG-2 encoded video at a resolution of 640x480, and playing at a rate of 8 frames-per-second*
 
-This objective was not met. Once integrated into lowRISC and synthesised on our Naxys4 DDR FPGAs, our accelerators allowed us to decode 320x480 video at a rate of approximately 2.5 frames-per-second. The limiting factor on decoding proved to be the speed we were able to access memory through the TileLink bus. This problem was further compounded by the lack of an L2 cache. The speed of the bus had been reduced to 25MHz due to the floating point unit, and so more effort could have been expended on removing the FPU, and increasing the speed of the bus. 
+This objective was not met. Once integrated into lowRISC and synthesised on 
+our Naxys4 DDR FPGAs, our accelerators allowed us to decode 320x480 video at a 
+rate of approximately 2.5 frames-per-second. The limiting factor on decoding 
+proved to be the speed we were able to access memory through the TileLink bus.
+This problem was further compounded by the fact that a bug forced us to 
+disable the L2 cache, and we were unable to resolve it before the end of the 
+project. The speed of the bus had been reduced to 25MHz due to the floating 
+point unit, and so more effort could have been expended on removing the FPU, 
+and increasing the speed of the bus. 
 
  - *Tutorials describing*
     - *Using the video output controller*
@@ -714,14 +723,19 @@ These technical descriptions are included in this document.
 
 
 ### 10.2 Comparison of Video with and without Acceleration
-In order to compare the performance with and without acceleration, we introduced a statements into the codec before and after the functions for interacting with the accelerator. In this way we were able to capture the time taken to perform these functions with and without the accelerators. The data was gathered over a video of 658 frames and the values presented an average over all frames in the video.
+In order to compare the performance with and without acceleration, we 
+introduced instrumentation into the codec before and after the functions for 
+interacting with the accelerator. In this way we were able to capture the time 
+taken to perform these functions with and without the accelerators. The data 
+was gathered over a video of 658 frames and the values presented an average 
+over all frames in the video.
 
 | Function        | Software  | Hardware  | *Speed-up* |
 |-----------------|----------:|----------:|-----------:|
-| Y'UV 422 to 444 |  725.91ms | 20.906ms  |  *3.47212* |
-| Y'UV 444 to RGB | 215.816ms | 26.721ms  |  *8.07660* |
-| RGB 32 to 16    |  59.706ms | 10.447ms  |  *5.71494* |
-| Total for Frame | 447.775ms | 159.936ms |  *2.79971* |
+| Y'UV 422 to 444 |  726ms | 20.9ms  |  *34.7* |
+| Y'UV 444 to RGB | 216ms | 26.7ms  |  *8.08* |
+| RGB 32 to 16    |  59.7ms | 10.4ms  |  *5.71* |
+| Total for Frame | 448ms | 160ms |  *2.80* |
 *Table: Time taken to perform accelerated tasks with and without accelerator*
 
 It is clear to see that for each of the individual accelerators provide a significant reduction in the CPU time needed for processing, with the conversion of Y'UV 444 to RGB gaining a speed-up of over 8 times. However due Amdahl's law, the overall speed-up of the full process proved to be significantly less.
@@ -730,9 +744,9 @@ One significant factor which reduced the performance of the accelerated codec wa
 
 | Mode                   |   Time    | *Speed-up (over software)* |
 |------------------------|----------:|----------:|
-| Software               | 447.775ms |     -     |
-| Hardware (Unpipelined) | 159.936ms | *2.79971* |
-| Hardware (Pipelined)   | 103.437ms | *4.32895* |
+| Software               | 448ms |     -     |
+| Hardware (Unpipelined) | 160ms | *2.80* |
+| Hardware (Pipelined)   | 103ms | *4.33* |
 *Table: Time taken to perform frame processing with and without hardware pipelining*
 
 As can be seen, hardware pipelining provided a significant speed-up over the unpipelined version. This further illustrates that, with our accelerators, the bottleneck to decoding is the speed memory can be accessed.
@@ -757,21 +771,19 @@ As mentioned in an earlier section, the accelerator driver we implemented has no
 During development a deadlock condition arose when interacting with the L2 
 cache. The exact cause of the deadlock proved to be difficult to reproduce 
 quickly, and so did not arise in simulation at all. The cause seemed to be 
-some interaction between cached and uncached transactions on the TileLink bus. 
-This was likely caused by a bug in the TileLink bus protocol supplied by UC 
-Berkeley. Due to the limited time of our internship, and our lack of knowledge 
-of the Chisel language we avoided this problem by removing the L2 cache 
-entirely. As one might expect, this  significantly impacted the performance of 
-the codec.
-
-Part way through the internship an [update to the TileLink github 
+some interaction between cached and uncached transactions on the TileLink bus.
+This may be a bug in Rocket's TileLink implementation, but we were unable to 
+fully confirm. Due to the limited time of our internship, and our lack of 
+knowledge of the Chisel language we avoided this problem by removing the L2 
+cache entirely. As one might expect, this significantly impacted the 
+performance of the codec. Part way through the internship an [update to the 
+TileLink github 
 repository](https://github.com/ucb-bar/uncore/commit/ad95aa79ce2aa694fa628c5f1cab101676581f0e) 
-made reference to a fix for a 'L2 Writeback deadlock issue'.  Therefore a 
-future development would be to integrate these updates into the lowRISC 
-repository, and see if this is the same deadlock condition we encountered. If 
-this is not the case, then it would be necessary to develop a way of reliably 
-reproducing the deadlock, and resolving it while in communication with the 
-team at UC Berkeley.
+made reference to a fix for a 'L2 Writeback deadlock issue'. Therefore a 
+future development would be to further evaluate this patch to determine if 
+this reflects the issue we encountered, and look to integrate these updates 
+into the lowRISC repository. If not, more work must be done to further isolate 
+the issue.
 
 ### 11.2 Driver Scatter-Gather Support
 Currently the linux driver has support for scatter-gather instructions in physical memory, which is contiguous within user-space. A future extension would be to introduce full scatter-gather support - that is including the case where information is not contiguous within user space.
