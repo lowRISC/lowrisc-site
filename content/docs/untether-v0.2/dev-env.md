@@ -80,6 +80,7 @@ To clone the whole lowRISC chip git repository:
     # get the branch untether-v0.2
     git clone -b untether-v0.2 https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
+    git checkout untether-v0.2
     git submodule update --init --recursive
 
 There are 3 main branches:
