@@ -1,0 +1,19 @@
+# Sass/Neat style for lowRISC.org
+## Dependencies
+Install [sassc](https://github.com/sass/sassc) and
+[autoprefixer](https://github.com/postcss/autoprefixer) (`npm install --global
+postcss-cli autoprefixer`).
+
+## Building
+`./build.sh`
+
+This will update `../static/css/styles.combined.min.css`.
+
+## Authorship
+This style is Copyright lowRISC CIC and was initially developed by
+[Ura](http://ura.design/) (Aleksander Koko). Any oddities or bugs are most
+likely introduced by us.
+
+## FAQ
+### Don't you want to use gulp/grunt/brocolli/brunch?
+No.

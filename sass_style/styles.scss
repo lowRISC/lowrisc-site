@@ -1,0 +1,35 @@
+// Helpers
+@import "settings/variables";
+@import "helpers/functions";
+@import "helpers/mixins";
+
+@import "partials/_normalize";
+
+// Web Fonts
+// @import "settings/web_fonts";
+
+// Sprites
+// @import "helpers/bitmap-sprite";
+// @import "helpers/vetor-sprite";
+
+// Vendors
+ @import "neat/_neat";
+
+/*! ==================================================================
+   Main Styles
+   ================================================================== */
+@import "partials/_index";
+@import "components/_index";
+@import "pages/landingpage";
+
+
+
+
+
+/*! ==================================================================
+   Media Queries
+   ================================================================== */
+// Printers
+@media print{
+	@import "partials/_print";
+}

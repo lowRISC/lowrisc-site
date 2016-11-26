@@ -1,0 +1,67 @@
+[data-component="hero"]{
+
+  .hero-content{
+    @include clearfix;
+    margin-top: 95px;
+    padding-bottom: 40px;
+
+    @include media(max-width $phone) {
+      margin-top: 150px;
+    }
+
+    div{
+      padding: 20px;
+
+      &.image{
+        @include span-columns(4 of 9);
+
+        @include media(max-width $tablet) {
+          @include span-columns(8 of 8);
+        }
+
+        img{
+          max-width: 100%;
+          margin: 0 auto;
+          display: block;
+        }
+      }
+
+      &.description{
+        @include span-columns(5 of 9);
+
+        @include media(max-width $tablet) {
+          @include span-columns(8 of 8);
+        }
+
+        p{
+          margin: 0;
+          padding: 14px;
+          font-family: $font-exo;
+          font-size: 42px;
+          line-height: 1em;
+          color: $white;
+
+          @include media(max-width $tablet) {
+            text-align: center;
+            line-height: 46px;
+          }
+        }
+
+        span{
+          display: block;
+
+          a{
+            margin-top: 53px;
+            margin-left: 14px;
+
+            @include media(max-width $tablet) {
+              display: table;
+              margin: 50px auto 0;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.button{
+  text-decoration: none;
+  display: inline-block;
+  font-family: $font-exo;
+
+  &.button-big{
+    padding: 15px 61px;
+    border-radius: 24px;
+    line-height: 1em;
+    font-size: 30px;
+  }
+
+  &.button-white{
+    background-color: $white;
+    color: $red-color;
+  }
+
+  &.button-red{
+    background-color: $red-color;
+    color: $white;
+  }
+
+}
