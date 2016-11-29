@@ -1,0 +1,28 @@
+[data-page="article"]{
+
+  .header{
+    background-color: $red-color;
+    height: auto;
+  }
+
+  .article{
+    margin-bottom: 32px;
+    pre{
+      background-color: #fafafa;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 32px;
+    }
+    a, a:visited{
+      color: $dark;
+    }
+    p,ul,li{
+      font-family: $font-open-sans-pro;
+      font-size: 18px;
+      color: $dark;
+    }
+    h1,h2,h3,h4,h5,h6 {
+        color: $dark;
+    }
+  }
+}
