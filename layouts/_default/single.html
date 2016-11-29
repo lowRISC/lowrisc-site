@@ -1,4 +1,5 @@
 {{ partial "head.html" . }}
+  <body data-page="article">
 {{ partial "header.html" . }}
 
 {{ $baseurl := .Site.BaseURL }}
@@ -8,7 +9,8 @@
 {{ $prev := (print $baseurl .Params.prev) }}
 {{ $next := (print $baseurl .Params.next) }}
 
-    <div class="container">
+    <div class="article">
+      <section class="outer-container">
         <div class="row">
             <div class="sixteen columns">
                 <article class="li-article">
@@ -45,9 +47,10 @@
                 </article>
 
         </div>
+      </section>
     </div>
     {{ if or .Params.prev .Params.next }}
-    <div class="row li-pagination">
+    <div class="row li-pagination article">
       <div class="eight columns">
         <div class="li-pagination-previous">
           &nbsp;

@@ -30,15 +30,9 @@ encouraged to make informal enquiries about the post to Rob Mullins
 
 #### When can I buy a lowRISC SoC?
 
-  As with most tech projects, the most accurate answer is "When it's ready". 
-  However, it's useful to consider some of the main milestones:
-
-*   _Release of an initial FPGA version:_ Done! See the [tagged memory 
-release]({{< ref "docs/tagged-memory-v0.1/index.md" >}}) and the [untethered 
-release]({{< ref "docs/untether-v0.2/index.md" >}}).
-*   _Production of a test chip:_ we expect to tape out a test chip during the 
-course of 2016.
-*   _Tape out of production silicon:_ this is likely to happen, at      the earliest, a year after the first test chip (in 2017).
+  As with most tech projects, the most accurate answer is "When it's ready".  
+  We are expecting to crowdfund an initial instantiation of the lowRISC 
+  platform during the course of 2017.
 
 #### Why RISC-V and not OpenRISC/SPARCv8/MIPS/...?
 
@@ -99,6 +93,5 @@ course of 2016.
   hardware development efforts. Take a look at our mailing list and source 
   repos. See our [community page]({{< ref "community.md" >}}) for pointers to 
   our code repositories and development mailing lists. If you're looking for 
-  ideas on where to start, perhaps look at our [Phabricator 
-  instance](http://phab.lowrisc.org) or introduce yourself on the mailing list 
+  ideas on where to start, perhaps introduce yourself on the mailing list 
   detailing your interests.

@@ -1,27 +1,103 @@
 {{ partial "head.html" . }}
 {{ partial "header.html" . }}
+  <body data-page="landingpage">
+{{ partial "hero.html" . }}
 
-    <div class="container">
-        <div class="row">
-            <div class="sixteen columns">
-		<h1>Welcome to the lowRISC project!</h1>
-		<div class="li-intro">
-      <p><b>lowRISC</b> is creating a fully open-sourced, Linux-capable, RISC-V-based
-      SoC, that can be used either directly or as the basis for a custom design.
-      We aim to complete our SoC design this year. <b><a href="{{.Site.BaseURL }}/about">Find out more</a></b>
-      </p>
-    </div>
-		<div class="li-main-article-list">
-		    <h1>Latest news</h1>
-		    {{ range first 10 (where .Data.Pages "Type" "blog") }}
-		    <div class="li-article">
-			    {{ .Render "fullarticle"}}
-		    </div>
-		    {{ end }}
-		</div>
-	    </div>
+
+<div class="features">
+
+  <section class="outer-container">
+
+    <ul>
+      <li>
+        <div class="logo-container">
+          <img src="img/open.svg" alt="Open icon" />
         </div>
+        <div class="description">
+          <h3>Open</h3>
+          <p>
+            Our designs are permissively licensed and developed with
+  collaborators from around the world. We implement the free and open RISC-V ISA.
+          </p>
+        </div>
+      </li>
+      <li>
+        <div class="logo-container secure">
+          <img src="img/secure.svg" alt="Open icon" />
+        </div>
+        <div class="description">
+          <h3>Secure</h3>
+          <p>
+          We are pursuing novel security features such as tagged memory.
+          Unlike proprietary offerings, all aspects of the design can be fully
+          audited.
+          </p>
+        </div>
+      </li>
+      <li>
+        <div class="logo-container">
+          <img src="img/flexible.svg" alt="Open icon" />
+        </div>
+        <div class="description">
+          <h3>Flexible</h3>
+          <p>
+          Hardware needs softening up - through minion cores we enable I/O
+          interfaces and real-time control to be defined in software.
+          </p>
+        </div>
+      </li>
+    </ul>
+
+  </section>
+
+</div>
+
+<div class="long-description">
+
+  <section class="outer-container">
+
+    <h2>Open to the core - lowRISC is unlocking the potential of
+open source development for the hardware world</h2>
+
+    <div>
+      <span></span>
     </div>
+
+    <p>
+The lowRISC platform aims to be the "Linux of the hardware world", providing a
+high quality, secure, and open base for derivative designs. We will prove our design with volume silicon manufacture and an accompanying low-cost development board.
+
+Our goal is to lower the barrier of entry to producing custom silicon, establishing a vibrant ecosystem around secure and open hardware designs. lowRISC was formed as a not-for-profit community-driven organisation to pursue these aims.
+    </p>
+
+    <div class="">
+      <a href="about/" class="button button-big button-red">Find out more</a>
+    </div>
+
+  </section>
+
+</div>
+
+
+<div class="announcements">
+
+  <section class="outer-container tabs">
+
+    <input type="radio" name="tabs" id="tab2" checked >
+    <label for="tab2">
+        <span>Blog<i></i></span>
+    </label>
+
+    <ul id="tab-content2" class="tab-content">
+      {{ range first 4 (where .Data.Pages "Type" "blog") }}
+      <li>
+      {{ .Render "summary"}}
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+
+</div>
 
 {{ partial "footer.html" . }}
 {{ partial "tail.html" . }}

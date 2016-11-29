@@ -8,6 +8,23 @@ Friday, 2nd September, 2016
 
 *Xuan Guo,  Nathanael Davison, Profir-Petru Partachi, Alistair Fisher*
 
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
 ## Contents
 1. Introduction
 2. License
@@ -99,8 +116,8 @@ decoding, with the majority of the work being in the development of the
 accelerators. The planned architecture for the augmented SoC is shown in the 
 the diagram below, with the new elements being the Video Accelerator and the 
 Video controller. Communication is performed over the AXI protocol. The 
-implementation of AXI we used is referred to as NASTI ('Not A STandard 
-Interface'). All future references to AXI use the NASTI name.
+implementation of AXI we used was called NASTI ('Not A STandard 
+Interface') by its authors. All future references to AXI use the NASTI name.
 
 <img src="../augmented_arch.png" style="width: 600px"/>
 
@@ -116,8 +133,15 @@ describing the details of the devices produced.
 
 ## 4. Approaching the Task
 ### 4.1 Codec Discussion
-We quickly decided we'd follow an existing video codec standard and either implement it ourselves or fork an existing free implementation. A myriad of possibilities are available due to the wide range of existing video formats. The limitations of the FPGAs we were working with narrowed the selection considerably as options such as H.265 were just too computationally taxing to work with.
-We ended up with a shortlist of three: VP8 (WebM), MPEG-2 (H.262) and MPEG-4 AVC (H.264). Ultimately, we decided on MPEG-2 because of a readily available reference implementation (under a BSD-like license) and its relatively low computational complexity compared to the other options.
+We quickly decided we'd follow an existing video codec standard and either
+implement it ourselves or fork an existing free implementation. A myriad of
+possibilities are available due to the wide range of existing video formats.
+The limitations of the FPGAs we were working with narrowed the selection
+considerably as options such as H.265 were just too computationally taxing to
+work with.  We ended up with a shortlist of three: VP8 (WebM), MPEG-2 (H.262)
+and MPEG-4 AVC (H.264). Ultimately, we decided on MPEG-2 because of a readily
+available reference implementation (under a BSD-like license) and its
+relatively low computational complexity compared to the other options.
 
 ### 4.2 Specific Objectives
 These were the formal objectives we defined, against which we could evaluate the progress and success of the project:
@@ -148,7 +172,7 @@ consumes 50,859 logic cells, and provides a 64-bit RISC-V core running at
 Started in early 2015, lowRISC is a not-for-profit organisation working 
 closely with the University of Cambridge and the open-source community. 
 lowRISC is creating a fully open-source, Linux-capable, RISC-V-based System on 
-Chip with the goal of being a low-cost development board - supporting the 
+Chip with the goal of producing a low-cost development board - supporting the 
 open-source hardware community. Other goals are to explore and promote novel 
 security features, to make it simple for companies to make derivative designs, 
 and to create a benchmark design to aid academic research.
@@ -157,7 +181,7 @@ and to create a benchmark design to aid academic research.
 The MPEG-2 codec was defined to resolve the shortcomings on the MPEG-1 codec, 
 and was standardised in 2000. As such many implementations have been produced. 
 Our starting point for getting video running on lowRISC was the reference 
-implementation distributed on 
+implementation distributed at 
 [mpeg.org](http://www.mpeg.org/MPEG/video/mssg-free-mpeg-software.html) (note: 
 part way through the internship the mpeg.org website went down. An archive of 
 the page can be found 
@@ -206,7 +230,9 @@ To interact with the video driver in bare metal, you need to manipulate the
 above registers by yourself. A helper header *video.h* is provided with macro 
 defined.
 
-In Linux, a driver is provided to register the video controller as a framebuffer, so you can use standard framebuffer operation to deal with this device.
+In Linux, a driver is provided to register the video controller as a
+framebuffer, so you can use standard framebuffer operation to deal with this
+device.
 
 ----------
 
@@ -296,10 +322,18 @@ adapting this design, stream processors can be piped to another, as long as
 embracing AXI4-Stream specification.
 
 ### 7.3 Scatter-Gather
-During development, we've found that we need scatter-gather support to speed things up. Due to existence of the MMU, we can only guarantee physical address continuity within the page, which obviously limits the use case of our accelerator. We address this issue by adding scatter-gather support to the data movers, and use a last bit in the every data move command to identify if this command is the last one in the packet.
+During development, we've found that we need scatter-gather support to speed 
+things up. Due to existence of the MMU, we can only guarantee physical address 
+continuity within the page, which obviously limits the use case of our 
+accelerator. We address this issue by adding scatter-gather support to the 
+data movers, and use a last bit in the every data move command to identify if 
+this command is the last one in the packet.
 
 ### 7.4 Accelerator Instruction
-The accelerator has two FIFOs: input command FIFO and output command FIFO. The first one controls the data mover moving data into the accelerator and the other one controls the opposite direction. Routing will take place automatically by internal crossbar.
+The accelerator has two FIFOs: input command FIFO and output command FIFO. The 
+first one controls the data mover moving data into the accelerator and the 
+other one controls the opposite direction. Routing will take place 
+automatically by internal crossbar.
 
 | 63-56      | 55   | 54-40  | 39       | 38-6    | 5-3      | 2-0    |
 |------------|------|--------|----------|---------|----------|--------|
@@ -311,15 +345,20 @@ contains 6th to 38th bit of actual length with lower 6-bit padded with 0. This
 design supports 39-bit physical address, which is the same as what lowRISC 
 current supports.
 
-Data movers in both direction use the same format, however attributes, last, and opcode fields are ignored by data moving which moves data back to the memory.
+Data movers in both direction use the same format, however attributes, last, 
+and opcode fields are ignored by data moving which moves data back to the 
+memory.
 
-The last field is the critical field for scatter-gather support: A stream is terminated if last is set to high.
+The last field is the critical field for scatter-gather support: A stream is 
+terminated if last is set to high.
 
 ### 7.5 Driver
 Currently two drivers are provided, one for bare metal and one for Linux.
 
 #### 7.5.1 Bare-metal Driver
-This is a very basic driver provided without scatter-gather support. In bare metal without MMU enabled, blocks are physically continuous so scatter-gather is not supported.
+This is a very basic driver provided without scatter-gather support. In bare 
+metal without MMU enabled, blocks are physically contiguous so scatter-gather 
+is not supported.
 
 Three functions are provided in bare-metal:
 ```c
@@ -388,7 +427,9 @@ perceptual impact, it is possible to reproduce, after a DCT -> Quantization
 -> Inverse Quantization -> IDCT phase, an image that is very much similar to 
 the original. 
 
-DCT is performed when encoding data, and when using a differential coder or motion compensation, IDCT is used in encoding as well. This is why DCT is usually left unoptimized as it is seen as an offline task. 
+DCT is performed when encoding data, and when using a differential coder or 
+motion compensation, IDCT is used in encoding as well. This is why DCT is 
+usually left unoptimized as it is seen as an offline task. 
 
 IDCT is performed during decoding and hence must be able to run on lower end 
 machines than DCT and be performed online/real-time.  In our implementation, 
@@ -522,10 +563,19 @@ The output is a stream of at least the same length as the input, however,
 since it is a stream, we do not concern ourselves with the length as its end 
 will be denoted by a last signal.
 
-Do note that incomplete inputs cause unexpected numeric results by padding zero rows required so that the output is guaranteed to form an integer number of $8\times8$ blocks.
+Do note that incomplete inputs cause unexpected numeric results by padding 
+zero rows required so that the output is guaranteed to form an integer number 
+of $8\times8$ blocks.
 
 ### 8.3 Y'UV 422 to 444
-Chroma sub-sampling is a common compression technique in image encoding which implements less resolution for colour (UV) than for brightness (Y') information. In Y'UV422 the colour values are sampled at half the rate of the brightness. In order to convert to RGB, we need to reintroduce this resolution somehow. The accelerator we developed does this by simply repeating every colour value twice. A more advanced system would be to interpolate the value of the colour from the surrounding pixels, however this is left as an extension.
+Chroma sub-sampling is a common compression technique in image encoding which 
+implements less resolution for colour (UV) than for brightness (Y') 
+information. In Y'UV422 the colour values are sampled at half the rate of the 
+brightness. In order to convert to RGB, we need to reintroduce this resolution 
+somehow. The accelerator we developed does this by simply repeating every 
+colour value twice. A more advanced system would be to interpolate the value 
+of the colour from the surrounding pixels, however this is left as an 
+extension.
 
 The input to the processor is the standard Y'UV422 packed format, shown below.
 
@@ -678,13 +728,26 @@ set up some independent FPGA based tests.
 
 ### 9.1 Travis and Linting
 
-Linting is the process of analysing source code to flag potential issues. During the build process, Verilator lints the input Verilog files and displays warnings. Unfortunately, many of these are spurious, so we've written a short script that attempts to refine them (identifying important warnings using regular expressions). This script is run during the automated testing, if there are any remaining warnings after it has run, the build is considered a failure.
+Linting is the process of analysing source code to flag potential issues. 
+During the build process, Verilator lints the input Verilog files and displays 
+warnings. Unfortunately, many of these are spurious, so we've written a short 
+script that attempts to refine them (identifying important warnings using 
+regular expressions). This script is run during the automated testing, if 
+there are any remaining warnings after it has run, the build is considered a 
+failure.
 
 ### 9.2 Synthesis and Scripts
 
-Travis CI is cloud based, which has many benefits, but a significant downside is that HDL code can only be tested via simulation. We found that several errors only manifest when running on the FPGA, so it was desirable to automate some FPGA tests to run alongside Travis.
+Travis CI is cloud based, which has many benefits, but a significant downside 
+is that HDL code can only be tested via simulation. We found that several 
+errors only manifest when running on the FPGA, so it was desirable to automate 
+some FPGA tests to run alongside Travis.
 
-We did this by having a local machine (with an FPGA turned on and plugged in) periodically poll our main Github repository, when it discovered a new commit, it pulled it and ran some FPGA tests using the new code. It reported the result back to Github once it was finished, typically about half an hour later.
+We did this by having a local machine (with an FPGA turned on and plugged in) 
+periodically poll our main Github repository, when it discovered a new commit, 
+it pulled it and ran some FPGA tests using the new code. It reported the 
+result back to Github once it was finished, typically about half an hour 
+later.
 
 
 ----------

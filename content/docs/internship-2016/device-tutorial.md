@@ -42,7 +42,14 @@ The lowRISC chip is now connected to the new device, and can be accessed using t
 
 ## Add a DMA master device
 
-Despite the fact that memory bus in lowRISC uses the TileLink protocol instead of NASTI (AXI), it is still possible to use an AXI device as a master device. Adding a DMA device is a little bit harder, due to the need to instantiate a bridge between TileLink and NASTI for each NASTI master device. __Notice: The current bridge implementation provided by UC Berkeley restricts burst size to be either 1 or 8, and only INCR mode is allowed.__
+Despite the fact that memory bus in lowRISC uses the TileLink protocol instead 
+of AXI, it is still possible to use an AXI device as a master device.  Adding 
+a DMA device is a little bit harder, due to the need to instantiate a bridge 
+between TileLink and AXI for each AXI master device. __Notice: The current 
+bridge implementation provided by UC Berkeley restricts burst size to be 
+either 1 or 8, and only INCR mode is allowed.__ The implementation of AXI we 
+used was called NASTI ('Not A STandard Interface') by its authors. All future 
+references to AXI use the NASTI name.
 
 To add the device, first we add a new slot to the TileLink. Find `case TLKey("L1toL2")` in Configs.scala, and increment the nCachelessClients value by one.
 

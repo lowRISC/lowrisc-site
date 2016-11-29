@@ -1,30 +1,19 @@
-<header class="li-page-header">
-  <div class="li-header-top">
-  </div>
-    <div class="container">
-        <div class="row">
-            <div class="sixteen columns">
-                <div class="li-brand li-left">
-                
-                <a href="{{ .Site.BaseURL }}"><img src="{{ .Site.BaseURL }}/img/lowrisc_header_logo.png"/></a></div>
-                <div class="li-menu li-left">
-                    <span class="li-menu-icon" onclick="javascript:toggle('menu');">&#9776;</span>
-                    <ul id="menu2" class="li-menu-items">
-                        {{ range .Site.Menus.main }}
-                            <li><a href="{{.URL}}"> {{ .Name }} </a></li>
-                        {{end}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="sixteen columns">
-                <ul id="menu" class="li-menu-items li-menu-mobile">
-                    {{ range .Site.Menus.main }}
-                        <li><a href="{{.URL}}"> {{ .Name }} </a></li>
-                    {{end}}
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
+<div class="header">
+  <header data-component="menu">
+
+    <section class="outer-container">
+      <div class="image">
+        <a href="{{.Site.BaseURL}}"><img src="{{.Site.BaseURL}}/img/logo.svg"></a>
+      </div>
+
+      <div class="menu">
+        <ul>
+          {{ range .Site.Menus.main }}
+          <li><a href="{{.URL}}"> {{ .Name }} </a></li>
+          {{end}}
+        </ul>
+      </div>
+    </section>
+
+  </header>
+</div>

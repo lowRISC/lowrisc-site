@@ -12,10 +12,8 @@ title = "About lowRISC"
   Our open-source SoC (System-on-a-Chip)
   designs will be based on the 64-bit [RISC-V](http://riscv.org/) instruction
   set architecture. Volume silicon manufacture is planned
-  as is a low-cost development board. There are more details on our plans in 
-    [these slides from a recent 
-    talk](https://speakerdeck.com/asb/lowrisc-plans-for-risc-v-in-2016)
-
+  as is a low-cost development board.
+  
   lowRISC is a not-for-profit organisation working closely with the University
   of Cambridge and the open-source community.
 
@@ -53,16 +51,27 @@ accompanied by [extensive documentation]({{< ref "docs/untether-v0.2/index.md"
 >}}).
 
 
-### The Team (founders)
+### The Team
+
+lowRISC was founded by:
 
 * Robert Mullins - Computer Laboratory, University of Cambridge, co-founder of Raspberry Pi
 * Gavin Ferris - Dreamworks, Radioscape (co-founder), Aspect Capital (former CIO)
 * Alex Bradbury - Computer Laboratory, University of Cambridge and Raspberry Pi
 
+In addition to the above, the core development team at the University of 
+Cambridge Computer Laboratory is comprised of:
+
+* Wei Song
+* Jonathan Kimmitt
+
+We are also grateful to our collaborators elsewhere in the community, as well 
+as the undergraduates, graduate students, and interns who have contributed.
+
 ### Technical Advisory Board
 
-*   [Krste Asanovic (UC Berkeley)](http://www.eecs.berkeley.edu/~krste/)
-*   [Julius Baxter (OpenRISC)](http://juliusbaxter.net)
+*   [Krste Asanovic (UC Berkeley, SiFive)](http://www.eecs.berkeley.edu/~krste/)
+*   [Julius Baxter (FOSSi Foundation)](http://juliusbaxter.net)
 *   [Luca Benini (ETH Zurich, University of Bologna)](http://www.iis.ee.ethz.ch/portrait/staff/lbenini.en.html)
 *   [Bunnie Huang (Hacker)](http://en.wikipedia.org/wiki/Andrew_Huang)
 *   [Andrew Katz (Moorcrofts LLP)](https://www.moorcrofts.com/about/andrew-katz/)

@@ -40,6 +40,25 @@ plans for tagged memory and minion cores in lowRISC.
 
 ## Other
 
-Student applications are now closed, but you may be interested in our [project
-idea list for Google Summer of Code 2015]({{< ref "docs/gsoc-2015-ideas.md" >}}).
+Over the summer of 2016 we hosted a group of interns, kindly sponsored by [IMC 
+Financial Markets](http://www.imc.nl) who worked on adding custom acceleraors 
+for video decoding to the lowRISC platform. This work resulted in the creation 
+of several documents:
+
+* A detailed [report]({{< ref "docs/internship-2016/report.md" >}}) on what 
+was produced over the summer, what went well and what didn't, as well as a 
+description of the accelerators.
+* A tutorial on [adding new stream processors]({{< ref 
+"docs/internship-2016/accelerator-tutorial.md" >}}) to the video accelerator 
+infrastructure developed over the summer.
+* A tutorial on [extending lowRISC with new devices]({{< ref 
+"docs/internship-2016/device-tutorial.md" >}}).
+* A guide describing how to [recreate the video decode demo]({{< ref 
+"docs/internship-2016/video-tutorial.md" 
+>}}).
+
+
+Although now over, you may be interested in our [project
+idea list for Google Summer of Code 2015]({{< ref "docs/gsoc-2015-ideas.md" 
+>}}) and for [GSoC 2016]({{< ref "docs/gsoc-2016-ideas.md" >}}).
 
