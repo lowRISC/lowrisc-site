@@ -26,6 +26,8 @@ To keep track of the project, follow [@lowRISC](https://twitter.com/lowRISC) or 
     <button type="submit" class="subscribe-button">Submit</button>
   </form>
 
+You may also want to browse our [code on GitHub](https://github.com/lowrisc).
+
 If you want to get in touch, please email info@lowrisc.org
 
 
