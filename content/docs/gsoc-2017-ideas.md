@@ -274,3 +274,92 @@ a mouse) if you are interested in HW design.
 **Skill level:** intermediate/high
 
 **Language:** C, some Vivado FPGA work (no or very small amount of RTL coding)
+
+### Open SoC Debug: Nexus Trace Format
+
+Trace debugging is the method to observe the execution of a
+system-on-chip. lowRISC is based on the
+[Open SoC Debug](http://opensocdebug.org) project that creates open
+source building blocks for a debug infrastructure, with a strong focus
+on efficient trace debugging.
+
+One of the main challenges is the transfer of trace events to the
+host. On the one for efficiency and on the other hand for
+compatibility.
+
+The goal of this project is to adopt the Open SoC Debug infrastructure
+to packatize traces in the popular
+[Nexus (IEEE 5001)](http://nexus5001.org/) format.
+
+*Skill Level*: Intermediate
+
+*Language/Tools:* SystemVerilog
+
+*Mentor:* [Stefan Wallentowitz](mailto:stefan@wallentowitz.de)
+
+### Open SoC Debug: Trace Visualization and Configuration
+
+The [Open SoC Debug](http://opensocdebug.org) project creates open
+source building blocks for a debug infrastructure, with a strong focus
+on efficient trace debugging. The lowRISC debug infrastructure builds
+on those. Currently we focus on the target (hardware) side of the
+infrastructure, but want to improve the host software, especially
+visualization of traces and configuration of the debug hardware.
+
+In this project you should not reinvent the wheel, but build around
+existing infrastructure. For example the
+[Open Trace Format 2](https://silc.zih.tu-dresden.de/otf2-current/html/)
+and the
+[SCORE-P infrastructure](http://www.vi-hps.org/projects/score-p/) are
+good starting points. For the visualization and interface building we
+suggest having a look at state of the visualization tools like
+[ravel](https://github.com/LLNL/ravel) to integrate with or build a
+new framework for example on [electron](http://electron.atom.io/).
+
+*Skill Level*: Beginner, Intermediate
+
+*Language/Tools*: C++/Java/JS
+
+*Mentor:* [Philipp Wagner](mailto:mail@philipp-wagner.com),
+ [Stefan Wallentowitz](mailto:stefan@wallentowitz.de)
+
+### Open SoC Debug: Trace Logging to Memory
+
+In the lowRISC (which use [Open SoC Debug](http://opensocdebug.org))
+we currently transfer traces from the debug target to the host for
+on-line visualization or offline processing. But low level traces may
+be interesting even while the system-on-chip is in the field, similar
+to system traces, e.g. from Linux. The idea is to write the traces to
+a reserved space in the system memory and read them from the running
+software.
+
+Basically this idea involves two hardware tasks: A configuration
+interface for trace logging and the interface between the debug
+interconnect and the system memory. Ideally your proof-of-concept
+includes a simple software. This setup can be optimized for example
+with trace compression and circular buffering.
+
+*Skill Level*: Intermediate
+
+*Language/Tools*: System Verilog
+
+*Mentor:* [Stefan Wallentowitz](mailto:stefan@wallentowitz.de)
+
+### Port lowRISC to LimeSDR
+
+[LimeSDR](https://myriadrf.org/projects/limesdr/) is a flexible
+software-defined radio platform that integrates an FPGA and a Lime
+Microsystems LMS7002 field-programmable RF frontend.
+
+The idea of this project is to port lowRISC to the FPGA of the LimeSDR
+board. The major challenges are porting the most important I/O and
+memory interfaces and bringing up the communication to the signal
+processing blocks. If time permits, a simple wireless algorithm may be
+implemented on the lowRISC-limeSDR platform.
+
+*Skill level*: Intermediate
+
+*Language/Tools*: HDL, FPGA synthesis
+
+*Mentor:* [Andrew Back](andrew@abopen.com),
+ [Stefan Wallentowitz](mailto:stefan@wallentowitz.de)
