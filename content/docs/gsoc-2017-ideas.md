@@ -114,6 +114,42 @@ its quality.
 
 **Mentor:** Wei Song <ws327@cam.ac.uk>
 
+## Building a Basic Embedded Security Module
+
+**Summary:** Extend a basic microcontroller subsystems with security
+extensions.
+
+We want to explore the applicability of a secure subsystem inside the
+lowRISC system-on-chip for security related tasks. The basic idea is
+to have a flexible playground for security research. For example this
+subsystem can be used to securely boot the system, remote attestation,
+or even to provide a Trusted Execution Environment (TEE) to the user
+software.
+
+For that subsystem we start with a simple 32-bit microcontroller with
+(at least) two privilege levels. The goal of this idea is to add one
+of the following:
+
+* A model for non-volatile memory and one-time programmable memory
+
+* The interfaces to other system resources: Secure communication
+  channel and system control interface
+
+* Integration and drivers for cryptographic accelerators
+
+* An interface that transparently encrypts bus access data
+
+Those are just the apparent ideas for a secure subsystem, we are open
+to your own ideas!
+
+**Details:**
+
+**Skill level:** intermediate/advanced
+
+**Language:** (System) Verilog or Chisel, C
+
+**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de>
+
 ## Implement a SPIR-V front end for Nyuzi
 
 **Summary:** Support the new SPIR-V intermediate language for the Nyuzi GPGPU.
