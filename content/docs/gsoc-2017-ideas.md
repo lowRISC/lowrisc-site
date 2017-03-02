@@ -114,87 +114,41 @@ its quality.
 
 **Mentor:** Wei Song <ws327@cam.ac.uk>
 
-## Implement a Trusted Execution Environment
+## Building a Basic Embedded Security Module
 
-**Summary:** Port an existing open-source Trusted Execution Environment to the 
-lowRISC platform.
+**Summary:** Extend a basic microcontroller subsystems with security
+extensions.
 
-A Trusted Execution Environment (TEE) runs in parallel to the general purpose 
-OS ('Rich OS') like Linux and executes security-sensitive tasks. Global
-Platform has standardized TEE and
-[OP-TEE](https://wiki.linaro.org/WorkingGroups/Security/OP-TEE) is an
-open-source GP-compliant TEE, which seems like a good target for
-porting to RISC-V and the lowRISC minion cores. There are different
-options to implement the TEE and another important component is the
-trusted firmware to boot both the secure and the non-secure world. It
-is also thinkable to port OP-TEE as components running on an L4
-Microkernel, such as seL4 which
-[has been ported in last years GSoC](http://heshamelmatary.blogspot.de/2015/10/a-talk-about-my-gsoc-project-with.html).
+We want to explore the applicability of a secure subsystem inside the
+lowRISC system-on-chip for security related tasks. The basic idea is
+to have a flexible playground for security research. For example this
+subsystem can be used to securely boot the system, remote attestation,
+or even to provide a Trusted Execution Environment (TEE) to the user
+software.
 
-This project is potentially very large and it is important to discuss
-alternatives and define a good subset in the discussion with us before
-applying.
+For that subsystem we start with a simple 32-bit microcontroller with
+(at least) two privilege levels. The goal of this idea is to add one
+of the following:
 
-**Links:**
+* A model for non-volatile memory and one-time programmable memory
 
-* [TEE spec](http://www.globalplatform.org/specificationsdevice.asp)
-* [OP-TEE](https://wiki.linaro.org/WorkingGroups/Security/OP-TEE)
+* The interfaces to other system resources: Secure communication
+  channel and system control interface
 
-**Details:**
+* Integration and drivers for cryptographic accelerators
 
-**Skill level:** advanced
+* An interface that transparently encrypts bus access data
 
-**Language:** C
-
-## Trace-debug analysis tool
-
-**Summary:** Implement a client program to usefully analyse trace debug data.
-
-We are currently working on implementing [trace debug 
-support](http://opensocdebug.org/) in to the lowRISC SoC. This provides a 
-powerful way to debug complicated multi-threaded applications as well as to 
-help diagnose hardware implementation issues. This project would involve 
-implementing a program on Linux to parse this data and present it in a useful 
-way to aid debugging. We're open to proposals using the
-language and UI toolkit of your preference, but think TypeScript
-and [Electron](http://electron.atom.io/) would form a particularly interesting
-starting point.
-
-**Links:**
-
-* [OpenSoC debug](http://opensocdebug.org/)
+Those are just the apparent ideas for a secure subsystem, we are open
+to your own ideas!
 
 **Details:**
 
-**Skill level:** intermediate
+**Skill level:** intermediate/advanced
 
-**Language:** Your choice (C++, Python, TypeScript, ..?)
+**Language:** (System) Verilog or Chisel, C
 
-**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de> and Bruce Mitchener 
-<bruce.mitchener@gmail.com>
-
-## Generic hardware/software interface for software-defined radio
-
-**Summary:** Identify and implement useful hardware blocks to support 
-software-defined radio.
-
-The lowRISC project employs a configurable I/O-Subsystem for low speed I/O.
-This project hops to provide something similar for wireless connectivity 
-(2.5G, Wifi, Bluetooth, ZigBee, etc.). The goal is to define a minimal subset 
-of hardware elements as building blocks, so that they can be controlled and 
-configured for different wireless standards. 
-
-**Links:**
-
-* [Software-defined radio](https://en.wikipedia.org/wiki/Software-defined_radio)
-* [Myriad RF](https://myriadrf.org/)
-
-**Details:**
-
-**Skill level:** advanced
-
-**Language:** Verilog/VHDL/Chisel, C
-
+**Mentor:** Stefan Wallentowitz <stefan@wallentowitz.de>
 
 ## Implement a SPIR-V front end for Nyuzi
 
