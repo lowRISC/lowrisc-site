@@ -15,9 +15,10 @@ The best ways of keeping up with lowRISC developments are:
 ## Mailing lists and IRC
 
 Development discussion takes place on the lowrisc-dev mailing list. Archives 
-are [here](http://news.gmane.org/gmane.comp.hardware.lowrisc.devel) and you 
-can [subscribe 
-here](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).  
+are 
+[here](https://listmaster.pepperfish.net/pipermail/lowrisc-dev-lists.lowrisc.org/) 
+and you can [subscribe 
+here](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).
 There's also relevant discussion on the [RISC-V mailing 
 lists](http://riscv.org/mailing-lists/).
 
