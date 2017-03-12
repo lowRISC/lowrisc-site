@@ -112,7 +112,7 @@ its quality.
 
 **Language:** Verilog/VHDL and Chisel
 
-**Mentor:** Wei Song <ws327@cam.ac.uk>
+**Mentor:**
 
 ## Building a Basic Embedded Security Module
 
