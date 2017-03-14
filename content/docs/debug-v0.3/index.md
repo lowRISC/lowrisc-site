@@ -49,6 +49,7 @@ techniques. A demo is provided using a low-end
   4. Other
     * [SoC structure updates]({{< ref "docs/debug-v0.3/soc_struct.md" >}})
     * [How to add a new peripherial]({{< ref "docs/debug-v0.3/add_device.md" >}})
+    * [Working with Zedboard]({{< ref "docs/debug-v0.3/zedboard.md" >}})
 
   5. [Release notes] ({{<ref "docs/debug-v0.3/release.md">}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
