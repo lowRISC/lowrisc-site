@@ -107,44 +107,6 @@ extensions would increase its efficiency and reduce overhead?
 **Language:** SystemVerilog or Chisel
 
 
-## Contributions to the Yosys ecosystem
-[Yosys](http://www.clifford.at/yosys/) is a framework for Verilog RTL 
-synthesis.  The following list is incomplete and is meant to inspire student 
-proposals. Do not simply pick one of the projects on this list! We are 
-interested in genuinely original student proposals. Please contact Clifford 
-Wolf early in the process to discuss your ideas.
-
-**Ideas regarding [Project IceStorm](http://www.clifford.at/icestorm/) (the 
-FOSS iCE40 FPGA flow)**
-
-* Improvements in Arachne-pnr place and route tool, such as
-	* Analytical (e.g. quadratic wirelength) placement
-	* Support for LUT cascade feature
-	* Support for BRAM cascade feature
-	* Improved inference of `SB_IO` cells
-	* Timing driven place and route
-	* Speedups (OpenCL?)
-* Alternative iCE40 place and route flow (e.g. using VPR/VTR)
-* Additional support for more iCE40 devices (e.g. UltraLite)
-* In-hardware validation flow for chip databases
-
-**Ideas regarding [Yosys](http://www.clifford.at/yosys/)**
-
-* Additional front- and back-ends
-* New architectures (e.g. additional FPGA families)
-* New non-synthesis flows (verification, etc.)
-* New yosys commands and other features
-
-**Ideas regarding [YosysJS](http://www.clifford.at/yosys/yosysjs.html)**
-
-* Interactive schematic viewer running in the web browser
-* Puzzle games and other web-based Verilog training tools
-* Port of Icarus Verilog to JavaScript (using EMCC)
-
-**Skill level:** intermediate/advanced
-
-**Language:** C++, Javascript
-
 ## Integrate more open-source IP for lowRISC on FPGAs
 
 **Summary:** Introduce open-source IP for components such as UART, SPI, and 
