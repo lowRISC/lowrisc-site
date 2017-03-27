@@ -3,16 +3,17 @@ date = "2017-02-09T15:12:36Z"
 title = "lowRISC project ideas for GSoC 2017"
 +++
 
-lowRISC is hoping to take part in the [2017 Google Summer of 
+lowRISC is taking part in the [2017 Google Summer of 
 Code](https://developers.google.com/open-source/gsoc/) as a mentoring 
 organisation. See the [full program 
 timeline](https://developers.google.com/open-source/gsoc/timeline) for a 
-run-down of key dates. Notably, we'll find out whether we have been accepted 
-or not on February 27th.
+run-down of key dates. Student applications are due by 4pm UTC on April 3rd.
 
 See the [2015]({{< ref "docs/gsoc-2015-ideas.md" >}}) and [2016]({{< ref 
 "docs/gsoc-2016-ideas.md" >}}) ideas pages for more
-potential projects. Note this ideas list is currently being updated.
+potential projects. If you want feedback on ideas, you're best posting to the 
+[lowrisc-dev mailing 
+list](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).
 
 # Project ideas (in no particular order)
 
