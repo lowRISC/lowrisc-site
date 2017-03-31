@@ -62,11 +62,8 @@ To clone the whole lowRISC chip git repository (around 2.1 GB):
 
     # clone the repository to your home directory:
     cd ~/lowRISC/DIR
-    git clone https://github.com/lowrisc/lowrisc-chip.git
+    git clone -b tagged-memory-v0.1 --recursive https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
-    # checkout the tagged-memory-v0.1 release
-    git checkout tagged-memory-v0.1
-    git submodule update --init --recursive
 
 Ensure you have all the necessary packages installed before attempting
 to build the RISC-V tools:
@@ -139,7 +136,7 @@ To build the cross-compiler:
 
     # set up the RISCV environment variables
     cd $TOP/riscv-tools
-    git clone https://github.com/lowrisc/riscv-gcc.git
+    git clone https://github.com/lowrisc/riscv-gcc-tagged-memory-v0.1.git riscv-gcc
     cd riscv-gcc
     mkdir build
     cd build
