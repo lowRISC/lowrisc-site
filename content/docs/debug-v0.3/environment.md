@@ -30,9 +30,8 @@ The code is hosted in the
 external repositories are fetched as submodules. You need to clone the
 proper branch (`debug-v0.3`):
 
-    git clone -b debug-v0.3 https://github.com/lowrisc/lowrisc-chip.git
+    git clone -b debug-v0.3 --recursive https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
-    git submodule update --init --recursive
 
 ### Structure of the git repository
 

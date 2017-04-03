@@ -3,16 +3,17 @@ date = "2017-02-09T15:12:36Z"
 title = "lowRISC project ideas for GSoC 2017"
 +++
 
-lowRISC is hoping to take part in the [2017 Google Summer of 
+lowRISC is taking part in the [2017 Google Summer of 
 Code](https://developers.google.com/open-source/gsoc/) as a mentoring 
 organisation. See the [full program 
 timeline](https://developers.google.com/open-source/gsoc/timeline) for a 
-run-down of key dates. Notably, we'll find out whether we have been accepted 
-or not on February 27th.
+run-down of key dates. Student applications are due by 4pm UTC on April 3rd.
 
 See the [2015]({{< ref "docs/gsoc-2015-ideas.md" >}}) and [2016]({{< ref 
 "docs/gsoc-2016-ideas.md" >}}) ideas pages for more
-potential projects. Note this ideas list is currently being updated.
+potential projects. If you want feedback on ideas, you're best posting to the 
+[lowrisc-dev mailing 
+list](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org).
 
 # Project ideas (in no particular order)
 
@@ -26,68 +27,85 @@ projects might be better handled under a different mentoring organisation,
 e.g. a PyPy port to RISC-V would make more sense under the Python Software 
 Foundation.
 
-## Improve device-tree support for the Linux RISC-V port
+## Contributions to compiler testing
+**Summary:** Improve the state of the art in RISC-V compiler testing.
 
-**Summary:** Implement solid, well-tested device-tree support for the Linux 
-RISC-V port.
-
-The [Linux RISC-V port](https://github.com/riscv/riscv-linux) is currently 
-fairly barebones, and makes use of the host-target interface (HTIF) for most 
-I/O. This project would involve cleaning it up, ensuring there is good support 
-for instantiating devices using device-tree, and thoroughly testing this 
-through modifications to the bootloader and to 
-[QEMU](https://github.com/riscv/riscv-qemu).
-
-**Links:**
-
-* [Device tree for 
-dummies](https://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf)
-* [RISC-V Linux](https://github.com/riscv/riscv-linux)
-* [RISC-V QEMU](https://github.com/riscv/riscv-qemu)
+LLVM compiler tests typically involve verifying certain instruction sequences 
+are present in the output, i.e. don't involve program execution. This has 
+advantages, but it has the disadvantage of relying on test author writing the 
+test correctly in the first place. A highly ambitious way of ensuring the 
+generated RISC-V instructions correctly implement the semantics of the LLVM IR 
+would be to perform an equivalence check where feasible. A more 
+straight-forward approach might be to test the behaviour of the function both 
+[when interpreting LLVM IR](https://github.com/andoma/vmir) and when executing 
+the generated RISC-V code. There is also interesting work around testing ABI 
+conformance, with the [calling convention golden 
+model](https://github.com/lowRISC/riscv-calling-conv-model) being a first step 
+towards this. We would be interested in extending this work.
 
 **Details:**
 
 **Skill level:** intermediate/advanced
 
-**Language:** C
+**Language:** C++, Python
 
-## Contributions to the Yosys ecosystem
-[Yosys](http://www.clifford.at/yosys/) is a framework for Verilog RTL 
-synthesis.  The following list is incomplete and is meant to inspire student 
-proposals. Do not simply pick one of the projects on this list! We are 
-interested in genuinely original student proposals. Please contact Clifford 
-Wolf early in the process to discuss your ideas.
+**Mentor:** Alex Bradbury <asb@lowrisc.org>
 
-**Ideas regarding [Project IceStorm](http://www.clifford.at/icestorm/) (the 
-FOSS iCE40 FPGA flow)**
+## lowRISC/RISC-V in education
+**Summary:** Produce a simulator tool with output useful for those learning 
+computer architecture.
 
-* Improvements in Arachne-pnr place and route tool, such as
-	* Analytical (e.g. quadratic wirelength) placement
-	* Support for LUT cascade feature
-	* Support for BRAM cascade feature
-	* Improved inference of `SB_IO` cells
-	* Timing driven place and route
-	* Speedups (OpenCL?)
-* Alternative iCE40 place and route flow (e.g. using VPR/VTR)
-* Additional support for more iCE40 devices (e.g. UltraLite)
-* In-hardware validation flow for chip databases
+Tools like the [MARS MIPS 
+simulator](http://courses.missouristate.edu/KenVollmar/MARS/) are very popular 
+for university-level education, giving the ability to experiment with simple 
+assembly programs, single step, view register values and so on. This project 
+would look at providing something with similar functionality for the RISC-V 
+ecosystem. A potential extension would be to support features unique to 
+lowRISC such as tagged memory. The RISC-V support in 
+[jor1k](https://github.com/s-macke/jor1k) could be a starting point for a 
+Javascript implementation of this idea.
 
-**Ideas regarding [Yosys](http://www.clifford.at/yosys/)**
-
-* Additional front- and back-ends
-* New architectures (e.g. additional FPGA families)
-* New non-synthesis flows (verification, etc.)
-* New yosys commands and other features
-
-**Ideas regarding [YosysJS](http://www.clifford.at/yosys/yosysjs.html)**
-
-* Interactive schematic viewer running in the web browser
-* Puzzle games and other web-based Verilog training tools
-* Port of Icarus Verilog to JavaScript (using EMCC)
+**Details:**
 
 **Skill level:** intermediate/advanced
 
-**Language:** C++, Javascript
+**Language:** Javascript, language of your choice
+
+**Mentor:** Alex Bradbury <asb@lowrisc.org>
+
+## "Simulated" memory controller
+**Summary:** Provide a way to produce realistic performance numbers from FPGA.
+
+It is a common pitfall to misinterpret or incorrectly scale performance 
+numbers derived from benchmarks run on an FPGA-based SoC design. The problem 
+is that your external memory interface is running at a very high speed 
+compared to the core CPU (e.g. a 25MHz core clock speed but external memory 
+running a several hundred MHz). This can be misleading when trying to consider 
+what the performance would be on an ASIC, as the CPU clock speed could be many 
+times higher but the memory frequency be the same or increase by a much 
+smaller amount. The solution is to have a simulation-ready memory controller 
+that will produce delays much closer to a system where the memory interface is 
+running at a much slower speed.
+
+**Details:**
+
+**Skill level:** advanced
+
+**Language:** SystemVerilog or Chisel
+
+## Programmable DMA engine
+**Summary:** Implement a DMA engine using a small RISC-V core.
+
+This project would involve looking at the feasibility of implementing a DMA 
+engine that executes the RISC-V instruction set. What instruction set 
+extensions would increase its efficiency and reduce overhead?
+
+**Details:**
+
+**Skill level:** advanced
+
+**Language:** SystemVerilog or Chisel
+
 
 ## Integrate more open-source IP for lowRISC on FPGAs
 
@@ -200,34 +218,6 @@ extended to the parallelization of this subset on the Pulp platform.
 **Skill level:** intermediate
 
 **Language:** C
-
-## Doom on PULPino
-
-**Summary:** Porting DOOM on the PULPino platform
-
-In this project, we set the challenging objective of porting the DOOM game to
-PULPino - an open-source microcontroller platform based on a 32-bit RISC-V
-implementation with DSP extensions. The project will consist in 1) porting the
-main game engine on RISC-V, optimizing it by means of the PULPino DSP
-extensions; 2) test it using an artificial set of inputs, such as mouse data
-collected from running DOOM on a normal workstation, and check consistency with
-the expected outputs, 3) design of a simple interface for the Zedboard version
-of PULPino in Vivado, to enable using simple buttons for the input and a
-compatible HDMI display for the output.
-
-The project could easily be extended to provide a more advanced interface (e.g.
-a mouse) if you are interested in HW design.
-
-**Links:**
-
-* [PULP](http://www.pulp-platform.org)
-* [DOOM](https://github.com/id-Software/DOOM)
-
-**Details:**
-
-**Skill level:** intermediate/high
-
-**Language:** C, some Vivado FPGA work (no or very small amount of RTL coding)
 
 ### Open SoC Debug: Nexus Trace Format
 
