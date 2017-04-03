@@ -14,7 +14,7 @@ Zedboard is versatile development board utilising Zynq SoC. It has been used in 
 Compared to the other RISC-V implementations, lowRISC's achievement of offering an untethered RISC-V implementation is great; however, made the design leave the Zynq devices initially. However, with the implementation described in this page, the Zedboard support is added again. Zedboard’s SD Card and UART ports are connected directly to ARM; therefore, the port of lowRISC to Zedboard requires obtaining two low-cost PMOD modules to provide RISC-V with dedicated IO, and continue working untethered. 
 
 * For SD Card: [Pmod SD](http://store.digilentinc.com/pmod-sd-full-sized-sd-card-slot/)
-* For UART: [Pmod RS232](http://store.digilentinc.com/pmod-usbuart-usb-to-uart-interface/) or [Pmod USBUART](http://store.digilentinc.com/pmod-usbuart-usb-to-uart-interface/)
+* For UART: [Pmod RS232](http://store.digilentinc.com/pmod-rs232-serial-converter-and-interface-standard/) or [Pmod USBUART](http://store.digilentinc.com/pmod-usbuart-usb-to-uart-interface/)
 
 Together with the PMODs, the board looks like it is in the image below:
 
@@ -25,40 +25,27 @@ Dedicated IO is provided to RISC-V with PMODs; however, the Zedboard has a singl
 
 A great outcome of this port is one board with two systems on same chip; one of which is ARM, the most accepted architecture for embedded devices, and the other is RISC-V, the most promising. Once can configure to run them independent of each other, and establish shared memory communication as they physically share the memory.
 
+---
+
 ## The Tutorial on Working with Zedboard
 ### Preparation
-Get the lowRISC development environment with *update* branch. (Zedboard extensions are provided for debug-v0.3 branch, but have not merged to that branch yet.)
+Get the lowRISC development environment.
 ```
-git clone -b update https://github.com/lowrisc/lowrisc-chip.git
+git clone -b debug-v0.3 --recursive https://github.com/lowrisc/lowrisc-chip.git
 cd lowrisc-chip
-git submodule update --init --recursive
 ```
 
-Make sure you are working with debug-zedboard branch of fpga submodule.
-```
-cd fpga
-git checkout debug-zedboard
-git submodule update --init --recursive
-```
+Now you need to [prepare the environment as described here](http://www.lowrisc.org/docs/debug-v0.3/environment/)
 
-Make sure you are working with master branch of lowrisc-zed submodule.
-```
-cd board/zed
-git checkout master
-```
-
-Now you need to [prepare the environment as described here]({{< ref "docs/debug-v0.3/environment.md" >}})
+* If you haven’t before, [compile and install RISC-V cross compiler](http://www.lowrisc.org/docs/untether-v0.2/riscv_compile.md)
+* If you haven’t before, [install Vivado and set your environment](http://www.lowrisc.org/docs/untether-v0.2/xilinx.md) *Note: The Zedboard port is implemented with Vivado 2016.2*
 
 * Set environment variables:
 
 ```
+export FPGA_BOARD=zed
 source set_env.sh
 ```
-
-* If you haven’t before, [compile and install RISC-V cross compiler]({{< ref "docs/untether-v0.2/riscv_compile.md" >}})
-* If you haven’t before, [install Vivado and set your environment]({{< ref "docs/untether-v0.2/xilinx.md" >}})
-
-*Note: The Zedboard port is only tested with Vivado 2016.2*
 
 ### Implement the FPGA Project
 Go to the Zedboard submodule.
@@ -66,7 +53,7 @@ Go to the Zedboard submodule.
 cd $TOP/fpga/board/zed
 ```
 
-Before continuing, make sure you have the correct pin mapping of your PMODs connections in the `$TOP/fpga/board/zed/constraint/pin_plan.xdc` file. In the default configuration (of above image), PMOD SD is connected to JB headers of Zedboard and PMOD RS232 is connected to (upper pins of) JC.
+Before continuing, make sure that you have the correct pin mapping of your PMOD connections in the `$TOP/fpga/board/zed/constraint/pin_plan.xdc` file. In the default configuration (above image), PMOD SD is connected to JB headers of the Zedboard, and PMOD RS232 is connected to the (upper pins of) JC headers. If PMOD USBUART is preferred, as it is not pin-to-pin compatible with the RS232, comment the RS232 mapping lines on the `pin_plan.xdc` file, and uncomment the lines for USBUART.
 
 As the work environment is ready, you can work with *make* targets:
 
@@ -100,7 +87,7 @@ Above this subtitle, setting the environment, generating hardware, and programmi
 Before jumping to program RISC-V for booting Linux, prepare the SD Card with the Linux image.
 
 #### Build Linux
-Build the port of Linux kernel for the RISC-V instruction set architecture [as described here]({{< ref "docs/debug-v0.3/fpga.md" >}}):
+Build the port of Linux kernel for the RISC-V instruction set architecture [as described here](http://www.lowrisc.org/docs/debug-v0.3/fpga):
 ```
 cd $TOP/riscv-tools
 curl https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.6.2.tar.xz | tar -xJ
@@ -166,13 +153,10 @@ rrrrrrrrrrrrrrrrrrrrrr  rrrrrrrrrrrrrrrrrrrrrr
 # 
 ```
 
-You can continue with working on Linux by [mounting SD Card as it is described here]({{< ref "docs/debug-v0.3/fpga.md" >}}).
-
-### Remarks on Programming
-It is important to understand that the Zedboard consists of two parts; ARM Processing System (PS) and Programmable Logic (PL). Programming only the PL with the lowRISC implementation is not enough since the implementation depends on PS for the clock, reset and memory controller; therefore, the PL needs PS be initialised. To solve this problem, `make program` initialises the PS using a pre-set file `$TOP/fpga/board/zed/helperscript/ps7_init.tcl`. This file is an SDK generated file for its the default *Hello World* application project. Of course, one may prefer to run his/her own code on ARM instead of just initialising it, and program the PS according to. In such a case, it is possible to program both the PL and PS using SDK either at design-time, or automatically from SD card (not from the PMOD, but Zedboard’s built-in socket) at power-on.
+You can continue with working on Linux by [mounting SD Card as it is described here](http://www.lowrisc.org/docs/debug-v0.3/fpga).
 
 ---
 
-## Footnote
+## Remarks on Programming
+It is important to understand that the Zedboard consists of two parts; ARM Processing System (PS) and Programmable Logic (PL). Programming only the PL with the lowRISC implementation is not enough since the implementation depends on PS for the clock, reset and the memory controller; therefore, the PL needs PS to be initialised. To solve this problem, `make program` initialises the PS using a pre-set file `$TOP/fpga/board/zed/helperscript/ps7_init.tcl`. This file is an SDK generated file for its the default *Hello World* application project. Of course, one may prefer to run his/her own code on ARM instead of just initialising it, and program the PS according to. In such a case, it is possible to program both the PL and PS using SDK either at design-time, or automatically from SD card (not from the PMOD, but Zedboard’s built-in socket) at power-on.
 
-[KU Leuven - COSIC](https://www.esat.kuleuven.be//cosic/) provides the port of lowRISC project to Zedboard. In COSIC, we are designing lightweight trusted computing hardware extentions, and RISC-V is the architecture that we are eager to work with. We picked lowRISC implementation to work on and added Zedboard support to have a highly flexible workbench. For any questions and remarks, you may get in touch with [Furkan Turan](https://www.esat.kuleuven.be/cosic/?page_id=6471) who provides and maintains the corresponding work repository.
