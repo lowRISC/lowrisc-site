@@ -7,6 +7,16 @@ title = "Documentation"
 
 ## Code Releases
 
+* [lowRISC with tagged memory and minion core]({{< ref "docs/minion-v0.4/index.md" >}})
+<br>*Release version 0.4, 04-2017*
+<br>In this code release we present a re-written tagpipe architecture
+for enhanced security, and a prototype Minion core with SD-card read/write control
+as well as the ability to control a USB keyboard and VGA compatible display.
+It also has all the capabilities of the previous release and supports the same Nexys4 DDR FPGA platform.
+The [tutorial]({{< ref "docs/minion-v0.4/index.md" >}})
+outlines the build procedure and forthcoming releases that we are
+planning.
+
 * [lowRISC with a trace debugger]({{< ref "docs/debug-v0.3/index.md" >}})
 <br>*Release version 0.3, 07-2016*
 <br>In this code release we present a first prototype of the lowRISC debug
