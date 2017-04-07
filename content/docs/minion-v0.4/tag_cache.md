@@ -85,5 +85,71 @@ a tag cache as small as kilo bytes is enough to eliminate all throughput overhea
 
 ## Hardware implementation
 
+Instead of using three separate caches to store the *tag table* and the two *tag map*, a unified cache is used.
+Nodes from all tree levels use the same cache line size so they can be stored and searched in the same cache.
+This allow dynamic space allocation to the *tag table* and the two *tag map*.
+When most memory words are tagged, more space is allocated to the *tag table*;
+while when most memory words are not tagged, space is allocated to the higher *tag map* nodes.
+However, this mechanism also allows lower level nodes to replace higher level nodes.
+The tag cache control logic must cope with this hazard and maintain consistent constantly.
+
+The internal structure of the hierarchical tag cache is depicted below.
 
 <img src="../figures/tag_cache_structure.png" alt="Drawing" style="width: 400px; padding: 20px 0px;"/>
+
+The tag cache has five major components:
+
++ *Data Array*<br>
+  The cache memory block to store the cached nodes of all levels of the tree.
+
++ *Metadata Array*<br>
+  The cache metadata memory block to store the status (cache state flag *state* and line non-empty flag *tagFlag*)
+  and the address tag (*addrTag*) associated with each cache line.
+
++ *MemXact Trackers*<br>
+  Parallel transaction trackers for memory accesses from the last level cache.
+
++ *TagXact Trackers*<br>
+  Parallel transaction trackers (shared by all MemXact trackers) for accesses to the hierarchical tag cache.
+
++ *Writeback Unit*<br>
+  A single writeback unit shared by all TagXact trackers for writing back a tag cache line.
+
+In this structure, all nodes from the *tag table* and the two *tag maps* are stored in the unified data and metadata arrays.
+The tag cache can serve multiple memory accesses simultaneously depending on the number of MemXact trackers.
+Each MemXact tracker is responsible to serve a single memory access in a consistent way.
+This implies two requirement:
+
++ A memory transaction must starts with a consistent view of the tree.
+  If a simultaneous transaction is updating the part of the tree visible to this transaction,
+  the transaction must be blocked until the outstanding update is finished.
+
++ A memory transaction may temporarily update the tag tree into an inconsistent state,
+  because it is difficult to make the update to multiple nodes an atomic operation.
+  However, a memory transaction can finish only after it recover the tag tree back to a consistent state.
+
+Each TagXact tracker is a tag cache handler that handles a single node atomically at any time.
+
+### Extra hardware optimisation
+
+Some extra hardware optimisation techniques are used for better cache capacity and smaller transaction latency.
+
+#### Bottom search order
+
+The tag tree is searched in a bottom-up order.
+If a tag is found in a *tag table* node, there is no need to search higher *tag map* nodes.
+When most memory words are tagged, this search order reduces transaction latency and,
+more importantly, reduces the missing penalty when higher *tag map* nodes are replaced by *tag table* nodes.
+In a way, this also increases the capacity of the hierarchical tag cache.
+
+#### Creation rather than fetch
+
+When a node is found missing in the tag cache but it is indicated empty by the higher *tag map* bit,
+an empty node is created directly inside the tag cache without fetching the node from memory.
+This can significantly reduce the transaction latency at the tag setup stage.
+
+#### Avoiding writing back empty nodes
+
+When a dirty but empty node would be replaced by another node, the writeback can be avoided because the
+higher *tag map* should be able to indicate the emptiness. This technique can only be used when the
+'creation rather than fetch' technique is utilised at the same time.
