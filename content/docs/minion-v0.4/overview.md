@@ -1,104 +1,85 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
-title = "Overview of the debug infrastructure"
-parent = "/docs/debug-v0.3/"
-next = "/docs/debug-v0.3/interface/"
+date = "2017-04-14T13:00:00+00:00"
+title = "Overview of the minion infrastructure"
+parent = "/docs/minion-v0.4/"
+next = "/docs/minion-v0.4/interface/"
 showdisqus = true
 
 +++
 
-For this release we have set the goal to create the basic debug
-infrastructure for lowRISC. Before going into the details, we want to
-give you an overview about where we are heading with the debug
-infrastructure. Essentially, there are two methods to debug a
-processor:
-
- * With *run-control debugging* the developer controls the processor
-   core by setting breakpoints and stepping through instructions. This
-   is what most people understand as debugging and `gdb` is probably
-   the dominant tool for it.
-
- * *Trace debugging* differs from that by sampling the processor
-   execution (program counter etc.) and generating a "trace" of the
-   program execution. Most importantly this happens non-intrusively,
-   meaning there is no impact on the program execution. Especially for
-   multicore system-on-chip, it enables debugging of concurrency
-   issues or performance bottlenecks. Finally, other hardware
-   elements like a DMA or memory controller can be easily extended to
-   generate traces.
-
-While we have support for run-control debugging in the roadmap, we
-currently focus on trace debugging. So for our first release we have
-defined the following functionalities we want to support:
-
- * Generate a function trace (enter and leave functions) for the
-   program
-
- * Allow minimally intrusive software instrumentation with trace
-   events
-
- * Memory access and initialization
-
- * Reset the system and cores remotely
-
- * Serial communication (console) via the debug system
+For this release the goal was to provide small dedicated processors
+(known as minions) to off-load peripheral activity from the main Rocket
+processor, and to move away from fixed I/O functions towards a more
+flexible approach.
 
 In the picture below you can find an updated overview of the lowRISC
 system architecture. If you compare it to the
-[previous SoC overview]({{< ref "docs/untether-v0.2/overview.md" >}}) you
+[previous SoC overview]({{< ref "docs/debug-v0.3/overview.md" >}}) you
 can see that the major change and main topic of this tutorial is the
-new debug infrastructure.
+new minion infrastructure.
 
 <a name="figure-overview"></a>
 <img src="../figures/lowRISC_soc.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
 
-You can find the functionalities covered by modules throughout the
-system. For best scalability and modularity we decided to connect the
-debug modules with a separate network. Currently we use one debug ring
-as a compromise between throughput and resource utilization. The
-following figure focuses on the debug system.
+## Pre-defined Design constraints
 
-<a name="figure-debugsystem"></a>
-<img src="../figures/debug_system.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
+Our goal of maintaining the hardware platform as per the previous release
+may only be realised with a single Minion. nevertheless it is conceived that a fully-fledged
+system would make use of several Minions. The Minion processor is based on a cut-down version
+of Pulpino, a RISCV-compatible processor from ETH-Zurich. The SD-card interface is eventually
+intended to be a software re-programmable input/output device incorporating programmable shift
+registers as well as direct CPU control. For purposes of continuity, it was necessary for a
+backward compatible interface to be used to allow Linux to boot from a small on-chip memory.
 
-The figure also shows the connection to the host PC that communicates
-with the debug modules with *debug packets*. The actual data transport
-between the host and the debug system is abstracted by using the
-*Generic Logic Interface Project (glip)* which provides a simple
-bi-directional FIFO interface and different physical interfaces like
-UART, USB and JTAG.
+To take advantage of the 4-bit mode of operation available with modern SDHC-cards, a simplified
+SD-subsystem from the opencores sd_card_controller project was adapted for use with the Minion.
+The enhanced system including processor takes approximately 1/6 of the FPGA. Some aspects of the
+operation of these cards are obscure. It is desirable to refer to older documents such as the MMC
+card specification for clarification of missing information.
 
-Work on the the debug infrastructure has been produced as part of the
-[Open SoC Debug](http://www.opensocdebug.org) project, where you can
-also find a
-[broader introduction](http://opensocdebug.org/docs/overview/). The
-debug infrastructure presented in this tutorial is just the first
-step. Before we jump into the details and get some hands-on
-experience, we want to briefly outline where the debug subsystem is
-headed:
+## Overview of the Boot process
 
- * Once a *run-control interface* is available for the Rocket core we
-   will include it as a debug module.
+To avoid using the SPI mode of the SD-card, a lengthy sequence of inquiry packets needs to be
+send to establish the SD-card capabilities. Users should avoid using the onboard PIC processor to
+configure the bitstream in SPI mode. This will result in difficulties returning to SD-mode later.
+Alternatives available are USB memory stick (if the built-in keyboard is not needed), or on-board
+quad-spi flash. The Rocket chip has only 64K ROM (implemented as block RAM) allocated to the boot
+process. A full-blown SD-card protocol stack would be many times this size, so we make many simplifying
+assumptions about the technology of the card which will be used. Essentially it needs to be Micro-SDHC,
+with a fixed 5MHz initialisation and operating frequency.
 
- * Full system traces quickly blow up to multiple gigabyte per
-   second. *(Cross-)Triggers and filters* help reducing the trace size
-   and focus on the problem.
+The initialisation is:
 
- * *On-chip trace processing* with a (dedicated) minion core can be
-   used to aggregate and process basic trace information to high level
-   information (knowledge).
+* Cmd0   (reset)
+* Cmd8   (send interface condition)
+* ACmd41 (send operating condition)
+* Cmd2   (send card ID)
+* Cmd3   (send relative card address)
+* Cmd9   (send card-specific data)
+* Cmd13  (send status register)
+* Cmd7   (select card)
+* Acmd51 (send SD configuration register)
+* Acmd6  (set bus width)
+* Acmd13 (send SD status)
 
- * *Trace buffering and output* on a separate high speed port or to
-   DRAM broadens the use cases of the debug system.
+Assuming no errors occured, sector read can proceed with Cmd16(set block length) followed by Cmd17(read single).
+
+All commands have a command phase, some also have a data phase,
+for more details consult the SD Group physical layer specification.
+
+Within each relevant command an elaborate data phase provides longitudinal CRC checking and error recovery.
+A future enhancement could add the intelligence for multi-block random access during booting.
+
+## Boot filing system
+
+The boot filing system only supports a single DOS partition, which has to be partition 1. It does not support writing to the card. Most modern SD-cards out of the box will meet these requirements. Under Linux the available facilities are much more
+sophisticated, and a second ext2 partition with extended userland commands can happily coexist with this boot partition.
+
+FPGA cards, by their very nature, are noisy environments so it is desirable to be able to check the contents of the second stage boot loader after reading it from card. The builtin ROM can read an md5 text file and compare its contents with the calculated value on the second stage boot loader. The remaining task is to extract the ELF segments for the Berkley Boot Loader (BBL), and the kernel itself to their respective locations in memory, before the boot process proper can begin.
 
 Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas 
 and opinions about future directions we should take. Now
 it's time to learn more about the debug system or jump into using it:
 
- * More details
-  * [Debug interface]({{< ref "docs/debug-v0.3/interface.md" >}})
-  * [Debug modules]({{< ref "docs/debug-v0.3/debugmodules.md" >}})
-  * [Debug software and methodology]({{< ref "docs/debug-v0.3/softwaremethodology.md" >}})
-
- * [Prepare the environment and get started]({{< ref "docs/debug-v0.3/environment.md" >}})
+ * [Prepare the environment and get started]({{< ref "docs/minion-v0.4/environment.md" >}})

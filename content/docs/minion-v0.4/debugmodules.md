@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
+date = "2017-04-14T13:00:00+00:00"
 title = "Debug modules"
-parent = "/docs/debug-v0.3/overview/"
-prev = "/docs/debug-v0.3/interface/"
-next = "/docs/debug-v0.3/softwaremethodology/"
+parent = "/docs/minion-v0.4/overview/"
+prev = "/docs/minion-v0.4/interface/"
+next = "/docs/minion-v0.4/softwaremethodology/"
 showdisqus = true
 
 +++

@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
+date = "2017-04-14T13:00:00+00:00"
 title = "Debug walkthrough"
-parent = "/docs/debug-v0.3/"
-prev = "/docs/debug-v0.3/osdsoftware/"
-next = "/docs/debug-v0.3/simulation/"
+parent = "/docs/minion-v0.4/"
+prev = "/docs/minion-v0.4/osdsoftware/"
+next = "/docs/minion-v0.4/simulation/"
 showdisqus = true
 
 +++

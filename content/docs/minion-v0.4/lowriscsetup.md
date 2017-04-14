@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
+date = "2017-04-14T13:00:00+00:00"
 title = "Generic lowRISC setup"
-parent = "/docs/debug-v0.3/environment/"
-prev = "/docs/debug-v0.3/environment/"
-next = "/docs/debug-v0.3/osdsoftware/"
+parent = "/docs/minion-v0.4/environment/"
+prev = "/docs/minion-v0.4/environment/"
+next = "/docs/minion-v0.4/osdsoftware/"
 showdisqus = true
 
 +++
@@ -14,5 +14,12 @@ steps:
 
  * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
  * [Install Verilator] ({{<ref "verilator.md">}})
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
 
+The above procedure may change your LD_LIBRARY_PATH to an older version of libraries than some systems expect. If this
+happens, you may get a message such as:
+
+* awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
+
+A work-around is to manually execute `unset LD_LIBRARY_PATH` afterwards before installing the cross-compiler.
+
+ * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})

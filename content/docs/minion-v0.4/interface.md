@@ -1,15 +1,15 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
-title = "Debug interface"
-parent = "/docs/debug-v0.3/overview/"
-prev = "/docs/debug-v0.3/overview/"
-next = "/docs/debug-v0.3/debugmodules/"
+date = "2017-04-14T13:00:00+00:00"
+title = "Minion interface"
+parent = "/docs/minion-v0.4/overview/"
+prev = "/docs/minion-v0.4/overview/"
+next = "/docs/minion-v0.4/debugmodules/"
 showdisqus = true
 
 +++
 
-As mentioned in the [overview]({{< ref "docs/debug-v0.3/overview.md"
+As mentioned in the [overview]({{< ref "docs/minion-v0.4/overview.md"
 >}}) the debug infrastructure abstracts from the physical transport
 interface with the
 [generic interface logic project (glip)](http://glip.io). The
@@ -67,4 +67,4 @@ the header and payload in `uint16_t` arrays and sending them with
 handlers that were registers for the different modules. You find more
 details on the software interface in the
 [debug software and methodology]({{< ref
-"docs/debug-v0.3/softwaremethodology.md" >}}) part of the tutorial.
+"docs/minion-v0.4/softwaremethodology.md" >}}) part of the tutorial.

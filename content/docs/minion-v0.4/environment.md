@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
+date = "2017-04-14T13:00:00+00:00"
 title = "Prepare the environment"
-parent = "/docs/debug-v0.3/"
-prev = "/docs/debug-v0.3/softwaremethodology/"
-next = "/docs/debug-v0.3/lowriscsetup/"
+parent = "/docs/minion-v0.4/"
+prev = "/docs/minion-v0.4/softwaremethodology/"
+next = "/docs/minion-v0.4/lowriscsetup/"
 showdisqus = true
 
 +++
@@ -14,7 +14,7 @@ Everything except using the FPGA boards should also work
 out-of-box in a virtual machine.
 
 For more details follow the
-[instructions of the previous tutorial](/docs/untether-v0.2/dev-env).
+[instructions of a previous tutorial](/docs/untether-v0.2/dev-env).
 
 Ensure you have all the necessary packages installed:
 
@@ -28,21 +28,18 @@ Ensure you have all the necessary packages installed:
 The code is hosted in the
 [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip). All
 external repositories are fetched as submodules. You need to clone the
-proper branch (`debug-v0.3`):
+proper branch (`minion-v0.4`):
 
-    git clone -b debug-v0.3 --recursive https://github.com/lowrisc/lowrisc-chip.git
+    git clone -b minion-v0.4 --recursive https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
 
 ### Structure of the git repository
 
 The structure is similar to the one described
 [here](/docs/untether-v0.2/dev-env/#gitstruct). Essentially
-one folder was added that contains the Open SoC Debug repositories:
+one folder was added that contains the Minion repository:
 
- * `opensocdebug`: Open SoC Debug and dependencies
-  * `glip`: The [generic logic interface project](http://glip.io)
-  * `hardware`: Hardware modules of Open SoC Debug
-  * `software`: The Open SoC Debug software
+ * `minion_subsystem`: Minion (Pulpino) subsystem and peripherals
 
 ### Next steps
 
@@ -61,6 +58,6 @@ The following variables are overridable:
 
 Next, you should follow the following steps:
 
- * [Build the generic lowRISC setup](/docs/debug-v0.3/lowriscsetup)
- * [Build the osd software](/docs/debug-v0.3/osdsoftware)
+ * [Build the generic lowRISC setup](/docs/minion-v0.4/lowriscsetup)
+ * [Build the osd software](/docs/minion-v0.4/osdsoftware)
 

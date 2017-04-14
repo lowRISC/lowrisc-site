@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
+date = "2017-04-14T13:00:00+00:00"
 title = "Open SoC Debug Software"
-parent = "/docs/debug-v0.3/environment/"
-prev = "/docs/debug-v0.3/lowriscsetup/"
-next = "/docs/debug-v0.3/walkthrough/"
+parent = "/docs/minion-v0.4/environment/"
+prev = "/docs/minion-v0.4/lowriscsetup/"
+next = "/docs/minion-v0.4/walkthrough/"
 showdisqus = true
 
 +++

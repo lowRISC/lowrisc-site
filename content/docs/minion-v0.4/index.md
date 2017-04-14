@@ -1,14 +1,14 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
-title = "Tutorial for the debug preview of lowRISC"
+date = "2017-04-14T13:00:00+00:00"
+title = "Tutorial for the tagged memory and minion SD-card of lowRISC"
 showdisqus = true
 
 +++
 
 _By Jonathan Kimmitt and Wei Song_
 
-**Release version 0.4** (07-2016)
+**Release version 0.4** (04-2017)
 
 ## Introduction
 
@@ -33,7 +33,7 @@ The build environment and pre-built images supprt the same platform as the previ
 
 ### Contents
 
-  1. [Overview of the trace pipeline]({{< ref "docs/minion-v0.4/overview.md" >}})
+  1. [Overview of the Minion system]({{< ref "docs/minion-v0.4/overview.md" >}})
     * [Minion interface]({{< ref "docs/minion-v0.4/interface.md" >}})
 
   2. [Prepare the environment]({{< ref "docs/minion-v0.4/environment.md" >}})
@@ -48,7 +48,6 @@ The build environment and pre-built images supprt the same platform as the previ
   4. Other
     * [SoC structure updates]({{< ref "docs/minion-v0.4/soc_struct.md" >}})
     * [How to add a new peripherial]({{< ref "docs/minion-v0.4/add_device.md" >}})
-    * [Working with Zedboard]({{< ref "docs/minion-v0.4/zedboard.md" >}})
 
   5. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})

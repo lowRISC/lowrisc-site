@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2016-05-16T12:00:00+00:00"
+date = "2017-04-14T13:00:00+00:00"
 title = "Connecting to RTL simulation and enumeration"
-parent = "/docs/debug-v0.3/walkthrough/"
-prev = "/docs/debug-v0.3/walkthrough/"
-next = "/docs/debug-v0.3/debugsession/"
+parent = "/docs/minion-v0.4/walkthrough/"
+prev = "/docs/minion-v0.4/walkthrough/"
+next = "/docs/minion-v0.4/debugsession/"
 showdisqus = true
 
 +++
