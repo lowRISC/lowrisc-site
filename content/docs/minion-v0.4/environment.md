@@ -13,6 +13,7 @@ We still recommend you work with a 64-bit Ubuntu (14.04 LTS).
 Everything except using the FPGA boards should also work
 out-of-box in a virtual machine.
 
+This section is identical to the previous release, apart from the release name.
 For more details follow the
 [instructions of a previous tutorial](/docs/untether-v0.2/dev-env).
 
@@ -59,5 +60,5 @@ The following variables are overridable:
 Next, you should follow the following steps:
 
  * [Build the generic lowRISC setup](/docs/minion-v0.4/lowriscsetup)
- * [Build the osd software](/docs/minion-v0.4/osdsoftware)
+ * [Build the osd software](/docs/debug-v0.3/osdsoftware)
 

@@ -6,7 +6,7 @@ showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt and Wei Song_
+_By Jonathan Kimmitt and Wei Song_ (Stefan Wallentowitz co-authored the previous version)
 
 **Release version 0.4** (04-2017)
 
@@ -34,22 +34,15 @@ The build environment and pre-built images supprt the same platform as the previ
 ### Contents
 
   1. [Overview of the Minion system]({{< ref "docs/minion-v0.4/overview.md" >}})
-    * [Minion interface]({{< ref "docs/minion-v0.4/interface.md" >}})
 
   2. [Prepare the environment]({{< ref "docs/minion-v0.4/environment.md" >}})
     * [Generic lowRISC setup]({{< ref "docs/minion-v0.4/lowriscsetup.md" >}})
-    * [Open SoC Debug software]({{< ref "docs/minion-v0.4/osdsoftware.md" >}})
-
-  3. [Debug walkthrough]({{< ref "docs/minion-v0.4/walkthrough.md" >}})
-    * [Connecting to RTL simulation and enumeration]({{< ref "docs/minion-v0.4/simulation.md" >}})
-    * [A debug session]({{< ref "docs/minion-v0.4/debugsession.md" >}})
-	* [Running on the FPGA]({{< ref "docs/minion-v0.4/fpga.md" >}})
-
-  4. Other
-    * [SoC structure updates]({{< ref "docs/minion-v0.4/soc_struct.md" >}})
-    * [How to add a new peripherial]({{< ref "docs/minion-v0.4/add_device.md" >}})
-
-  5. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
+ 
+  3. Other
+   * [Walkthrough]({{< ref "docs/minion-v0.4/walkthrough.md" >}})
+ 
+  4. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
+     * [**Version 0.4**: minion tag cache lowRISC (4-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})

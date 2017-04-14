@@ -3,7 +3,7 @@ Description = ""
 date = "2017-04-14T13:00:00+00:00"
 title = "Overview of the minion infrastructure"
 parent = "/docs/minion-v0.4/"
-next = "/docs/minion-v0.4/interface/"
+next = "/docs/minion-v0.4/environment/"
 showdisqus = true
 
 +++

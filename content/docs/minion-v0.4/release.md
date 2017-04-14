@@ -3,7 +3,6 @@ Description = ""
 date = "2017-04-14T13:00:00+00:00"
 title = "Release notes"
 parent = "/docs/minion-v0.4/"
-prev = "/docs/minion-v0.4/add_device/"
 showdisqus = true
 
 +++
@@ -11,25 +10,26 @@ showdisqus = true
 ### Release notes
 
  * Rocket-core (Chisel)
-   * Add core trace and software trace modules in each Rocket core using Chisel black-boxes.
-   * Add Chisel debug network to Rocket-chip to connect the debug modules in cores.
-   * Add a trace CSR (swtrace) for software trace triggering.
-   * Merge the latest (05-2016) updates from RISC-V.
-   * Use the shared TileLink MEM network and reduce code discrepancy with the upstream Rocket to be minimal.
-   * Updated `Configs.scala` and `LowRISCChip.scala` to utilize new features from the upstream RISC-V.
+   * Add tag cache and improved security features.
+ * Software environment
+   * Most of the previous bare-metal program functionality integrated into one 64K executable
+   * Implement 4-bit read/write SD-mode access to memory cards in Linux.
+   * Console output appears on serial port and VGA screen in parallel.
+   * Bare metal booting kernel in 4-bit SD-mode supported.
  * lowRISC-chip
-   * Add trace debugger from Open SoC Debug.
-   * Upgrade the IO side NASTI to a full NASTI interface.
-   * Rewrite the NASTI to NASTI-Lite interface in socip.
-   * Re-structure the SystemVerilog top level to use macros from Chisel compiler.
+   * Add Minion core (Pulpino based) to control SD-card, keyboard, and VGA display.
+   * Standalone operation (without personal computer) possible.
+   * VGA-compatible text display.
+   * USB-keyboard (PS/2 compatible)
  * Design environment
-   * A NEXYS4-DDR FPGA demo.
-   * Better Makefile support.
+   * Updated demo images for NEXYS4-DDR FPGA.
+   * Add cfgmem and program-cfgmem targets to fpga Makefile.
  * Missing from this release vs the previous
-   * No tagged memory support (will be added back soon).
-   * No support for ZedBoard and KC705.
+   * Bitstream configuration from SD-card is no longer convenient.
+   * Quad SPI memory execute-in-place is missing from initial demo images.
 
 ### Previous releases
 
+ * [**Version 0.3**: core trace lowRISC (06-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
  * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
  * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
