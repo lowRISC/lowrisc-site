@@ -3,15 +3,11 @@ Description = ""
 date = "2017-04-11T17:00:00+00:00"
 title = "Tag support in the Rocket core"
 parent = "/docs/minion-v0.4/"
-prev = "/docs/minion-v0.4/xxx/"
-next = "/docs/minion-v0.4/xxx/"
+prev = "/docs/minion-v0.4/tag_cache/"
+next = "/docs/minion-v0.4/tag_lowrisc/"
 showdisqus = true
 
 +++
-
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 ### Motivation
 
