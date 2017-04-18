@@ -129,3 +129,76 @@ Also for all unconditional jumps (`JAL/JALR`), mask `JMP_PROP` is used to set th
 
     for JALR:      JMP_CHCK != 0 && (rs1_t & JMP_CHCK) == 0 -> xcpt!
     for JAL/JALR:  rd_t <= JMP_PROP
+
+### Program guidance
+
+Here is a short discussion of how to utilise the tag functions in assembly programs.
+
+#### The tag control CSR
+
+The tag control CSR (`tagctrl`) is initialised to 0 after reset, which disables all tag propagation and checks.
+To enable a specific tag propagation or check function, a proper non-zero mask must be written to `tagctrl`.
+This CSR is accessible only in machine mode as machine mode is considered safe.
+A set of macros (`TMASK_XXX` and `TSHIM_XXX`) are provided in the `encoding.h` header file for easy tag function configuration.
+
+#### Handle tag check exception
+
+When a tag check fails, an `TAG_CHECK_FAIL` exception is raised with the `cause` CSR set to 0x10 and `epc` set to the excepted instruction.
+It relies on the exception handler to check the specific failed tag check function.
+Also it is the exception handler's responsibility to clear the cause of the tag check failure.
+If unresolved, the program would end up in an infinite loop of tag exceptions.
+
+The following CSRs are extended with tags; therefore, they can be safely read/written using GPRs without losing tag.
+
+| CSR Name               | Usage                                             |
+| :---                   | :---                                              |
+| `mepc`, `sepc`         | preserve the excepted pc tag                      |
+| `mscratch`, `sscratch` | allow the scratch CSR used for preserve tags      |
+| `mtvec`, `stvec`       | special pc tag check for exception handler vector |
+
+When some tag checks are enabled, especially the jump related tag checks, you might want to disable them for the exception handlers.
+Currently there is no atomic support for this feature.
+Example assemble segments are shown below using the scratch CSR to disable tag checks for exception handlers.
+Note that these segments must be used as macros rather than sub-routines as any jump may cause embedded exception.
+
+~~~
+; disable tag check and enable propagation for machine exception
+#define ENTER_TAG_MACHINE         \
+    csrr t5, tagctrl;             \
+    csrw mscratch, t5;            \
+    li   t6, TMASK_ALU_PROP;      \
+    li   t5, TMASK_LOAD_PROP;     \
+    or   t6, t6, t5;              \
+    li   t5, TMASK_STORE_PROP;    \
+    or   t6, t6, t5;              \
+    csrw tagctrl, t6;             \
+
+; recover to the tag configuration before exception
+#define EXIT_TAG_MACHINE          \
+    csrr t5, mscratch;            \
+    csrw tagctrl, t5;             \
+
+~~~
+
+#### Asynchronous Load/Store tag exceptions
+
+Currently the exception caused by Load/Store tag checks can be asynchronous.
+If the load/store operation ends up missing in L1 D$, the non-blocking D$ provided by Rocket would fetch the missing cache line without blocking the core pipeline.
+The missed load/store instructions are processed out-of-order with the ALU instructions.
+
+When the missing cache line is fetched but fails in the tag check, an exception is still raised with the right exception pc.
+However, it is not synchronised with the committed instruction, since the core pipeline is not blocked and other ALU instructions may have been committed.
+This behaviour leads to two issues: asynchronous tag exception and miscalculation of the retied instructions (`retire` CSR).
+
+The error towards the number of retired instructions is small. Thus it is not a big issue.
+As for the asynchronous tag exception, we will fix this issue by rolling-back the core pipeline using a reorder buffer.
+For this release, `fence.i` instruction can be used to enforce synchronised load/store exceptions, although it is rather a heavy mechanism.
+
+#### Tag regression tests
+
+A relatively thorough regression test suite is provided for the tag function in `vsim/riscv-tests/tag`.
+It is possible to run this test suite by
+
+    make run-tag-tests
+
+in the `vsim` directory.
