@@ -16,22 +16,22 @@ special instructions are added to read and write tags for certain memory words;
 however, there is no intrinsic way to use tags in checking anomalies,
 such as protecting return address from being altered on stack (needed for control flow integrity applications)
 or triggering an exception when accessing a specific address (unlimited watch-points).
-In this release, we incorporate these essential tag manipulating and checking functions into the normal
+In this release, we incorporate these essential tag manipulation and check functions into the normal
 RISC-V instructions and the Rocket core, which enables the built-in support for tag checks.
 
 
 ### Extension to the Rocket core
 
 To support built-in tag manipulation and check in the Rocket core,
-all general purpose registers (GPRs) and some exception related CSRs are extended with tags (excepted for `x0` whose tag is hard-wired to `0`).
+all general purpose registers (GPRs) and some exception related CSRs are extended with tags (excepted for `x0` whose tag is hardwired to `0`).
 The L1 instruction cache feeds the instruction decoder (ID) stage with instructions along with their tags.
 The L1 data cache is revised to store tags along side data.
-Several tag processing units (*tagProc*) and tag checking units (*tagChck*) are added to the various stages of the Rocket core pipeline
+Several tag processing units (*tagProc*) and tag check units (*tagChck*) are added to the various stages of the Rocket core pipeline
 and the L1 data cache pipeline, as shown in the diagram below.
 
-<img src="../figures/tagpipe.png" alt="Drawing" style="width: 700px; padding: 20px 0px;"/>
+<p style="text-align:center;"><img src="../figures/tagpipe.png" alt="Drawing" style="width: 700px; padding: 20px 0px;"/></p>
 
-Here is a summery of the various tag functions supported in the expanded Rocket core.
+Here is a summary of the various tag functions supported in the expanded Rocket core.
 Every function is controlled by a dedicated mask. The collection of all masks are placed in a machine-mode accessible CSR: `tagctrl` at address 0x8f0.
 It is assumed that a 4-bit tag is attached to every 64-bit data word and every instruction (regardless to the size of the instruction)
 has a 2-bit tag which is correspondingly aligned to the 32-bit data boundary.
@@ -53,7 +53,7 @@ has a 2-bit tag which is correspondingly aligned to the 32-bit data boundary.
 | Indirectional target check |`CFLOW_INDIR_TGT:`|` 2-bit tagctrl[31:30]` | MEM *tagChck*    | \[JALR\] if jump, check the instruction tag of the jump target. |
 
 
-Similar to the previous release, two special instructions are provided to read and write tag of a GPR (rather than a memory word in the previous release).
+Similar to the previous release, two special instructions are provided to read and write the tag of a GPR (rather than a memory word in the previous release).
 These two instructions can be used to read/write tags in all privilege levels and does not count as ALU instructions
 (therefore the *ALU tag propagation* and the *ALU tag check* functions have no effect).
 
@@ -74,7 +74,7 @@ TAGW rd, rs1;  // (rd, rd_t) <= (rd, rs1)
 
 For any ALU instructions, such as `add`, `addi`, `or`, `andi`, etc., the tag of the destination register (`rd_t`) is updated according to the equation below.
 When `rs2` is replaced with an immediate number, `rs2_t` is 0.
-Also a tag check is applied. An exception (`xcpt!`) is raised when the check fails.
+AT the same time, a tag check can be applied. An exception (`xcpt!`) is raised when the check shall fail.
 
     rd_t <= (rs1_t | rs2_t) & ALU_PROP
     ((rs1_t | rs2_t) & ALU_CHECK) != 0 -> xcpt!
@@ -83,7 +83,7 @@ Also a tag check is applied. An exception (`xcpt!`) is raised when the check fai
 #### Load tag propagation and check
 
 For any load or atomic instructions, the tag from memory (`mem_t`) is copied to `rd_t` under the control of mask `LOAD_PROP`.
-This tag propagation ignores the width of the load and always override the whole `rd_t`.
+This tag propagation ignores the width of the load and always overrides the whole `rd_t`.
 A check is performed on `mem_t` if the mask `LOAD_CHCK` is non-zero.
 This feature can be used for compartment isolation, memory safety or data watch-points.
 
@@ -93,8 +93,8 @@ This feature can be used for compartment isolation, memory safety or data watch-
 #### Store tag propagation and preservation and check
 
 For any store or atomic instructions, the tag from `rs2` (`rs2_t`) is copied to `mem_t` under the control of mask `STORE_PROP`.
-At the same time, mask `STORE_KEEP` prevent certain tag bits from being cleared by `rs2_t`.
-Like load, store tag propagation also ignores the data width and always override the whole `mem_t`.
+At the same time, mask `STORE_KEEP` prevents certain tag bits from being cleared by `rs2_t`.
+Like load, store tag propagation also ignores the data width and always overrides the whole `mem_t`.
 A check is performed on `mem_t` if the mask `STORE_CHCK` is non-zero.
 This feature can be used for compartment isolation, memory safety or data watch-points.
 
@@ -110,9 +110,9 @@ This feature can be used for breakpoints.
 
 #### Jump related tag operations
 
-For a jump instruction, assuming the jump target is `jmp_tgt` and the jump is unconditional or taken,
-a mask (`CFLOW_INDIR_TGT` for `JALR` otherwise `CFLOW_DIR_TGT`) is stored as the tag for the next program counter (pc), noted as `pc_t`.
-When the targeted instruction is executed, its `inst_t` is checked against `pc_t`.
+For a jump instruction, assuming jump is either unconditional or conditional but taken,
+a mask (`CFLOW_INDIR_TGT` for `JALR` otherwise `CFLOW_DIR_TGT`) is stored as the tag for the program counter (noted as `pc_t`) of the next instruction (the jump target).
+When the jump target is executed, its `inst_t` is checked against `pc_t`.
 This feature can be used to protect control flow integrity.
 
     for directional jump:   pc_t <= CFLOW_DIR_TGT
@@ -134,28 +134,27 @@ Here is a short discussion of how to utilise the tag functions in assembly progr
 
 The tag control CSR (`tagctrl`) is initialised to 0 after reset, which disables all tag propagation and checks.
 To enable a specific tag propagation or check function, a proper non-zero mask must be written to `tagctrl`.
-This CSR is accessible only in machine mode as machine mode is considered safe.
+This CSR is accessible only in machine mode as programs running in machine mode are considered safe.
 A set of macros (`TMASK_XXX` and `TSHIM_XXX`) are provided in the `encoding.h` header file for easy tag function configuration.
 
-#### Handle tag check exception
+#### Handle tag check exceptions
 
-When a tag check fails, an `TAG_CHECK_FAIL` exception is raised with the `cause` CSR set to 0x10 and `epc` set to the excepted instruction.
-It relies on the exception handler to check the specific failed tag check function.
-Also it is the exception handler's responsibility to clear the cause of the tag check failure.
-If unresolved, the program would end up in an infinite loop of tag exceptions.
+When a tag check fails, an `TAG_CHECK_FAIL` exception is raised with the `cause` CSR set to 0x10 and `epc` pointing to the exceptional instruction.
+It relies on the exception handler to check the specific failed function and clear the cause of the tag check failure.
+If the cause is not rectified, the program would end up in an infinite loop of tag exceptions.
 
-The following CSRs are extended with tags; therefore, they can be safely read/written using GPRs without losing tag.
+The following CSRs are extended with tags and can be safely read/written using GPRs without losing tags.
 
 | CSR Name               | Usage                                             |
 | :---                   | :---                                              |
-| `mepc`, `sepc`         | preserve the excepted pc tag                      |
+| `mepc`, `sepc`         | preserve the pc tag for the exceptional instruction. |
 | `mscratch`, `sscratch` | allow the scratch CSR used for preserve tags      |
 | `mtvec`, `stvec`       | special pc tag check for exception handler vector |
 
-When some tag checks are enabled, especially the jump related tag checks, you might want to disable them for the exception handlers.
+When some tag checks are enabled, especially the jump related tag checks, you might want to disable them for exception handlers.
 Currently there is no atomic support for this feature.
-Example assemble segments are shown below using the scratch CSR to disable tag checks for exception handlers.
-Note that these segments must be used as macros rather than sub-routines as any jump may cause embedded exception.
+Example assemble segments are provided to disable/enable tag checks for exception handlers.
+Note that these segments must be used as macros rather than sub-routines as any jump may cause embedded exceptions.
 
 ~~~
 ; disable tag check and enable propagation for machine exception
@@ -178,21 +177,20 @@ Note that these segments must be used as macros rather than sub-routines as any 
 
 #### Asynchronous Load/Store tag exceptions
 
-Currently the exception caused by Load/Store tag checks can be asynchronous.
-If the load/store operation ends up missing in L1 D$, the non-blocking D$ provided by Rocket would fetch the missing cache line without blocking the core pipeline.
+Currently the exceptions caused by Load/Store tag checks can be asynchronous.
+If the load/store operation ends up missing in L1 D$, the non-blocking D$ would fetch the missing cache line without blocking the core pipeline.
 The missed load/store instructions are processed out-of-order with the ALU instructions.
 
-When the missing cache line is fetched but fails in the tag check, an exception is still raised with the right exception pc.
-However, it is not synchronised with the committed instruction, since the core pipeline is not blocked and other ALU instructions may have been committed.
-This behaviour leads to two issues: asynchronous tag exception and miscalculation of the retied instructions (`retire` CSR).
+When the missing cache line is fetched later, it may fail in the tag check. An exception is still raised with the right exceptional pc but out-of-sync with the core pipeline.
+This behaviour leads to two issues: asynchronous tag exception and miscounting the retired instructions (`retire` CSR).
 
-The error towards the number of retired instructions is small. Thus it is not a big issue.
-As for the asynchronous tag exception, we will fix this issue by rolling-back the core pipeline using a reorder buffer.
-For this release, `fence.i` instruction can be used to enforce synchronised load/store exceptions, although it is rather a heavy mechanism.
+The error towards the number of retired instructions is small.
+As for the asynchronous tag exception, we will fix this issue by rolling-back the core pipeline with a reorder buffer.
+For this release, `fence.i` instruction can be used to enforce synchronised load/store exceptions, although it is rather heavy.
 
 #### Tag regression tests
 
-A relatively thorough regression test suite is provided for the tag function in `vsim/riscv-tests/tag`.
+A relatively thorough regression test suite is provided for the tag functions in `vsim/riscv-tests/tag`.
 It is possible to run this test suite by
 
     make run-tag-tests
