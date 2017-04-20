@@ -34,7 +34,7 @@ The build environment and pre-built images supprt the same platform as the previ
 ### Contents
 
   1. [Overview of the Minion system]({{< ref "docs/minion-v0.4/overview.md" >}})
-
+    * [Minion internals]({{< ref "docs/minion-v0.4/minion.md" >}})
   2. [Prepare the environment]({{< ref "docs/minion-v0.4/environment.md" >}})
     * [Generic lowRISC setup]({{< ref "docs/minion-v0.4/lowriscsetup.md" >}})
  
