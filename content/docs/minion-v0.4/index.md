@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2017-04-14T13:00:00+00:00"
-title = "Tutorial for the tagged memory and minion SD-card of lowRISC"
+title = "Tutorial for the v0.4 lowRISC release"
 showdisqus = true
 
 +++
@@ -19,13 +19,20 @@ team at UC Berkeley. We will produce a SoC design to populate a
 low-cost community development board and to act as an ideal starting
 point for derivative open-source and commercial designs.
 
-In previous tutorials you can learn about [trace debugging][DebugTutorial], the 
-[old tagged memory implementation][TaggedMemoryTutorial] or how to run the design on an
-FPGA as an [original untethered implementation][UntetheredTutorial].
+In previous tutorials you can learn about [trace debugging][DebugTutorial],
+the [initial tagged memory implementation][TaggedMemoryTutorial] or how to run
+the design on an FPGA using our [original untethered
+implementation][UntetheredTutorial].
 
-This tutorial adds further functionality towards the final SoC design
-by adding a redesigned tag pipeline, and a Minion core supporting commodity PC peripherals
-such as a 4-bit SD-card control, VGA-compatible display, and USB-keyboard - bare-metal and from Linux.
+This tutorial adds further functionality towards the final SoC design:
+
+* The addition of tag cache, with further optimisations vs our previous
+releases
+* A tag pipeline to allow customised tag rules and for tags to be
+used to enforce program invariants
+* A Minion core supporting commodity PC peripherals such as a 4-bit SD-card
+control, VGA-compatible display, and USB-keyboard - bare-metal and from Linux.
+
 The previous debug infrastructure is still available but optional for the end-user.
 The build environment and pre-built images supprt the same platform as the previous releases, a low-end
 [Nexys™4 DDR Artix-7 FPGA Board]
@@ -38,7 +45,7 @@ The build environment and pre-built images supprt the same platform as the previ
   2. [Prepare the environment]({{< ref "docs/minion-v0.4/environment.md" >}})
     * [Generic lowRISC setup]({{< ref "docs/minion-v0.4/lowriscsetup.md" >}})
  
-  3. [Bring back the tag support in lowRISC]({{< ref "docs/minion-v0.4/tag_lowrisc.md" >}})
+  3. [Tagged memory developments]({{< ref "docs/minion-v0.4/tag_lowrisc.md" >}})
    * [Hierarchical tag cache]({{< ref "docs/minion-v0.4/tag_cache.md" >}})
    * [Tag Support]({{< ref "docs/minion-v0.4/tag_core.md" >}})
 
