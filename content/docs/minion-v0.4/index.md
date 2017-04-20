@@ -19,9 +19,9 @@ team at UC Berkeley. We will produce a SoC design to populate a
 low-cost community development board and to act as an ideal starting
 point for derivative open-source and commercial designs.
 
-In previous tutorials you can learn about trace debugging, 
-[tagged memory][TaggedMemoryTutorial] or how to run the design on an
-FPGA as an [untethered system][UntetheredTutorial].
+In previous tutorials you can learn about [trace debugging][DebugTutorial], the 
+[old tagged memory implementation][TaggedMemoryTutorial] or how to run the design on an
+FPGA as an [original untethered implementation][UntetheredTutorial].
 
 This tutorial adds further functionality towards the final SoC design
 by adding a redesigned tag pipeline, and a Minion core supporting commodity PC peripherals
@@ -38,10 +38,15 @@ The build environment and pre-built images supprt the same platform as the previ
   2. [Prepare the environment]({{< ref "docs/minion-v0.4/environment.md" >}})
     * [Generic lowRISC setup]({{< ref "docs/minion-v0.4/lowriscsetup.md" >}})
  
-  3. Other
+  3. [Bring back the tag support in lowRISC]({{< ref "docs/minion-v0.4/tag_lowrisc.md" >}})
+   * [Hierarchical tag cache]({{< ref "docs/minion-v0.4/tag_cache.md" >}})
+   * [Tag Support]({{< ref "docs/minion-v0.4/tag_core.md" >}})
+
+  4. Other
    * [Walkthrough]({{< ref "docs/minion-v0.4/walkthrough.md" >}})
+   * [Running on the FPGA]({{< ref "docs/minion-v0.4/fpga.md" >}})
  
-  4. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
+  5. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
      * [**Version 0.4**: minion tag cache lowRISC (4-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
@@ -56,4 +61,5 @@ The build environment and pre-built images supprt the same platform as the previ
 [lowRISC]: http://www.lowrisc.org/
 [TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/index.md" >}}
 [UntetheredTutorial]: {{< ref "docs/untether-v0.2/index.md" >}}
+[DebugTutorial]: {{< ref "docs/debug-v0.3/index.md" >}}
 

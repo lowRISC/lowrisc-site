@@ -3,8 +3,8 @@ Description = ""
 date = "2017-04-18T15:00:00+00:00"
 title = "Bring back the tag support in lowRISC"
 parent = "/docs/minion-v0.4/"
-prev = "/docs/minion-v0.4/tag_lowrisc/"
-next = "/docs/minion-v0.4/tag_lowrisc/"
+prev = "/docs/minion-v0.4/index/"
+next = "/docs/minion-v0.4/tag_cache/"
 showdisqus = true
 
 +++
