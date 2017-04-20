@@ -10,10 +10,9 @@ title = "FAQ"
 
 #### Are you hiring?
 
-We hope to put out a job advert for a new member of the team at the University 
-of Cambridge Computer Laboratory in early 2016. Interested applicants are 
-encouraged to make informal enquiries about the post to Rob Mullins 
-<Robert.Mullins@cl.cam.ac.uk>.
+Not currently, but we're always interested in talking to people who may be
+interested in joining our efforts. Feel free to email info@lowrisc.org with a
+CV and background.
 
 #### Are contract or remote working arrangements on offer?
 
