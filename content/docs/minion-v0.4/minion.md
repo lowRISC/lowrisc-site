@@ -61,7 +61,7 @@ The keyboard FIFO has a 512 word buffer on input, and returns the scan code as i
 | -------------- | ------------ | ---------- | ------------ | ------------------------------------------------------------------ |
 | VGA text buffer| `0x00A00000` | Read/Write | zero         | The least significant byte in each 32-bit word is usable           |
 
-The VGA compatible text display is straightforward in operation. No facility for hardware scrolling is offered, the font is a fixed ASCII-font without non-Roman support. No support for overwriting the fonr is provided though again, it would be trivial in hardware. The output is a fixed 1024x768 at 75Hz. The buffer is a fixed 16K bytes with a 64K memory map, of which only the LSB is used.
+The VGA compatible text display is straightforward in operation. No facility for hardware scrolling is offered, the font is a fixed ASCII-font without non-Roman support. No support for overwriting the font is provided though again, it would be trivial in hardware. The output is a fixed 1024x768 at 75Hz. The buffer is a fixed 16K bytes with a 64K memory map, of which only the LSB is used.
 
 | Name           | Address      | Operation  | Reset value  | Description                                                        |
 | -------------- | ------------ | ---------- | ------------ | ------------------------------------------------------------------ |
