@@ -9,11 +9,14 @@ showdisqus = true
 
 +++
 
-This lowRISC release introduces Minion cores, allowing I/O tasks to be offloaded from the Rocket core. This goal is important because it provides a flexible platform to allow new and unusual devices to be supported (figure: courtesy Pulpino databook).
+This lowRISC release introduces Minion cores, allowing I/O tasks to be offloaded from the Rocket. This goal is important because it provides a flexible platform to allow new and unusual devices to be supported.
+[From Chapter 3: extract from Pulpino databook](http://www.pulp-platform.org/wp-content/uploads/2017/02/datasheet.pdf)
 
 <p style="text-align:center;"><img src="../figures/pulpino.png" alt="Drawing" style="width: 800px; padding: 20px 0px;"/></p>
 
-The Pulpino as available from ETH Zurich is too large for our platform. AXI-compatible busses and peripherals increase the size by 2-3 times. Consequently the decision was taken to only use the core of the previous system together with some key peripherals:
+<p style="text-align:center;style=bold;">RISCV core overview from Pulpino databook</p>
+
+The Pulpino as delivered from ETH Zurich is a complete microcontroller, and as such is too large to support our FPGA platform. AXI-compatible busses and peripherals increase the size by 2-3 times. Consequently the decision was taken to only use the core of the previous system, now combined with some key new peripherals:
 
 * Program RAM (64K, tightly coupled)
 * Data RAM (64K, tightly coupled)
@@ -37,7 +40,7 @@ The Pulpino as available from ETH Zurich is too large for our platform. AXI-comp
 | N/A            | `0x00E00000` | Read/Write | zero         |                                                                    |
 | Reserved       | `0x00F00000` | Read/Write | zero         |                                                                    |
 
-To prevent problems with speculative pre-fetching, no auto incrementing on peripherals is supported. Therefore a read must be written
+To prevent problems with speculative pre-fetching, no auto incrementing on peripherals is supported. Therefore an I/O address must be written
 to before it will yield its first item of data. Although I/O addresses are described as R/W, to save unnecessary hardware, most will
 not read back what was written.
 
@@ -48,7 +51,7 @@ not read back what was written.
 | UART advance FIFO | `0x00300000` | Write | zero         | The UART receive FIFO advances when this register is written to      |
 | UART status    | `0x00300000` | Read/Write | zero         | "                                                                  |
 
-The built-in UART (only accessible via extra PMOD device), uses a simple protocol
+The built-in UART (only accessible via extra PMOD device), uses a simple protocol. Only the receive side is buffered in this version. Majority voting is implemented to reduce the impact of noise in the environment.
 
 | Name           | Address      | Operation  | Reset value  | Description                                                        |
 | -------------- | ------------ | ---------- | ------------ | ------------------------------------------------------------------ |
