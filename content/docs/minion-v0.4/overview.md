@@ -9,9 +9,11 @@ showdisqus = true
 +++
 
 For this release the goal was to provide small dedicated processors
-(known as minions) to off-load peripheral activity from the main Rocket
+(known as [minions]({{< ref "docs/memo-2014-001-tagged-memory-and-minion-cores.md" >}}) to off-load
+peripheral activity from the main Rocket
 processor, and to move away from fixed I/O functions towards a more
-flexible approach.
+flexible approach. There is more work to be done, but this release starts to
+move towards that longer-term goal.
 
 In the picture below you can find an updated overview of the lowRISC
 system architecture. If you compare it to the
@@ -27,7 +29,8 @@ new minion infrastructure.
 Our goal of maintaining the hardware platform as per the previous release
 may only be realised with a single Minion. nevertheless it is conceived that a fully-fledged
 system would make use of several Minions. The Minion processor is based on a cut-down version
-of Pulpino, a RISCV-compatible processor from ETH-Zurich. The SD-card interface is eventually
+of [Pulpino](http://www.pulp-platform.org/), a RISC-V compatible processor
+from ETH Zurich. The SD-card interface is eventually
 intended to be a software re-programmable input/output device incorporating programmable shift
 registers as well as direct CPU control. For purposes of continuity, it was necessary for a
 backward compatible interface to be used to allow Linux to boot from a small on-chip memory.
@@ -76,7 +79,15 @@ A future enhancement could add the intelligence for multi-block random access du
 The boot filing system only supports a single DOS partition, which has to be partition 1. It does not support writing to the card. Most modern SD-cards out of the box will meet these requirements. Under Linux the available facilities are much more
 sophisticated, and a second ext2 partition with extended userland commands can happily coexist with this boot partition.
 
-FPGA cards, by their very nature, are noisy environments so it is desirable to be able to check the contents of the second stage boot loader after reading it from card. The builtin ROM can read an md5 text file and compare its contents with the calculated value on the second stage boot loader. The remaining task is to extract the ELF segments for the Berkley Boot Loader (BBL), and the kernel itself to their respective locations in memory, before the boot process proper can begin.
+FPGA boards, by their very nature, are noisy environments so it is desirable to be able to check the contents of the second stage boot loader after reading it from card. The builtin ROM can read an md5 text file and compare its contents with the calculated value on the second stage boot loader. The remaining task is to extract the ELF segments for the Berkley Boot Loader (BBL), and the kernel itself to their respective locations in memory, before the boot process proper can begin.
+
+## Future minion developments
+
+This release incorporates a 'minion' core for the first time, but there is of
+course much more to be done. In the future, we want to integrate support for a
+programmable 'shim' that would allow minions to be used in a flexible way for
+programmable IO, to have the minion control the boot process, and to stabilise
+the interface between the minion and application cores.
 
 Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas 
 and opinions about future directions we should take. Now
