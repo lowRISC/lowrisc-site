@@ -9,7 +9,7 @@ showdisqus = true
 
 +++
 
-This lowRISC release introduces Minion cores, allowing I/O tasks to be offloaded from the Rocket. This goal is important because it provides a flexible platform to allow new and unusual devices to be supported (figure: courtesy Pulpino databook).
+This lowRISC release introduces Minion cores, allowing I/O tasks to be offloaded from the Rocket core. This goal is important because it provides a flexible platform to allow new and unusual devices to be supported (figure: courtesy Pulpino databook).
 
 <p style="text-align:center;"><img src="../figures/pulpino.png" alt="Drawing" style="width: 800px; padding: 20px 0px;"/></p>
 
@@ -114,6 +114,6 @@ The shared memory is 8K bytes, operated as 32-bit quantities on both sides of th
 | SD timeout     | `0x00600064` | Read | zero         | The SD-card delayed timeout readback           |
 | SD clock ctrl  | `0x00600068` | Read | zero         | The SD-card delayed clock control readback    |
 
-###For details of the SD-protocol, it may be helpful(caution: redacted information) to refer to the SD-association website.
+For details of the SD-protocol, it may be helpful (caution: redacted information) to refer to the SD-association website.
 
   * [SD-card association simplified specifications](https://www.sdcard.org/downloads/pls/pdf/index.php?p=Part_1_Physical_Layer_Simplified_Specification_Ver6.00.jpg&f=Part_1_Physical_Layer_Simplified_Specification_Ver6.00.pdf&e=EN_SS1)
