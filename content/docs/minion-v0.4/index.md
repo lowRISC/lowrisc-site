@@ -34,7 +34,7 @@ used to enforce program invariants
 control, VGA-compatible display, and USB-keyboard - bare-metal and from Linux.
 
 The previous debug infrastructure is still available but optional for the end-user.
-The build environment and pre-built images supprt the same platform as the previous releases, a low-end
+The build environment and pre-built images support the same platform as the previous releases, a low-end
 [Nexys™4 DDR Artix-7 FPGA Board]
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
 
