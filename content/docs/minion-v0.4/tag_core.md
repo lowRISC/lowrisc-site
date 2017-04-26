@@ -34,7 +34,7 @@ and the L1 data cache pipeline, as shown in the diagram below.
 <p style="text-align:center;"><img src="../figures/tagpipe.png" alt="Drawing" style="width: 700px; padding: 20px 0px;"/></p>
 
 Here is a summary of the various tag functions supported in the expanded Rocket core.
-Every function is controlled by a dedicated mask. The collection of all masks are placed in a machine-mode accessible CSR: `tagctrl` at address 0x8f0.
+Every function is controlled by a dedicated mask. The collection of all masks are placed in a 64-bit register called `tagctrl`.
 It is assumed that a 4-bit tag is attached to every 64-bit data word and every instruction (regardless to the size of the instruction)
 has a 2-bit tag which is correspondingly aligned to the 32-bit data boundary.
 
@@ -135,11 +135,28 @@ Also for all unconditional jumps (`JAL/JALR`), mask `JMP_PROP` is used to set th
 
 Here is a short discussion of how to utilise the tag functions in assembly programs.
 
-#### The tag control CSR
+#### The tag control register
 
-The tag control CSR (`tagctrl`) is initialised to 0 after reset, which disables all tag propagation and checks.
+The tag control register (`tagctrl`) is initialised to 0 after reset, which disables all tag propagation and checks.
 To enable a specific tag propagation or check function, a proper non-zero mask must be written to `tagctrl`.
-This CSR is accessible only in machine mode as programs running in machine mode are considered safe.
+
+In this release, the `tagctrl` register is mapped to a machine mode W/R CSR `mtagctrl` at address 0xbf0, which is then shadowed to
+a supervisor mode R/W CSR `stagctrl` at address 0x9f0 and a user mode R/W CSR `utagctrl` at address 0x8f0.
+Shadowed CSRs can be used to read the current value of `tagctrl`.
+When writing to a shadowed CSR, the writable bits are controlled by the two machine mode R/W CSRs `mutagctrlen` (0x7f0) and `mstagctrlen` (0x7f1)
+for user and supervisor modes respectively.
+The write operations comply with the following equations:
+
+~~~
+tagctrl <= (wdata & mutagctrlen) | (tagctrl & ~mutagctrlen)  // user mode
+tagctrl <= (wdata & mstagctrlen) | (tagctrl & ~mstagctrlen)  // supervisor mode
+tagctrl <= wdata                                             // machine mode
+~~~
+
+The initial values of `mutagctrlen` and `mstagctrlen` are all-ones to give full access to `tagctrl` in all modes.
+Note we are still investigating the proper mechanism for context switch.
+The definition of the `tagctrl` register is prone for further refinement.
+
 A set of macros (`TMASK_XXX` and `TSHIM_XXX`) are provided in the `encoding.h` header file for easy tag function configuration.
 
 #### Handle tag check exceptions
@@ -164,19 +181,19 @@ Note that these sequences must be used as macros rather than sub-routines as any
 ~~~
 ; disable tag check and enable propagation for machine exception
 #define ENTER_TAG_MACHINE         \
-    csrr t5, tagctrl;             \
+    csrr t5, mtagctrl;            \
     csrw mscratch, t5;            \
     li   t6, TMASK_ALU_PROP;      \
     li   t5, TMASK_LOAD_PROP;     \
     or   t6, t6, t5;              \
     li   t5, TMASK_STORE_PROP;    \
     or   t6, t6, t5;              \
-    csrw tagctrl, t6;             \
+    csrw mtagctrl, t6;            \
 
 ; recover to the tag configuration before exception
 #define EXIT_TAG_MACHINE          \
     csrr t5, mscratch;            \
-    csrw tagctrl, t5;             \
+    csrw mtagctrl, t5;            \
 
 ~~~
 
