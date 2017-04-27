@@ -22,7 +22,7 @@ can see that the major change and main topic of this tutorial is the
 new minion infrastructure.
 
 <a name="figure-overview"></a>
-<img src="../figures/lowRISC_soc.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
+<img src="../figures/lowRISC_tag.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
 
 ## Pre-defined Design constraints
 
