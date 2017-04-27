@@ -22,7 +22,7 @@ Ensure you have all the necessary packages installed:
     sudo apt-get install autoconf automake autotools-dev curl \
     libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
     flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev \
-    swig git
+    swig git libtool libreadline-dev libelf-dev python-dev
 
 ### Download the code
 
