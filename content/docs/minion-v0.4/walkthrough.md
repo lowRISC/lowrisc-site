@@ -9,10 +9,10 @@ showdisqus = true
 
 +++
 
-In this main part of this tutorial you will learn about the debug
-features we have added to lowRISC. After introducing the
-[debug enumeration and the general software usage with the RTL simulation]({{<
-ref "simulation.md" >}}), we will introduce the different features in
-[example debug sessions]({{< ref "debugsession.md" >}}). Finally, a
-full [FPGA example]({{< ref "fpga.md" >}}) is given based on the Nexys
-4 board.
+This tutorial should be followed by those who are not familiar with the previous
+version of the lowRISC. All the same facilities as the debug-v0.3 release are available.
+For more details, consult [debug enumeration and the general software usage with the RTL simulation]({{<
+ref "simulation.md" >}}), and [example debug sessions]({{< ref "debugsession.md" >}}).
+
+The FPGA example has changed however, due to the Minion being intimately involved in booting.
+Consult the [FPGA example]({{< ref "fpga.md" >}}), which is based on the Nexys4 DDR board.

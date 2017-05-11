@@ -16,10 +16,8 @@ showdisqus = true
 ## Motivation
 
 The tagged memory mechanism augments each data word in memory with a small
-piece of extra metadata, a _tag_.
-To store these tags in generic memories such as DDR3/4,
-a small section in the memory space (normally near the upper boundary)
-is reserved for tags and hidden from applications.
+piece of extra metadata, a _tag_. Due to the mismatch in width between tag cache and mobile DDR,
+a separate area in high memory is dedicated to the tags, this is no longer available to the O/S.
 As a result, each memory access to the memory is converted into two separate accesses,
 one for the actual data word and another one for the tag.
 For a naive design, the speed/throughput overhead of supporting tagged memory
@@ -37,21 +35,22 @@ However, we can increase it further.
 
 ## General concept of a hierarchical tag cache
 
-In this release, we implemented an optimised hierarchical tag cache to
-compress the empty (unset) tags cached in the tag cache.
-This compression is based on the observation that most of the memory is not tagged for most use cases.
-It is likely that most of the tags cached are zero or empty in normal operation condition.
-To utilise this pattern, a hierarchical cache uses a bit-map to record the emptiness of each cached tag cache line.
-When a whole line is empty (0), the emptiness state stored in the bit-map is enough to fully represent the cache line;
-therefore, the actual empty line is no long need to be cached (no need to access it from memory as well).
+In this release, we observe that most of the memory is not tagged for most use cases.
+Therefore, we can implement optimisation based on an hierarchical tag cache to
+compress the unset tags cached in the tag cache.
+It is likely that most of the tags cached are unset in normal operation condition.
+By analogy with the cache lines of recently used code, tag cache lines contain recently used tags.
+A tag cache line is just a normal cache line in the tag cache; however, this cache line stores tags rather than data.
+To utilise this pattern, a hierarchical cache uses a bit-map to record the presence of any cached tag cache line.
+When a whole line is unused, the bit-map is enough to fully represent the cache line;
+therefore, the actual unused line is no long needed to be cached (no need to access it from memory as well).
 As a result, a small tag cache is able to describe the tag state of a much
-larger region of memory, provided that memory has areas where no tags are set.
+larger region of memory, provided that memory has significant areas where no tags are set.
 
 The logical view of the hierarchical tag cache is depicted below.
-It adopts a multi-tree structure where leaf nodes in the *tag table* level hold the actual tags
+It adopts a multi-tree structure where leaf nodes at *tag table* level hold the actual tags
 while the nodes in higher levels (*tag map 0* and *tag map 1*) hold bitmaps
-identifying the non-empty lower level nodes.
-Every node occupies a full cache line in the tag cache.
+identifying the used lower level nodes.
 
 <p style="text-align:center;"><img src="../figures/tag_map.png" alt="Drawing" style="width: 700px; padding: 20px 0px;"/></p>
 
@@ -63,7 +62,7 @@ The spare space available in the reserved tag partition in memory is large enoug
 
 >For a tagged memory that attaches \\(N\\) bits for each 64-bit word, \\(\frac{N}{64}\\) memory space is reserved for the tags.
 >As a result, this reserved \\(\frac{N}{64}\\) memory space is not tagged and its associated tag space is never accessed,
->which is the higher \\(\(\frac{N}{64}\)^2\\) of the memory space.
+>which is the upper \\(\(\frac{N}{64}\)^2\\) of the memory space.
 >Each lower level node is mapped to 1-bit in a higher level node.
 >Assuming a node is 64 bytes, the required memory for *tag map 0* is \\(\frac{N}{64 \cdot 64 \cdot 8}\\).
 >Since \\(\(\frac{N}{64}\)^2 \ge \frac{N}{64 \cdot 64 \cdot 8}\\), *tag map 0* does not need extra memory space.
@@ -71,13 +70,13 @@ The spare space available in the reserved tag partition in memory is large enoug
 
 The following graph shows the physical arrangement of data, tags and tag maps in a 1 GB memory.
 The tags of the 1 GB memory (nodes of the *tag table*) are located in the
-higher 64 MB of the address space.
+upper 64 MB of the address space.
 This area is then hidden and direct access from software is prohibited.
-The higher 128 KB of the *tag table* area is reserved for *tag map 0*,
-and the higher 256 bytes of the *tag map 0* space is reserved for *tag map 1*.
+The upper 128 KB of the *tag table* area is reserved for *tag map 0*,
+and the upper 256 bytes of the *tag map 0* space is reserved for *tag map 1*.
 For normal SoC systems, two levels of tag maps are enough to reduce the top
 map to around 1KB.
-Recall that only the nodes of the top map need to be reset after powering up,
+Observe that only the nodes of the top map need to be reset after powering up,
 this significantly reduces the system initialisation delay.
 When the software makes no use of tags, a tag cache as small as 1KB is enough
 to eliminate all throughput overhead related to tagged memory.
@@ -97,6 +96,7 @@ The potential costs are:
 + Extra cache space to store *tag map* nodes in the tag cache, although in
 most workloads it is expected the more efficient caching of untagged memory
 regions will compensate for this cost many times over.
++ Every node occupies a full cache line in the tag cache.
 
 ## Hardware implementation
 
@@ -105,7 +105,8 @@ Nodes from all tree levels use the same size so they can be stored and searched 
 This also allows dynamic space allocation between the table nodes and the map nodes.
 When most memory words are tagged, map nodes can be replaced to store table nodes;
 when most memory words are not tagged, the cache will primarily hold map
-nodes.
+nodes. The default block size is 512 bits, however 64 bits is more optimal.
+Cache organisation is set-associative.
 
 The internal structure of the hierarchical tag cache is depicted below:
 
@@ -150,7 +151,7 @@ Some extra hardware optimisation techniques are used for better cache capacity a
 #### Bottom-up search order
 
 The tag tree is searched in a bottom-up order.
-If a tag is found in a *tag table* node, there is no need to search higher *tag map* nodes.
+If a tag is found in a *tag table* node, there is no need to search deeper *tag map* nodes.
 When most memory words are tagged, this search order reduces transaction latency and,
 more importantly, reduces the miss penalty when higher *tag map* nodes are
 replaced by *tag table* nodes. In a way, this also slightly increases the

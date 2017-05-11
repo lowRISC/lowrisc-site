@@ -6,7 +6,7 @@ showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt and Wei Song_ (Stefan Wallentowitz co-authored the previous version)
+_By Jonathan Kimmitt, Wei Song and Alex Bradbury (also see acknowledgements below)
 
 **Release version 0.4** (04-2017)
 
@@ -25,32 +25,47 @@ the design on an FPGA using our [original untethered
 implementation][UntetheredTutorial].
 
 This tutorial adds further functionality towards the final SoC design:
+* An optimised tag cache
+* The ability to define tag propagation rules and policies for triggering exceptions
+* A simple minion core sub-system for accessing the SD-interface, keyboard and VGA-compatible text display
 
-* The addition of tag cache, with further optimisations vs our previous
-releases
-* A tag pipeline to allow customised tag rules and for tags to be
-used to enforce program invariants
-* A Minion core supporting commodity PC peripherals such as a 4-bit SD-card
-control, VGA-compatible display, and USB-keyboard - bare-metal and from Linux.
+The trace infrastructure is still available but standalone operation with keyboard/display is now possible for the end-user.
 
-The previous debug infrastructure is still available but optional for the end-user.
-The build environment and pre-built images support the same platform as the previous releases, a low-end
+The build environment and pre-built images support the same platform as the previous releases, a competitively priced
 [Nexys™4 DDR Artix-7 FPGA Board]
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
+
+| Function       | _Tagged-v0.1_  | _Untethered-v0.2_  | _Debug-v0.3_   | _Minion-v0.4_   |
+| -------------- | ------------ | ---------------- | ------------ | ------------- |
+| Rocket Priv. Spec.    |      ?       |       ? 	   |      ? 	  | 1.91		  |
+| Tagged memory	 |	*	|		   |	  	  | * 		  |
+| untethered operation |		|	*	   |	  *	  | *		  |
+| SPI media card |		|	*	   |	  *	  |   		  |
+| SD media card	 |		|		   |	  	  | * 		  |
+| UART console	 |		|	*	   |	  *	  | * 		  |
+| Trace console	 |		|		   |	  *	  | * 		  |
+| VGA console	 |		|		   |	  	  | * 		  |
+| PS/2 keyboard	 |		|		   |		  | * 		  |
+| Tagged Cache	 |		|		   |		  | * 		  |
+| Minion Core	 |		|		   |	  	  | * 		  |
+| Kernel md5 boot check |		|		   |		  | *		  |
+| Kernel SPI card support |	|		   |	*	  | 		  |
+| Kernel SD card support |	|		   |		  | *		  |
+| PC-free operation|		|		   |		  | *		  |
 
 ### Contents
 
   1. [Overview of the Minion system]({{< ref "docs/minion-v0.4/overview.md" >}})
     * [Minion internals]({{< ref "docs/minion-v0.4/minion.md" >}})
   2. [Prepare the environment]({{< ref "docs/minion-v0.4/environment.md" >}})
-    * [Generic lowRISC setup]({{< ref "docs/minion-v0.4/lowriscsetup.md" >}})
+    * [Install FPGA and simulation tools]({{< ref "docs/minion-v0.4/installtools.md" >}})
  
   3. [Tagged memory developments]({{< ref "docs/minion-v0.4/tag_lowrisc.md" >}})
    * [Hierarchical tag cache]({{< ref "docs/minion-v0.4/tag_cache.md" >}})
    * [Tag Support]({{< ref "docs/minion-v0.4/tag_core.md" >}})
 
   4. Other
-   * [Walkthrough]({{< ref "docs/minion-v0.4/walkthrough.md" >}})
+   * [Debug Walkthrough]({{< ref "docs/minion-v0.4/walkthrough.md" >}})
    * [Running on the FPGA]({{< ref "docs/minion-v0.4/fpga.md" >}})
  
   5. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
@@ -58,6 +73,26 @@ The build environment and pre-built images support the same platform as the prev
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+
+### Work planned / In progress / TO DO
+* Interfacing Pulpino (Minion) core to on-chip trace/debug bus.
+* Programming Minion dynamically from Rocket under Linux.
+* Optimising card transfer speed / Implementing multi-block transfers.
+* GDB support under Linux.
+* Revised interrupt handling block.
+* Ethernet interfacing / booting / Linux support.
+* Fully supporting tag instructions in compiler.
+* Making tag support thread-safe / context switching safe.
+* More security demos.
+* Userland software running on the Rocket.
+* Offloading SD-card acceleration and Video scrolling to Minion.
+* Run-control debug for Rocket.
+
+### Acknowledgements
+* Stefan Wallentowitz provided the trace debug system
+* Philipp Wagner
+* Furkan Turan provided the zboard patches
+* Philipp Jantscher
 
 ### Other useful sources of information
 

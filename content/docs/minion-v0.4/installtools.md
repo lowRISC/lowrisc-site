@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2017-04-14T13:00:00+00:00"
-title = "Generic lowRISC setup"
+title = "Install FPGA and simulation tools"
 parent = "/docs/minion-v0.4/environment/"
 prev = "/docs/minion-v0.4/environment/"
 next = "/docs/minion-v0.4/osdsoftware/"
@@ -21,5 +21,7 @@ happens, you may get a message such as:
 * awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
 
 A work-around is to manually execute `unset LD_LIBRARY_PATH` afterwards before installing the cross-compiler.
+
+Follow these instructions _(caution: from a previous release)_ and then use the browser back button:
 
  * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
