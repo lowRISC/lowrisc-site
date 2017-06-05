@@ -9,13 +9,13 @@ showdisqus = true
 
 +++
 
-Lowrisc tools and source code are robust between versions of Linux, but it has been
+lowRISC tools and source code are robust between versions of Linux, but it has been
 found that
 Vivado (the Xilinx FPGA implementation suite) [is particular about the O/S](https://www.xilinx.com/support/answers/54242.html)
 
 All builds were completed with Vivado 2015.4. If a newer version is attempted there could be script incompatibilities to fix and/or incompatible upgrades to internal Xilinx IP. We have no evidence that newer versions do not work, however IP changes to support newer chip families can cause obscure error messages which are offputting for the first-time user.
 
-For this version the recommended O/S 64-bit Ubuntu (14.04 LTS). However, this is not stable on newer Intel chip sets, where 16.04 LTS should be used instead. If an unstable choice is made, the most likely result is LD_LIBRARY_PATH conflicts and/or synthesis crashes. Since Vivado implements a belt and braces approach, setting LD_LIBRARY_PATH and using a wrapper script, it should be safe to unset LD_LIBRARY_PATH in your shell. This will prevent conflicts with the obsolete libstc++ build-in to Vivado.
+For this version the recommended O/S 64-bit Ubuntu (14.04 LTS). However, this is not stable on newer Intel chip sets, where 16.04 LTS should be used instead. If an unstable choice is made, the most likely result is LD\_LIBRARY\_PATH conflicts and/or synthesis crashes. It should be safe to unset LD\_LIBRARY\_PATH in your shell. This will prevent conflicts with the obsolete libstc++ build-in to Vivado.
 
 Everything except using the FPGA boards should also work
 out-of-box in a virtual machine.
@@ -70,7 +70,7 @@ Next steps:
 
 The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger is enabled by default.
 It needs the following software installation instructions to be followed, in order to enable host communications. As well as trace debugging it
-allows Linux kernels to be loaded from the PC for debugging purposes. However the LowRISC can also run standalone, if desired.
+allows Linux kernels to be loaded from the PC for debugging purposes. However the lowRISC can also run standalone, if desired.
 
 Follow these instructions _(caution: from a previous release)_ and then use the browser back button:
 

@@ -16,8 +16,8 @@ showdisqus = true
 ## Motivation
 
 The tagged memory mechanism augments each data word in memory with a small
-piece of extra metadata, a _tag_. Due to the mismatch in width between tag cache and mobile DDR,
-a separate area in high memory is dedicated to the tags, this is no longer available to the O/S.
+piece of extra metadata, a _tag_. To store tags in generic DDR memories,
+a separate area in high memory is dedicated to the tags, which is hidden to software.
 As a result, each memory access to the memory is converted into two separate accesses,
 one for the actual data word and another one for the tag.
 For a naive design, the speed/throughput overhead of supporting tagged memory
@@ -39,10 +39,10 @@ In this release, we observe that most of the memory is not tagged for most use c
 Therefore, we can implement optimisation based on an hierarchical tag cache to
 compress the unset tags cached in the tag cache.
 It is likely that most of the tags cached are unset in normal operation condition.
-By analogy with the cache lines of recently used code, tag cache lines contain recently used tags.
+By analogy with the cache lines of recently used data, tag cache lines contain recently used tags.
 A tag cache line is just a normal cache line in the tag cache; however, this cache line stores tags rather than data.
-To utilise this pattern, a hierarchical cache uses a bit-map to record the presence of any cached tag cache line.
-When a whole line is unused, the bit-map is enough to fully represent the cache line;
+To utilise this pattern, a hierarchical cache uses bit-maps to record the tag cache lines containing tags.
+When a whole tag cache line is unset, the bit-map is enough to fully represent the cache line;
 therefore, the actual unused line is no long needed to be cached (no need to access it from memory as well).
 As a result, a small tag cache is able to describe the tag state of a much
 larger region of memory, provided that memory has significant areas where no tags are set.
@@ -105,7 +105,7 @@ Nodes from all tree levels use the same size so they can be stored and searched 
 This also allows dynamic space allocation between the table nodes and the map nodes.
 When most memory words are tagged, map nodes can be replaced to store table nodes;
 when most memory words are not tagged, the cache will primarily hold map
-nodes. The default block size is 512 bits, however 64 bits is more optimal.
+nodes. The default block size is 64 bytes.
 Cache organisation is set-associative.
 
 The internal structure of the hierarchical tag cache is depicted below:
@@ -151,7 +151,7 @@ Some extra hardware optimisation techniques are used for better cache capacity a
 #### Bottom-up search order
 
 The tag tree is searched in a bottom-up order.
-If a tag is found in a *tag table* node, there is no need to search deeper *tag map* nodes.
+If a tag is found in a *tag table* node, there is no need to search higher *tag map* nodes.
 When most memory words are tagged, this search order reduces transaction latency and,
 more importantly, reduces the miss penalty when higher *tag map* nodes are
 replaced by *tag table* nodes. In a way, this also slightly increases the

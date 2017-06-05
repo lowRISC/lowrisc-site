@@ -6,7 +6,7 @@ showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt, Wei Song and Alex Bradbury (also see acknowledgements below)
+_By Jonathan Kimmitt, Wei Song and Alex Bradbury_ (also see acknowledgements below)
 
 **Release version 0.4** (04-2017)
 
@@ -35,23 +35,17 @@ The build environment and pre-built images support the same platform as the prev
 [Nexys™4 DDR Artix-7 FPGA Board]
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
 
-| Function       | _Tagged-v0.1_  | _Untethered-v0.2_  | _Debug-v0.3_   | _Minion-v0.4_   |
-| -------------- | ------------ | ---------------- | ------------ | ------------- |
-| Rocket Priv. Spec.    |      ?       |       ? 	   |      ? 	  | 1.91		  |
-| Tagged memory	 |	*	|		   |	  	  | * 		  |
-| untethered operation |		|	*	   |	  *	  | *		  |
-| SPI media card |		|	*	   |	  *	  |   		  |
-| SD media card	 |		|		   |	  	  | * 		  |
-| UART console	 |		|	*	   |	  *	  | * 		  |
-| Trace console	 |		|		   |	  *	  | * 		  |
-| VGA console	 |		|		   |	  	  | * 		  |
-| PS/2 keyboard	 |		|		   |		  | * 		  |
-| Tagged Cache	 |		|		   |		  | * 		  |
-| Minion Core	 |		|		   |	  	  | * 		  |
-| Kernel md5 boot check |		|		   |		  | *		  |
-| Kernel SPI card support |	|		   |	*	  | 		  |
-| Kernel SD card support |	|		   |		  | *		  |
-| PC-free operation|		|		   |		  | *		  |
+| Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ |
+| --------------        | :----------:   | :--------------:  | :----------: | :-----------: |
+| Rocket Priv. Spec.    |      ?         |       ?           |      1.7     | nearly 1.91   |
+| Tagged memory         |   *            |                   |              | *             |
+| untethered operation  |                |   *               |      *       | *             |
+| SD card               | tethered       |   SPI             |      SPI     | SD            |
+| UART console          | tethered       |   standard        |  standard/trace | standard/trace/VGA |
+| PS/2 keyboard         |                |                   |              | *             |
+| Minion Core           |                |                   |              | *             |
+| Kernel md5 boot check |                |                   |              | *             |
+| PC-free operation     |                |                   |              | *             |
 
 ### Contents
 
@@ -89,10 +83,9 @@ The build environment and pre-built images support the same platform as the prev
 * Run-control debug for Rocket.
 
 ### Acknowledgements
-* Stefan Wallentowitz provided the trace debug system
-* Philipp Wagner
-* Furkan Turan provided the zboard patches
-* Philipp Jantscher
+* Stefan Wallentowitz and Philipp Wagner provided the trace debug system
+* Furkan Turan provided the zedboard patches
+* Philipp Jantscher did the initial tagged memory port to debug-v0.3
 
 ### Other useful sources of information
 
