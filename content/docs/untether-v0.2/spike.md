@@ -41,14 +41,6 @@ The command-line arguments to Spike can be listed with `spike -h`:
 Note: to use the `-g` argument Spike has to be compiled with the
 `--enable-histogram` option. This is not the case by default.
 
-    # set up the RISCV environment variables
-    cd $TOP/riscv-tools/riscv-isa-sim
-    mkdir build
-    cd build
-    ../configure --prefix=$RISCV --with-fesvr=$RISCV --enable-histogram
-    make -j$(nproc)
-    make install
-
 ### Running Spike
 
 #### Bare metal mode
