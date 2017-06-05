@@ -20,6 +20,8 @@ hardware watch-points).
 In this release, we incorporate these essential tag manipulation and check functions into the normal
 RISC-V instructions and the Rocket core, which enables support for a range of
 tag-related use cases.
+This is our first attempt to incorporate tag functionality into the core pipeline, which is far from a hardened SOC from a security perspective.
+More investigation and improvement will be made in following releases.
 
 
 ### Extension to the Rocket core
@@ -30,9 +32,11 @@ The L1 instruction cache feeds the instruction decoder (ID) stage with instructi
 The L1 data cache is revised to store tags alongside data.
 Several tag processing units (*tagProc*) and tag check units (*tagChck*) are added to the various stages of the Rocket core pipeline
 and the L1 data cache pipeline, as shown in the diagram below.
+To allow tag propagation between register data and register tags, some multiplexers are added in the MEM stage.
 
 <p style="text-align:center;"><img src="../figures/tagpipe.png" alt="Drawing" style="width: 700px; padding: 20px 0px;"/></p>
 
+Each tag unit added in the core pipeline executes a tag function, which can be enabled at run-time.
 Here is a summary of the various tag functions supported in the expanded Rocket core.
 Every function is controlled by a dedicated mask. The collection of all masks are placed in a 64-bit register called `tagctrl`.
 It is assumed that a 4-bit tag is attached to every 64-bit data word and every instruction (regardless to the size of the instruction)

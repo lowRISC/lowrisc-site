@@ -16,8 +16,8 @@ showdisqus = true
 ## Motivation
 
 The tagged memory mechanism augments each data word in memory with a small
-piece of extra metadata, a _tag_. To store tags in generic DDR memories,
-a separate area in high memory is dedicated to the tags, which is hidden to software.
+piece of extra metadata, a _tag_.
+A separate area in high memory is dedicated to the tags, which is hidden to software.
 As a result, each memory access to the memory is converted into two separate accesses,
 one for the actual data word and another one for the tag.
 For a naive design, the speed/throughput overhead of supporting tagged memory
@@ -26,12 +26,25 @@ use of an additional tag cache.
 
 A small tag cache was used in our previous [tagged-memory release]({{< ref "docs/tagged-memory-v0.1/tags.md" >}}).
 That tag cache was a conventional write-back set-associative cache.
-If the tags associated with a program's working set do not fit in the tag
-cache, it will be forced to frequently replace previously cached tags with new
-ones. The extra overhead of writing back dirty tags may surpass the benefit of
-using a cache in the worst cases. As tags are much smaller than the data words
-they are attached to, the reach of even a small tag cache can be very high.
-However, we can increase it further.
+We had run the SPECInt 2006 benchmark suite using this tag cache.
+It was found that if the tag cache is large enough,
+most of the extra traffic accessing tags can be avoided.
+However, the size of the tag cache is significant compared with the size of L2$.
+We would like to further reduce the size of the tag cache while maintaining a low traffic overhead.
+
+|          | I$<br>8KiB<br>(MPKI)&nbsp; | D$<br>16KiB<br>(MPKI)&nbsp; | L2<br>256KiB<br>(MPKI)&nbsp; | Mem traffic&nbsp;<br>without tag<br>(TPKI)|&nbsp;&nbsp;|Tag$<br>16KiB<br>(MPKI)&nbsp;| Traffic&nbsp;<br>Ratio<br>&nbsp; |&nbsp;&nbsp;| Tag$<br>32KiB<br>(MPKI)&nbsp; | Traffic&nbsp;<br>Ratio<br>&nbsp;  |&nbsp;&nbsp;| Tag$<br>64KiB<br>(MPKI)&nbsp;| Traffic&nbsp;<br>Ratio<br>&nbsp; |
+|------:   | :--:    | :--:     | :--:   | :--:         |---|  :--:   | :--:    |---| :--:   | :--:     |---| :--:   | :--:    |
+|perlbench | 20      | 5        | <1     | 2            |   |  <1     | 1.289   |   | <1     | 1.089    |   | <1     | 1.025   |
+|bzip2     | <1      | 14       | 10     | 16           |   |  10     | 1.941   |   | 7      | 1.688    |   | 3      | 1.281   |
+|gcc       | 15      | 11       | 4      | 6            |   |  2      | 1.497   |   | <1     | 1.240    |   | <1     | 1.072   |
+|mcf       | <1      | 168      | 104    | 136          |   |  67     | 1.651   |   | 40     | 1.409    |   | 11     | 1.128   |
+|gobmk     | 24      | 8        | 3      | 6            |   |  1      | 1.368   |   | <1     | 1.146    |   | <1     | 1.073   |
+|sjeng     | 11      | 5        | 1      | 3            |   |  1      | 1.673   |   | <1     | 1.482    |   | <1     | 1.383   |
+|h264ref   | 1       | 3        | 2      | 3            |   |  <1     | 1.480   |   | <1     | 1.265    |   | <1     | 1.109   |
+|omnetpp   | 40      | 5        | <1     | <1           |   |  <1     | 1.653   |   | <1     | 1.415    |   | <1     | 1.190   |
+|astar     | <1      | 21       | 5      | 9            |   |  4      | 1.750   |   | 2      | 1.471    |   | <1     | 1.173   |
+|**average**| **12** | **27**   |**14**  |**20**        |   |**10**   |**1.589**|   |**6**   |**1.356** |   |**2**   |**1.159**|
+
 
 ## General concept of a hierarchical tag cache
 

@@ -9,10 +9,13 @@ title = "Documentation"
 
 * [lowRISC with tagged memory and minion core]({{< ref "docs/minion-v0.4/index.md" >}})
 <br>*Release version 0.4, 04-2017*
-<br>In this code release we present a re-written tagpipe architecture
-for enhanced security, and a prototype Minion core with SD-card read/write control
-as well as the ability to control a USB keyboard and VGA compatible display.
-It also has all the capabilities of the previous release and supports the same Nexys4 DDR FPGA platform.
+<br>This release provides a more complete prototype of tagged memory implementation.
+This includes the ability to define tag propagation rules and policies that control when encountering unexpected tags should raise exceptions.
+These features have been incorporated into the Rocket core.
+An optimised tag cache has also been developed in order to minimise any additional main memory traffic from the use of tags.
+A simple "minion" core is added to provide an SD-card interface.
+This system also supports a keyboard and provides a VGA compatible text display.
+We continue to support the Nexys4 DDR FPGA platform.
 The [tutorial]({{< ref "docs/minion-v0.4/index.md" >}})
 outlines the build procedure and forthcoming releases that we are
 planning.
