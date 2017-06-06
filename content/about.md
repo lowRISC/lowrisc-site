@@ -33,6 +33,9 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
+**May 2017**: New lowRISC [code release]({{< ref "docs/minion-v0.4/index.md" 
+>}}) brings back tagged memory with builtin support in Rocket core and has a minion driven SD.
+
 **July 2016**: New lowRISC [code release]({{< ref "docs/debug-v0.3/index.md" 
 >}}) including support for trace debug.
 
