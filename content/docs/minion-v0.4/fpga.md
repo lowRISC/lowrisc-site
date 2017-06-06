@@ -2,9 +2,8 @@
 Description = ""
 date = "2017-04-14T13:00:00+00:00"
 title = "Running on the FPGA"
-parent = "/docs/minion-v0.4/walkthrough/"
-prev = "/docs/minion-v0.4/debugsession/"
-next = "/docs/minion-v0.4/soc_struct/"
+parent = "/docs/minion-v0.4/"
+prev = "/docs/minion-v0.4/walkthrough/"
 showdisqus = true
 
 +++

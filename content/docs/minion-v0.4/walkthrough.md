@@ -3,8 +3,7 @@ Description = ""
 date = "2017-04-14T13:00:00+00:00"
 title = "Debug walkthrough"
 parent = "/docs/minion-v0.4/"
-prev = "/docs/minion-v0.4/osdsoftware/"
-next = "/docs/minion-v0.4/simulation/"
+next = "/docs/minion-v0.4/fpga/"
 showdisqus = true
 
 +++

@@ -14,5 +14,5 @@ features we have added to lowRISC. After introducing the
 [debug enumeration and the general software usage with the RTL simulation]({{<
 ref "simulation.md" >}}), we will introduce the different features in
 [example debug sessions]({{< ref "debugsession.md" >}}). Finally, a
-full [FPGA example]({{< ref "fpga.md" >}}) is given based on the Nexys
+full [FPGA example]({{< ref "docs/debug-v0.3/fpga.md" >}}) is given based on the Nexys
 4 board.
