@@ -8,7 +8,7 @@ showdisqus = true
 
 _By Jonathan Kimmitt, Wei Song and Alex Bradbury_ (also see acknowledgements below)
 
-**Release version 0.4** (04-2017)
+**Release version 0.4** (06-2017)
 
 ## Introduction
 
@@ -63,7 +63,7 @@ The build environment and pre-built images support the same platform as the prev
    * [Running on the FPGA]({{< ref "docs/minion-v0.4/fpga.md" >}})
  
   5. [Release notes] ({{<ref "docs/minion-v0.4/release.md">}})
-     * [**Version 0.4**: minion tag cache lowRISC (4-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
+     * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})

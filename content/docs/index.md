@@ -8,7 +8,7 @@ title = "Documentation"
 ## Code Releases
 
 * [lowRISC with tagged memory and minion core]({{< ref "docs/minion-v0.4/index.md" >}})
-<br>*Release version 0.4, 04-2017*
+<br>*Release version 0.4, 06-2017*
 <br>This release provides a more complete prototype of tagged memory implementation.
 This includes the ability to define tag propagation rules and policies that control when encountering unexpected tags should raise exceptions.
 These features have been incorporated into the Rocket core.
