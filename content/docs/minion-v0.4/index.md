@@ -25,6 +25,7 @@ the design on an FPGA using our [original untethered
 implementation][UntetheredTutorial].
 
 This tutorial adds further functionality towards the final SoC design:
+
 * An optimised tag cache
 * The ability to define tag propagation rules and policies for triggering exceptions
 * A simple minion core sub-system for accessing the SD-interface, keyboard and VGA-compatible text display
