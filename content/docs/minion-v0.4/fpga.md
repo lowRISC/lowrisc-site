@@ -102,7 +102,7 @@ Obscure commands, just for development are:
      'i' - send the legacy SD-card initialisation sequence
      'I' - send the linux compatible SD-card initialisation sequence
      'l' - set the LEDs to a hex pattern
-     'm' - try to mount the MSDOS filing system on the SD-card
+     'm' - try to mount the MSDOS file system on the SD-card
      'M' - detect memory size with a walking ones pattern
      'q' - quit (as if there was anywhere to quit to)
      'r' - read an address range from Rocket memory
@@ -110,7 +110,7 @@ Obscure commands, just for development are:
      's' - send a verbose command to the SD-card
      'S' - print the stack pointer location
      't' - control the SD-card timeout period
-     'u' - try to unmount the MSDOS filing system on the SD-card
+     'u' - try to unmount the MSDOS file system on the SD-card
      'W' - write an address in Minion memory
 
 ## Run a standalone FPGA demo (no debugger support)
@@ -162,7 +162,7 @@ The first two device nodes, and first mount point are pre-created for you. If yo
     mknod /dev/mmcblk0p2 b 179 2
     mknod /dev/mmcblk0p3 b 179 3 #etc..
 
-To mount a DOS filing system from this card:
+To mount a DOS file system from this card:
 
     mount /dev/mmcblk0p1 /mnt
 
