@@ -101,9 +101,9 @@ for more details consult the SD Group physical layer specification.
 Within each relevant command an elaborate data phase provides longitudinal CRC checking and error recovery.
 A future enhancement could add the intelligence for multi-block random access during booting.
 
-## Boot filing system
+## Boot file system
 
-The boot filing system only supports a single DOS partition, which has to be partition 1. It does not support writing to the card. Most modern SD-cards out of the box will meet these requirements. Under Linux the available facilities are much more
+The boot file system only supports a single DOS partition, which has to be partition 1. It does not support writing to the card. Most modern SD-cards out of the box will meet these requirements. Under Linux the available facilities are much more
 sophisticated, and a second ext2 partition with extended userland commands can happily coexist with this boot partition.
 
 FPGA boards, by their very nature, are noisy environments so it is desirable to be able to check the contents of the second stage boot loader after reading it from card. The builtin ROM can read an md5 text file and compare its contents with the calculated value on the second stage boot loader. The remaining task is to extract the ELF segments for the Berkley Boot Loader (BBL), and the kernel itself to their respective locations in memory, before the boot process proper can begin.
