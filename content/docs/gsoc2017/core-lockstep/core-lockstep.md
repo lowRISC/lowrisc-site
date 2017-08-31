@@ -57,7 +57,7 @@ The code generation project uses python 2.7 and the jinja2 templating engine. Ji
 
 ## Running the examples
 
-![alt_text](arty_term.gif)
+![alt_text](https://media.giphy.com/media/l378u8meC0uNts7HG/giphy.gif)
 
 *Arty example program*
 
@@ -107,7 +107,7 @@ After preparing the environment, the next steps are required to run the examples
 
 A note for vivado and Arty: programming the FPGA in the virtual machine was sometimes unstable. When there was an issue I simply restarted the virtual machine.
 
-![alt_text](arty.gif)
+![alt_text](https://media.giphy.com/media/26vIg6cZFMWvi6AbS/giphy.gif
 
 # Minion SoC
 
