@@ -10,9 +10,7 @@ title = "FAQ"
 
 #### Are you hiring?
 
-Not currently, but we're always interested in talking to people who may be
-interested in joining our efforts. Feel free to email info@lowrisc.org with a
-CV and background.
+Yes! See [our jobs page]({{< ref "jobs.md" >}}).
 
 #### Are contract or remote working arrangements on offer?
 
