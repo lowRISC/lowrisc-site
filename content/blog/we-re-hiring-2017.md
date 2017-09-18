@@ -36,3 +36,5 @@ security, technical documentation, board support package development and
 driver development. Industrial experience and higher degree levels are valued, 
 but we would be happy to consider an enthusiastic recent graduate with a 
 strong academic record.
+
+Informal enquires should be made to Alex Bradbury <asb@lowrisc.org>.
