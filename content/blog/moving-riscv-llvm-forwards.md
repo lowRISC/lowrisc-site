@@ -68,9 +68,9 @@ different classes of applications. But we _don't_ want to see that variety in
 the RISC-V ecosystem result in dozens of different vendor-specific compiler 
 toolchains and a fractured software ecosystem. Unfortunately most work on LLVM 
 for RISC-V has been invested in private/proprietary code bases or short-term 
-prototypes. This effort has been performed out in the open from the start, 
-with a strong focus on code quality, testing, and on moving development 
-upstream as quickly as possible - i.e. a solution for the long term.
+prototypes. The work described in this post has been performed out in the open
+from the start, with a strong focus on code quality, testing, and on moving
+development upstream as quickly as possible - i.e. a solution for the long term.
 
 My implementation approach has been to first work towards a cleanly designed 
 and well tested RV32I baseline compiler. Once the fundamentals are solid, it 
