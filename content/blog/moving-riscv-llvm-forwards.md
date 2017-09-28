@@ -143,7 +143,7 @@ base is the best way of achieving those aims. We're now in a position where we
 can push forwards on these fronts, which will will soon become a primary focus 
 of this development effort.
 
-### I have a RISC-V LLVM fork for which works for me, why should I care about an upstream backend?
+### I have a RISC-V LLVM fork which works for me, why should I care about an upstream backend?
 
 This is ultimately a question about long-term maintenance and sharing the 
 support burden with others in the RISC-V ecosystem. By working together and 
