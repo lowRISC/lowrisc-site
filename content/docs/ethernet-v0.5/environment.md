@@ -1,10 +1,10 @@
 +++
 Description = ""
-date = "2017-04-14T13:00:00+00:00"
+date = "2017-10-14T13:00:00+00:00"
 title = "Prepare the environment"
-parent = "/docs/minion-v0.4/"
-prev = "/docs/minion-v0.4/softwaremethodology/"
-next = "/docs/minion-v0.4/installtools/"
+parent = "/docs/ethernet-v0.5/"
+prev = "/docs/ethernet-v0.5/softwaremethodology/"
+next = "/docs/ethernet-v0.5/installtools/"
 showdisqus = true
 
 +++
@@ -36,18 +36,16 @@ Ensure you have all the necessary packages installed:
 The code is hosted in the
 [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip). All
 external repositories are fetched as submodules. You need to clone the
-proper branch (`minion-v0.4`):
+proper branch (`ethernet-v0.5`):
 
-    git clone -b minion-v0.4 --recursive https://github.com/lowrisc/lowrisc-chip.git
+    git clone -b ethernet-v0.5 --recursive https://github.com/lowrisc/lowrisc-chip.git
     cd lowrisc-chip
 
 ### Structure of the git repository
 
 The structure is similar to the one described
-[here](/docs/untether-v0.2/dev-env/#gitstruct). Essentially
-one folder was added that contains the Minion repository:
-
- * `minion_subsystem`: Minion (Pulpino) subsystem and peripherals
+[here](/docs/untether-v0.2/dev-env/#gitstruct). However
+the peripherals that were previously in the Minion repository are connected directly to the rocket.
 
 ### Next steps
 
@@ -64,13 +62,21 @@ The following variables are overridable:
     $OSD_ROOT           Path to the Open SoC Debug tools ($TOP/tools).
     $FPGA_BOARD         The target FPGA board (nexys4_ddr).
 
+## Download and build Linux and busybox (early stage user commands)
+
+This is not strictly needed unless we are building our own images, but it is easier to do it now.
+
+    sh $TOP/riscv-tools/fetch_and_patch_linux.sh
+
 Next steps:
 
- * [Install FPGA and simulation tools](/docs/minion-v0.4/installtools)
+ * [Install FPGA and simulation tools](/docs/ethernet-v0.5/installtools)
 
-The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger is enabled by default.
-It needs the following software installation instructions to be followed, in order to enable host communications. As well as trace debugging it
-allows Linux kernels to be loaded from the PC for debugging purposes. However the lowRISC can also run standalone, if desired.
+The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger is disabled by default.
+booting and remote access is done via Ethernet by default. However it can easily be enabled for development.
+
+It needs the following software installation instructions to be followed, in order to enable host communications.
+As well as trace debugging it allows Linux kernels to be loaded from the PC for debugging purposes.
 
 Follow these instructions _(caution: from a previous release)_ and then use the browser back button:
 

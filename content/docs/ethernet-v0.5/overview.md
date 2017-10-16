@@ -2,8 +2,8 @@
 Description = ""
 date = "2017-04-14T13:00:00+00:00"
 title = "Overview of the ethernet infrastructure"
-parent = "/docs/ethernet-v0.5P/"
-next = "/docs/ethernet-v0.5P/environment/"
+parent = "/docs/ethernet-v0.5/"
+next = "/docs/ethernet-v0.5/environment/"
 showdisqus = true
 
 +++
@@ -38,4 +38,4 @@ Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas
 and opinions about future directions we should take. Now
 it's time to learn more about the debug system or jump into using it:
 
- * [Prepare the environment and get started]({{< ref "docs/ethernet-v0.5P/environment.md" >}})
+ * [Prepare the environment and get started]({{< ref "docs/ethernet-v0.5/environment.md" >}})

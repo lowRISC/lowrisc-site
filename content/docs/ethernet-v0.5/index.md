@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2017-10-05T13:00:00+00:00"
-title = "Tutorial for the v0.5P lowRISC preview release"
+title = "Tutorial for the v0.5 lowRISC preview release"
 showdisqus = true
 
 +++
@@ -33,7 +33,7 @@ The build environment and pre-built images support the same platform as the prev
 [Nexys™4 DDR Artix-7 FPGA Board]
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
 
-| Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ | _Ethernet-v0.5P |
+| Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ | _Ethernet-v0.5_ |
 | --------------        | :----------:   | :--------------:  | :----------: | :-----------: | :-------------: |
 | Rocket Priv. Spec.    |      ?         |       ?           |      1.7     | nearly 1.91   | nearly 1.91     |
 | Tagged memory         |   *            |                   |              | *             | *               |
@@ -49,17 +49,18 @@ The build environment and pre-built images support the same platform as the prev
 
 ### Contents
 
-  1. [Overview of the Ethernet system]({{< ref "docs/ethernet-v0.5P/overview.md" >}})
-    * [Ethernet internals]({{< ref "docs/ethernet-v0.5P/ethernet.md" >}})
-  2. [Prepare the environment]({{< ref "docs/ethernet-v0.5P/environment.md" >}})
-    * [Install FPGA and simulation tools]({{< ref "docs/ethernet-v0.5P/installtools.md" >}})
+  1. [Overview of the Ethernet system]({{< ref "docs/ethernet-v0.5/overview.md" >}})
+    * [Ethernet internals]({{< ref "docs/ethernet-v0.5/ethernet.md" >}})
+  2. [Prepare the environment]({{< ref "docs/ethernet-v0.5/environment.md" >}})
+    * [Install FPGA and simulation tools]({{< ref "docs/ethernet-v0.5/installtools.md" >}})
  
   4. Other
-   * [Debug Walkthrough]({{< ref "docs/ethernet-v0.5P/walkthrough.md" >}})
-   * [Running on the FPGA]({{< ref "docs/ethernet-v0.5P/fpga.md" >}})
+   * [Debug Walkthrough]({{< ref "docs/ethernet-v0.5/walkthrough.md" >}})
+   * [Running pre-built images on the FPGA]({{< ref "docs/ethernet-v0.5/fpga.md" >}})
+   * [Developing/building from scratch on the FPGA]({{< ref "docs/ethernet-v0.5/development.md" >}})
  
-  5. [Release notes] ({{<ref "docs/ethernet-v0.5P/release.md">}})
-     * [**Version 0.5P**: ethernet multiuser lowRISC (10-2017)]({{< ref "docs/ethernet-v0.5P/release.md" >}})
+  5. [Release notes] ({{<ref "docs/ethernet-v0.5/release.md">}})
+     * [**Version 0.5P**: ethernet multiuser lowRISC (10-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
