@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2017-04-14T13:00:00+00:00"
+date = "2017-10-26T13:00:00+00:00"
 title = "Diplomacy and TileLink from the Rocket Chip"
 showdisqus = true
 
@@ -8,7 +8,7 @@ showdisqus = true
 
 _Wei Song_
 
-(11-2017)
+(12-2017)
 
 ## 1. Introduction
 
@@ -56,28 +56,17 @@ This short document is written with three purposes in mind:
 It is probably unfeasible to write a single piece of document describing all related information.
 There are some good sources which serve as foreknowledge before any endeavour to read this document.
 
-#### Short users guide to Chisel: [https://github.com/freechipsproject/chisel3/wiki/Short-Users-Guide-to-Chisel](https://github.com/freechipsproject/chisel3/wiki/Short-Users-Guide-to-Chisel)
-
+- **Short users guide to Chisel: [https://github.com/freechipsproject/chisel3/wiki/Short-Users-Guide-to-Chisel](https://github.com/freechipsproject/chisel3/wiki/Short-Users-Guide-to-Chisel)**<br>
 This guide provides the basic features available from the Chisel3 DSL language which is developed upon the Scala language.
-
-#### TileLink Spec 1.7-draft [[2]](#TileLink): [https://www.sifive.com/documentation/tilelink/tilelink-spec/](https://www.sifive.com/documentation/tilelink/tilelink-spec/)
-
+- **TileLink Spec 1.7-draft [[2]](#TileLink): [https://www.sifive.com/documentation/tilelink/tilelink-spec/](https://www.sifive.com/documentation/tilelink/tilelink-spec/)**<br>
 This specification provides a detailed description of the TileLink protocol and bus hardware structure.
-
-#### Diplomatic design patterns: A TileLink case study [[3]](#Cook2017): [https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf](https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf)
-
+- **Diplomatic design patterns: A TileLink case study [[3]](#Cook2017): [https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf](https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf)**<br>
 This CARRV 2017 paper provides a high-level description of why and how the Diplomacy and TileLink packages are developed.
-
-#### U54-MC Core Complex Manual: [https://www.sifive.com/documentation/risc-v-core/u54-mc-risc-v-core-ip-manual/](https://www.sifive.com/documentation/risc-v-core/u54-mc-risc-v-core-ip-manual/)
-
+- **U54-MC Core Complex Manual: [https://www.sifive.com/documentation/risc-v-core/u54-mc-risc-v-core-ip-manual/](https://www.sifive.com/documentation/risc-v-core/u54-mc-risc-v-core-ip-manual/)**<br>
 U54-MC coreplex shows nearly all what the Rocket-Chip can provide at the point when this document is written. 
-
-#### Structure of the lowRISC SoC: [http://www.lowrisc.org/docs/minion-v0.4/](http://www.lowrisc.org/docs/minion-v0.4/)
-
+- **Structure of the lowRISC SoC: [http://www.lowrisc.org/docs/minion-v0.4/](http://www.lowrisc.org/docs/minion-v0.4/)**<br>
 The tutorial of the latest release from lowRISC. The difference between lowRISC and Rocket-Chip leads to the extension to the Diplomacy package.
-
-#### Notes for Rocket-Chip: [https://github.com/cnrv/rocket-chip-read](https://github.com/cnrv/rocket-chip-read)
-
+- **Notes for Rocket-Chip: [https://github.com/cnrv/rocket-chip-read](https://github.com/cnrv/rocket-chip-read)**<br>
 An unfinished but detailed note on the source code of the Rocket-Chip implementation.
 
 ## 3. Extra Information About the Diplomacy Package
@@ -118,18 +107,18 @@ Considering a DMA component, it may have one _agent_ controlling its connection 
 while also has another _agent_ controlling its connection to the configuration bus.
 
 - **The mapping between _links_ and actual hardware links is not always one-to-one either!**
-The DAG is built at compile time to negotiate the parameters of various agents.
-Although it is normally true that an _agent_ represents a real communication agent in hardware,
-it is not necessary that the Diplomacy must produce the actual hardware connections for these agents.
+The DAG is built at compile time to negotiate the parameters of various _agents_.
+Although it is normally true that an _agent_ represents a real communication _agent_ in hardware,
+it is not necessary that the Diplomacy must produce the actual hardware connections for these _agents_.
 The DAG and the diplomacy package can be hijacked to negotiating the parameters for a virtual network
 while the actually hardware connections are settled separately.
 This is how the Diplomacy package is extended for the shared SV AXI bus in lowRISC.
 
 ### 3.2 A rough description of the implementation of a _Node_
 
-In the Chisel implementation of the Diplomacy package, all _agents_ are an object derived from a class named a _Node_.
+In the Chisel implementation of the Diplomacy package, an _agents_ is an object derived from a class named a _Node_.
 Here shows the derivation relationship of all _agents_ in Figure [1](#figure-1).
-All _agents_ supported by the current Diplomacy package derived from a single parent class, **MixedNode**,
+All _agents_ supported by the current Diplomacy package derived from a the same base class, **MixedNode**,
 which is defined in the Diplomacy package: [Nodes.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/diplomacy/Nodes.scala)
 
 ~~~
@@ -146,23 +135,20 @@ TLOutputNode < OutputNode < IdentityNode < AdapterNode < MixedAdapterNode < Mixe
 Now let us have a look of the internals of this `MixedNode` class:
 
 ~~~scala
+// a simplified version of the MixedNode class
 sealed abstract class MixedNode[DI, UI, EI, BI <: Data, DO, UO, EO, BO <: Data](
   inner: InwardNodeImp [DI, UI, EI, BI],
-  outer: OutwardNodeImp[DO, UO, EO, BO])(
-  val numPO: Range.Inclusive,
-  val numPI: Range.Inclusive)(
-  implicit valName: ValName)
-  extends BaseNode with NodeHandle[DI, UI, BI, DO, UO, BO] with InwardNode[DI, UI, BI] with OutwardNode[DO, UO, BO]
+  outer: OutwardNodeImp[DO, UO, EO, BO])
 {
   def resolveStar(iKnown: Int, oKnown: Int, iStar: Int, oStar: Int): (Int, Int)
   def mapParamsD(n: Int, p: Seq[DI]): Seq[DO]
   def mapParamsU(n: Int, p: Seq[UO]): Seq[UI]
-  def gco = if (iParams.size != 1) None else inner.getO(iParams(0))
-  def gci = if (oParams.size != 1) None else outer.getI(oParams(0))
 
-  lazy val (oPortMapping, iPortMapping, oStar, iStar) // resolve from #D#.iStar and #U#.oStar
-  lazy val oPorts                                // resolve from #D#.iPortMapping()
-  lazy val iPorts                                // resolve from #U#.oPortMapping()
+  lazy val (oPortMapping, iPortMapping, oStar, iStar)
+                            // may resolve from {downward node}.iStar and {upward node}.oStar
+                            // call resolveStar()
+  lazy val oPorts           // may resolve from {downward node}.iPortMapping()
+  lazy val iPorts           // may resolve from {upward node}.oPortMapping()
   lazy val oParams: Seq[DO] // resolve from oPorts, iPorts and mapParamsD()
   lazy val iParams: Seq[UI] // resolve from iPorts, oPorts and mapParamsU()
   lazy val edgesOut         // resolve from oPorts and oParams
@@ -171,14 +157,31 @@ sealed abstract class MixedNode[DI, UI, EI, BI <: Data, DO, UO, EO, BO <: Data](
   lazy val bundleOut: Seq[BO] = edgesOut.map(e => Wire(outer.bundleO(e)))
   lazy val bundleIn:  Seq[BI] = edgesIn .map(e => Wire(inner.bundleI(e)))
 
-  def out: Seq[(BO, EO)]
-  def in: Seq[(BI, EI)]
-
-  def instantiate()
-  def bind(h: OutwardNode[DI, UI, BI], binding: NodeBinding)
-
+  def := (h: OutwardNodeHandle[DI, UI, BI])
+  def :*= (h: OutwardNodeHandle[DI, UI, BI])
+  def :=* (h: OutwardNodeHandle[DI, UI, BI])
 }
 ~~~
+
+`MixedNode` is an abstract set of derived variables and methods that shared by all _agents_.
+All _agents_ derived from `MixedNode` are abstract in a sense that
+an _agent_ object stores only the derived attributes of a node which are lazily resolved from the raw parameters
+provided by the type parameter: `DI`, `UI`, `EI`, `BI`, `DO`, `UO`, `EO` and `BO`.
+All letters in these type parameters have specific meanings:
+
+- **`D` and `U`**: Every _interface_ is described by a pair of `D` and `U` parameters.
+  The `D` parameter describes the downwards (master to slave) behaviour of an _interface_ while
+  the upwards (slave to master) behaviour is described by the `U` parameter.
+- **`E`**: This parameter describes the behaviour of a _link_ or an edge in the DAG.
+  To be specific, it might provide the utility functions to generating a certain response from a request.
+  It is used to enforce the protocol specified by a bus standard.
+- **`B`**: The field and width parameters of a _link_ are defined by this `B` (bundle) parameter.
+- **`I` and `O`**: `I` denotes that the set of parameters are for an inwards slave _interface_ while
+  **`O`** is for an outwards master _interface_.
+
+According to the above definition, the class parameter `(inner, outer)`
+provides a concrete implementation of a certain bus standard (such as AXI) for a slave _interface_ (`InwardNodeImp`)
+and a master _interface_ (`OutwardNodeImp`).
 
 ### References
 <!-- References --> 
