@@ -8,37 +8,42 @@ showdisqus = true
 
 +++
 
-In this final step, we want to test the debug functionality on an FPGA board.
-The debug system will use the UART connection at 12 MBaud to communicate with 
-the debug system.
+In this step, we want to test the Ethernet functionality on an FPGA board.
+The system will use the Ethernet 100Base-T connection at 100 MBaud to communicate with 
+the LowRISC Linux system.
 
 ## Run the pre-built FPGA demo
 
 The files you may need:
 
- * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/chip_top.bit):
+ * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit):
    The tagpipe/minion/debug enabled FPGA bitstream
- * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/boot.bin):
-   Linux, Busybox and Berkley bootloader (BBL) packaged in one image.
+ * [boot0000.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin):
+   Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for local filing system).
+ * [boot0001.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0001.bin):
+   Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for NFS root filing system).
+ * [rootfs.ext2](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2)
+   riscv-poky root filing system ready-built for LowRISC
 
 Download and write the bitstream
 
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/chip_top.bit > nexys4ddr_fpga.bit
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/boot.bin > boot.bin
-
-Optional: It is helpful to check the integrity of the kernel before we load it
-
-    md5sum boot.bin > boot.md5
+    cd $TOP/fpga/board/nexys4_ddr
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit > nexys4ddr.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin > boot0000.bin
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0001.bin > boot0001.bin
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2 | bzip2 -d > rootfs.ext2
     
 Convert the bitstream to quad-spi memory format
 
-    vivado -mode batch -source $TOP/fpga/common/script/cfgmem.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga.bit
+    vivado -mode batch -source $TOP/fpga/common/script/cfgmem.tcl -tclargs "xc7a100t_0" nexys4ddr.bit
 
 Burn the quad-spi memory (Ensure the MODE switch is set to QSPI)
 
-    vivado -mode batch -source $TOP/fpga/common/script/program_cfgmem.tcl -tclargs "xc7a100t_0" nexys4ddr_fpga.bit.mcs
+    vivado -mode batch -source $TOP/fpga/common/script/program_cfgmem.tcl -tclargs "xc7a100t_0" nexys4ddr.bit.mcs
 
-There are three ways to boot a RISC-V Linux. For the first two cases, we need to open the debug daemon to load programs and connect to the UART console. First check the available serial ports:
+## Access the boot-loader and connect to the UART console.
+
+First check the available serial ports:
 
     ls -l /dev/*USB*
 
@@ -48,101 +53,174 @@ which should result in a response similar to:
 
 In this case the device is user and group only access, so you need to be a member of the group dialout to use it.
 
-    opensocdebugd uart device=/dev/ttyUSB1 speed=12000000 &
+    microcom -p /dev/ttyUSB1
 
-#### Directly load Linux to DDR RAM
+This needs a separate terminal window as it takes over the screen. Alternatively a separate VGA display and USB keyboard may be used. You should see a display similar to the below a short delay after the PROG button is pushed.
 
-The pre-built FPGA bitstream has a selftest program as the 1st stage bootloader 
-(in an on-chip BRAM) which just jumps to DDR RAM if switch(0) is high (on the right). We need to load the Linux 
-image to the DDR RAM.
+    Selftest iteration 1
+    Selftest matches=4/4, delay = 5
+    Selftest iteration 2
+    Selftest matches=8/8, delay = 5
+    Selftest iteration 3
+    Selftest matches=16/16, delay = 7
+    Selftest iteration 4
+    Selftest matches=32/32, delay = 13
+    Selftest iteration 5
+    Selftest matches=64/64, delay = 26
+    Selftest iteration 6
+    Selftest matches=128/128, delay = 52
+    Selftest iteration 7
+    Selftest matches=256/256, delay = 103
+    Selftest iteration 8
+    Selftest matches=375/375, delay = 151
+    Hello LowRISC! Thu Dec 21 18:02:20 2017
+    MAC = eee1:e2e3e4e5
+    MAC address = ee:e1:e2:e3:e4:e5.
+    IP Address:  192.168.0.51
+    Subnet Mask: 255.255.255.0
+    Enabling interrupts
 
-    osd-cli
-    osd> reset -halt
-    osd> terminal 2
-    osd> mem loadelf boot.bin 3
-    osd> start
+## Ethernet server preparation
 
-The terminal should again boot Linux. To update the image simply
-perform the same action again. If you have a VGA display connected, you will see all output in both places (apart from Berkley boot loader messages).
+We need to make some changes on the server to enable this option. First of all create a suitable NFSroot mount point:
 
-#### Load Linux from SD card
+    sudo mkdir /mnt/poky-dev
+    sudo mount -t ext2 -o loop rootfs.ext2 /mnt/poky-dev
+    sudo vi /etc/xinetd.d/time
+    #Change the first occurence of "disable=yes" to "disable=no". This enables the time service.
+    sudo /etc/init.d/xinetd restart
+    sudo /etc/init.d/nfs-kernel-server stop
+    sudo vi /etc/exports
+    #Add the following to the end of the file. "/mnt/poky-dev 192.168.0.51(rw,sync,no_root_squash)"
+    #Restart the NFS server
+    sudo /etc/init.d/nfs-kernel-server start
 
- Other than manually loading a Linux to the DDR RAM using the debugger, we can use the selftest program to load Linux from SD, if switch(1) is high (second from right).
- 
- Note: make sure the Linux image `boot.bin` and `boot.md5` is copied to SD beforehand. With most systems this may be done with the file manager or similar GUI program.
+## Ethernet booting
 
-    osd-cli
-    osd> terminal 2
-    osd> reset
+    cd $TOP/fpga/board/nexys4_ddr
+    make etherboot
 
-You should be able to see the boot program copy the boot.bin from SD to DDR RAM and then boot it.
+You should see a display similar to the following:
 
-#### Connect a USB-keyboard and VGA compatible LCD display
+Clear blocks requested
+......??..6?6.6?6...6?.....?????....?6..............6.................Report blocks requested
+Report blocks requested
+Report md5 requested
+md5(0x86e00000,5272576) = 5f460062003d4b7293709df08dd09d71
+Report md5 requested
+Report md5 requested
+Report md5 requested
+Report md5 requested
+?Report md5 requested
+Report md5 requested
+Report md5 requested
+6?Report md5 requested
+Report md5 requested
+Report md5 requested
+Report md5 requested
+Report md5 requested
+Boot requested
+Disabling interrupts
+Ethernet interrupt status = 0
+Load 5272576 bytes to memory address 86e00000 from boot.bin of 5272576 bytes.
+load elf to DDR memory
+Section[0]: memcpy(0x80000000,0x0x86e01000,0x6c70);
+memset(0x80006c70,0,0x58);
+Section[1]: memcpy(0x80007000,0x0x86e08000,0x4fcc20);
+Boot the loaded program...
+Goodbye, booter ...
+              vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+                  vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvv  
+rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvv    
+rr                vvvvvvvvvvvvvvvvvvvvvv      
+rr            vvvvvvvvvvvvvvvvvvvvvvvv      rr
+rrrr      vvvvvvvvvvvvvvvvvvvvvvvvvv      rrrr
+rrrrrr      vvvvvvvvvvvvvvvvvvvvvv      rrrrrr
+rrrrrrrr      vvvvvvvvvvvvvvvvvv      rrrrrrrr
+rrrrrrrrrr      vvvvvvvvvvvvvv      rrrrrrrrrr
+rrrrrrrrrrrr      vvvvvvvvvv      rrrrrrrrrrrr
+rrrrrrrrrrrrrr      vvvvvv      rrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr      vv      rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrrrr          rrrrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrrrrrr      rrrrrrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrrrrrrrr  rrrrrrrrrrrrrrrrrrrrrr
 
-This method does not require a separate PC, once the bitstream has been burned to quad-spi flash. Note that the keyboard needs to be a PS/2 keyboard with USB interface to work with the Digilent board. For further information consult the Digilent documentation. It is advisable to power-cycle (i.e. turn it off and on again) after burning the QSPI flash and/or connecting these peripherals. After power-up, if all switches are off, you should see the following menu:
-
-     selftest>
-
-Available commands are a single character and the most commonly encountered ones are:
-
-     'B' - boot the default kernel (default command is switch(0) is high)
-     'P' - read and check kernel integrity but do not actually boot
-     'D' - directory of available files
-     'f' - display contents of a text file
-     'J' - just jump to a pre-loaded Linux kernel (default command is switch(1) is high)
-     'T' - test the SDRAM
-     
-Obscure commands, just for development are:
-
-     'c' - display the SD-card response
-     'd' - display the device memory map
-     'C' - set the SD-card clock divider ratio
-     'F' - boot from quad-SPI flash (not working in this release)
-     'h' - display a SD-card disk sector
-     'i' - send the legacy SD-card initialisation sequence
-     'I' - send the linux compatible SD-card initialisation sequence
-     'l' - set the LEDs to a hex pattern
-     'm' - try to mount the MSDOS file system on the SD-card
-     'M' - detect memory size with a walking ones pattern
-     'q' - quit (as if there was anywhere to quit to)
-     'r' - read an address range from Rocket memory
-     'R' - read an address range from Minion memory
-     's' - send a verbose command to the SD-card
-     'S' - print the stack pointer location
-     't' - control the SD-card timeout period
-     'u' - try to unmount the MSDOS file system on the SD-card
-     'W' - write an address in Minion memory
-
-## Run a standalone FPGA demo (no debugger support)
-
-We still keep the option to build a fully standalone implementation that does not rely on a debugger.
-
-You need to download two files:
-
- * [nexys4ddr_fpga_standalone.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/nexys4ddr_fpga_standalone.bit):
-   FPGA bitstream
- * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/boot.bin):
-   Linux, Busybox and bootloader packaged in one image.
-
-Download and write the bitstream:
-
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/nexys4ddr_fpga_standalone.bit > fpga.bit
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/ethernet-v0.5-rc1/boot.bin > boot.bin
-	
-
-Now copy both binary files to the SD card and configure the Nexys4-DDR boot option to SD card (JP1 to USB/SD). Power up the FPGA board and open a terminal:
-
-    microcom -p /dev/ttyUSB0 -s 115200
-
-You should be able to see that Linux boots from SD card.
-
-A script is provided to load your SD card without manually downloading the binary files:
-
-    $TOP/fpga/board/nexys4_ddr/preload_image.sh /PATH/TO/SD/
-
-You can also write the bitstream to FPGA by JTAG (JP1 to JTAG)
-
-    vivado -mode batch -source $TOP/fpga/common/script/program.tcl -tclargs "xc7a100t_0" fpga.bit
+       INSTRUCTION SETS WANT TO BE FREE
+[    0.000000] Linux version 4.6.2-gf7aa0f9 (jrrk2@jrrk2-iMac) (gcc version 6.1.0 (GCC) ) #1 Thu Dec 21 19:36:57 GMT 2017
+[    0.000000] Available physical memory: 114MB
+[    0.000000] Initial ramdisk at: 0xffffffff80016958 (781719 bytes)
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080600000-0x00000000877fffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080600000-0x00000000877fffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080600000-0x00000000877fffff]
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 28785
+[    0.000000] Kernel command line: 
+[    0.000000] PID hash table entries: 512 (order: 0, 4096 bytes)
+[    0.000000] Dentry cache hash table entries: 16384 (order: 5, 131072 bytes)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.000000] Sorting __ex_table...
+[    0.000000] Memory: 110464K/116736K available (2601K kernel code, 144K rwdata, 548K rodata, 856K init, 239K bss, 6272K reserved, 0K cma-reserved)
+[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:0 nr_irqs:0 0
+[    0.000000] clocksource: riscv_clocksource: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100 ns
+[    0.000000] Calibrating delay loop (skipped), value calculated using timer frequency.. 0.50 BogoMIPS (lpj=2500)
+[    0.000000] pid_max: default: 32768 minimum: 301
+[    0.000000] Mount-cache hash table entries: 512 (order: 0, 4096 bytes)
+[    0.000000] Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes)
+[    0.090000] devtmpfs: initialized
+[    0.120000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.150000] NET: Registered protocol family 16
+[    0.360000] clocksource: Switched to clocksource riscv_clocksource
+[    0.430000] NET: Registered protocol family 2
+[    0.460000] TCP established hash table entries: 1024 (order: 1, 8192 bytes)
+[    0.470000] TCP bind hash table entries: 1024 (order: 1, 8192 bytes)
+[    0.470000] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.480000] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    0.480000] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    0.490000] NET: Registered protocol family 1
+[    0.510000] RPC: Registered named UNIX socket transport module.
+[    0.510000] RPC: Registered udp transport module.
+[    0.510000] RPC: Registered tcp transport module.
+[    0.510000] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.770000] Unpacking initramfs...
+[    5.040000] hid_keyboard address 40020000, remapped to ffffffff78002000
+[    5.040000] hid_display address 40028000, remapped to ffffffff78010000
+[    5.390000] console [xuart_console0] enabled
+[    5.400000] keyb_timer is started
+[    5.440000] futex hash table entries: 256 (order: 0, 6144 bytes)
+[    5.460000] workingset: timestamp_bits=61 max_order=15 bucket_order=0
+[    6.000000] io scheduler noop registered (default)
+[    9.100000] lowrisc-digilent-ethernet: Lowrisc ethernet platform (40012000-40013FFF) mapped to ffffffff78008000
+[    9.130000] libphy: GPIO Bitbanged LowRISC: probed
+[    9.140000] Probing lowrisc-0:01
+[    9.150000] SMSC LAN8710/LAN8720 lowrisc-0:01: attached PHY driver [SMSC LAN8710/LAN8720] (mii_bus:phy_addr=lowrisc-0:01, irq=-1)
+[    9.200000] lowrisc_digilent_ethernet lowrisc_digilent_ethernet: Lowrisc Ether100MHz registered
+[    9.300000] Card inserted, mask changed to 4
+[    9.330000] NET: Registered protocol family 17
+[    9.340000] Key type dns_resolver registered
+[    9.360000] mmc0: mmc_rescan_try_freq: trying to init card at 5000000 Hz
+[    9.530000] Freeing unused kernel memory: 856K (ffffffff80000000 - ffffffff800d6000)
+[    9.550000] This architecture does not have kernel memory protection.
+Running the initial fake init
+[   10.040000] Open device, request interrupt
+Setting the clock ...
+[   10.860000] mmc0: new SDHC card at address 0007
+[   10.880000] blk_queue_max_hw_sectors: set to minimum 8
+[   10.900000] mmcblk0: mmc0:0007 SD08G 7.42 GiB 
+[   10.970000]  mmcblk0: p1
+Mounting the nfs partition ...
+Switch to nfs root
+INIT: version 2.88 booting
+bootlogd: cannot find console device 4:0 under /dev
+[   51.130000] random: nonblocking pool is initialized
 
 ## Mount an SD card inside RISC-V Linux
 

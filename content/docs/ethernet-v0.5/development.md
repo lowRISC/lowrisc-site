@@ -30,6 +30,12 @@ download the bitstream to the quad-SPI on the FPGA board:
     make cfgmem
     make program-cfgmem
 
+At this point, you should check the MODE jumper is in QSPI mode and then press the PROG button.
+
+### Boot Linux remotely on FPGA
+
+    make etherboot
+    
 #### FPGA demo with Ethernet (alternative boot programs)
 
     cd $TOP/fpga/board/nexys4_ddr

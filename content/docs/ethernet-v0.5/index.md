@@ -8,7 +8,7 @@ showdisqus = true
 
 _By Jonathan Kimmitt, Wei Song and Alex Bradbury_ (also see acknowledgements below)
 
-**Release version 0.5P** (10-2017)
+**Release version 0.5** (12-2017)
 
 ## Introduction
 
@@ -54,13 +54,12 @@ The build environment and pre-built images support the same platform as the prev
   2. [Prepare the environment]({{< ref "docs/ethernet-v0.5/environment.md" >}})
     * [Install FPGA and simulation tools]({{< ref "docs/ethernet-v0.5/installtools.md" >}})
  
-  4. Other
-   * [Debug Walkthrough]({{< ref "docs/ethernet-v0.5/walkthrough.md" >}})
+  4. Demo
    * [Running pre-built images on the FPGA]({{< ref "docs/ethernet-v0.5/fpga.md" >}})
    * [Developing/building from scratch on the FPGA]({{< ref "docs/ethernet-v0.5/development.md" >}})
  
   5. [Release notes] ({{<ref "docs/ethernet-v0.5/release.md">}})
-     * [**Version 0.5P**: ethernet multiuser lowRISC (10-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
+     * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
@@ -84,6 +83,7 @@ The build environment and pre-built images support the same platform as the prev
 * Stefan Wallentowitz and Philipp Wagner provided the trace debug system
 * Furkan Turan provided the zedboard patches
 * Philipp Jantscher did the initial tagged memory port to debug-v0.3
+* The Ethernet transceiver library is due to Alex Forencich (http://alexforencich.com/wiki/en/verilog/ethernet/readme). The preview version was translated from VHDL written by Philipp Kerling (https://github.com/pkerling/ethernet_mac)
 
 ### Other useful sources of information
 

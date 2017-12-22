@@ -29,17 +29,31 @@ Ensure you have all the necessary packages installed:
     sudo apt-get install autoconf automake autotools-dev curl \
     libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
     flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev \
-    swig git libtool libreadline-dev libelf-dev python-dev
+    swig git libtool libreadline-dev libelf-dev python-dev \
+    microcom chrpath nfs-kernel-server xinetd
+
+Next steps:
+
+ * [Install FPGA and simulation tools](/docs/ethernet-v0.5/installtools)
+
+You might want to add the Vivado tools to your path first to keep the environment clean. This prevents system tools
+from trying to use shared libraries from the (older) Vivado install. Proceed as follows if you chose the default install
+location (or follow your system adminstrator instructions)
+
+    source /opt/Xilinx/Vivado/2015.4/settings64.sh
+    unset LD_LIBRARY_PATH
 
 ### Download the code
 
 The code is hosted in the
 [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip). All
-external repositories are fetched as submodules. You need to clone the
+external repositories are fetched as submodules. In case you want to work on multiple branches
+give each checkout a unique name (such as lowrisc-chip-ethernet-v0.5)
+You need to clone the
 proper branch (`ethernet-v0.5`):
 
-    git clone -b ethernet-v0.5 --recursive https://github.com/lowrisc/lowrisc-chip.git
-    cd lowrisc-chip
+    git clone -b ethernet-v0.5 --recursive https://github.com/lowrisc/lowrisc-chip.git lowrisc-chip-ethernet-v0.5
+    cd lowrisc-chip-ethernet-v0.5
 
 ### Structure of the git repository
 
@@ -48,9 +62,10 @@ The structure is similar to the one described
 the peripherals that were previously in the Minion repository are connected directly to the rocket.
 
 ### Next steps
-
+    
 To set the correct environment variables for running lowRISC, you need to
-source the script `set_env.sh` (formerly `set_riscv_env.sh`) in the base directory:
+source the script `set_env.sh` (formerly `set_riscv_env.sh`) in the base directory.
+This must be done in a fresh shell window, not one used to work on any other branch of LowRISC:
 
     source set_env.sh
 
@@ -68,9 +83,19 @@ This is not strictly needed unless we are building our own images, but it is eas
 
     sh $TOP/riscv-tools/fetch_and_patch_linux.sh
 
-Next steps:
+## Building the RISCV toolchain (quick start: detailed instructions are below)
 
- * [Install FPGA and simulation tools](/docs/ethernet-v0.5/installtools)
+    cd $TOP/riscv-tools/
+    ./build.sh
+    cd riscv-gnu-toolchain/build
+    ../configure --prefix=$RISCV
+    make -j$(nproc) linux
+
+Or for more detail, follow these instructions _(caution: from a previous release)_ and then use the browser back button:
+
+ * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
+
+## Optional step
 
 The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger is disabled by default.
 booting and remote access is done via Ethernet by default. However it can easily be enabled for development.
