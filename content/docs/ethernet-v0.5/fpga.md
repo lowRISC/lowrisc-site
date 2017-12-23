@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2017-04-14T13:00:00+00:00"
-title = "Running the pre-built images on the FPGA"
+title = "Running the pre-built NFS-root image on the FPGA"
 parent = "/docs/ethernet-v0.5/"
 prev = "/docs/ethernet-v0.5/walkthrough/"
 showdisqus = true
@@ -18,8 +18,6 @@ The files you may need:
 
  * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit):
    The tagpipe/minion/debug enabled FPGA bitstream
- * [boot0000.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin):
-   Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for local filing system).
  * [boot0001.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0001.bin):
    Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for NFS root filing system).
  * [rootfs.ext2](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2)
@@ -29,7 +27,6 @@ Download and write the bitstream
 
     cd $TOP/fpga/board/nexys4_ddr
     curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit > nexys4ddr.bit
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin > boot0000.bin
     curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0001.bin > boot0001.bin
     curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2 | bzip2 -d > rootfs.ext2
     
@@ -92,8 +89,12 @@ We need to make some changes on the server to enable this option. First of all c
     sudo /etc/init.d/nfs-kernel-server stop
     sudo vi /etc/exports
     #Add the following to the end of the file. "/mnt/poky-dev 192.168.0.51(rw,sync,no_root_squash)"
+    #Mount the previously downloaded rootfs onto the designated mount point (stored in initial_0001 in riscv-tools)
+    sudo mount -t ext2 -o loop rootfs.ext2 /mnt/poky-dev
     #Restart the NFS server
     sudo /etc/init.d/nfs-kernel-server start
+
+The dangerous option no_root_squash which allows the NFS client to run as root on the server, is mitigated by the confinement of the mount to the area of the loopback which we have set up. If access to host files is desired this may be done by copying on the host, or with a second mount point without no_root_squash inside the server's filing system
 
 ## Ethernet booting
 
@@ -102,125 +103,127 @@ We need to make some changes on the server to enable this option. First of all c
 
 You should see a display similar to the following:
 
-Clear blocks requested
-......??..6?6.6?6...6?.....?????....?6..............6.................Report blocks requested
-Report blocks requested
-Report md5 requested
-md5(0x86e00000,5272576) = 5f460062003d4b7293709df08dd09d71
-Report md5 requested
-Report md5 requested
-Report md5 requested
-Report md5 requested
-?Report md5 requested
-Report md5 requested
-Report md5 requested
-6?Report md5 requested
-Report md5 requested
-Report md5 requested
-Report md5 requested
-Report md5 requested
-Boot requested
-Disabling interrupts
-Ethernet interrupt status = 0
-Load 5272576 bytes to memory address 86e00000 from boot.bin of 5272576 bytes.
-load elf to DDR memory
-Section[0]: memcpy(0x80000000,0x0x86e01000,0x6c70);
-memset(0x80006c70,0,0x58);
-Section[1]: memcpy(0x80007000,0x0x86e08000,0x4fcc20);
-Boot the loaded program...
-Goodbye, booter ...
-              vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-                  vvvvvvvvvvvvvvvvvvvvvvvvvvvv
-rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvvvvvv
-rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvvvv
-rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
-rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
-rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
-rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvv  
-rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvv    
-rr                vvvvvvvvvvvvvvvvvvvvvv      
-rr            vvvvvvvvvvvvvvvvvvvvvvvv      rr
-rrrr      vvvvvvvvvvvvvvvvvvvvvvvvvv      rrrr
-rrrrrr      vvvvvvvvvvvvvvvvvvvvvv      rrrrrr
-rrrrrrrr      vvvvvvvvvvvvvvvvvv      rrrrrrrr
-rrrrrrrrrr      vvvvvvvvvvvvvv      rrrrrrrrrr
-rrrrrrrrrrrr      vvvvvvvvvv      rrrrrrrrrrrr
-rrrrrrrrrrrrrr      vvvvvv      rrrrrrrrrrrrrr
-rrrrrrrrrrrrrrrr      vv      rrrrrrrrrrrrrrrr
-rrrrrrrrrrrrrrrrrr          rrrrrrrrrrrrrrrrrr
-rrrrrrrrrrrrrrrrrrrr      rrrrrrrrrrrrrrrrrrrr
-rrrrrrrrrrrrrrrrrrrrrr  rrrrrrrrrrrrrrrrrrrrrr
+    Clear blocks requested
+    ........
+    Report blocks requested
+    Report md5 requested
+    md5(0x86e00000,5272576) = 5f460062003d4b7293709df08dd09d71
+    Boot requested
+    Disabling interrupts
+    Ethernet interrupt status = 0
+    Load 5272576 bytes to memory address 86e00000 from boot.bin of 5272576 bytes.
+    load elf to DDR memory
+    Section[0]: memcpy(0x80000000,0x0x86e01000,0x6c70);
+    memset(0x80006c70,0,0x58);
+    Section[1]: memcpy(0x80007000,0x0x86e08000,0x4fcc20);
+    Boot the loaded program...
+    Goodbye, booter ...
+		  vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+		      vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvvvvvv
+    rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvvvv
+    rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+    rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+    rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+    rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvv  
+    rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvv    
+    rr                vvvvvvvvvvvvvvvvvvvvvv      
+    rr            vvvvvvvvvvvvvvvvvvvvvvvv      rr
+    rrrr      vvvvvvvvvvvvvvvvvvvvvvvvvv      rrrr
+    rrrrrr      vvvvvvvvvvvvvvvvvvvvvv      rrrrrr
+    rrrrrrrr      vvvvvvvvvvvvvvvvvv      rrrrrrrr
+    rrrrrrrrrr      vvvvvvvvvvvvvv      rrrrrrrrrr
+    rrrrrrrrrrrr      vvvvvvvvvv      rrrrrrrrrrrr
+    rrrrrrrrrrrrrr      vvvvvv      rrrrrrrrrrrrrr
+    rrrrrrrrrrrrrrrr      vv      rrrrrrrrrrrrrrrr
+    rrrrrrrrrrrrrrrrrr          rrrrrrrrrrrrrrrrrr
+    rrrrrrrrrrrrrrrrrrrr      rrrrrrrrrrrrrrrrrrrr
+    rrrrrrrrrrrrrrrrrrrrrr  rrrrrrrrrrrrrrrrrrrrrr
 
-       INSTRUCTION SETS WANT TO BE FREE
-[    0.000000] Linux version 4.6.2-gf7aa0f9 (jrrk2@jrrk2-iMac) (gcc version 6.1.0 (GCC) ) #1 Thu Dec 21 19:36:57 GMT 2017
-[    0.000000] Available physical memory: 114MB
-[    0.000000] Initial ramdisk at: 0xffffffff80016958 (781719 bytes)
-[    0.000000] Zone ranges:
-[    0.000000]   Normal   [mem 0x0000000080600000-0x00000000877fffff]
-[    0.000000] Movable zone start for each node
-[    0.000000] Early memory node ranges
-[    0.000000]   node   0: [mem 0x0000000080600000-0x00000000877fffff]
-[    0.000000] Initmem setup node 0 [mem 0x0000000080600000-0x00000000877fffff]
-[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 28785
-[    0.000000] Kernel command line: 
-[    0.000000] PID hash table entries: 512 (order: 0, 4096 bytes)
-[    0.000000] Dentry cache hash table entries: 16384 (order: 5, 131072 bytes)
-[    0.000000] Inode-cache hash table entries: 8192 (order: 4, 65536 bytes)
-[    0.000000] Sorting __ex_table...
-[    0.000000] Memory: 110464K/116736K available (2601K kernel code, 144K rwdata, 548K rodata, 856K init, 239K bss, 6272K reserved, 0K cma-reserved)
-[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
-[    0.000000] NR_IRQS:0 nr_irqs:0 0
-[    0.000000] clocksource: riscv_clocksource: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100 ns
-[    0.000000] Calibrating delay loop (skipped), value calculated using timer frequency.. 0.50 BogoMIPS (lpj=2500)
-[    0.000000] pid_max: default: 32768 minimum: 301
-[    0.000000] Mount-cache hash table entries: 512 (order: 0, 4096 bytes)
-[    0.000000] Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes)
-[    0.090000] devtmpfs: initialized
-[    0.120000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
-[    0.150000] NET: Registered protocol family 16
-[    0.360000] clocksource: Switched to clocksource riscv_clocksource
-[    0.430000] NET: Registered protocol family 2
-[    0.460000] TCP established hash table entries: 1024 (order: 1, 8192 bytes)
-[    0.470000] TCP bind hash table entries: 1024 (order: 1, 8192 bytes)
-[    0.470000] TCP: Hash tables configured (established 1024 bind 1024)
-[    0.480000] UDP hash table entries: 256 (order: 1, 8192 bytes)
-[    0.480000] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
-[    0.490000] NET: Registered protocol family 1
-[    0.510000] RPC: Registered named UNIX socket transport module.
-[    0.510000] RPC: Registered udp transport module.
-[    0.510000] RPC: Registered tcp transport module.
-[    0.510000] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    2.770000] Unpacking initramfs...
-[    5.040000] hid_keyboard address 40020000, remapped to ffffffff78002000
-[    5.040000] hid_display address 40028000, remapped to ffffffff78010000
-[    5.390000] console [xuart_console0] enabled
-[    5.400000] keyb_timer is started
-[    5.440000] futex hash table entries: 256 (order: 0, 6144 bytes)
-[    5.460000] workingset: timestamp_bits=61 max_order=15 bucket_order=0
-[    6.000000] io scheduler noop registered (default)
-[    9.100000] lowrisc-digilent-ethernet: Lowrisc ethernet platform (40012000-40013FFF) mapped to ffffffff78008000
-[    9.130000] libphy: GPIO Bitbanged LowRISC: probed
-[    9.140000] Probing lowrisc-0:01
-[    9.150000] SMSC LAN8710/LAN8720 lowrisc-0:01: attached PHY driver [SMSC LAN8710/LAN8720] (mii_bus:phy_addr=lowrisc-0:01, irq=-1)
-[    9.200000] lowrisc_digilent_ethernet lowrisc_digilent_ethernet: Lowrisc Ether100MHz registered
-[    9.300000] Card inserted, mask changed to 4
-[    9.330000] NET: Registered protocol family 17
-[    9.340000] Key type dns_resolver registered
-[    9.360000] mmc0: mmc_rescan_try_freq: trying to init card at 5000000 Hz
-[    9.530000] Freeing unused kernel memory: 856K (ffffffff80000000 - ffffffff800d6000)
-[    9.550000] This architecture does not have kernel memory protection.
-Running the initial fake init
-[   10.040000] Open device, request interrupt
-Setting the clock ...
-[   10.860000] mmc0: new SDHC card at address 0007
-[   10.880000] blk_queue_max_hw_sectors: set to minimum 8
-[   10.900000] mmcblk0: mmc0:0007 SD08G 7.42 GiB 
-[   10.970000]  mmcblk0: p1
-Mounting the nfs partition ...
-Switch to nfs root
-INIT: version 2.88 booting
-bootlogd: cannot find console device 4:0 under /dev
-[   51.130000] random: nonblocking pool is initialized
+	   INSTRUCTION SETS WANT TO BE FREE
+    [    0.000000] Linux version 4.6.2-gf7aa0f9 (jrrk2@jrrk2-iMac) (gcc version 6.1.0 (GCC) ) #1 Thu Dec 21 19:36:57 GMT 2017
+    [    0.000000] Available physical memory: 114MB
+    [    0.000000] Initial ramdisk at: 0xffffffff80016958 (781719 bytes)
+    [    0.000000] Zone ranges:
+    [    0.000000]   Normal   [mem 0x0000000080600000-0x00000000877fffff]
+    [    0.000000] Movable zone start for each node
+    [    0.000000] Early memory node ranges
+    [    0.000000]   node   0: [mem 0x0000000080600000-0x00000000877fffff]
+    [    0.000000] Initmem setup node 0 [mem 0x0000000080600000-0x00000000877fffff]
+    [    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 28785
+    [    0.000000] Kernel command line: 
+    [    0.000000] PID hash table entries: 512 (order: 0, 4096 bytes)
+    [    0.000000] Dentry cache hash table entries: 16384 (order: 5, 131072 bytes)
+    [    0.000000] Inode-cache hash table entries: 8192 (order: 4, 65536 bytes)
+    [    0.000000] Sorting __ex_table...
+    [    0.000000] Memory: 110464K/116736K available (2601K kernel code, 144K rwdata, 548K rodata, 856K init, 239K bss, 6272K reserved, 0K cma-reserved)
+    [    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+    [    0.000000] NR_IRQS:0 nr_irqs:0 0
+    [    0.000000] clocksource: riscv_clocksource: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100 ns
+    [    0.000000] Calibrating delay loop (skipped), value calculated using timer frequency.. 0.50 BogoMIPS (lpj=2500)
+    [    0.000000] pid_max: default: 32768 minimum: 301
+    [    0.000000] Mount-cache hash table entries: 512 (order: 0, 4096 bytes)
+    [    0.000000] Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes)
+    [    0.090000] devtmpfs: initialized
+    [    0.120000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+    [    0.150000] NET: Registered protocol family 16
+    [    0.360000] clocksource: Switched to clocksource riscv_clocksource
+    [    0.430000] NET: Registered protocol family 2
+    [    0.460000] TCP established hash table entries: 1024 (order: 1, 8192 bytes)
+    [    0.470000] TCP bind hash table entries: 1024 (order: 1, 8192 bytes)
+    [    0.470000] TCP: Hash tables configured (established 1024 bind 1024)
+    [    0.480000] UDP hash table entries: 256 (order: 1, 8192 bytes)
+    [    0.480000] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+    [    0.490000] NET: Registered protocol family 1
+    [    0.510000] RPC: Registered named UNIX socket transport module.
+    [    0.510000] RPC: Registered udp transport module.
+    [    0.510000] RPC: Registered tcp transport module.
+    [    0.510000] RPC: Registered tcp NFSv4.1 backchannel transport module.
+    [    2.770000] Unpacking initramfs...
+    [    5.040000] hid_keyboard address 40020000, remapped to ffffffff78002000
+    [    5.040000] hid_display address 40028000, remapped to ffffffff78010000
+    [    5.390000] console [xuart_console0] enabled
+    [    5.400000] keyb_timer is started
+    [    5.440000] futex hash table entries: 256 (order: 0, 6144 bytes)
+    [    5.460000] workingset: timestamp_bits=61 max_order=15 bucket_order=0
+    [    6.000000] io scheduler noop registered (default)
+    [    9.100000] lowrisc-digilent-ethernet: Lowrisc ethernet platform (40012000-40013FFF) mapped to ffffffff78008000
+    [    9.130000] libphy: GPIO Bitbanged LowRISC: probed
+    [    9.140000] Probing lowrisc-0:01
+    [    9.150000] SMSC LAN8710/LAN8720 lowrisc-0:01: attached PHY driver [SMSC LAN8710/LAN8720] (mii_bus:phy_addr=lowrisc-0:01, irq=-1)
+    [    9.200000] lowrisc_digilent_ethernet lowrisc_digilent_ethernet: Lowrisc Ether100MHz registered
+    [    9.300000] Card inserted, mask changed to 4
+    [    9.330000] NET: Registered protocol family 17
+    [    9.340000] Key type dns_resolver registered
+    [    9.360000] mmc0: mmc_rescan_try_freq: trying to init card at 5000000 Hz
+    [    9.530000] Freeing unused kernel memory: 856K (ffffffff80000000 - ffffffff800d6000)
+    [    9.550000] This architecture does not have kernel memory protection.
+    Running the initial fake init
+    [   10.030000] Open device, request interrupt
+    Setting the clock ...
+    [   10.910000] mmc0: new SDHC card at address 0007
+    [   10.930000] blk_queue_max_hw_sectors: set to minimum 8
+    [   10.950000] mmcblk0: mmc0:0007 SD08G 7.42 GiB 
+    [   11.020000]  mmcblk0: p1 p2 p3
+    Mounting the nfs partition ...
+    Switch to nfs root
+    INIT: version 2.88 booting
+    bootlogd: cannot find console device 4:0 under /dev
+    [   46.690000] random: dd urandom read with 103 bits of entropy available
+    [   60.370000] random: nonblocking pool is initialized
+    hwclock: can't open '/dev/misc/rtc': No such file or directory
+    INIT: Entering runlevel: 2
+    Configuring network interfaces... ifup skipped for nfsroot interface eth0
+    run-parts: /etc/network/if-pre-up.d/nfsroot: exit status 1
+    Starting Dropbear SSH server: dropbear.
+    hwclock: can't open '/dev/misc/rtc': No such file or directory
+    Starting syslogd/klogd: done
+
+    Poky (Yocto Project Reference Distro) 2.0+snapshot-20171219 qemuriscv64 /dev/console
+
+    qemuriscv64 login: 
+
+The first boot will take considerably longer than subsequent boots due to the ssh keys having to be regenerated.
 
 ## Mount an SD card inside RISC-V Linux
 
@@ -228,21 +231,22 @@ To discover whether an SD is recognized by the kernel:
 
     cat /proc/partitions
 
-If an SD card is formated in FAT32 and inserted (hot insertion not supported in this kernel), it should look like:
+If an SD card is formated in FAT32 and inserted, it should look like:
 
-     179        0    7707648 mmcblk0
-     179        1    7706624 mmcblk0p1
+    major minor  #blocks  name
 
-The first two device nodes, and first mount point are pre-created for you. If you created further partitions manually, create the device node as follows:
-
-    mkdir /mnt2
-    mkdir /mnt3
-    mknod /dev/mmcblk0p2 b 179 2
-    mknod /dev/mmcblk0p3 b 179 3 #etc..
+     179        0    7782400 mmcblk0
+     179        1      32768 mmcblk0p1
+     179        2     614400 mmcblk0p2
+     179        3    1048576 mmcblk0p3
 
 To mount a DOS file system from this card:
 
-    mount /dev/mmcblk0p1 /mnt
+    root@qemuriscv64:~# mount /dev/mmcblk0p1 /mnt
+    root@qemuriscv64:~# ls -l /mnt
+    drwxr-xr-x    2 root     root          2048 Jan  1  1980 DIR
+    -rwxr-xr-x    1 root     root       5272272 Dec 22 11:22 boot0000.bin
+    -rwxr-xr-x    1 root     root       5272272 Dec 22 11:22 boot0001.bin
 
 After you finished with the SD card, remember to unmount it.
 
@@ -254,8 +258,26 @@ To mount a manually created ext2 chroot partition from this card:
     mount -t proc none /mnt/proc
     chroot /mnt
 
+This partition should be prepared in advance using a card reader on the Workstation. See
+the list of downloads above.
+
+In principle it could be created live from the NFS partition, but performance limitations
+make this non-viable at the moment.
+
 After you finished with the chroot partition, remember to unmount it.
 
     exit
     umount /mnt/proc
     umount /mnt
+
+The final partition is designated as swap. This will be handy if you wish to attempt heavy duty
+tasks such as compilation.
+
+    root@qemuriscv64:~# swapon /dev/mmcblk0p3
+    [  983.110000] Adding 1048572k swap on /dev/mmcblk0p3.  Priority:-1 extents:1 across:1048572k SS
+    root@qemuriscv64:~# free
+		 total       used       free     shared    buffers     cached
+    Mem:        111320      10088     101232        196         36       5200
+    -/+ buffers/cache:       4852     106468
+    Swap:      1048572          0    1048572
+    root@qemuriscv64:~# 

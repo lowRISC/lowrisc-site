@@ -55,7 +55,8 @@ The build environment and pre-built images support the same platform as the prev
     * [Install FPGA and simulation tools]({{< ref "docs/ethernet-v0.5/installtools.md" >}})
  
   4. Demo
-   * [Running pre-built images on the FPGA]({{< ref "docs/ethernet-v0.5/fpga.md" >}})
+   * [Running pre-built NFS-root image on the FPGA]({{< ref "docs/ethernet-v0.5/fpga.md" >}})
+   * [Running pre-built SD-card image on the FPGA]({{< ref "docs/ethernet-v0.5/fpga2.md" >}})
    * [Developing/building from scratch on the FPGA]({{< ref "docs/ethernet-v0.5/development.md" >}})
  
   5. [Release notes] ({{<ref "docs/ethernet-v0.5/release.md">}})

@@ -1,0 +1,458 @@
++++
+Description = ""
+date = "2017-04-14T13:00:00+00:00"
+title = "Running the pre-built SD-image on the FPGA"
+parent = "/docs/ethernet-v0.5/"
+prev = "/docs/ethernet-v0.5/walkthrough/"
+showdisqus = true
+
++++
+
+In this step, we want to test the Ethernet functionality on an FPGA board.
+The system will use the Ethernet 100Base-T connection at 100 MBaud to communicate with 
+the LowRISC Linux system.
+
+## Run the pre-built FPGA demo
+
+The files you may need:
+
+ * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit):
+   The tagpipe/minion/debug enabled FPGA bitstream
+ * [boot0000.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin):
+   Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for local filing system).
+ * [rootfs.ext2](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2)
+   riscv-poky root filing system ready-built for LowRISC
+
+Download and write the bitstream
+
+    cd $TOP/fpga/board/nexys4_ddr
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit > nexys4ddr.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin > boot0000.bin
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2 | bzip2 -d > rootfs.ext2
+    
+Convert the bitstream to quad-spi memory format
+
+    vivado -mode batch -source $TOP/fpga/common/script/cfgmem.tcl -tclargs "xc7a100t_0" nexys4ddr.bit
+
+Burn the quad-spi memory (Ensure the MODE switch is set to QSPI)
+
+    vivado -mode batch -source $TOP/fpga/common/script/program_cfgmem.tcl -tclargs "xc7a100t_0" nexys4ddr.bit.mcs
+
+## Access the boot-loader and connect to the UART console.
+
+First check the available serial ports:
+
+    ls -l /dev/*USB*
+
+which should result in a response similar to:
+
+    crw-rw---- 1 root dialout 188, 1 Apr 14 16:32 /dev/ttyUSB1
+
+In this case the device is user and group only access, so you need to be a member of the group dialout to use it.
+
+    microcom -p /dev/ttyUSB1
+
+This needs a separate terminal window as it takes over the screen. Alternatively a separate VGA display and USB keyboard may be used. You should see a display similar to the below a short delay after the PROG button is pushed.
+
+    Selftest iteration 1
+    Selftest matches=4/4, delay = 5
+    Selftest iteration 2
+    Selftest matches=8/8, delay = 5
+    Selftest iteration 3
+    Selftest matches=16/16, delay = 7
+    Selftest iteration 4
+    Selftest matches=32/32, delay = 13
+    Selftest iteration 5
+    Selftest matches=64/64, delay = 26
+    Selftest iteration 6
+    Selftest matches=128/128, delay = 52
+    Selftest iteration 7
+    Selftest matches=256/256, delay = 103
+    Selftest iteration 8
+    Selftest matches=375/375, delay = 151
+    Hello LowRISC! Thu Dec 21 18:02:20 2017
+    MAC = eee1:e2e3e4e5
+    MAC address = ee:e1:e2:e3:e4:e5.
+    IP Address:  192.168.0.51
+    Subnet Mask: 255.255.255.0
+    Enabling interrupts
+
+## SD-card preparation
+
+The preparation is similar to formatting a hard disk for Linux installation on a host (the old, non-gui way).
+With a suitable card reader, insert the SD card (I use 8GByte for this example):
+
+    dmesg|tail
+    ...
+    [98153.422033] sd 6:0:0:1: [sdc] 15564800 512-byte logical blocks: (7.97 GB/7.42 GiB)
+    ...
+
+We see the new disk is given the designation /dev/sdc. If your workstation is setup to mount existing partitions automatically, unmount them but do not use the eject button on the GUI. (for example: )
+
+    sudo umount /media/jrrk2/B725-19B1
+
+    sudo fdisk /dev/sdc
+    [sudo] password for jrrk2: 
+
+    Welcome to fdisk (util-linux 2.27.1).
+    Changes will remain in memory only, until you decide to write them.
+    Be careful before using the write command.
+
+
+    Command (m for help): p
+    Disk /dev/sdc: 7.4 GiB, 7969177600 bytes, 15564800 sectors
+    Units: sectors of 1 * 512 = 512 bytes
+    Sector size (logical/physical): 512 bytes / 512 bytes
+    I/O size (minimum/optimal): 512 bytes / 512 bytes
+    Disklabel type: dos
+    Disk identifier: 0x5c9ebcd9
+
+    Device     Boot   Start     End Sectors  Size Id Type
+    /dev/sdc1          2048   67583   65536   32M  b W95 FAT32
+    /dev/sdc2         67584 1296383 1228800  600M 83 Linux
+    /dev/sdc3       1296384 3393535 2097152    1G 82 Linux swap / Solaris
+
+    Command (m for help): p
+    Disk /dev/sdc: 7.4 GiB, 7969177600 bytes, 15564800 sectors
+    Units: sectors of 1 * 512 = 512 bytes
+    Sector size (logical/physical): 512 bytes / 512 bytes
+    I/O size (minimum/optimal): 512 bytes / 512 bytes
+    Disklabel type: dos
+    Disk identifier: 0x074e0e18
+
+The disk will typically be empty or have one large DOS partition, if not use the o command to create a new table
+
+    Command (m for help): o
+    Created a new DOS disklabel with disk identifier 0x074e0e18.
+
+We proceed to create the partitions as follows:
+
+    Command (m for help): n
+    Partition type
+       p   primary (0 primary, 0 extended, 4 free)
+       e   extended (container for logical partitions)
+    Select (default p): p
+    Partition number (1-4, default 1): 
+    First sector (2048-15564799, default 2048): 
+    Last sector, +sectors or +size{K,M,G,T,P} (2048-15564799, default 15564799): +32M
+
+    Created a new partition 1 of type 'Linux' and of size 32 MiB.
+
+    Command (m for help): t
+    Selected partition 1
+    Partition type (type L to list all types): b
+    Changed type of partition 'Linux' to 'W95 FAT32'.
+
+    Command (m for help): n
+    Partition type
+       p   primary (1 primary, 0 extended, 3 free)
+       e   extended (container for logical partitions)
+    Select (default p): p
+    Partition number (2-4, default 2): 
+    First sector (67584-15564799, default 67584): 
+    Last sector, +sectors or +size{K,M,G,T,P} (67584-15564799, default 15564799): +600M
+
+    Created a new partition 2 of type 'Linux' and of size 600 MiB.
+
+    Command (m for help): n
+    Partition type
+       p   primary (2 primary, 0 extended, 2 free)
+       e   extended (container for logical partitions)
+    Select (default p): p
+    Partition number (3,4, default 3): 
+    First sector (1296384-15564799, default 1296384): 
+    Last sector, +sectors or +size{K,M,G,T,P} (1296384-15564799, default 15564799): +1G
+
+    Created a new partition 3 of type 'Linux' and of size 1 GiB.
+
+    Command (m for help): t
+    Partition number (1-3, default 3): 
+    Partition type (type L to list all types): 82
+
+    Changed type of partition 'Linux' to 'Linux swap / Solaris'.
+
+    Command (m for help): p
+    Disk /dev/sdc: 7.4 GiB, 7969177600 bytes, 15564800 sectors
+    Units: sectors of 1 * 512 = 512 bytes
+    Sector size (logical/physical): 512 bytes / 512 bytes
+    I/O size (minimum/optimal): 512 bytes / 512 bytes
+    Disklabel type: dos
+    Disk identifier: 0x074e0e18
+
+    Device     Boot   Start     End Sectors  Size Id Type
+    /dev/sdc1          2048   67583   65536   32M  b W95 FAT32
+    /dev/sdc2         67584 1296383 1228800  600M 83 Linux
+    /dev/sdc3       1296384 3393535 2097152    1G 82 Linux swap / Solaris
+
+    Command (m for help): w
+    The partition table has been altered.
+    Calling ioctl() to re-read partition table.
+    Re-reading the partition table failed.: Device or resource busy
+
+    The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
+
+To ensure the new partitions are recognised, remove and reinsert the card.
+
+## Setting the partitions (use the image downloaded at the top of this page)
+
+    sudo mkfs.msdos /dev/sdc1
+    sudo dd if=rootfs.ext2 of=/dev/sdc2 bs=64M
+    sudo mkswap /dev/sdc3
+
+## Optional: set up the time-server
+
+    sudo vi /etc/xinetd.d/time
+    #Change the first occurence of "disable=yes" to "disable=no". This enables the time service.
+    sudo /etc/init.d/xinetd restart
+
+## SD booting (kernel via Ethernet)
+
+    cd $TOP/fpga/board/nexys4_ddr
+    make ethersd
+
+## SD booting (standalone)
+
+    cd $TOP/fpga/board/nexys4_ddr
+    cp *.bin /media/jrrk2/26CD-9823/ # or wherever your SD-card partition is mounted
+    make boot cfgmem-updated program-cfgmem-updated
+
+The default boot loader will choose how to boot according to the DIP switches as follows:
+
+SW0 on: boot from RAM (only useful if you have compiled in the trace debugger)
+SW1 on: boot from SD-card
+SW2 on: boot from Ethernet as per the previous section
+
+After inserting the SD-card in the Nexys4-DDR unit, and pressing PROG, you should see a display similar to the previous section, ending with the following. By contrast with the NFS-root, etherboot method, the eth0 device is free to take up any allocated address. In conjunction with the support VGA text screen and USB-keyboard, emulation of a variety of standalone computing tasks is possible.
+
+    Setting the clock ...
+    [   11.350000] mmc0: new SDHC card at address 0007
+    [   11.380000] blk_queue_max_hw_sectors: set to minimum 8
+    [   11.400000] mmcblk0: mmc0:0007 SD08G 7.42 GiB 
+    [   11.480000]  mmcblk0: p1 p2 p3
+    Waiting for the sd card ...
+    Mounting the sd partition ...
+    [   22.630000] EXT2-fs (mmcblk0p2): warning: mounting unchecked fs, running e2fsck is recommended
+    Switch to sd root
+    [   33.090000] random: nonblocking pool is initialized
+    INIT: version 2.88 booting
+    bootlogd: cannot find console device 4:0 under /dev
+    hwclock: can't open '/dev/misc/rtc': No such file or directory
+    INIT: Entering runlevel: 2
+    Configuring network interfaces... udhcpc (v1.24.1) started
+    Sending discover...
+    Sending select for 192.168.0.106...
+    Lease of 192.168.0.106 obtained, lease time 86400
+    /etc/udhcpc.d/50default: Adding DNS 192.168.0.1
+    done.
+    Starting Dropbear SSH server: dropbear.
+    hwclock: can't open '/dev/misc/rtc': No such file or directory
+    Starting syslogd/klogd: done
+
+
+    Poky (Yocto Project Reference Distro) 2.0+snapshot-20171219 qemuriscv64 /dev/console
+
+    qemuriscv64 login: 
+
+The first boot will take considerably longer than subsequent boots due to the ssh keys having to be regenerated.
+
+## Mount an SD card inside RISC-V Linux
+
+The root partition on /dev/mmcblk0p2 will have been mounted already during pre-init.
+This happens during the following script:
+
+    #!/bin/busybox ash
+    /bin/busybox install -s
+    /bin/busybox ifconfig eth0 192.168.0.51 up
+    /bin/busybox echo Setting the clock ...
+    /bin/busybox rdate -s 192.168.0.53
+    /bin/busybox echo Waiting for the sd card ...
+    /bin/busybox sleep 10
+    /bin/busybox echo Mounting the sd partition ...
+
+    /bin/busybox mount -t ext2 /dev/mmcblk0p2 /mnt || /bin/busybox ash
+
+    # Mount the /proc and /sys filesystems.
+    /bin/busybox mount -t proc none /mnt/proc
+    /bin/busybox mount -t sysfs none /mnt/sys
+    /bin/busybox mount -t devtmpfs udev /mnt/dev
+    /bin/busybox mkdir -p /mnt/dev/pts
+    /bin/busybox mount -t devpts devpts /mnt/dev/pts
+    /bin/busybox mount -t tmpfs tmpfs /mnt/tmp
+
+    # Do your stuff here.
+    /bin/busybox echo "Switch to sd root"
+
+    # Boot the real thing.
+    exec /bin/busybox switch_root /mnt /sbin/init
+
+Care should be taken if modifying this script to ensure the RAM-disk is freed at the end of the operation and not left busy. Also ensure that init is not killed which will kill the whole system.
+
+The SD card is permanently inserted, it should look like:
+
+    cat /proc/partitions
+    major minor  #blocks  name
+
+     179        0    7782400 mmcblk0
+     179        1      32768 mmcblk0p1
+     179        2     614400 mmcblk0p2
+     179        3    1048576 mmcblk0p3
+
+To mount a DOS file system from this card:
+
+    root@qemuriscv64:~# mount /dev/mmcblk0p1 /mnt
+    root@qemuriscv64:~# ls -l /mnt
+    drwxr-xr-x    2 root     root          2048 Jan  1  1980 DIR
+    -rwxr-xr-x    1 root     root       5272272 Dec 22 11:22 boot0000.bin
+    -rwxr-xr-x    1 root     root       5272272 Dec 22 11:22 boot0001.bin
+
+After you finished with the SD card, remember to unmount it.
+
+    umount /mnt
+
+The final partition is designated as swap. This will be handy if you wish to attempt heavy duty
+tasks such as compilation.
+
+    root@qemuriscv64:~# swapon /dev/mmcblk0p3
+    [  983.110000] Adding 1048572k swap on /dev/mmcblk0p3.  Priority:-1 extents:1 across:1048572k SS
+    root@qemuriscv64:~# free
+		 total       used       free     shared    buffers     cached
+    Mem:        111320      10088     101232        196         36       5200
+    -/+ buffers/cache:       4852     106468
+    Swap:      1048572          0    1048572
+    root@qemuriscv64:~# 
+
+Using the serial console is inconvenient because it does not support cut and paste or line editing. Now we have network connectivity we can use ssh via dropbear (a simplified alternative to openssh-server) to provide more convenient access. SSH requires a password so we set one up as follows: (replace jrrk2 with your own username)
+
+    root@qemuriscv64:~# adduser jrrk2
+    adduser: warning: can't lock '/etc/passwd': Invalid argument
+    addgroup: warning: can't lock '/etc/group': Invalid argument
+    Changing password for jrrk2
+    New password: Password
+    Retype password: Password
+    passwd: warning: can't lock '/etc/passwd': Invalid argument
+    Password for jrrk2 changed by root
+
+Since we use dhcpc by default in SD-root mode, we need to discover the IP-addr of the lowrisc as follows:
+
+    root@qemuriscv64:~# ifconfig -a
+    eth0      Link encap:Ethernet  HWaddr EE:E1:E2:E3:E4:E5  
+	      inet addr:192.168.0.106  Bcast:192.168.0.255  Mask:255.255.255.0
+	      UP BROADCAST RUNNING  MTU:1500  Metric:1
+	      RX packets:829 errors:0 dropped:251 overruns:0 frame:0
+	      TX packets:22 errors:0 dropped:0 overruns:0 carrier:0
+	      collisions:0 txqueuelen:1000 
+	      RX bytes:156188 (152.5 KiB)  TX bytes:1966 (1.9 KiB)
+
+    lo        Link encap:Local Loopback  
+	      inet addr:127.0.0.1  Mask:255.0.0.0
+	      UP LOOPBACK RUNNING  MTU:65536  Metric:1
+	      RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+	      TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+	      collisions:0 txqueuelen:1 
+	      RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+The inet addr mentioned above may be pasted into a new server window as follows:
+
+    jrrk2@jrrk2-iMac:/local/scratch/jrrk2/lowrisc-site$ ssh 192.168.0.106
+    The authenticity of host '192.168.0.106 (192.168.0.106)' can't be established.
+    RSA key fingerprint is SHA256:J1wLm+WjAMH5stKQnZUE4BZuYmBMgt2IuCUM1bWt3n4.
+    Are you sure you want to continue connecting (yes/no)? yes
+    Warning: Permanently added '192.168.0.106' (RSA) to the list of known hosts.
+    jrrk2@192.168.0.106's password:
+
+Name servers and routers, were setup by DHCP, so we can start and download an example straight away. Notice that the prompt is changed from # to $.
+
+    qemuriscv64:~$ wget http://www.ioccc.org/1988/phillipps.c
+    Connecting to www.ioccc.org (206.197.161.153:80)
+    phillipps.c          100% |******************************************|   878   0:00:00 ETA
+
+Now we can try a compilation (The first compile will be slower because all files have to be fetched from SD. Subsequent compilations can make use of cached inodes):
+
+    qemuriscv64:~$ riscv64-poky-linux-gcc phillipps.c
+    phillipps.c:1:1: warning: return type defaults to 'int' [-Wimplicit-int]
+     main(t,_,a )
+     ^
+    phillipps.c: In function 'main':
+    phillipps.c:1:1: warning: type of 't' defaults to 'int' [-Wimplicit-int]
+    phillipps.c:1:1: warning: type of '_' defaults to 'int' [-Wimplicit-int]
+    phillipps.c:37:1: warning: implicit declaration of function 'putchar' [-Wimplicit-function-declaration]
+     putchar(31[a]):
+
+Optionally, check what is there:
+
+    qemuriscv64:~$ ls -l ./a.out
+    -rwxr-xr-x    1 jrrk2    jrrk2        10224 Dec 23 14:15 ./a.out
+    qemuriscv64:~$ file a.out
+    a.out: ELF 64-bit LSB executable, UCB RISC-V, version 1 (SYSV), dynamically linked, interpreter /lib/ld.so.1, for GNU/Linux 2.6.32, BuildID[sha1]=f354f636d4c6e12527810387f0fe700e1b9b070b, not stripped
+    qemuriscv64:~$ date
+    Sat Dec 23 14:41:22 UTC 2017
+    qemuriscv64:~$ 
+
+This date calls for a seasonal message (execute the program):
+
+    root@qemuriscv64:~$ ./a.out
+    On the first day of Christmas my true love gave to me
+    a partridge in a pear tree.
+
+    On the second day of Christmas my true love gave to me
+    two turtle doves
+    and a partridge in a pear tree.
+
+    On the third day of Christmas my true love gave to me
+    three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the fourth day of Christmas my true love gave to me
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the fifth day of Christmas my true love gave to me
+    five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the sixth day of Christmas my true love gave to me
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the seventh day of Christmas my true love gave to me
+    seven swans a-swimming,
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the eighth day of Christmas my true love gave to me
+    eight maids a-milking, seven swans a-swimming,
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the ninth day of Christmas my true love gave to me
+    nine ladies dancing, eight maids a-milking, seven swans a-swimming,
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the tenth day of Christmas my true love gave to me
+    ten lords a-leaping,
+    nine ladies dancing, eight maids a-milking, seven swans a-swimming,
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the eleventh day of Christmas my true love gave to me
+    eleven pipers piping, ten lords a-leaping,
+    nine ladies dancing, eight maids a-milking, seven swans a-swimming,
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    On the twelfth day of Christmas my true love gave to me
+    twelve drummers drumming, eleven pipers piping, ten lords a-leaping,
+    nine ladies dancing, eight maids a-milking, seven swans a-swimming,
+    six geese a-laying, five gold rings;
+    four calling birds, three french hens, two turtle doves
+    and a partridge in a pear tree.
+
+    root@qemuriscv64:~$ 
