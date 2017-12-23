@@ -309,6 +309,31 @@ After you finished with the SD card, remember to unmount it.
 
     umount /mnt
 
+##Test the network performance (iperf3 -s needs to be running on the selected server)
+
+    root@qemuriscv64:~# iperf3 -c 192.168.0.53 -u -b 2M
+    Connecting to host 192.168.0.53, port 5201
+    [  5] local 192.168.0.106 port 44078 connected to 192.168.0.53 port 5201
+    [ ID] Interval           Transfer     Bitrate         Total Datagrams
+    [  5]   0.00-1.01   sec   215 KBytes  1.75 Mbits/sec  152  
+    [  5]   1.01-2.01   sec   205 KBytes  1.68 Mbits/sec  145  
+    [  5]   2.01-3.00   sec   209 KBytes  1.72 Mbits/sec  148  
+    [  5]   3.00-4.00   sec   208 KBytes  1.71 Mbits/sec  147  
+    [  5]   4.00-5.01   sec   209 KBytes  1.71 Mbits/sec  148  
+    [  5]   5.01-6.01   sec   212 KBytes  1.74 Mbits/sec  150  
+    [  5]   6.01-7.00   sec   209 KBytes  1.72 Mbits/sec  148  
+    [  5]   7.00-8.00   sec   211 KBytes  1.73 Mbits/sec  149  
+    [  5]   8.00-9.01   sec   212 KBytes  1.73 Mbits/sec  150  
+    [  5]   9.01-10.00  sec   211 KBytes  1.73 Mbits/sec  149  
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+    [  5]   0.00-10.00  sec  2.05 MBytes  1.72 Mbits/sec  0.000 ms  0/1486 (0%)  sender
+    [  5]   0.00-10.08  sec  2.05 MBytes  1.71 Mbits/sec  0.419 ms  0/1486 (0%)  receiver
+
+    iperf Done.
+
+##Add a swap partition
+
 The final partition is designated as swap. This will be handy if you wish to attempt heavy duty
 tasks such as compilation.
 
@@ -320,6 +345,8 @@ tasks such as compilation.
     -/+ buffers/cache:       4852     106468
     Swap:      1048572          0    1048572
     root@qemuriscv64:~# 
+
+##Using dropbear ssh server
 
 Using the serial console is inconvenient because it does not support cut and paste or line editing. Now we have network connectivity we can use ssh via dropbear (a simplified alternative to openssh-server) to provide more convenient access. SSH requires a password so we set one up as follows: (replace jrrk2 with your own username)
 
@@ -360,7 +387,11 @@ The inet addr mentioned above may be pasted into a new server window as follows:
     Warning: Permanently added '192.168.0.106' (RSA) to the list of known hosts.
     jrrk2@192.168.0.106's password:
 
-Name servers and routers, were setup by DHCP, so we can start and download an example straight away. Notice that the prompt is changed from # to $.
+##Download and compile an example program
+
+Name servers and routers, were setup by DHCP, so we can start and download an example straight away.
+Notice that the prompt is changed from # to $, since we are now running under ssh.
+This example tests the name server client and gateway routing functionality.
 
     qemuriscv64:~$ wget http://www.ioccc.org/1988/phillipps.c
     Connecting to www.ioccc.org (206.197.161.153:80)
