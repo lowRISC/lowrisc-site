@@ -8,7 +8,7 @@ showdisqus = true
 
 _Wei Song_
 
-(12-2017)
+(01-2018)
 
 ## 1. Introduction
 
@@ -179,9 +179,64 @@ All letters in these type parameters have specific meanings:
 - **`I` and `O`**: `I` denotes that the set of parameters are for an inwards slave _interface_ while
   **`O`** is for an outwards master _interface_.
 
-According to the above definition, the class parameter `(inner, outer)`
+According to the above definitions, the class parameter `(inner, outer)`
 provides a concrete implementation of a certain bus standard (such as AXI) for a slave _interface_ (`InwardNodeImp`)
 and a master _interface_ (`OutwardNodeImp`).
+
+Inside the class body, several abstract methods (such as operator `:=`) and `lazy' variables are defined.
+As a feature of Scala, a lazy variable is evaluated only when it is used.
+The Diplomacy package relies on this mechanism to enforce the order of the compile-time parameter negotiation.
+To further highlight such order, the dependency of the listed lazy variables are commented respectively.
+
+The connection between two diplomacy nodes is declared by the three abstract operators: `:=`, `:*=` and `:=*`,
+which specifies an arc from the master _interface_ of one _agent_ (right-hand side)
+to the _slave_ interface of another _agent_ (left-hand side).
+For an example, the TileLink interconnect shown in Figure [1](#figure-1) can be coded like:
+
+~~~scala
+val processorA = new TLOutputNode(/* parameters ... */)
+val processorB = new TLOutputNode(/* parameters ... */)
+val crossbar   = new TLNexusNode(/* parameters ... */)
+val cache      = new TLAdapterNode(/* parameters ... */)
+val mmDevice   = new AXI4SlaveNode(/*parameters ... */)
+val memCtl     = new AXI4SlaveNode(/*parameters ... */)
+
+crossbar := processorA
+crossbar := processorB
+cache    := crossbar
+mmDevice := crossbar // require an adaptor node in practice
+memCtl   := cache    // require an adaptor node in practice
+~~~
+
+Note that `crossbar` has been on the left-hand side twice because it has two inwards connections
+while it has been on the right-hand side twice as well because it has two outwards connections as well.
+
+The other two operators are special. Now considering the following case:
+
+~~~scala
+val processorA = new TLOutputNode
+val processorB = new TLOutputNode
+val processorC = new TLOutputNode
+val crossbarI  = new TLNexusNode
+val cache      = new TLAdapterNode
+val crossbarO  = new TLNexusNode
+val memCtlA    = new AXI4SlaveNode
+val memCtlB    = new AXI4SlaveNode
+
+crossbarI :=  processorA
+crossbarI :=  processorB
+crossbarI :=  processorC
+cache     :=* crossbarI
+crossbarO :*= cache
+memCtlA   := crossbarO
+memCtlB   := crossbarO
+~~~
+
+The input crossbar `crossbarI` has three inwards connections with the three processors.
+However, there is only one connection with the `cache` that is set up by `:=*`.
+Similarly, the output crossbar has two outwards connections but only one inwards connection with `cache` set up by `:*=`.
+Actually, `:=*` means the number of connections is defined by the outwards side while `:*=` means the number of connections is defined by the inwards side. Both of them in the above example describe multi-connections.
+The cache has three slave (inwards) _interfaces_ and two master (outwards) _interfaces_.
 
 ### References
 <!-- References --> 
