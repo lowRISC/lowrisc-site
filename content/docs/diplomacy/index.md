@@ -145,14 +145,14 @@ sealed abstract class MixedNode[DI, UI, EI, BI <: Data, DO, UO, EO, BO <: Data](
   def mapParamsU(n: Int, p: Seq[UO]): Seq[UI]
 
   lazy val (oPortMapping, iPortMapping, oStar, iStar)
-                            // may resolve from {downward node}.iStar and {upward node}.oStar
-                            // call resolveStar()
-  lazy val oPorts           // may resolve from {downward node}.iPortMapping()
-  lazy val iPorts           // may resolve from {upward node}.oPortMapping()
-  lazy val oParams: Seq[DO] // resolve from oPorts, iPorts and mapParamsD()
-  lazy val iParams: Seq[UI] // resolve from iPorts, oPorts and mapParamsU()
-  lazy val edgesOut         // resolve from oPorts and oParams
-  lazy val edgesIn          // resolve from iPorts and iParams
+                             // may resolve from {downward node}.iStar and {upward node}.oStar
+                             // call resolveStar()
+  lazy val oPorts            // may resolve from {downward node}.iPortMapping()
+  lazy val iPorts            // may resolve from {upward node}.oPortMapping()
+  lazy val oParams: Seq[DO]  // resolve from oPorts, iPorts and mapParamsD()
+  lazy val iParams: Seq[UI]  // resolve from iPorts, oPorts and mapParamsU()
+  lazy val edgesOut: Seq[EO] // resolve from oPorts and oParams
+  lazy val edgesIn: Seq[EI]  // resolve from iPorts and iParams
 
   lazy val bundleOut: Seq[BO] = edgesOut.map(e => Wire(outer.bundleO(e)))
   lazy val bundleIn:  Seq[BI] = edgesIn .map(e => Wire(inner.bundleI(e)))
@@ -182,11 +182,6 @@ All letters in these type parameters have specific meanings:
 According to the above definitions, the class parameter `(inner, outer)`
 provides a concrete implementation of a certain bus standard (such as AXI) for a slave _interface_ (`InwardNodeImp`)
 and a master _interface_ (`OutwardNodeImp`).
-
-Inside the class body, several abstract methods (such as operator `:=`) and `lazy' variables are defined.
-As a feature of Scala, a lazy variable is evaluated only when it is used.
-The Diplomacy package relies on this mechanism to enforce the order of the compile-time parameter negotiation.
-To further highlight such order, the dependency of the listed lazy variables are commented respectively.
 
 The connection between two diplomacy nodes is declared by the three abstract operators: `:=`, `:*=` and `:=*`,
 which specifies an arc from the master _interface_ of one _agent_ (right-hand side)
@@ -235,8 +230,27 @@ memCtlB   := crossbarO
 The input crossbar `crossbarI` has three inwards connections with the three processors.
 However, there is only one connection with the `cache` that is set up by `:=*`.
 Similarly, the output crossbar has two outwards connections but only one inwards connection with `cache` set up by `:*=`.
-Actually, `:=*` means the number of connections is defined by the outwards side while `:*=` means the number of connections is defined by the inwards side. Both of them in the above example describe multi-connections.
+In other words, `:=*` means the number of connections is defined by the outwards side while `:*=` means the number of connections is defined by the inwards side. Both of them in the above example describe multi-connections.
 The cache has three slave (inwards) _interfaces_ and two master (outwards) _interfaces_.
+
+Inside the class body, several abstract methods (such as the aforementioned operator `:=`) and `lazy' variables are defined.
+As a feature of Scala, a lazy variable is evaluated only when it is used.
+The Diplomacy package relies on this mechanism to enforce the order of the compile-time parameter negotiation.
+To further highlight such order, the dependency of the listed lazy variables are commented respectively.
+
+The compile-time parameter negotiation is usually triggered by utilising the `bundleOut` and the `bundleIn` lazy variable
+to declare the IO bundle of a Chisel module (we will come back to this later in the cake pattern).
+Take the `bundleOut` as an example, it is evaluated by converting an array of `edgesOut` (edge parameter **`EO`**) to an array of IO bundles (**`BO`**).
+The edge parameter `edgesOut` is also a lazy variable evaluated from the array of output connections `oPorts` and the parameter array of the output connections `oParams`.
+As mentioned in the connection declaration operator `:=` at its friends, the final number of connections of an _angent_ is unknown if it has the special connections declared by `:*=` and `:=*`.
+In this case, this _agent_ can only resolve its port connection after its special naughbour is fully resolved.
+In fact, the Diplomacy parameter negotiation process using the lazy variable to push downwards parameters from input _agents_ (who do not have inwards connections in the DAG) to output _agents_ (who do not have outwards connections in the DAG) and push upwards parameters from output _agents_ to input _agents_.
+This parameter pushing process is accomplished by the resolving of the tuple of lazy variables `(oPortMapping, iPortMapping, oStar, iStar)`.
+To be specific, the lazy value resolving process may directly call the value of `iStar` and `oStar` in its neighbour nodes, triggering their lazy variable evaluation.
+When this tuple is fully resolved, indicating the parameter pushing and negotiation is finalised, the port connections `oPorts` and corresponding parameters `oParams` are resolved.
+Finally, the IO bundle `bundleOut` is generated, which denotes the starting pint of the actual hardware generation.
+
+
 
 ### References
 <!-- References --> 
