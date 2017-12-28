@@ -23,14 +23,14 @@ maintaining the flexibility and correctness of the SoC generator is a tough job.
 The traditional way of using design time parameters and macros to choose manually implemented hardware components at compile time
 clearly would not fit the purpose.
 For this reason, the developing team of Rocket-Chip come out with
-a new compile time parameter negotiation and generation mechanism called Diplomacy,
+a new Scala-run-time parameter negotiation and generation mechanism called Diplomacy,
 which is implemented and encapsulated into a Chisel package
 heavily leveraging the software engineering features provided by Chisel (Scala),
 including functional programming, generic type inference and object oriented programming.
 Taking the full benefits of this Diplomacy package,
 the in-house TileLink bus protocol has been totally overhauled and renovated.
 The new TileLink protocol supports automatic parameter negotiation and checking, bus generation and
-interrupt connection at compile time.
+interrupt connection at Scala-run-time.
 
 As for lowRISC, we use the Rocket-Chip as the internal SoC architecture
 while extends it with a top level AXI interconnects implemented using SystemVerilog (SV) rather than Chisel.
@@ -107,7 +107,7 @@ Considering a DMA component, it may have one _agent_ controlling its connection 
 while also has another _agent_ controlling its connection to the configuration bus.
 
 - **The mapping between _links_ and actual hardware links is not always one-to-one either!**
-The DAG is built at compile time to negotiate the parameters of various _agents_.
+The DAG is built at Scala-run-time to negotiate the parameters of various _agents_.
 Although it is normally true that an _agent_ represents a real communication _agent_ in hardware,
 it is not necessary that the Diplomacy must produce the actual hardware connections for these _agents_.
 The DAG and the diplomacy package can be hijacked to negotiating the parameters for a virtual network
@@ -235,10 +235,10 @@ The cache has three slave (inwards) _interfaces_ and two master (outwards) _inte
 
 Inside the class body, several abstract methods (such as the aforementioned operator `:=`) and `lazy' variables are defined.
 As a feature of Scala, a lazy variable is evaluated only when it is used.
-The Diplomacy package relies on this mechanism to enforce the order of the compile-time parameter negotiation.
+The Diplomacy package relies on this mechanism to enforce the order of the Scala-run-time parameter negotiation.
 To further highlight such order, the dependency of the listed lazy variables are commented respectively.
 
-The compile-time parameter negotiation is usually triggered by utilising the `bundleOut` and the `bundleIn` lazy variable
+The Scala-run-time parameter negotiation is usually triggered by utilising the `bundleOut` and the `bundleIn` lazy variable
 to declare the IO bundle of a Chisel module (we will come back to this later in the cake pattern).
 Take the `bundleOut` as an example, it is evaluated by converting an array of `edgesOut` (edge parameter **`EO`**) to an array of IO bundles (**`BO`**).
 The edge parameter `edgesOut` is also a lazy variable evaluated from the array of output connections `oPorts` and the parameter array of the output connections `oParams`.
@@ -249,6 +249,101 @@ This parameter pushing process is accomplished by the resolving of the tuple of 
 To be specific, the lazy value resolving process may directly call the value of `iStar` and `oStar` in its neighbour nodes, triggering their lazy variable evaluation.
 When this tuple is fully resolved, indicating the parameter pushing and negotiation is finalised, the port connections `oPorts` and corresponding parameters `oParams` are resolved.
 Finally, the IO bundle `bundleOut` is generated, which denotes the starting pint of the actual hardware generation.
+
+### 3.3 Cake pattern
+
+The so called `cake pattern' is the preferred way of extending the Rocket-Chip generator.
+
+Here is the example Rocket-Chip defined in [ExampleRocketSystem.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/system/ExampleRocketSystem.scala):
+
+~~~scala
+class ExampleRocketSystem(implicit p: Parameters) extends RocketCoreplex
+    with HasAsyncExtInterrupts
+    with HasMasterAXI4MemPort
+    with HasMasterAXI4MMIOPort
+    with HasSlaveAXI4Port
+    with HasPeripheryBootROM
+    with HasSystemErrorSlave {
+  override lazy val module = new ExampleRocketSystemModule(this)
+}
+
+class ExampleRocketSystemModule[+L <: ExampleRocketSystem](_outer: L) extends RocketCoreplexModule(_outer)
+    with HasRTCModuleImp
+    with HasExtInterruptsModuleImp
+    with HasMasterAXI4MemPortModuleImp
+    with HasMasterAXI4MMIOPortModuleImp
+    with HasSlaveAXI4PortModuleImp
+    with HasPeripheryBootROMModuleImp
+~~~
+
+This is a two piece cake pattern (while there is also a three piece cake pattern)
+where the first class `ExampleRocketSystem` is the parent `LazyModule` class the actual hardware `Module` class `ExampleRocketSystemModule`.
+The `LazyModule` class contains all the diplomacy objects associated with the hardware component (the lazy variable `module`) to be generated.
+At Scala-run-time, the evaluation of the lazy variable `module` (the actual hardware) triggers all the diplomacy nodes in the `LazyModule` to be evaluated.
+
+The trait for the `LazyModule` and the `Module` are always appear in a pair (so called two piece cake pattern).
+Take the memory port for an example.
+The trait `HasMasterAXI4MemPort` extends the `LazyModule` with necessary diplomacy components and utility methods,
+while the `HasMasterAXI4MemPortModuleImp` make the necessary hardware extensions to the hardware `Module`.
+
+Let us take a look of the detailed definition of the two:
+
+~~~scala
+/** Adds a port to the system intended to master an AXI4 DRAM controller. */
+trait HasMasterAXI4MemPort extends HasMemoryBus {
+  val module: HasMasterAXI4MemPortModuleImp
+
+  private val device = new MemoryDevice
+
+  val mem_axi4 = AXI4BlindOutputNode( // the diplomacy node for the port
+    Seq(AXI4SlavePortParameters(
+          slaves = Seq(AXI4SlaveParameters(
+          address       = Seq(AddressSet(memBase, memSize)),
+          resources     = device.reg,
+          regionType    = RegionType.UNCACHED,
+          executable    = true)))
+  })
+
+  val converter = LazyModule(new TLToAXI4()) // a TileLink to AXI converter
+
+  converter.node := memBuses.toDRAMController
+  mem_axi4 := converter.node
+  }
+}
+
+/** Common io name and methods for propagating or tying off the port bundle */
+trait HasMasterAXI4MemPortBundle {
+  implicit val p: Parameters
+  val mem_axi4: HeterogeneousBag[AXI4Bundle]
+}
+
+/** Actually generates the corresponding IO in the concrete Module */
+trait HasMasterAXI4MemPortModuleImp extends LazyMultiIOModuleImp with HasMasterAXI4MemPortBundle {
+  val outer: HasMasterAXI4MemPort
+  val mem_axi4 = IO(outer.mem_axi4.bundleOut)
+}
+~~~
+
+Here you can see three traits are defined in total (so called three piece cake pattern):
+
+- `HasMasterAXI4MemPort` is a deplomacy trait that is used by the `LazyModule` of the Rocket-Chip.
+  It contains the diplomacy nodes and all necessary parameters.
+  In this case, it contains the diplomacy node for the memory port `mem_axi4`, a TileLink to AXI converter _agent_ `converter`.
+  It also connects all the nodes with the memory bus `memBuses` which is defined by the base trait `HasMemoryBus`.
+  If you see it evern more closely, it also constains the module implementation to be a derived type of `HasMasterAXI4MemPortModuleImp`
+  and it defines the device description of the port by the private variable `device` which is later used to generate the device tree description file.
+
+- `HasMasterAXI4MemPortBundle` is an IO bundle trait which describe the IO bundles needed by this extension.
+  For the memory port, it adds an AXI port to the DDR memory `mem_axi4`.
+
+- `HasMasterAXI4MemPortModuleImp` finally extends the actual hardware module of the Rocket-Chip.
+  In this trait, it constrains the Rocket-Chip to be a derived module of `HasMasterAXI4MemPortBundle` and declares the actual IO variable `mem_axi4`
+  (while in the `HasMasterAXI4MemPortBundle`, the definition of `mem_axi4` is abstract).
+  Since the variable `outer` always points to the associated `LazyModule`,
+  this trait also constrains the associated `LazyModule` to be a derived type of `HasMasterAXI4MemPort`.
+
+## 4. lowRISC extension to support an external SystemVerilog AXI bus
+
 
 
 
