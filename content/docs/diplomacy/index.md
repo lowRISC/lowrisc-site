@@ -114,6 +114,7 @@ The DAG and the diplomacy package can be hijacked to negotiating the parameters 
 while the actually hardware connections are settled separately.
 This is how the Diplomacy package is extended for the shared SV AXI bus in lowRISC.
 
+<a name="diplomacy-node"></a>
 ### 3.2 A rough description of the implementation of a _Node_
 
 In the Chisel implementation of the Diplomacy package, an _agents_ is an object derived from a class named a _Node_.
@@ -344,7 +345,95 @@ Here you can see three traits are defined in total (so called three piece cake p
 
 ## 4. lowRISC extension to support an external SystemVerilog AXI bus
 
+The original diplomacy package provided by the Rocket-Chip is lack of some important features which are necessary for the lowRISC SoC.
+Here Figure [2](#figure-2) [[4]](#lowRISC-v0.4) shows the internal structure of the lowRISC SoC.
+The Rocket-Chip is encapsulated in a Chisel island by the top-level SystemVerilog wrapper.
+Inside the SystemVerilog wrapper, multiple devices are added utilising two AXI interconnects, one for the DDR memory and the other for IO devices.
+This structure has two major benefit:
 
+- Traditional hardware designers who are not comfortable with Chisel designs are still able to add peripheries to the lowRISC SoC.
+- Heterogeneous multi-core systems can be implemented without initiating all cores in the Rocket-Chip.
+  For lowRISC version 0.4 [[4]](#lowRISC-v0.4), we added a minion core sub-system on the IO AXI interconnect.
+
+<a name="figure-2"></a>
+<img src="figures/lowRISC_tag.png" alt="Drawing" style="width: 1000px;"/>
+<br>**Figure 2**. The lowRISC SoC (version 0.4).
+
+The original diplomacy package partial support this need by supporting two AXI ports in [Ports.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/coreplex/Ports.scala):
+
+- `HasMasterAXI4MemPort`: This extends the Rocket-Chip with an AXI master port connecting to a memory device, normally a multi-channel DDR controller.
+- `HasMasterAXI4MMIOPort`: This extends the Rocket-Chip with an AXI master port connecting to a AXI bus used for memory mapped devices.
+
+The lowRISC SoC uses the `HasMasterAXI4MemPort` directly for the memory AXI interconnect.
+However, the `HasMasterAXI4MMIOPort` is inefficient in supporting the IO AXI interconnect.
+In the definition of `HasMasterAXI4MMIOPort`, the whole AXI interconnect would share the same diplomacy node typed `AXI4SlaveNode`.
+This leads to two drawbacks:
+
+- A consecutive address space is allocated to a IO interconnect on which inconsecutive sub-spaces are occupied by individual devices.
+  The Rocket-Chip losses the crucial capability to intercept an illegal IO access towards a wrong address on this IO interconnect.
+- There is no clear way on initialising the device tree descriptors for individual IO devices, not mention automatically hooking up the interrupts.
+
+Unfortunately, we found no easy way to extend the existing diplomacy infrastructure to support the above functions.
+Instead, we have to create a new base node named `VirtualNode`
+which is similar and compatible with the original base node `MixedNode` described in Section [3.2](#diplomacy-node).
+Compared with `MixedNode`, `VirtualNode` by default generates no physical wire connections but processes all parameter negotiation in the same way.
+Therefore, the diplomacy network derived from `VirtualNode` is a virtual network where the communication requirement are calculated by the parameter negotiation
+but no physical network is produced, which is exactly what we need to describe an external AXI bus while do not wish to actual produce the bus in Chisel.
+
+Derived from the base `VirtualNode`, the lowRISC extension provide two virtual nodes:
+
+- `VirtualBusNode`: This is the root node of the virtual network and it is only node that will produce a physical connection.
+  This node is used to replace the `AXI4SlaveNode` used in `HasMasterAXI4MMIOPort`.
+  When a `VirtualBusNode` is added to the original diplomacy network, a leaf node is added seen by the original network.
+  It also produce a master port for the generated Verilog.
+  At the meanwhile, the parameter negotiation of the original diplomacy network triggers the parameter negotiation inside the virtual network,
+  which eventually collect all the parameters of the virtual network and propagate them back to the original diplomacy network.
+- `VirtualSlaveNode`: This a virtual node describing a IO device added in the SystemVerilog AXI bus.
+  This node is then added to the virtual network rooted by the single `VirtualBusNode`.
+  Each node takes an `AXI4SlavePortParameters` descriptor as input to describe the device.
+  
+To ease the implementation, we provide a more straightforward parameter definition (`ExSlaveParams`)
+which is automatically translated into `AXI4SlavePortParameters`:
+  
+```scala
+case class ExSlaveParams(
+  name: String,               // the name of this device, used in macro
+  device: () => SimpleDevice, // Geneate a device object
+  base: BigInt,               // The base address of the address space of this device
+  size: BigInt,               // The size of the address space of this device
+  resource: Option[String] = None, // Define a special case for resource binding (currently used for memory blocks)
+  interrupts: Int = 0,        // The number of interrupts generated by this device
+  burstBytes: Int = 64,       // The number of bytes per burst, needs to be set >= 64
+  readable: Boolean = true,   // Whether the device is readable.
+  writeable: Boolean = true,  // Whether the device is writeable.
+  executable: Boolean = false // Whether the device is executable.
+)
+```
+
+Finally, we can easily define a configuration trait to extend our lowRISC SoC with a device on the SystemVerilog AXI bus.
+Let us add a UART as an example:
+
+```scala
+class WithUART extends Config(Parameters.empty) {
+  SlaveDevice.entries +=  ExSlaveParams(
+    name       = "uart",
+    device     = () => new SimpleDevice("serial",Seq("xlnx,uart16550")),
+    base       = 0x41002000,
+    size       = 0x00002000,     // 8KB
+    interrupts = 1
+  )
+}
+
+class LoRCNexys4Config extends
+Config(new WithUART ++ new WithBootRAM ++
+       new WithSPI ++ new WithNBigCores(1) ++ new LoRCBaseConfig)
+```
+
+The lowRISC SoC configuration has a UART (implemented by SystemVerilog) on the external AXI bus.
+To automatically generate a device tree description with this UART and allow the processor to monitor the address space,
+the `WithUART` trait add the a virtual node on the virtual network describing the external AXI bus.
+Inside the `WithUART` trait, the address space of the UART is defined at 0x41002000-0x41004000 with R/W permissions (by default).
+It also describes the device as a Xilins UART16550 compatible device with one interrupt line.
 
 
 ### References
@@ -357,4 +446,7 @@ Here you can see three traits are defined in total (so called three piece cake p
 [2] "[SiFive TileLink Specification.](https://static.dev.sifive.com/docs/tilelink/tilelink-spec-1.7-draft.pdf)" SiFive, Inc. Version 1.7, August 2017.
 
 <a name="Cook2017"></a>
-[3] H. Cook, W. Terpstra and Y. Lee. “[Diplomatic design patterns: A TileLink case study.](https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf)” In proc. of Workshop on Computer Architecture Research with RISC-V (CARRV), 2017.
+[3] H. Cook, W. Terpstra and Y. Lee. "[Diplomatic design patterns: A TileLink case study.](https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf)" In proc. of Workshop on Computer Architecture Research with RISC-V (CARRV), 2017.
+
+<a name="lowRISC-v0.4"></a>
+[4] J. Kimmitt, W. Song and A. Bradbury. "[Tutorial for the v0.4 lowRISC release.](http://www.lowrisc.org/docs/minion-v0.4/)" lowRISC. June 2017.
