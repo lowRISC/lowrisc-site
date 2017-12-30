@@ -34,7 +34,7 @@ interrupt connection at Scala-run-time.
 
 As for lowRISC, we use the Rocket-Chip as the internal SoC architecture
 while extends it with a top level AXI interconnects implemented using SystemVerilog (SV) rather than Chisel.
-This allow further system extension for engineers and companies who would prefer SystemVerilog.
+This allows further system extension for engineers and companies who would prefer SystemVerilog.
 However, the devices added to the extended AXI buses should be coherently controlled by the Rocket-Chip
 with no difference with the Chisel devices hanging on the internal TileLink or Chisel AXI buses.
 To be specific, this means the individual address spaces of the external SV devices are observable and verifiable
@@ -85,8 +85,8 @@ here is a quote from [[3]](#Cook2017) which summarises Diplomacy pretty well:
 ### 3.1 Diplomacy supports directed acyclic graphs
 
 Now let us dive into some details. Figure [1](#figure-1) is a simple TileLink interconnect depicted as Figure 2.2 in [[2]](#TileLink).
-Every hardware component (the white outer block) connected to the TileLink interconnect contains one or more TileLink _agent_.
-Each _agent_ have at least one slave or master _interface_ which is directly connected to the TileLink.
+Every hardware component (the white outer block) connected to the TileLink interconnect contains one or more TileLink _agents_.
+Each _agent_ has at least one slave or master _interface_ which is directly connected to the TileLink.
 Each pair of _interfaces_ is connected by a single _link_
 which contains 3 or 5 different uni-directional _channels_ depending on the level of TileLink traffic support by the interfaces.
 
@@ -110,16 +110,16 @@ while also has another _agent_ controlling its connection to the configuration b
 The DAG is built at Scala-run-time to negotiate the parameters of various _agents_.
 Although it is normally true that an _agent_ represents a real communication _agent_ in hardware,
 it is not necessary that the Diplomacy must produce the actual hardware connections for these _agents_.
-The DAG and the diplomacy package can be hijacked to negotiating the parameters for a virtual network
+The DAG and the Diplomacy package can be hijacked to negotiating the parameters for a virtual network
 while the actually hardware connections are settled separately.
 This is how the Diplomacy package is extended for the shared SV AXI bus in lowRISC.
 
 <a name="diplomacy-node"></a>
 ### 3.2 A rough description of the implementation of a _Node_
 
-In the Chisel implementation of the Diplomacy package, an _agents_ is an object derived from a class named a _Node_.
-Here shows the derivation relationship of all _agents_ in Figure [1](#figure-1).
-All _agents_ supported by the current Diplomacy package derived from a the same base class, **MixedNode**,
+In the Chisel implementation of the Diplomacy package, an _agent_ is an object derived from a class named a _Node_.
+Here shows the inheritance relationship of all _agents_ in Figure [1](#figure-1).
+All _agents_ supported by the current Diplomacy package are derived from the same base class, **MixedNode**,
 which is defined in the Diplomacy package: [Nodes.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/diplomacy/Nodes.scala)
 
 ~~~
@@ -164,7 +164,7 @@ sealed abstract class MixedNode[DI, UI, EI, BI <: Data, DO, UO, EO, BO <: Data](
 }
 ~~~
 
-`MixedNode` is an abstract set of derived variables and methods that shared by all _agents_.
+`MixedNode` is an abstract set of derived variables and methods that are shared by all _agents_.
 All _agents_ derived from `MixedNode` are abstract in a sense that
 an _agent_ object stores only the derived attributes of a node which are lazily resolved from the raw parameters
 provided by the type parameter: `DI`, `UI`, `EI`, `BI`, `DO`, `UO`, `EO` and `BO`.
@@ -184,7 +184,7 @@ According to the above definitions, the class parameter `(inner, outer)`
 provides a concrete implementation of a certain bus standard (such as AXI) for a slave _interface_ (`InwardNodeImp`)
 and a master _interface_ (`OutwardNodeImp`).
 
-The connection between two diplomacy nodes is declared by the three abstract operators: `:=`, `:*=` and `:=*`,
+The connection between two Diplomacy nodes is declared by the three abstract operators: `:=`, `:*=` and `:=*`,
 which specifies an arc from the master _interface_ of one _agent_ (right-hand side)
 to the _slave_ interface of another _agent_ (left-hand side).
 For an example, the TileLink interconnect shown in Figure [1](#figure-1) can be coded like:
@@ -234,7 +234,7 @@ Similarly, the output crossbar has two outwards connections but only one inwards
 In other words, `:=*` means the number of connections is defined by the outwards side while `:*=` means the number of connections is defined by the inwards side. Both of them in the above example describe multi-connections.
 The cache has three slave (inwards) _interfaces_ and two master (outwards) _interfaces_.
 
-Inside the class body, several abstract methods (such as the aforementioned operator `:=`) and `lazy' variables are defined.
+Inside the class body, several abstract methods (such as the aforementioned operator `:=`) and 'lazy' variables are defined.
 As a feature of Scala, a lazy variable is evaluated only when it is used.
 The Diplomacy package relies on this mechanism to enforce the order of the Scala-run-time parameter negotiation.
 To further highlight such order, the dependency of the listed lazy variables are commented respectively.
@@ -243,17 +243,17 @@ The Scala-run-time parameter negotiation is usually triggered by utilising the `
 to declare the IO bundle of a Chisel module (we will come back to this later in the cake pattern).
 Take the `bundleOut` as an example, it is evaluated by converting an array of `edgesOut` (edge parameter **`EO`**) to an array of IO bundles (**`BO`**).
 The edge parameter `edgesOut` is also a lazy variable evaluated from the array of output connections `oPorts` and the parameter array of the output connections `oParams`.
-As mentioned in the connection declaration operator `:=` at its friends, the final number of connections of an _angent_ is unknown if it has the special connections declared by `:*=` and `:=*`.
-In this case, this _agent_ can only resolve its port connection after its special naughbour is fully resolved.
+As mentioned in the connection declaration operator `:=` at its friends, the final number of connections of an _agent_ is unknown if it has the special connections declared by `:*=` and `:=*`.
+In this case, this _agent_ can only resolve its port connection after its special neighbour is fully resolved.
 In fact, the Diplomacy parameter negotiation process using the lazy variable to push downwards parameters from input _agents_ (who do not have inwards connections in the DAG) to output _agents_ (who do not have outwards connections in the DAG) and push upwards parameters from output _agents_ to input _agents_.
 This parameter pushing process is accomplished by the resolving of the tuple of lazy variables `(oPortMapping, iPortMapping, oStar, iStar)`.
 To be specific, the lazy value resolving process may directly call the value of `iStar` and `oStar` in its neighbour nodes, triggering their lazy variable evaluation.
 When this tuple is fully resolved, indicating the parameter pushing and negotiation is finalised, the port connections `oPorts` and corresponding parameters `oParams` are resolved.
-Finally, the IO bundle `bundleOut` is generated, which denotes the starting pint of the actual hardware generation.
+Finally, the IO bundle `bundleOut` is generated, which denotes the starting point of the actual hardware generation.
 
 ### 3.3 Cake pattern
 
-The so called `cake pattern' is the preferred way of extending the Rocket-Chip generator.
+The so called 'cake pattern' is the preferred way of extending the Rocket-Chip generator.
 
 Here is the example Rocket-Chip defined in [ExampleRocketSystem.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/system/ExampleRocketSystem.scala):
 
@@ -278,13 +278,13 @@ class ExampleRocketSystemModule[+L <: ExampleRocketSystem](_outer: L) extends Ro
 ~~~
 
 This is a two piece cake pattern (while there is also a three piece cake pattern)
-where the first class `ExampleRocketSystem` is the parent `LazyModule` class the actual hardware `Module` class `ExampleRocketSystemModule`.
-The `LazyModule` class contains all the diplomacy objects associated with the hardware component (the lazy variable `module`) to be generated.
-At Scala-run-time, the evaluation of the lazy variable `module` (the actual hardware) triggers all the diplomacy nodes in the `LazyModule` to be evaluated.
+where the first class `ExampleRocketSystem` is the parent `LazyModule` class of the actual hardware `Module` class `ExampleRocketSystemModule`.
+The `LazyModule` class contains all the Diplomacy objects associated with the hardware component (the lazy variable `module`) to be generated.
+At Scala-run-time, the evaluation of the lazy variable `module` (the actual hardware) triggers all the Diplomacy nodes in the `LazyModule` to be evaluated.
 
-The trait for the `LazyModule` and the `Module` are always appear in a pair (so called two piece cake pattern).
+The trait for the `LazyModule` and the `Module` always appear in a pair (so called two piece cake pattern).
 Take the memory port for an example.
-The trait `HasMasterAXI4MemPort` extends the `LazyModule` with necessary diplomacy components and utility methods,
+The trait `HasMasterAXI4MemPort` extends the `LazyModule` with necessary Diplomacy components and utility methods,
 while the `HasMasterAXI4MemPortModuleImp` make the necessary hardware extensions to the hardware `Module`.
 
 Let us take a look of the detailed definition of the two:
@@ -327,14 +327,14 @@ trait HasMasterAXI4MemPortModuleImp extends LazyMultiIOModuleImp with HasMasterA
 
 Here you can see three traits are defined in total (so called three piece cake pattern):
 
-- `HasMasterAXI4MemPort` is a deplomacy trait that is used by the `LazyModule` of the Rocket-Chip.
-  It contains the diplomacy nodes and all necessary parameters.
-  In this case, it contains the diplomacy node for the memory port `mem_axi4`, a TileLink to AXI converter _agent_ `converter`.
+- `HasMasterAXI4MemPort` is a Diplomacy trait that is used by the `LazyModule` of the Rocket-Chip.
+  It contains the Diplomacy nodes and all necessary parameters.
+  In this case, it contains the Diplomacy node for the memory port `mem_axi4`, a TileLink to AXI converter _agent_ `converter`.
   It also connects all the nodes with the memory bus `memBuses` which is defined by the base trait `HasMemoryBus`.
-  If you see it evern more closely, it also constains the module implementation to be a derived type of `HasMasterAXI4MemPortModuleImp`
+  If you see it even more closely, it also contains the module implementation to be a derived type of `HasMasterAXI4MemPortModuleImp`
   and it defines the device description of the port by the private variable `device` which is later used to generate the device tree description file.
 
-- `HasMasterAXI4MemPortBundle` is an IO bundle trait which describe the IO bundles needed by this extension.
+- `HasMasterAXI4MemPortBundle` is an IO bundle trait which describes the IO bundles needed by this extension.
   For the memory port, it adds an AXI port to the DDR memory `mem_axi4`.
 
 - `HasMasterAXI4MemPortModuleImp` finally extends the actual hardware module of the Rocket-Chip.
@@ -345,7 +345,7 @@ Here you can see three traits are defined in total (so called three piece cake p
 
 ## 4. lowRISC extension to support an external SystemVerilog AXI bus
 
-The original diplomacy package provided by the Rocket-Chip is lack of some important features which are necessary for the lowRISC SoC.
+The original Diplomacy package provided by the Rocket-Chip is lack of some important features which are necessary for the lowRISC SoC.
 Here Figure [2](#figure-2) [[4]](#lowRISC-v0.4) shows the internal structure of the lowRISC SoC.
 The Rocket-Chip is encapsulated in a Chisel island by the top-level SystemVerilog wrapper.
 Inside the SystemVerilog wrapper, multiple devices are added utilising two AXI interconnects, one for the DDR memory and the other for IO devices.
@@ -359,35 +359,35 @@ This structure has two major benefit:
 <img src="figures/lowRISC_tag.png" alt="Drawing" style="width: 1000px;"/>
 <br>**Figure 2**. The lowRISC SoC (version 0.4).
 
-The original diplomacy package partial support this need by supporting two AXI ports in [Ports.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/coreplex/Ports.scala):
+The original Diplomacy package partial support this need by supporting two AXI ports in [Ports.scala](https://github.com/freechipsproject/rocket-chip/blob/master/src/main/scala/coreplex/Ports.scala):
 
 - `HasMasterAXI4MemPort`: This extends the Rocket-Chip with an AXI master port connecting to a memory device, normally a multi-channel DDR controller.
 - `HasMasterAXI4MMIOPort`: This extends the Rocket-Chip with an AXI master port connecting to a AXI bus used for memory mapped devices.
 
 The lowRISC SoC uses the `HasMasterAXI4MemPort` directly for the memory AXI interconnect.
 However, the `HasMasterAXI4MMIOPort` is inefficient in supporting the IO AXI interconnect.
-In the definition of `HasMasterAXI4MMIOPort`, the whole AXI interconnect would share the same diplomacy node typed `AXI4SlaveNode`.
+In the definition of `HasMasterAXI4MMIOPort`, the whole AXI interconnect would share the same Diplomacy node typed `AXI4SlaveNode`.
 This leads to two drawbacks:
 
 - A consecutive address space is allocated to a IO interconnect on which inconsecutive sub-spaces are occupied by individual devices.
   The Rocket-Chip losses the crucial capability to intercept an illegal IO access towards a wrong address on this IO interconnect.
 - There is no clear way on initialising the device tree descriptors for individual IO devices, not mention automatically hooking up the interrupts.
 
-Unfortunately, we found no easy way to extend the existing diplomacy infrastructure to support the above functions.
+Unfortunately, we found no easy way to extend the existing Diplomacy infrastructure to support the above functions.
 Instead, we have to create a new base node named `VirtualNode`
 which is similar and compatible with the original base node `MixedNode` described in Section [3.2](#diplomacy-node).
 Compared with `MixedNode`, `VirtualNode` by default generates no physical wire connections but processes all parameter negotiation in the same way.
-Therefore, the diplomacy network derived from `VirtualNode` is a virtual network where the communication requirement are calculated by the parameter negotiation
-but no physical network is produced, which is exactly what we need to describe an external AXI bus while do not wish to actual produce the bus in Chisel.
+Therefore, the Diplomacy network derived from `VirtualNode` is a virtual network where the communication requirement are calculated by the parameter negotiation
+but no physical network is produced, which is exactly what we need to describe an external AXI bus while do not wish to actually produce the bus in Chisel.
 
 Derived from the base `VirtualNode`, the lowRISC extension provide two virtual nodes:
 
 - `VirtualBusNode`: This is the root node of the virtual network and it is only node that will produce a physical connection.
   This node is used to replace the `AXI4SlaveNode` used in `HasMasterAXI4MMIOPort`.
-  When a `VirtualBusNode` is added to the original diplomacy network, a leaf node is added seen by the original network.
+  When a `VirtualBusNode` is added to the original Diplomacy network, a leaf node is added seen by the original network.
   It also produce a master port for the generated Verilog.
-  At the meanwhile, the parameter negotiation of the original diplomacy network triggers the parameter negotiation inside the virtual network,
-  which eventually collect all the parameters of the virtual network and propagate them back to the original diplomacy network.
+  At the meanwhile, the parameter negotiation of the original Diplomacy network triggers the parameter negotiation inside the virtual network,
+  which eventually collect all the parameters of the virtual network and propagate them back to the original Diplomacy network.
 - `VirtualSlaveNode`: This a virtual node describing a IO device added in the SystemVerilog AXI bus.
   This node is then added to the virtual network rooted by the single `VirtualBusNode`.
   Each node takes an `AXI4SlavePortParameters` descriptor as input to describe the device.
