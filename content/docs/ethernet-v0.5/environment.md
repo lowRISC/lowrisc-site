@@ -30,7 +30,7 @@ Ensure you have all the necessary packages installed:
     libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
     flex texinfo gperf libncurses5-dev libusb-1.0-0 libboost-dev \
     swig git libtool libreadline-dev libelf-dev python-dev \
-    microcom chrpath nfs-kernel-server xinetd
+    microcom chrpath gawk texinfo nfs-kernel-server xinetd pseudo 
 
 Next steps:
 
