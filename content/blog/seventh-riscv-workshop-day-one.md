@@ -12,7 +12,7 @@ keeping a semi-live blog of talks and announcements throughout the day.
 Follow [here]({{< ref "blog/seventh-riscv-workshop-day-two.md" >}}) for the 
 day two live blog.
 
-## Introduction: Rick O'Conor
+## Introduction: Rick O'Connor
 * Workshop is sold out, 498 attendees registered representing 138 companies 
   and 35 universities.
 * There will be 47 sessions squeezed into 12 and 24 minute increments, plus 26 
@@ -26,7 +26,7 @@ members).
 
 ## RISC-V state of the union: Krste Asanovic
 * Krste gives a rapid overview of the RISC-V ISA.
-* RISC-V aims to be simple, clean-slate, modulary, and stable.
+* RISC-V aims to be simple, clean-slate, modular, and stable.
 * RISC-V started in May 2010. v1.0 of the ISA came in 2011, first Rocket 
 tapeout in 2012, first Linux port in 2013, v2.0 (frozen) IMAFD spec in 2014.
 First commercial softcores and first commercial SoC in 2017.
@@ -121,7 +121,7 @@ challenges? Answer: have been documenting prior art for the base ISA
 instructions. Would be good to continue to expand this to cover reference 
 hardware implementations.
 
-## RISC-V Hyupervisor Extension: Andrew Waterman
+## RISC-V Hypervisor Extension: Andrew Waterman
 * Presenting work with extensive contributions from Paolo Bonzini and John 
 Hauser
 * Goal is to virtualize S-mode to support running guest OSes under Type-1, 
@@ -193,7 +193,7 @@ wherever possible (redundant fences simple become no-ops).
 * There have been a number of other ISA changes. ld.rl and sd.aq are 
 deprecated. ld.aqrl and sd.aqrl mean RCsc. Also clarified other subtleties.
 May have future extensions to the fence instruction, and .aq/.rl variants for 
-byte and halfware-size loads/stores.
+byte and halfword-size loads/stores.
 
 ## RISC-V - Enabling a new era of open data-centric computing architectures: Martin Fink
 * Most people think of Western Digital as a storage company, but actually 
@@ -232,9 +232,9 @@ to co-develop them.
   * Big Data and Fast Data need purpose-built environments
   * Openness and ecosystem enable best-in-class innovation. The motivation is 
   enabling innovation, _not_ reducing cost.
-  * Western Digital brings the momentum of other 1B cores per year
+  * Western Digital brings the momentum of over 1B cores per year
 
-## Industrial-strength high-performan RISC-V processors for energy-efficient computing: Dave Ditzel
+## Industrial-strength high-performance RISC-V processors for energy-efficient computing: Dave Ditzel
 * Coming out of "stealth mode" in this talk.
 * Chris Celio is joining Esperanto, but will continue to maintain and support 
 BOOM. Esperanto will also be implementing even higher performance out-of-order 
@@ -272,7 +272,7 @@ same address space, multiple levels of cache, etc.
 using proprietary instruction sets. Esperanto want to base all processing on 
 RISC-V, adding instruction extensions and hardware accelerators where 
 necessary.
-* Also looked at using RISC-V for graphics. Wrote a shader cmpiler that can 
+* Also looked at using RISC-V for graphics. Wrote a shader compiler that can 
 generate RISC-V compilers, and the code to distribute the workload across 
 thousands of cores.
 * Argue that proprietary, custom instruction sets are a bad choice. Instead, 
@@ -282,7 +282,7 @@ needed.
 ## Andes Extended Features: Dr Chuan-Hua Chang
 * Andes Technology is a Taiwan-based CPU IP company with over 2 billion 
 Andes-Embedded SoCs shipped in diverse applications.
-* Have extended the RISC-V architecture in the V4m with:
+* Have extended the RISC-V architecture in the V5m with:
   * Vectored interrupts and priority-based preemptive interrupts for the PLIC
   * StackSafe features
   * Exception redirection to the debuggers
@@ -359,7 +359,7 @@ Zurich / University of Bologna (PULP), Berkeley Labs, IIT Chennai.
 * For the SiFive partnership, no cost to customers for E31/E51 cores until 
 production starts.
 
-## RISC-V LLVM. Towards a production-ready LLVM-basd toolchain: Alex Bradbury
+## RISC-V LLVM. Towards a production-ready LLVM-based toolchain: Alex Bradbury
 * I was the presenter, so no notes right now.
 
 ## A RISC-V Java update: Martin Maas
@@ -540,7 +540,7 @@ The register arrangement and documentation is automated.
 currently runs on Spike.
 * MyNewt: RISC-V support was already available, added the BSP and MCU/HAL 
 support.
-* LiteOs: ported the kernel, BSP, and HAL. Aready merged into upstream LiteOS 
+* LiteOs: ported the kernel, BSP, and HAL. Already merged into upstream LiteOS 
 GitHub.
 * Had a positive experience with RISC-V.
 * Mi-V is an ecosystem that aims to accelerate the adoption of RISC-V.
