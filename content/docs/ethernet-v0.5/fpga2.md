@@ -8,7 +8,9 @@ showdisqus = true
 
 +++
 
-In this step, we want to test the Ethernet functionality on an FPGA board.
+In this alternative step, we want to test standalone Ethernet functionality on an FPGA board,
+complete with dynamic host configuration protocol (DHCP), routing to the internet, and remote ssh.
+
 The system will use the Ethernet 100Base-T connection at 100 MBaud to communicate with 
 the LowRISC Linux system.
 
@@ -214,6 +216,9 @@ To ensure the new partitions are recognised, remove and reinsert the card.
 
     cd $TOP/fpga/board/nexys4_ddr
     cp *.bin /media/jrrk2/26CD-9823/ # or wherever your SD-card partition is mounted
+
+If you did not take advantage of the pre-defined images mentioned earlier you can prepare the board as follows:
+
     make boot cfgmem-updated program-cfgmem-updated
 
 The default boot loader will choose how to boot according to the DIP switches as follows:
@@ -254,6 +259,9 @@ After inserting the SD-card in the Nexys4-DDR unit, and pressing PROG, you shoul
     qemuriscv64 login: 
 
 The first boot will take considerably longer than subsequent boots due to the ssh keys having to be regenerated.
+In addition at first there will be no root password. You should login as root and set this up with the 'passwd' command.
+Any changes you make will be stored locally on the SD-card, so it is important to shutdown the server properly with the
+'halt' command.
 
 ## Mount an SD card inside RISC-V Linux
 

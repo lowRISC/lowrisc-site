@@ -15,10 +15,15 @@ Vivado (the Xilinx FPGA implementation suite) [is particular about the O/S](http
 
 All builds were completed with Vivado 2015.4. If a newer version is attempted there could be script incompatibilities to fix and/or incompatible upgrades to internal Xilinx IP. We have no evidence that newer versions do not work, however IP changes to support newer chip families can cause obscure error messages which are offputting for the first-time user.
 
-For this version the recommended O/S 64-bit Ubuntu (14.04 LTS). However, this is not stable on newer Intel chip sets, where 16.04 LTS should be used instead. If an unstable choice is made, the most likely result is LD\_LIBRARY\_PATH conflicts and/or synthesis crashes. It should be safe to unset LD\_LIBRARY\_PATH in your shell. This will prevent conflicts with the obsolete libstc++ build-in to Vivado.
+For this version of Vivado the Xilinx recommended O/S 64-bit Ubuntu (14.04 LTS).
+However, this version of Linux is not stable on newer Intel chip sets, where Ubuntu 16.04.3 LTS should be used instead.
 
-Everything except using the FPGA boards should also work
-out-of-box in a virtual machine.
+It has been found that most of the problems with Vivado will go away if LD\_LIBRARY\_PATH is unset after sourcing the Vivado setup. 
+This is caused by obsolete versions of system libraries such as  libstc++ being incorporated into Vivado to make it more "portable".
+Do not succumb to the temptation to update the system libraries inside Vivado because some of the APIs have changed.
+
+If your machine cannot meet these requirements then synthesis should be able to run, albeit rather slowly, inside a virtual machine.
+The pre-build binaries were created with Ubuntu 16.04.3 LTS.
 
 The following instructions are identical to the previous release, apart from the release name.
 For a more detailed explanation follow the
@@ -77,9 +82,11 @@ The following variables are overridable:
     $OSD_ROOT           Path to the Open SoC Debug tools ($TOP/tools).
     $FPGA_BOARD         The target FPGA board (nexys4_ddr).
 
+The remainder of this page is optional if you choose to use our pre-compiled images.
+
 ## Download and build Linux and busybox (early stage user commands)
 
-This is not strictly needed unless we are building our own images, but it is easier to do it now.
+This step is optional if you choose to use our pre-compiled images.
 
     sh $TOP/riscv-tools/fetch_and_patch_linux.sh
 

@@ -79,7 +79,16 @@ This needs a separate terminal window as it takes over the screen. Alternatively
 
 ## Ethernet server preparation
 
-We need to make some changes on the server to enable this option. First of all create a suitable NFSroot mount point:
+We need to make some changes on the server to enable this option. Obviously the modern systemd commands can be used where supported.
+As of Ubuntu 16.04.3 the old methods still work via wrapper scripts as below.
+
+For this particular demo the server needs to have a fixed IP address 192.168.0.53. The client is preprogrammed to 192.168.0.51
+These numbers may be changed in various necessary places in the source code but this is outside the scope of this demo.
+This is a private range reserved for private networks, secondary ethernet ports, home NAT hubs and the like.
+If you have Wifi this may be used to maintain internet connectivity on the server. Network manager may be used to change the IP
+otherwise manually from the command line.
+
+First of all create a suitable NFSroot mount point:
 
     sudo mkdir /mnt/poky-dev
     sudo mount -t ext2 -o loop rootfs.ext2 /mnt/poky-dev
@@ -224,6 +233,8 @@ You should see a display similar to the following:
     qemuriscv64 login: 
 
 The first boot will take considerably longer than subsequent boots due to the ssh keys having to be regenerated.
+In addition at first there will be no root password. You should login as root and set this up with the 'passwd' command.
+In this case the password will be stored remotely on the NFS image.
 
 ## Mount an SD card inside RISC-V Linux
 
