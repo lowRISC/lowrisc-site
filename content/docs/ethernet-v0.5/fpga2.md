@@ -227,6 +227,9 @@ SW0 on: boot from RAM (only useful if you have compiled in the trace debugger)
 SW1 on: boot from SD-card
 SW2 on: boot from Ethernet as per the previous section
 
+SW7-3: turn these off
+SW15-12: select a suitable unique MAC address variant for your network (allows multiple LowRISCs to talk)
+
 After inserting the SD-card in the Nexys4-DDR unit, and pressing PROG, you should see a display similar to the previous section, ending with the following. By contrast with the NFS-root, etherboot method, the eth0 device is free to take up any allocated address. In conjunction with the support VGA text screen and USB-keyboard, emulation of a variety of standalone computing tasks is possible.
 
     Setting the clock ...
@@ -398,7 +401,7 @@ The inet addr mentioned above may be pasted into a new server window as follows:
 ##Download and compile an example program
 
 Name servers and routers, were setup by DHCP, so we can start and download an example straight away.
-Notice that the prompt is changed from # to $, since we are now running under ssh.
+Notice that the prompt is changed from # to $, since we are now running unprivileged under ssh.
 This example tests the name server client and gateway routing functionality.
 
     qemuriscv64:~$ wget http://www.ioccc.org/1988/phillipps.c
