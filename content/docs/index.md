@@ -8,12 +8,12 @@ title = "Documentation"
 ## Code Releases
 
 * [lowRISC with 100MHz Ethernet and Network filing system access]({{< ref "docs/ethernet-v0.5/index.md" >}})
-<br>*Release version 0.5 preview, 10-2017*
+<br>*Release version 0.5, 01-2018*
 <br>This preview release provides a complete Ethernet reference design, tools, and NFS root capability.
 This includes the ability to arp, ping, ssh client and server, mount remote NFS disks, and run a full multi-user system (within the available RAM and FPGA CPU performance limitations)
 The SD-card interface is promoted to a Rocket peripheral to boost performance.
 The human interface (keyboard and VGA compatible text display) are integrated as the default Rocket console.
-We continue to support the Nexys4 DDR FPGA platform, only the Minion is omitted from this preview.
+We continue to support the Nexys4 DDR FPGA platform, only the Minion is omitted.
 The [tutorial]({{< ref "docs/ethernet-v0.5/index.md" >}})
 outlines the build procedure and forthcoming releases that we are
 planning.
