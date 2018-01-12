@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2017-04-14T13:00:00+00:00"
+date = "2018-01-12T13:00:00+00:00"
 title = "Overview of the ethernet infrastructure"
 parent = "/docs/ethernet-v0.5/"
 next = "/docs/ethernet-v0.5/environment/"
@@ -16,7 +16,7 @@ showdisqus = true
 Our goal of supporting the same FPGA board as the previous release
 may only be realised with a single 100BaseT Ethernet port (the most common type encountered),
 due to PCB design constraints.
-Nevertheless it is conceived that 1GHz Ethernet could be made use of by a different board.
+Nevertheless it is conceived that 1Gbps Ethernet could be made use of by a different board.
 However using this version of the FPGA the practical performance is limited to about 2 megabits per second.
 
 ## Overview of the Remote boot process

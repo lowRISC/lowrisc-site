@@ -1,9 +1,8 @@
 +++
 Description = ""
-date = "2017-04-14T13:00:00+00:00"
+date = "2018-01-11T13:00:00+00:00"
 title = "Running the pre-built SD-image on the FPGA"
 parent = "/docs/ethernet-v0.5/"
-prev = "/docs/ethernet-v0.5/walkthrough/"
 showdisqus = true
 
 +++

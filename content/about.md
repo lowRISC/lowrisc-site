@@ -33,6 +33,9 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
+**Jan 2018**: New lowRISC [code release]({{< ref "docs/ethernet-v0.5/index.md" 
+>}}) focusing on the integration of open source Ethernet IP.
+
 **May 2017**: New lowRISC [code release]({{< ref "docs/minion-v0.4/index.md" 
 >}}) brings back tagged memory with builtin support in Rocket core and has a minion driven SD.
 

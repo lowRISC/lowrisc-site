@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2017-10-06T11:00:00+00:00"
+date = "2018-01-11T11:00:00+00:00"
 title = "lowRISC Ethernet internals"
 parent = "/docs/ethernet-v0.5/"
 prev = "/docs/ethernet-v0.5/index/"
@@ -9,7 +9,8 @@ showdisqus = true
 
 +++
 
-This lowRISC release introduces 100MHz Ethernet, allowing remote ssh and network filing system functionality.
+This lowRISC release introduces 100Mbps Ethernet, allowing remote ssh and 
+network filing system functionality.
 
 ## RTL changes
 

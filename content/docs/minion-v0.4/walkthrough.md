@@ -14,4 +14,5 @@ For more details, consult [debug enumeration and the general software usage with
 ref "simulation.md" >}}), and [example debug sessions]({{< ref "debugsession.md" >}}).
 
 The FPGA example has changed however, due to the Minion being intimately involved in booting.
-Consult the [FPGA example]({{< ref "fpga.md" >}}), which is based on the Nexys4 DDR board.
+Consult the [FPGA example]({{< ref "docs/minion-v0.4/fpga.md" >}}), which is 
+based on the Nexys4 DDR board.

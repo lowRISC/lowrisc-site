@@ -1,10 +1,8 @@
 +++
 Description = ""
-date = "2017-04-14T13:00:00+00:00"
+date = "2018-01-11T13:00:00+00:00"
 title = "Install FPGA and simulation tools"
-parent = "/docs/minion-v0.4/environment/"
-prev = "/docs/minion-v0.4/environment/"
-next = "/docs/minion-v0.4/osdsoftware/"
+parent = "/docs/ethernet-v0.5/environment/"
 showdisqus = true
 
 +++

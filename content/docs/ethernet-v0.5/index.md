@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2017-10-05T13:00:00+00:00"
+date = "2018-01-11T13:00:00+00:00"
 title = "Tutorial for the v0.5 lowRISC preview release"
 showdisqus = true
 
@@ -21,7 +21,7 @@ point for derivative open-source and commercial designs.
 
 This tutorial adds further functionality towards the final SoC design:
 
-* A simple 100MHz Ethernet capability.
+* A simple 100Mbps Ethernet capability.
 * Remote booting via Ethernet from a Linux server.
 * Preview of interrupt driven device drivers in Linux.
 * Optimised SD-interface
@@ -82,7 +82,7 @@ The build environment and pre-built images support the same platform as the prev
 
 ### Acknowledgements
 * Stefan Wallentowitz and Philipp Wagner provided the trace debug system
-* Furkan Turan provided the zedboard patches
+* Furkan Turan provided the Zedboard patches
 * Philipp Jantscher did the initial tagged memory port to debug-v0.3
 * The Ethernet transceiver library is due to Alex Forencich (http://alexforencich.com/wiki/en/verilog/ethernet/readme). The preview version was translated from VHDL written by Philipp Kerling (https://github.com/pkerling/ethernet_mac)
 

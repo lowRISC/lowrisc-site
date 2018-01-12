@@ -28,8 +28,6 @@ Yes! See [our jobs page]({{< ref "jobs.md" >}}).
 #### When can I buy a lowRISC SoC?
 
   As with most tech projects, the most accurate answer is "When it's ready".  
-  We are expecting to crowdfund an initial instantiation of the lowRISC 
-  platform during the course of 2017.
 
 #### Why RISC-V and not OpenRISC/SPARCv8/MIPS/...?
 
