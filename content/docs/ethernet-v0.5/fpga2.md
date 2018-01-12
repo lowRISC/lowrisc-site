@@ -18,19 +18,19 @@ the LowRISC Linux system.
 
 The files you may need:
 
- * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit):
+ * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc2/nexys4ddr.bit):
    The tagpipe/minion/debug enabled FPGA bitstream
- * [boot0000.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin):
+ * [boot0000.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc2/boot0000.bin):
    Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for local filing system).
- * [rootfs.ext2](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2)
+ * [rootfs.ext2](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc2/rootfs.bzip2)
    riscv-poky root filing system ready-built for LowRISC
 
 Download and write the bitstream
 
     cd $TOP/fpga/board/nexys4_ddr
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/nexys4ddr.bit > nexys4ddr.bit
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/boot0000.bin > boot0000.bin
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc1/rootfs.bzip2 | bzip2 -d > rootfs.ext2
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc2/nexys4ddr.bit > nexys4ddr.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc2/boot0000.bin > boot0000.bin
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.5-rc2/rootfs.bzip2 | bzip2 -d > rootfs.ext2
     
 Convert the bitstream to quad-spi memory format
 
