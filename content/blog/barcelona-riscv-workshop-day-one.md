@@ -26,7 +26,7 @@ members. These members are distributed across 25 countries around the world.
   * Standard: defined by the Foundation
   * Reserved: Foundation might eventually use this space for future standard 
   extensions.
-  * Custom: Space for implemnter-specific extensions, never claimed by 
+  * Custom: Space for impelmenter-specific extensions, never claimed by 
   Foundation.
 * The RISC-V big tent philosophy: enable all types of RISC-V implementation, 
 from 32-bit microcontrollers with 1KiB SRAM up to 64-bit Unix servers with 
@@ -139,7 +139,7 @@ merge, vector-fp merge, slide down / slide up
 * Want to see compiler output before bringing for ratification
 * Haven't yet started on formal spec for the vector ISA
 
-## The ISA ofrmal spec technical update: Rishiyur Nikhil
+## The ISA formal spec technical update: Rishiyur Nikhil
 * What what use is an ISA formal spec?
   * Answer questions about compiler correctness. Will executing a certain two 
     C programs produce the same results? For all inputs? For all C and 
@@ -147,19 +147,19 @@ merge, vector-fp merge, slide down / slide up
   * Answer questions on implementation correctness. Will executing this progam 
   produce correct results? On all RISC-V processors?
 * ISA formal spec goals
-  * Clear and understandable to the human reader. Precise and complete.  
+  * Clear and understandable to the human reader. Precise and complete.
   Machine readable. Executable (run RISC-V programs, boot an OS). Usable with 
   various formal tools.
 * Key issues
-  * RISC-V's modulatirty. A wide range of options, some of which are 
-  dynmically selectable or can vary between privilege levels. The spec needs 
+  * RISC-V's modularity. A wide range of options, some of which are 
+  dynamically selectable or can vary between privilege levels. The spec needs 
   to capture all combinations and still remain readable.
   * Extensibility. Want to allow people to build upon the formal spec to add 
   support their own extensions.
   * Non-detterminism and concurrency.
 * Status. Various approaches are being pursued: 3 projects in Haskell, 1 
 project in SAIL, 1 project in L3, another in a 'functional subset' of Verilog
-  * One of the Haskell projects (led by a team at MIT) is furthest along.  
+  * One of the Haskell projects (led by a team at MIT) is furthest along.
   Models RV32I, RV64I, M, priv U+S+M, Sv39 VM
 * Next steps: within a couple of months publish a formal spec that is complete 
 for RV32IMAC, RV64IMAC, user+supervisor+machine mode, sv32+sv39, and a simple 
@@ -225,7 +225,7 @@ crypto. Other innovation targets include a multi RISC-V core MCU SoC.
 architecture
   * Programming model
   * System optimsiation
-* Open source RISC-V implementations will allow more software driven hardware.  
+* Open source RISC-V implementations will allow more software driven hardware.
 Ecosystem is vital to success.
 
 ## Unleashing the power of data with RISC-V: Martin Fink

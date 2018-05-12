@@ -232,7 +232,7 @@ and what are we directly leaking.
 are speculative. About 25% are beyond the point of non-return.
 * Idea: do not update predictors speculatively.
 * Idea: Don't speculatively update the cache. Could get rid of fully inclusive 
-L1/L2/L3 caches in favour of neither exclusive nor inclusive (NENI) caches.  
+L1/L2/L3 caches in favour of neither exclusive nor inclusive (NENI) caches.
 Then allocate only into the L1 cache.
 * Idea: misspeculation recovery should be deterministic. Any shared resource 
 can leak time
