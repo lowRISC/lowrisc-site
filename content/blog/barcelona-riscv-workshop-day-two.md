@@ -10,6 +10,12 @@ continuing
 today in Barcleona. As usual, I'll be keeping a semi-live blog of talks and 
 announcements throughout the day.
 
+Look back [here]({{< ref "blog/barcelona-riscv-workshop-day-one.md" >}}) for 
+the day one live blog.
+
+Note that slides from most presentations are now [available at 
+riscv.org](https://riscv.org/2018/05/risc-v-workshop-in-barcelona-proceedings/).
+
 ## Fast interrupts for RISC-V: Krste Asanovic
 * Embedded is a major use for RISC-V. There is a desire for faster interrupt 
 handling with support for nested preempted interrupts.

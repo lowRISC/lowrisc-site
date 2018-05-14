@@ -13,6 +13,9 @@ announcements throughout the day.
 Follow [here]({{< ref "blog/barcelona-riscv-workshop-day-two.md" >}}) for the 
 day two live blog.
 
+Note that slides from most presentations are now [available at 
+riscv.org](https://riscv.org/2018/05/risc-v-workshop-in-barcelona-proceedings/).
+
 ## Introduction: Rick O'Connor
 * This workshop has 325 attendees representing 101 companies and 25 
 universties. Largest outside of Silicon Valley.
