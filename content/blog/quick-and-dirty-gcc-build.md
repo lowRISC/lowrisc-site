@@ -29,7 +29,7 @@ build, but for a quick test you might find the following recipe useful:
     --disable-shared --disable-threads --disable-multilib --disable-gdb \
     --disable-libssp --with-newlib \
     --with-arch=rv32ima --with-abi=ilp32 --prefix=$(pwd)/built
-    make -j
+    make -j$(nproc)
     make install
 
 This will produce a newlib toolchain targeting RV32IMA in the `built/` 
