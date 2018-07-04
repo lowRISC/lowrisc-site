@@ -104,5 +104,5 @@ is provided [here]({{< ref "docs/tagged-memory-v0.1/new-instructions.md" >}}).
 
 <a name="Memo1"></a>
 [1] [Tagged memory and minion cores
-in the lowRISC SoC](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/), lowRISC-MEMO 2014-001
+in the lowRISC SoC](https://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/), lowRISC-MEMO 2014-001
 

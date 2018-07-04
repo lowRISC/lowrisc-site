@@ -34,7 +34,7 @@ for standalone operation.
 
 If you've visited lowrisc.org before, you'll have noticed we've changed a few 
 things around. Keep an eye on this blog (and its [RSS 
-feed](http://www.lowrisc.org/index.xml)) to keep an eye on developments - we 
+feed](https://www.lowrisc.org/index.xml)) to keep an eye on developments - we
 expect to be updating at least every couple of weeks. We're very grateful to 
 the RISC-V team at Berkeley for all their support and guidance. A large 
 portion of the credit for this initial code release goes to [Wei 

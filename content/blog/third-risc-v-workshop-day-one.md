@@ -8,7 +8,7 @@ aliases = "/blog/2016/01/second-risc-v-workshop-day-one/"
 The [third RISC-V workshop](https://riscv.org/2015/12/prelim-agenda-3rd-risc-v-workshop/) is going
 on today and tomorrow at the Oracle Conference Center, California. I'll be 
 keeping a semi-live blog of talks and announcements throughout the day. See 
-[here](http://www.lowrisc.org/blog/2016/01/third-risc-v-workshop-day-two) for 
+[here](https://www.lowrisc.org/blog/2016/01/third-risc-v-workshop-day-two) for
 notes from the second day.
 
 ## Introductions and RISC-V Foundation Overview: Rick O'Connor

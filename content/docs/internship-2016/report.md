@@ -81,7 +81,7 @@ MathJax.Hub.Config({
 
 ## 1. Introduction
 Beginning on Monday, 27th June 2016, a team of 4 undergraduate students from 
-the University of Cambridge joined the [lowRISC](http://www.lowrisc.org/) 
+the University of Cambridge joined the [lowRISC](https://www.lowrisc.org/)
 project for a 10 week internship, kindly sponsored by [IMC Financial 
 Markets](http://www.imc.nl). The purpose of this report is to provide a 
 technical description of the work undertaken and the devices produced. This 
@@ -775,7 +775,7 @@ and increasing the speed of the bus.
     - *Extending lowRISC with new devices*
     - *Adding additional accelerators using our infrastructure*
 
-These tutorials have been completed, and can be found on the [lowRISC website](http://www.lowrisc.org/).
+These tutorials have been completed, and can be found on the [lowRISC website](https://www.lowrisc.org/).
 
  - *Technical descriptions of*
     - *The accelerator infrastructure*

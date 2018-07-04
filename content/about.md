@@ -48,11 +48,11 @@ RISC-V SoCs using lowRISC and Xilinx FPGAs.
 
 **June 2016**: We were thrilled to be given five student slots in the 2016 
 Google Summer of code. See 
-[here](http://www.lowrisc.org/blog/2016/06/lowriscs-2016-google-summer-of-code-students/) 
+[here](https://www.lowrisc.org/blog/2016/06/lowriscs-2016-google-summer-of-code-students/)
 for more information about their projects.
 
 **Dec 2015:** We have 
-[untethered](http://www.lowrisc.org/blog/2015/12/untethered-lowrisc-release/) 
+[untethered](https://www.lowrisc.org/blog/2015/12/untethered-lowrisc-release/)
 the Rocket SoC, which now runs standalone on the KC705 and Nexys4DDR FPGAs.
 This release also includes support for simulation using Verilator and is 
 accompanied by [extensive documentation]({{< ref "docs/untether-v0.2/index.md" 
