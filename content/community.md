@@ -8,7 +8,7 @@ title = "Community"
 
 The best ways of keeping up with lowRISC developments are:
 
-* Checking the [blog](..), and subscribing to the [RSS feed](http://www.lowrisc.org/index.xml).
+* Checking the [blog](..), and subscribing to the [RSS feed](https://www.lowrisc.org/index.xml).
 * Signing up to our [announcement mailing list]({{< ref "about.md" >}}).
 * Following [@lowRISC on Twitter](https://twitter.com/lowrisc).
 

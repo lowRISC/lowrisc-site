@@ -61,7 +61,7 @@ techniques. A demo is provided using a low-end
 
 <!-- Links -->
 
-[lowRISC]: http://www.lowrisc.org/
+[lowRISC]: https://www.lowrisc.org/
 [TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/index.md" >}}
 [UntetheredTutorial]: {{< ref "docs/untether-v0.2/index.md" >}}
 

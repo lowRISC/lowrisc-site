@@ -22,7 +22,7 @@ git checkout vga
 git submodule update --init --recursive....
 ```
 
-This tutorial relies heavily on two tools (Vivado and the RISC-V cross compiler) and requires a host of other packages. Wei Song has provided a [tutorial](http://www.lowrisc.org/docs/debug-v0.3/environment/) for setting up the environment. Install the packages on the linked page, then go to the next page ('[Generic lowRISC setup](http://www.lowrisc.org/docs/debug-v0.3/lowriscsetup/)') and follow the tutorials for [Vivado](http://www.lowrisc.org/docs/untether-v0.2/xilinx/) and the [cross-compiler](http://www.lowrisc.org/docs/untether-v0.2/riscv_compile/).
+This tutorial relies heavily on two tools (Vivado and the RISC-V cross compiler) and requires a host of other packages. Wei Song has provided a [tutorial](https://www.lowrisc.org/docs/debug-v0.3/environment/) for setting up the environment. Install the packages on the linked page, then go to the next page ('[Generic lowRISC setup](https://www.lowrisc.org/docs/debug-v0.3/lowriscsetup/)') and follow the tutorials for [Vivado](https://www.lowrisc.org/docs/untether-v0.2/xilinx/) and the [cross-compiler](https://www.lowrisc.org/docs/untether-v0.2/riscv_compile/).
 
 ## Step 2: Building the MPEG-2 Codec
 We're using a modified version of a reference MPEG-2 implementation. Start by pulling that and cross compiling it for RISC-V.

@@ -92,7 +92,7 @@ The build environment and pre-built images support the same platform as the prev
 
 <!-- Links -->
 
-[lowRISC]: http://www.lowrisc.org/
+[lowRISC]: https://www.lowrisc.org/
 [TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/index.md" >}}
 [UntetheredTutorial]: {{< ref "docs/untether-v0.2/index.md" >}}
 [DebugTutorial]: {{< ref "docs/debug-v0.3/index.md" >}}
