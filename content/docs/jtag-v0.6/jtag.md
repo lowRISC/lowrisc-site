@@ -13,7 +13,37 @@ This lowRISC release introduces jtag debugging and compressed instructions, allo
 
 ## RTL changes
 
-The Jtag uses Xilinx built-in instruction register of 6 bits and available user data registers. These data register numbers deviate from the RISC-V specification but otherwise conforms to the Berkeley Rocket standard. This deviation eliminates the requirement for separate hardware to implement the debug interface and keeps costs low, allowing the same board as previously to be used.
+The Jtag uses Xilinx built-in instruction register of 6 bits and available user data registers.
+These data register numbers deviate from the RISC-V specification but otherwise conforms to the Berkeley Rocket standard.
+This deviation eliminates the requirement for separate hardware to implement the debug interface and keeps costs low,
+allowing the same board (Nexys4DDR) as previously to be used.
+The impact on the Chisel is restricted to a small part which invokes BSCANE2 as a primitive.
+
+| Function              | _Berkeley Rocket_ | _LowRISC Rocket_ |
+| --------------        | :----------:      | :--------------: |
+| Manufacturer code     |       all         |       0x49       |
+| IR length             |         5         |          6       |
+| IDCODE                |      0x01         |       0x09       |
+| DTM_CONTROL           |      0x10         |       0x22       |
+| DTM_DMI               |      0x11         |       0x23       |
+
+This functionality needs to be supported with appropriate TCL which, in the case of Nexys4DDR will be:
+
+    interface ftdi
+    ftdi_device_desc "Digilent USB Device"
+    ftdi_vid_pid 0x0403 0x6010
+
+    ftdi_channel 0
+    ftdi_layout_init 0x0088 0x008b
+    ftdi_tdo_sample_edge falling
+
+    reset_config none
+    adapter_khz 10000
+    transport select jtag
+
+    jtag newtap riscv cpu -irlen 6 -expected-id 0x13631093
+
+    target create riscv.cpu riscv -chain-position riscv.cpu
 
 ## Linux driver
 
