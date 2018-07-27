@@ -1,12 +1,12 @@
 +++
 Description = ""
 date = "2018-01-11T13:00:00+00:00"
-title = "Tutorial for the v0.6 lowRISC preview release"
+title = "Tutorial for the v0.6 lowRISC release"
 showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt, Wei Song and Alex Bradbury_ (also see acknowledgements below)
+_By Jonathan Kimmitt (lead hardware developer), and Alex Bradbury (lead software developer)_ (also see acknowledgements below)
 
 **Release version 0.6** (06-2018)
 
@@ -21,19 +21,21 @@ point for derivative open-source and commercial designs.
 
 This tutorial adds further functionality towards the final SoC design:
 
-* A simple 100Mbps Ethernet capability.
-* Remote booting via Ethernet from a Linux server.
-* Preview of interrupt driven device drivers in Linux.
-* Optimised SD-interface
-* Console defaults to keyboard and optimised VGA-compatible text display.
-* Network filing system (NFS) support in the RISCV kernel and NFS-root support scripts.
-* Multiuser system leveraging the poky Linux build system.
+* An eight packet buffer for Ethernet reception.
+* Bare-metal GDB debugging over JTAG without any extra hardware.
+* Processor speed doubled to 50MHz.
+* Colour Console with proper PC-compatible keyboard events.
+* Ethernet boot-loader DHCP support, ten times faster boot-loading.
+* SD-Card boot-loader comprehensive card detection base on u-boot.
+* Platform-level interrupt controller support.
+* All peripheral data paths 64-bit.
+* Latest RISCV-kernel and Debian userland with advanced package tool.
 
 The build environment and pre-built images support the same platform as the previous releases, a competitively priced
 [Nexys™4 DDR Artix-7 FPGA Board]
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/).
 
-| Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ | _Ethernet-v0.5_ | _Jtag-v0.6_     |
+| Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ | _Ethernet-v0.5_ | _Refresh-v0.6_     |
 | --------------        | :----------:   | :--------------:  | :----------: | :-----------: | :-------------: | :-------------: |
 | Rocket Priv. Spec.    |      ?         |       ?           |      1.7     | nearly 1.91   | nearly 1.91     | 1.10 |
 | Tagged memory         |   *            |                   |              | *             | *               |      |
@@ -51,18 +53,18 @@ The build environment and pre-built images support the same platform as the prev
 
 ### Contents
 
-  1. [Overview of the Jtag system]({{< ref "docs/jtag-v0.6/overview.md" >}})
-    * [Jtag internals]({{< ref "docs/jtag-v0.6/jtag.md" >}})
-  2. [Prepare the environment]({{< ref "docs/jtag-v0.6/environment.md" >}})
-    * [Install FPGA and simulation tools]({{< ref "docs/jtag-v0.6/installtools.md" >}})
+  1. [Overview of the Refresh system]({{< ref "docs/refresh-v0.6/overview.md" >}})
+    * [JTAG internals]({{< ref "docs/refresh-v0.6/jtag.md" >}})
+  2. [Prepare the environment]({{< ref "docs/refresh-v0.6/environment.md" >}})
+    * [Install FPGA and simulation tools]({{< ref "docs/refresh-v0.6/installtools.md" >}})
  
   4. Demo
-   * [Running pre-built NFS-root image on the FPGA]({{< ref "docs/jtag-v0.6/fpga.md" >}})
-   * [Running pre-built SD-card image on the FPGA]({{< ref "docs/jtag-v0.6/fpga2.md" >}})
-   * [Developing/building from scratch on the FPGA]({{< ref "docs/jtag-v0.6/development.md" >}})
+   * [Running pre-built NFS-root image on the FPGA]({{< ref "docs/refresh-v0.6/fpga.md" >}})
+   * [Running pre-built SD-card image on the FPGA]({{< ref "docs/refresh-v0.6/fpga2.md" >}})
+   * [Developing/building from scratch on the FPGA]({{< ref "docs/refresh-v0.6/development.md" >}})
  
-  5. [Release notes] ({{<ref "docs/jtag-v0.6/release.md">}})
-     * [**Version 0.6**: debug JTAG debian lowRISC (06-2018)]({{< ref "docs/jtag-v0.6/release.md" >}})
+  5. [Release notes] ({{<ref "docs/refresh-v0.6/release.md">}})
+     * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "docs/refresh-v0.6/release.md" >}})
      * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
@@ -73,7 +75,6 @@ The build environment and pre-built images support the same platform as the prev
 * Interfacing Pulpino (Minion) core to on-chip trace/debug bus.
 * Programming Minion dynamically from Rocket under Linux.
 * Optimising card transfer speed / Implementing multi-block transfers.
-* GDB support under Linux.
 * Revised interrupt handling block.
 * Ethernet interfacing / booting / Linux support.
 * Fully supporting tag instructions in compiler.
@@ -84,7 +85,8 @@ The build environment and pre-built images support the same platform as the prev
 * Run-control debug for Rocket.
 
 ### Acknowledgements
-* Stefan Wallentowitz and Philipp Wagner provided the trace debug system
+* Wei Song was lead hardware developer up to v0.4
+* Stefan Wallentowitz and Philipp Wagner provided the trace debug system (from v0.3)
 * Furkan Turan provided the Zedboard patches
 * Philipp Jantscher did the initial tagged memory port to debug-v0.3
 * The Ethernet transceiver library is due to Alex Forencich (http://alexforencich.com/wiki/en/verilog/ethernet/readme). The preview version was translated from VHDL written by Philipp Kerling (https://github.com/pkerling/ethernet_mac)

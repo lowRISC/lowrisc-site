@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-12-17T17:00:00+00:00"
 title = "Install Verilator"
-parent = "/docs/jtag-v0.6/dev-env/"
-prev = "/docs/jtag-v0.6/xilinx/"
-next = "/docs/jtag-v0.6/riscv_compile/"
+parent = "/docs/refresh-v0.6/dev-env/"
+prev = "/docs/refresh-v0.6/xilinx/"
+next = "/docs/refresh-v0.6/riscv_compile/"
 showdisqus = true
 
 +++

@@ -6,7 +6,7 @@ title = "Documentation"
 +++
 
 ## Code Releases
-* [lowRISC with run/step debugging via JTAG and GDB]({{< ref "docs/jtag-v0.6/index.md" >}})
+* [lowRISC with run/step debugging via JTAG and GDB]({{< ref "docs/refresh-v0.6/index.md" >}})
 <br>*Release version 0.6, to be released summer 2018 (work in progress, do not expect these instructions to work ... )*
 <br>This release updates the Rocket IP to March 2018 and includes compressed instructions and JTAG debugging according to the RISCV debug specification (subject to Xilinx JTAG limitations). The root filing system is updated to use the partially upstreamed Debian repository and the peripherals are resized to 64-bit for better performance.
 

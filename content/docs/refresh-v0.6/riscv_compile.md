@@ -2,9 +2,9 @@
 Description = ""
 date = "2015-12-17T17:00:00+00:00"
 title = "Compile and install RISC-V cross-compiler"
-parent = "/docs/jtag-v0.6/dev-env/"
-prev = "/docs/jtag-v0.6/verilator/"
-next = "/docs/jtag-v0.6/linux_compile/"
+parent = "/docs/refresh-v0.6/dev-env/"
+prev = "/docs/refresh-v0.6/verilator/"
+next = "/docs/refresh-v0.6/linux_compile/"
 showdisqus = true
 
 +++
@@ -48,17 +48,17 @@ Compiling and simulating programs in different modes depends on different tool s
   * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib); `riscv-isa-sim`; `riscv-fesvr`.
   * RTL simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "docs/jtag-v0.6/verilator.md">}}).
+    `riscv-gnu-toolchain`(newlib); [verilator]({{<ref "docs/refresh-v0.6/verilator.md">}}).
  * **Newlib (supervisor) mode**:
   * FPGA simulation: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "docs/jtag-v0.6/xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "docs/refresh-v0.6/xilinx.md">}}).
   * FPGA run: <br/>
-    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "docs/jtag-v0.6/xilinx.md">}}).
+    `riscv-gnu-toolchain`(newlib); [vivado]({{<ref "docs/refresh-v0.6/xilinx.md">}}).
  * **Linux (user) mode**
   * Behavioural simulation: <br/>
     `riscv-gnu-toolchain`(newlib+linux); `riscv-isa-sim`; `riscv-fesvr`; `riscv-pk`; [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
   * FPGA run: <br/>
-    `riscv-gnu-toolchain`(newlib+linux); [vivado]({{<ref "docs/jtag-v0.6/xilinx.md">}}); [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
+    `riscv-gnu-toolchain`(newlib+linux); [vivado]({{<ref "docs/refresh-v0.6/xilinx.md">}}); [vmlinux](../linux_compile#linux); [root.bin](../linux_compile#busybox).
 
 ### Building the RISC-V cross-compilation tools
 

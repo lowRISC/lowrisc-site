@@ -2,9 +2,9 @@
 Description = ""
 date = "2018-01-11T13:00:00+00:00"
 title = "Prepare the environment"
-parent = "/docs/jtag-v0.6/"
-prev = "/docs/jtag-v0.6/softwaremethodology/"
-next = "/docs/jtag-v0.6/installtools/"
+parent = "/docs/refresh-v0.6/"
+prev = "/docs/refresh-v0.6/softwaremethodology/"
+next = "/docs/refresh-v0.6/installtools/"
 showdisqus = true
 
 +++
@@ -53,7 +53,7 @@ otherwise only the super user can make use of microcom
 
 Next steps:
 
- * [Install FPGA and simulation tools]({{<ref "docs/jtag-v0.6/installtools.md">}})
+ * [Install FPGA and simulation tools]({{<ref "docs/refresh-v0.6/installtools.md">}})
 
 You might want to add the Vivado tools to your path first to keep the environment clean. This prevents system tools
 from trying to use shared libraries from the (older) Vivado install. Proceed as follows if you chose the default install
@@ -67,11 +67,11 @@ location (or follow your system adminstrator instructions)
 The code is hosted in the
 [lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip). All
 external repositories are fetched as submodules. In case you want to work on multiple branches
-give each checkout a unique name (such as lowrisc-chip-jtag-v0.6)
-You need to clone the proper branch (`jtag-v0.6`):
+give each checkout a unique name (such as lowrisc-chip-refresh-v0.6)
+You need to clone the proper branch (`refresh-v0.6`):
 
-    git clone -b jtag-v0.6 --recursive https://github.com/lowrisc/lowrisc-chip.git lowrisc-chip-jtag-v0.6
-    cd lowrisc-chip-jtag-v0.6
+    git clone -b refresh-v0.6 --recursive https://github.com/lowrisc/lowrisc-chip.git lowrisc-chip-refresh-v0.6
+    cd lowrisc-chip-refresh-v0.6
 
 ### Structure of the git repository
 
@@ -80,7 +80,7 @@ You need to clone the proper branch (`jtag-v0.6`):
      Demo]]({{<ref "docs/untether-v0.2/fpga-demo.md">}})
      * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
  * `rocket-chip`: The Rocket core and its sub-systems.
-   * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/jtag-v0.6/riscv_compile.md">}})
+   * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/refresh-v0.6/riscv_compile.md">}})
      * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
      * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
      * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "docs/untether-v0.2/spike.md">}})

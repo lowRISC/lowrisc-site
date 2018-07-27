@@ -2,8 +2,8 @@
 Description = ""
 date = "2015-12-17T17:00:00+00:00"
 title = "Install Xilinx Vivado"
-parent = "/docs/jtag-v0.6/dev-env/"
-next = "/docs/jtag-v0.6/verilator/"
+parent = "/docs/refresh-v0.6/dev-env/"
+next = "/docs/refresh-v0.6/verilator/"
 showdisqus = true
 
 +++

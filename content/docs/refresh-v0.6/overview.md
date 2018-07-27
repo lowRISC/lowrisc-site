@@ -1,9 +1,9 @@
 +++
 Description = ""
 date = "2018-01-12T13:00:00+00:00"
-title = "Overview of the JTAG infrastructure"
-parent = "/docs/jtag-v0.6/"
-next = "/docs/jtag-v0.6/environment/"
+title = "Overview of the REFRESH infrastructure"
+parent = "/docs/refresh-v0.6/"
+next = "/docs/refresh-v0.6/environment/"
 showdisqus = true
 
 +++
@@ -41,4 +41,4 @@ Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas
 and opinions about future directions we should take. Now
 it's time to learn more about the debug system or jump into using it:
 
- * [Prepare the environment and get started]({{< ref "docs/jtag-v0.6/environment.md" >}})
+ * [Prepare the environment and get started]({{< ref "docs/refresh-v0.6/environment.md" >}})

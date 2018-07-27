@@ -2,7 +2,7 @@
 Description = ""
 date = "2018-01-11T13:00:00+00:00"
 title = "Release notes"
-parent = "/docs/jtag-v0.6/"
+parent = "/docs/refresh-v0.6/"
 showdisqus = true
 
 +++
@@ -10,29 +10,36 @@ showdisqus = true
 ### Release notes
 
  * Rocket-core (Chisel)
-   * Corrections to tag cache security and Rocket behaviour corrected.
+   * Updated to March-2018 vintage together with riscv-tools
+   * Rocket repository hierarchy left unmodified for easier updates
+   * Compressed instructions and JTAG debugging functional in GDB
+   * Clock speed doubled from 25MHz to 50MHz to take advantage of improvements
    
  * Software environment
-   * Choice of boot options controlled by DIP-switches from one executable.
-   * Accelerated, interrupt driven access to SD-cards in Linux.
-   * Remote Booting from Jtag, Ethernet or 4-bit SD-mode supported.
-   * Network Filing System root supported (with static IP addresses).
-   * DHCP networking and Dropbear SSH server/client remote access with local SD-card root.
-   * Linux userland based on adapted version of RISCV-poky Linux.
+   * SD-Card bootloader now uses proper card recognition algorithm
+   * SD-cards now run at 10MHz corresponding to Rocket speed boost
+   * Ethernet boot loader supports DHCP and is about ten times faster
+   * Debian preview release supported with advanced package tool support
+   * Linux kernel updated to latest RISCV release
 
- * lowRISC-chip
-   * Accelerated, reduced overhead interrupt-driven control of SD-card.
-   * Faster integration of keyboard, and scrolling of VGA display, better integration with LowRISC console.
-   * Unattended, networked operation (with remote multi-user access) possible, subject to performance constraints.
+ * lowRISC system-on-chip
+   * Accelerated access to all peripherals using 64-bit busses
+   * Proper integration of PC-keyboard codes into Linux driver
+   * Debian dialog friendly VGA text compatible colour console screen
+   * Eight-packet Ethernet receive buffer and Linux driver NAPI-compliant
+   * 2K-byte buffer on all UART transmit and receive paths
    
  * Design environment
+   * Updated Vivado synthesis and release to version 2018.1
    * Updated demo images for NEXYS4-DDR FPGA.
-   * Add etherboot (SD-card root or NFS-root) targets to fpga Makefile.
+   * Minimal Rocket source code changes
+   * JTAG debug transport adapted to meet Xilinx hardware constraints
    * Streamlined build more easily meets design constraints.
    
  * Missing from this release vs the previous
-   * Minion was temporarily removed because it was a performance bottleneck in the Linux device driver architecture.
-   * Quad SPI memory is dedicated to bitstream configuration.
+   * Tag memory system not ported to latest Rocket
+   * No procedure to build your own userland (Debian download required)
+   * Trace debugger not ported to latest Rocket
 
 ### Previous releases
 
