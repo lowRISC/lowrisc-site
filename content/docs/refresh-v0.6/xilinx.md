@@ -15,7 +15,7 @@ During the installation process, when asked for "Select Edition to Install",
 please choose "Vivado Design Edition". When choosing which packages to 
 install, please add "Software Development Kit". It is not required to install 
 Xilinx Vivado in system directories, so choose any installation directory 
-preferred. The installation requires around 21 GB of disk space.
+preferred. The installation requires up to 30 GB of disk space.
 
 The default location is /opt/Xilinx and this will be the location referred to in the tutorial.
 Typically /opt will be on the relatively small root partition of the computer, so it is necessary
@@ -44,6 +44,18 @@ Kintex-7 and Zynq-7000 FPGAs
 To generate a license using a voucher or a WebPACK license, login to Xilinx 
 and visit 
 [http://www.xilinx.com/getlicense](http://www.xilinx.com/getlicense).
+
+Academic users can obtain licenses for all devices for research purposes via Europractice (in Europe)
+or equivalent schemes.
+
+### Future Board options
+
+KC705 support is unbundled in this release, because it is incomplete.
+For further details, checkout the kc705_mii branch.
+
+In future we intend to support the ArtyA7-100 which is cheaper and has a larger DDR3 ram than
+the Nexys4DDR. However it requires a separate PMOD if you want to use the SD-Card support.
+For the latest status, checkout the artya7_mii branch.
 
 ### Environment settings
 

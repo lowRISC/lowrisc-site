@@ -72,17 +72,8 @@ The build environment and pre-built images support the same platform as the prev
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
 
 ### Work planned / In progress / TO DO
-* Interfacing Pulpino (Minion) core to on-chip trace/debug bus.
-* Programming Minion dynamically from Rocket under Linux.
 * Optimising card transfer speed / Implementing multi-block transfers.
-* Revised interrupt handling block.
-* Ethernet interfacing / booting / Linux support.
-* Fully supporting tag instructions in compiler.
-* Making tag support thread-safe / context switching safe.
-* More security demos.
-* Userland software running on the Rocket.
 * Offloading SD-card acceleration and Video scrolling to Minion.
-* Run-control debug for Rocket.
 
 ### Acknowledgements
 * Wei Song was lead hardware developer up to v0.4
@@ -90,6 +81,10 @@ The build environment and pre-built images support the same platform as the prev
 * Furkan Turan provided the Zedboard patches
 * Philipp Jantscher did the initial tagged memory port to debug-v0.3
 * The Ethernet transceiver library is due to Alex Forencich (http://alexforencich.com/wiki/en/verilog/ethernet/readme). The preview version was translated from VHDL written by Philipp Kerling (https://github.com/pkerling/ethernet_mac)
+* Palmer Dabbelt maintained the Linux kernel port to RISCV
+* Andrew Waterman and a large team at SiFive developed the Rocket CPU
+* Manuel Montecelo developed the Debian port to RISCV (https://wiki.debian.org/RISC-V#Creating_a_riscv64_chroot_from_a_merged_repository_with_debootstrap)
+* Rick Chen and the u-boot team provided the basis of the first stage MMC/SD boot loader
 
 ### Other useful sources of information
 

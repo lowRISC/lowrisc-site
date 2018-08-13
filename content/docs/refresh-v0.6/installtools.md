@@ -7,8 +7,7 @@ showdisqus = true
 
 +++
 
-This part is identical to the previous tutorial, simply perform those
-steps:
+This part is similar to the previous tutorial, simply perform those steps (a newer Vivado is needed):
 
  * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
  * [Install Verilator] ({{<ref "verilator.md">}})

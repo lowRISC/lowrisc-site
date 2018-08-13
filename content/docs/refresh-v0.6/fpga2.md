@@ -17,19 +17,19 @@ the LowRISC Linux system.
 
 The files you may need:
 
- * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc2/nexys4ddr.bit):
+ * [chip_top.bit](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc1/chip_top.bit):
    The tagpipe/minion/debug enabled FPGA bitstream
- * [boot0000.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc2/boot0000.bin):
+ * [boot.bin](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc1/boot.bin):
    Linux, Busybox and Berkley bootloader (BBL) packaged in one image (for local filing system).
- * [rootfs.ext2](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc2/rootfs.bzip2)
-   riscv-poky root filing system ready-built for LowRISC
+ * [debian-root.tar.xz](https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc1/debian-root.tar.xz)
+   Prebuild debian RV64-GC generic Linux userland root filing system archive
 
 Download and write the bitstream
 
     cd $TOP/fpga/board/nexys4_ddr
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc2/nexys4ddr.bit > nexys4ddr.bit
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc2/boot0000.bin > boot0000.bin
-    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc2/rootfs.bzip2 | bzip2 -d > rootfs.ext2
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc1/chip_top.bit > nexys4ddr.bit
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc1/boot.bin > boot.bin
+    curl -L https://github.com/lowRISC/lowrisc-chip/releases/download/v0.6-rc1/debian-root.tar.xz > debian-root.tar.xz
     
 Convert the bitstream to quad-spi memory format
 
@@ -77,7 +77,6 @@ This needs a separate terminal window as it takes over the screen. Alternatively
     IP Address:  192.168.0.51
     Subnet Mask: 255.255.255.0
     Enabling interrupts
-
 ## SD-card preparation
 
 The preparation is similar to formatting a hard disk for Linux installation on a host (the old, non-gui way).
@@ -90,7 +89,8 @@ With a suitable card reader, insert the SD card (I use 8GByte for this example):
 
 We see the new disk is given the designation /dev/sdc. If your workstation is setup to mount existing partitions automatically, unmount them but do not use the eject button on the GUI. (for example: )
 
-    sudo umount /media/jrrk2/B725-19B1
+    sudo umount /dev/sdc1
+    sudo umount /dev/sdc2
 
     sudo fdisk /dev/sdc
     [sudo] password for jrrk2: 
@@ -99,32 +99,10 @@ We see the new disk is given the designation /dev/sdc. If your workstation is se
     Changes will remain in memory only, until you decide to write them.
     Be careful before using the write command.
 
-
-    Command (m for help): p
-    Disk /dev/sdc: 7.4 GiB, 7969177600 bytes, 15564800 sectors
-    Units: sectors of 1 * 512 = 512 bytes
-    Sector size (logical/physical): 512 bytes / 512 bytes
-    I/O size (minimum/optimal): 512 bytes / 512 bytes
-    Disklabel type: dos
-    Disk identifier: 0x5c9ebcd9
-
-    Device     Boot   Start     End Sectors  Size Id Type
-    /dev/sdc1          2048   67583   65536   32M  b W95 FAT32
-    /dev/sdc2         67584 1296383 1228800  600M 83 Linux
-    /dev/sdc3       1296384 3393535 2097152    1G 82 Linux swap / Solaris
-
-    Command (m for help): p
-    Disk /dev/sdc: 7.4 GiB, 7969177600 bytes, 15564800 sectors
-    Units: sectors of 1 * 512 = 512 bytes
-    Sector size (logical/physical): 512 bytes / 512 bytes
-    I/O size (minimum/optimal): 512 bytes / 512 bytes
-    Disklabel type: dos
-    Disk identifier: 0x074e0e18
-
-The disk will typically be empty or have one large DOS partition, if not use the o command to create a new table
+The disk will typically be empty or have one large DOS partition, regardless use the o command to create a new table
 
     Command (m for help): o
-    Created a new DOS disklabel with disk identifier 0x074e0e18.
+    Created a new DOS disklabel with disk identifier 0x3bcd8c7d.
 
 We proceed to create the partitions as follows:
 
@@ -134,8 +112,8 @@ We proceed to create the partitions as follows:
        e   extended (container for logical partitions)
     Select (default p): p
     Partition number (1-4, default 1): 
-    First sector (2048-15564799, default 2048): 
-    Last sector, +sectors or +size{K,M,G,T,P} (2048-15564799, default 15564799): +32M
+    First sector (2048-62552063, default 2048): 
+    Last sector, +sectors or +size{K,M,G,T,P} (2048-62552063, default 62552063): +32M
 
     Created a new partition 1 of type 'Linux' and of size 32 MiB.
 
@@ -144,16 +122,20 @@ We proceed to create the partitions as follows:
     Partition type (type L to list all types): b
     Changed type of partition 'Linux' to 'W95 FAT32'.
 
+The partition above will hold the Linux kernel for booting
+
     Command (m for help): n
     Partition type
        p   primary (1 primary, 0 extended, 3 free)
        e   extended (container for logical partitions)
     Select (default p): p
     Partition number (2-4, default 2): 
-    First sector (67584-15564799, default 67584): 
-    Last sector, +sectors or +size{K,M,G,T,P} (67584-15564799, default 15564799): +600M
+    First sector (67584-62552063, default 67584): 
+    Last sector, +sectors or +size{K,M,G,T,P} (67584-62552063, default 62552063): +2G
 
-    Created a new partition 2 of type 'Linux' and of size 600 MiB.
+This partition will be the new root partition
+
+    Created a new partition 2 of type 'Linux' and of size 2 GiB.
 
     Command (m for help): n
     Partition type
@@ -161,8 +143,8 @@ We proceed to create the partitions as follows:
        e   extended (container for logical partitions)
     Select (default p): p
     Partition number (3,4, default 3): 
-    First sector (1296384-15564799, default 1296384): 
-    Last sector, +sectors or +size{K,M,G,T,P} (1296384-15564799, default 15564799): +1G
+    First sector (4261888-62552063, default 4261888): 
+    Last sector, +sectors or +size{K,M,G,T,P} (4261888-62552063, default 62552063): +1G
 
     Created a new partition 3 of type 'Linux' and of size 1 GiB.
 
@@ -172,33 +154,73 @@ We proceed to create the partitions as follows:
 
     Changed type of partition 'Linux' to 'Linux swap / Solaris'.
 
+This partition will be our swap device (if needed)
+
+    Command (m for help): n
+    Partition type
+       p   primary (3 primary, 0 extended, 1 free)
+       e   extended (container for logical partitions)
+    Select (default e): p
+
+    Selected partition 4
+    First sector (6359040-62552063, default 6359040): 
+    Last sector, +sectors or +size{K,M,G,T,P} (6359040-62552063, default 62552063): 
+
+    Created a new partition 4 of type 'Linux' and of size 26.8 GiB.
+
+And this will be all the remaining space in a spare or potentially a /home partition
+
     Command (m for help): p
-    Disk /dev/sdc: 7.4 GiB, 7969177600 bytes, 15564800 sectors
+    Disk /dev/sdc: 29.8 GiB, 32026656768 bytes, 62552064 sectors
     Units: sectors of 1 * 512 = 512 bytes
     Sector size (logical/physical): 512 bytes / 512 bytes
     I/O size (minimum/optimal): 512 bytes / 512 bytes
     Disklabel type: dos
-    Disk identifier: 0x074e0e18
+    Disk identifier: 0x3bcd8c7d
 
-    Device     Boot   Start     End Sectors  Size Id Type
-    /dev/sdc1          2048   67583   65536   32M  b W95 FAT32
-    /dev/sdc2         67584 1296383 1228800  600M 83 Linux
-    /dev/sdc3       1296384 3393535 2097152    1G 82 Linux swap / Solaris
+    Device     Boot   Start      End  Sectors  Size Id Type
+    /dev/sdc1          2048    67583    65536   32M  b W95 FAT32
+    /dev/sdc2         67584  4261887  4194304    2G 83 Linux
+    /dev/sdc3       4261888  6359039  2097152    1G 82 Linux swap / Solaris
+    /dev/sdc4       6359040 62552063 56193024 26.8G 83 Linux
 
     Command (m for help): w
     The partition table has been altered.
     Calling ioctl() to re-read partition table.
+
+At the end you will either get
+
+    Synching disks.
+
+or
     Re-reading the partition table failed.: Device or resource busy
 
     The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
 
-To ensure the new partitions are recognised, remove and reinsert the card.
+In the latter case, to ensure the new partitions are recognised, remove and reinsert the card.
+
+    grep sdc /proc/partitions
+    8       32   31276032 sdc
+    8       33      32768 sdc1
+    8       34    2097152 sdc2
+    8       35    1048576 sdc3
+    8       36   28096512 sdc4
 
 ## Setting the partitions (use the image downloaded at the top of this page)
 
+    sudo mkdir -p /mnt/debian /mnt/msdos
+    sudo mkfs.ext3 /dev/sdc2
+    sudo mount -t ext3 /dev/sdc2 /mnt/debian
+    cd /mnt/debian
+    sudo tar xJf $TOP/fpga/board/nexys4_ddr/debian-root.tar.xz
+    cd $TOP/fpga/board/nexys4_ddr
+    sudo umount /dev/sdc2
     sudo mkfs.msdos /dev/sdc1
-    sudo dd if=rootfs.ext2 of=/dev/sdc2 bs=64M
     sudo mkswap /dev/sdc3
+    sudo mount -t msdos /dev/sdc1 /mnt/msdos
+    sudo cp boot.bin /mnt/msdos
+    sudo umount /dev/sdc1
+    sudo mkfs.ext3 /dev/sdc4
 
 ## Optional: set up the time-server
 
@@ -209,7 +231,8 @@ To ensure the new partitions are recognised, remove and reinsert the card.
 ## SD booting (kernel via Ethernet)
 
     cd $TOP/fpga/board/nexys4_ddr
-    make ethersd
+    make -C ../../common/script
+    ../../common/script/recvRawEth -r -s 192.168.0.103 boot.bin
 
 ## SD booting (standalone)
 

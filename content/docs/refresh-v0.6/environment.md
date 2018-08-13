@@ -35,7 +35,7 @@ Ensure you have all the necessary packages installed:
     microcom chrpath gawk texinfo nfs-kernel-server xinetd pseudo \
     libusb-1.0-0-dev hugo device-tree-compiler zlib1g-dev libssl-dev \
     multistrap debian-ports-archive-keyring qemu-user-static iverilog \
-    openjdk-8-jdk-headless iperf3
+    openjdk-8-jdk-headless iperf3 libglib2.0-dev libpixman-1-dev
 
 After installing microcom you will probably want to add your username to the dialout group:
 
@@ -104,28 +104,9 @@ The following variables are overridable:
 
     $TOP                Path to the lowrisc-chip directory ($PWD).
     $RISCV              Path to the riscv toolchain ($TOP/riscv).
-    $OSD_ROOT           Path to the Open SoC Debug tools ($TOP/tools).
     $FPGA_BOARD         The target FPGA board (nexys4_ddr).
 
-The remainder of this page is optional if you choose to use our pre-compiled images.
-
-## Download and build Linux and busybox (early stage user commands)
-
-This step is optional if you choose to use our pre-compiled images.
-
-    sh $TOP/riscv-tools/fetch_and_patch_linux.sh
-
-## Building the RISCV toolchain (quick start: detailed instructions are below)
-
-    cd $TOP/riscv-tools/
-    ./build.sh
-    cd riscv-gnu-toolchain/build
-    ../configure --prefix=$RISCV
-    make -j$(nproc) linux
-
-Or for more detail, follow these instructions _(caution: from a previous release)_ and then use the browser back button:
-
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
+## The remainder of the preparation steps are optional and have been moved to the development page
 
 ## System on chip debug
 
