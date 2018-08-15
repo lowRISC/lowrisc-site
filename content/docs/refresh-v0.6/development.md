@@ -16,18 +16,21 @@ showdisqus = true
 
 These instructions assume you are running our recommended distribution Ubuntu 16.04.5 LTS
 
+No pre-build installation images are available for our setup. So we accelerate the bootstrapping process using qemu.
 This first step creates a RISCV emulation environment to short-circuit the complexities of preparing a rootfs
 
     cd $TOP/qemu
     ./configure --static --disable-system --target-list=riscv64-linux-user
     make
-    
-If debugging, or you prefer individual steps, proceed as follows, first generate an initial root file system for booting:
+
+Proceed as follows, first generate an initial root file system for booting, we use debian to generate initial tmpfs for booting,
+and at the same time, the subsystems for multi-user operation:
 
     cd $TOP/debian-riscv64
     make cpio
     
-This stage could fail due to server timeouts or lack of signing keys. If so run the above step twice to make sure
+This stage could fail due to server timeouts or lack of signing keys. If so run the above step twice to make sure.
+Support non-debian derived base operating systems is outside the scope of this tutorial.
 
 Then continue to customise debian in the same directory as follows:
 
@@ -40,15 +43,22 @@ Then continue to customise debian in the same directory as follows:
 
 Which should eventually drop into a qemu riscv user shell. We use this facility to prepare the root filing system for debian-riscv
 
-    dpkg-reconfigure locales
     apt install -f
+    apt install locales
+    dpkg-reconfigure locales
+
+Various questions will be asked, say no to using dash as the default system shell. You set your locale to a suitable value for your region.
+
     passwd root
     "Enter new UNIX password:"
     "Retype new UNIX password:" 
     "passwd: password updated successfully"
+
+This naturally will be the root password for the RISCV system.
+
     exit
     
-The apt might have to be repeated a couple of times due to mutual dependencies. Now the rootfs is ready to copy to the NFS mount point / SD-Card
+Now the rootfs is ready to copy to the NFS mount point / SD-Card
 
     sudo umount work/debian-riscv64-chroot/proc work/debian-riscv64-chroot/dev/pts work/debian-riscv64-chroot/dev
     sudo mkdir -p /mnt/nfs
@@ -61,7 +71,7 @@ Then configure and build the kernel (not forgetting the device tree blob)
     cd $TOP/riscv-linux
     make ARCH=riscv defconfig scripts
     scripts/dtc/dtc arch/riscv/kernel/lowrisc.dts -O dtb -o arch/riscv/kernel/lowrisc.dtb
-    make ARCH=riscv -j 4
+    make ARCH=riscv -j 4 CONFIG_INITRAMFS_SOURCE=initramfsmmc.cpio
 
 N.B. In this release, since we only support one board, it is acceptable to build the blob into the kernel. To support multiple boards it would be better if it was stored in the boot loader or BBL.
 
@@ -167,6 +177,42 @@ This section is the section that talks to your institution IT infrastructure, or
     }
 
 The use of the DIP switches 15:12 allows up to 16 different boards to be used. You should ensure that nobody else on your site is making use of the same range. It is a good idea to avoid changing the MAC address after powering up on a certain network port. Otherwise your router may decide you are a bad actor and refuse to talk to you.
+
+### Boot Linux from local SD-Card
+
+The kernel previously produced should be copied to the DOS partition of the SD-Card. It should be booted
+with SW1 on and SW0/2 off. If you already have a running Linux system, perhaps based on the pre-made
+executables, it is possible to replace the kernel in the running system, which saves wear and tear from
+regularly swapping cards between target system and PC. To use this method proceed as follows:
+
+On the target system (first time only):
+
+    adduser upload
+
+You will need to choose a password and ensure the network is running
+
+On the host (first time only, if you have a public key):
+
+    ssh-copy-id upload@lowrisc5.sm.cl.cam.ac.uk # substitute your boards' own IP address
+
+On the host:
+
+    cd $TOP/fpga/board/nexys4_ddr
+    sftp upload@lowrisc5.sm.cl.cam.ac.uk # substitute your boards' own IP address
+    put boot_mmc.bin
+    quit
+
+On the target system, logged in as root, proceed as follows:
+
+    cd /home/upload
+    mount -t msdos /dev/mmcblk0p1 /mnt
+    mv boot_mmc.bin /mnt/boot.bin # ignore error about preserving ownership
+    umount /mnt
+    halt
+
+You cannot upload directly to the DOS filing system because it does not support credentials so only
+root and write to it normally, and root login via sftp is disabled for security reasons. After the final
+shutdown message is printed, the reset button may be used to reboot.
 
 ### Boot Linux remotely on FPGA
 
