@@ -41,4 +41,4 @@ Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas
 and opinions about future directions we should take. Now
 it's time to learn more about the debug system or jump into using it:
 
- * [Prepare the environment and get started]({{< ref "docs/refresh-v0.6/environment.md" >}})
+ * [Prepare the environment and get started]({{< ref "docs/Prepare.md" >}})

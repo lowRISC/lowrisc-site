@@ -62,35 +62,6 @@ location (or follow your system adminstrator instructions)
     source /opt/Xilinx/Vivado/2018.1/settings64.sh
     unset LD_LIBRARY_PATH
 
-### Download the code
-
-The code is hosted in the
-[lowRISC chip git repository](https://github.com/lowrisc/lowrisc-chip). All
-external repositories are fetched as submodules. In case you want to work on multiple branches
-give each checkout a unique name (such as lowrisc-chip-refresh-v0.6)
-You need to clone the proper branch (`refresh-v0.6`):
-
-    git clone -b refresh-v0.6 --recursive https://github.com/lowrisc/lowrisc-chip.git lowrisc-chip-refresh-v0.6
-    cd lowrisc-chip-refresh-v0.6
-
-### Structure of the git repository
-
- * `fpga`: FPGA demo implementations
-   * `board`: Demo projects for individual development boards. [[FPGA 
-     Demo]]({{<ref "docs/untether-v0.2/fpga-demo.md">}})
-     * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
- * `rocket-chip`: The Rocket core and its sub-systems.
-   * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/refresh-v0.6/riscv_compile.md">}})
-     * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
-     * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
-     * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "docs/untether-v0.2/spike.md">}})
-     * `riscv-opcodes`: The enumeration of all RISC-V opcodes executable by the Spike simulator.
-     * `riscv-pk`: The proxy kernel need for running legacy programs in the Spike simulator.
-     * `riscv-tests`: Tests for the Rocket core.
- * `src`: The top level code of lowRISC chip.
-   * `main`: The Verilog code for hardware implementation.
-   * `test`: The Verilog/C++(DPI) test bench files
-
 ### Next steps
     
 To set the correct environment variables for running lowRISC, you need to

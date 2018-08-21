@@ -55,7 +55,7 @@ The build environment and pre-built images support the same platform as the prev
 
   1. [Overview of the Refresh system]({{< ref "docs/refresh-v0.6/overview.md" >}})
     * [JTAG internals]({{< ref "docs/refresh-v0.6/jtag.md" >}})
-  2. [Prepare the environment]({{< ref "docs/refresh-v0.6/environment.md" >}})
+  2. [Prepare the environment]({{< ref "docs/Prepare.md" >}})
     * [Install FPGA and simulation tools]({{< ref "docs/refresh-v0.6/installtools.md" >}})
  
   4. Demo
