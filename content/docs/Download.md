@@ -3,8 +3,7 @@
 The structure of the repository is as follows:
 
  * `fpga`: FPGA demo implementations
-   * `board`: Demo projects for individual development boards. [[FPGA 
-     Demo]]({{<ref "docs/untether-v0.2/fpga-demo.md">}})
+   * `board`: Demo projects for individual development boards.
      * `nexys4`: Files for the Nexys™4 DDR Artix-7 FPGA Board.
  * `debian-riscv64`: Scripts to bootstrap a Debian Linux RISCV system
  * `riscv-linux`: The Linux RISCV kernel with LowRISC device drivers
@@ -12,10 +11,10 @@ The structure of the repository is as follows:
    * `firrtl`: Hardware description intermediate language
    * `hardfloat`: Hardware floating-point arithmetic unit
    * `torture`: Tricky tests that stress the CPU
-   * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/refresh-v0.6/riscv_compile.md">}})
+   * `riscv-tools`: The cross-compilation and simulation tool chain. [[Compile and install RISC-V cross-compiler]]({{<ref "docs/riscv_compile.md">}})
      * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
      * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
-     * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator) [[Behavioural Simulation (Spike)]] ({{<relref "docs/untether-v0.2/spike.md">}})
+     * `riscv-isa-sim`: The RISC-V ISA simulator [Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator)
      * `riscv-opcodes`: The enumeration of all RISC-V opcodes executable by the Spike simulator.
      * `riscv-pk`: The proxy kernel need for running legacy programs in the Spike simulator.
      * `riscv-tests`: Tests for the Rocket core.

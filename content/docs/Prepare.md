@@ -53,7 +53,7 @@ otherwise only the super user can make use of microcom
 
 Next steps:
 
- * [Install FPGA and simulation tools]({{<ref "docs/refresh-v0.6/installtools.md">}})
+ * [Install FPGA and simulation tools]({{<ref "docs/installtools.md">}})
 
 You might want to add the Vivado tools to your path first to keep the environment clean. This prevents system tools
 from trying to use shared libraries from the (older) Vivado install. Proceed as follows if you chose the default install
