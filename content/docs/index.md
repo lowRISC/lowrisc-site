@@ -26,10 +26,27 @@ Here you can find selected software and hardware IP which works together to prod
 
 The latest release has the instructions broken down by topic, instead of the release specific documentation that was included previously.
 
+* [Overview of the Refresh system]({{< ref "docs/overview.md" >}})
+* [JTAG internals]({{< ref "docs/jtag.md" >}})
+ 
+
 * [Getting started with binary releases] ({{< ref "docs/GettingStarted.md">}})
+* [Running pre-built NFS-root image on the FPGA]({{< ref "docs/fpga.md" >}})
+* [Running pre-built SD-card image on the FPGA]({{< ref "docs/fpga2.md" >}}) 
 * [Introduction to development] ({{< ref "docs/IntroDev.md">}})
 * [Preparing the development environment] ({{< ref "docs/Prepare.md">}})
+* [Install FPGA and simulation tools]({{< ref "docs/installtools.md" >}})
 * [Download the source code] ({{< ref "docs/Download.md">}})
-* [Configure the RISCV emulator] ({{< ref "docs/dev1.md">}})
+* [develop BBL] ({{< ref "docs/BBL.md">}})
+* [develop BareMetal] ({{< ref "docs/BareMetal.md">}})
+* [develop Bitstream] ({{< ref "docs/Bitstream.md">}})
+* [develop BootMMC] ({{< ref "docs/BootMMC.md">}})
+* [develop BootRemote] ({{< ref "docs/BootRemote.md">}})
+* [develop DHCP] ({{< ref "docs/DHCP.md">}})
+* [develop Debian] ({{< ref "docs/Debian.md">}})
+* [develop Download] ({{< ref "docs/Download.md">}})
+* [develop Kernel] ({{< ref "docs/Kernel.md">}})
+* [develop Qemu] ({{< ref "docs/Qemu.md">}})
+
 ## Releases
 [Current and previous releases are here] ({{< ref "docs/Releases.md">}})

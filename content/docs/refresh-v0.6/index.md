@@ -53,16 +53,6 @@ The build environment and pre-built images support the same platform as the prev
 
 ### Contents
 
-  1. [Overview of the Refresh system]({{< ref "docs/refresh-v0.6/overview.md" >}})
-    * [JTAG internals]({{< ref "docs/refresh-v0.6/jtag.md" >}})
-  2. [Prepare the environment]({{< ref "docs/Prepare.md" >}})
-    * [Install FPGA and simulation tools]({{< ref "docs/refresh-v0.6/installtools.md" >}})
- 
-  4. Demo
-   * [Running pre-built NFS-root image on the FPGA]({{< ref "docs/refresh-v0.6/fpga.md" >}})
-   * [Running pre-built SD-card image on the FPGA]({{< ref "docs/refresh-v0.6/fpga2.md" >}})
-   * [Developing/building from scratch on the FPGA]({{< ref "docs/refresh-v0.6/development.md" >}})
- 
   5. [Release notes] ({{<ref "docs/refresh-v0.6/release.md">}})
      * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "docs/refresh-v0.6/release.md" >}})
      * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
