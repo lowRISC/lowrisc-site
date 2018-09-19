@@ -22,15 +22,18 @@ Here you can find selected software and hardware IP which works together to prod
 * RISCV-Linux, adapted with drivers to attach to the above peripherals
 * RISCV-Debian operating system
 
+## Quick Start
+
+As the source distribution is large, effort has been put into to making an easy-to-use quickstart procedure. This procedure does not require a huge amount of prior knowledge.
+
+* [Getting started with binary releases] ({{< ref "docs/GettingStarted.md">}})
+
 ### Getting started breakdown
 
 The latest release has the instructions broken down by topic, instead of the release specific documentation that was included previously.
 
 * [Overview of the Refresh system]({{< ref "docs/overview.md" >}})
 * [JTAG internals]({{< ref "docs/jtag.md" >}})
- 
-
-* [Getting started with binary releases] ({{< ref "docs/GettingStarted.md">}})
 * [Running pre-built NFS-root image on the FPGA]({{< ref "docs/fpga.md" >}})
 * [Running pre-built SD-card image on the FPGA]({{< ref "docs/fpga2.md" >}}) 
 * [Introduction to development] ({{< ref "docs/IntroDev.md">}})
