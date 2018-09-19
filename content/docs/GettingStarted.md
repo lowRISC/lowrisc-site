@@ -5,7 +5,7 @@ title = "GettingStarted"
 
 +++
 
-## Getting Started
+## Getting Started with the refresh-v0.6 prebuilt binaries
 
     You will require:
     A Linux PC with sudo access with two readily accessible USB ports
@@ -699,3 +699,16 @@ but lacks the sophistication required for full-screen editing, because the seque
 are very different to what a serial console requires. This is why ssh connection is recommended for
 extensive use, because the users's preferences such as ANSI control sequences will be reflected in the type of
 host connection.
+
+## Customising the installation in Linux
+
+Because emulation on FPGA is rather slow compared to a modern PC, it is convenient to have a procedure
+to customise the installation on a PC. This can also be used as a rescue method if the password is locked
+or similar eventualities.
+
+    make customise
+    dpkg-reconfigure locales
+    dpkg-reconfigure tzdata
+    apt install gnuchess
+
+This method relies on misc binary emulation for RISCV being installed.
