@@ -704,11 +704,73 @@ host connection.
 
 Because emulation on FPGA is rather slow compared to a modern PC, it is convenient to have a procedure
 to customise the installation on a PC. This can also be used as a rescue method if the password is locked
-or similar eventualities.
+or similar eventualities. In addition the card reader is optimised for performance and can take advantage
+of higher speed modes and better signal integrity that have been introduced from time to time.
 
     make customise
     dpkg-reconfigure locales
     dpkg-reconfigure tzdata
     apt install gnuchess
 
-This method relies on misc binary emulation for RISCV being installed.
+This method relies on misc binary emulation for RISCV being installed (typically in /proc/sys/fs/binfmt_misc/qemu-riscv64)
+
+### How does this work
+
+RISCV executables under Linux use a posix style convention for system calls (open, read, write etc). Under FPGA emulation these map to the running RISCV kernel. Under PC qemu emulation these foreign binaries are recognised as scripts for /usr/bin/qemu-riscv64-static, which interprets the executable with just-in-time conversion and translates the system calls to regular x86-64 Linux kernel calls. This behaviour breaks down if you try to access kernel data structures that do not match, but is useful for the majority of tasks.
+
+## Debugging
+
+Without a doubt the quality of the debugger is the number one feature software engineers look for when choosing a processor. A primary aim of the refresh-v0.6 release is updating the technical content as much as possible (and making it easy to update further as needed). An important improvement in newer versions of Rocket has been the availability of a JTAG connection to allow gdb to be used on the running FPGA. Because the Xilinx device uses JTAG for many test and configuration purposes, it is not possible to match the instruction width and user JTAG registers from the debug specification. Only the Verilog, Chisel and openocd components are impacted by this change. The bitstream incorporated in this release has already been adjusted for this purpose (at the moment this also prevents Vivado internal logic analyser from working). The modified version of openocd may be compiled as follows:
+
+    make debug
+
+The patched version of openocd will be downloaded, built and launched. You should say output that eventually ends with:
+
+    openocd -f openocd-nexys4ddr.cfg
+    Open On-Chip Debugger 0.10.0+dev-00165-gdc312f5 (2018-09-20-09:51)
+    Licensed under GNU GPL v2
+    For bug reports, read
+            http://openocd.org/doc/doxygen/bugs.html
+    adapter speed: 10000 kHz
+    Info : ftdi: if you experience problems at higher adapter clocks, try the command "ftdi_tdo_sample_edge falling"
+    Info : clock speed 10000 kHz
+    Info : JTAG tap: riscv.cpu tap/device found: 0x13631093 (mfg: 0x049 (Xilinx), part: 0x3631, ver: 0x1)
+    Info : dtmcontrol_idle=5, dmi_busy_delay=1, ac_busy_delay=0
+    Info : dtmcontrol_idle=5, dmi_busy_delay=2, ac_busy_delay=0
+    Info : dtmcontrol_idle=5, dmi_busy_delay=3, ac_busy_delay=0
+    Info : dtmcontrol_idle=5, dmi_busy_delay=4, ac_busy_delay=0
+    Info : Disabling abstract command reads from CSRs.
+    Info : Disabling abstract command writes to CSRs.
+    Info : [0] Found 1 triggers
+    Info : Examined RISC-V core; found 1 harts
+    Info :  hart 0: XLEN=64, 1 triggers
+    Info : Listening on port 3333 for gdb connections
+    Info : Listening on port 6666 for tcl connections
+    Info : Listening on port 4444 for telnet connections
+    Info : accepting 'gdb' connection on tcp/3333
+
+The window will remain unresponsive, waiting for a connection. In a second window, with the same directory, preferably quite large, issue the following command:
+
+    make gdb
+
+A sample session will open, after compiling bbl if needed. The following commands or some variant may be typed:
+
+    target remote :3333 (this will connect to openocd, by default on the localhost)
+    load (load the program over JTAG)
+    set $priv=3 (force the processor to machine mode, if running Linux already supervisor or user mode will be the current mode)
+    break printm (set a breakpoint on the printm function, this is bbl's equivalent of printf/printk)
+    cont (continue, may be abbreviated to just c)
+
+This will reset the program to the start address and run till the first printm statement. Other commands that might be useful:
+
+    focus cmd (allows scrolling through previous commands, instead of scrolling the source code screen)
+    layout asm (shows disassembly instead of source code)
+    layout regs (shows low-level registers in parallel with disassembly)
+    quit (ends the session)
+    
+consult the gdb documentation for details.
+
+GDB sessions will only properly in machine mode at present. To debug Linux, it needs to be cognizant of page table entries.
+
+
+
