@@ -90,6 +90,10 @@ download the bitstream to the quad-SPI on the FPGA board:
     make cfgmem-updated
     make program-cfgmem-updated
 
+It is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
+
+* [Configure DHCP] ({{< ref "docs/DHCP.md">}})
+
 ## Other useful Makefile targets
 
 #### `make project`

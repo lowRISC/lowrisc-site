@@ -1,9 +1,9 @@
 +++
 Description = ""
 date = "2018-01-12T13:00:00+00:00"
-title = "Overview of the REFRESH infrastructure"
+title = "Overview of the Refresh system"
 parent = "/docs/refresh-v0.6/"
-next = "/docs/refresh-v0.6/environment/"
+next = "/docs/refresh-v0.6/Download/"
 showdisqus = true
 
 +++
@@ -15,9 +15,13 @@ showdisqus = true
 
 Our goal of supporting the same FPGA board as the previous release
 may only be realised with slight changes to the JTAG instruction register length and data register numbers.
-The only software tool impacted is openocd and this has been patched for this release to allow the alternative
+The only software tool impacted is openocd, and this has been patched for this release to allow the alternative
 numbers to be used if Xilinx is detected as the manufacturer ID
 due to FPGA design constraints.
+
+For more information about JTAG internals and the changes necessary for LowRISC, consult the following link:
+
+* [JTAG internals]({{< ref "docs/jtag.md" >}})
 
 ## Overview of the Remote boot process
 
@@ -38,7 +42,8 @@ course much more to be done. The top priority is making GDB/openocd cognisant of
 different virtual memory features offered in the different modes.
 
 Please [get in touch with us]({{< ref "community.md" >}}) if you have ideas 
-and opinions about future directions we should take. Now
-it's time to learn more about the debug system or jump into using it:
+and opinions about future directions we should take.
 
- * [Prepare the environment and get started]({{< ref "docs/Prepare.md" >}})
+Continue the process below:
+
+* [Download the source code] ({{< ref "docs/Download.md">}})

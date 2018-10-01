@@ -1,8 +1,13 @@
++++
+Description = ""
+date = "2015-04-14T13:26:41+01:00"
+title = "Updating the kernel of a running system"
 
-### Boot Linux from local SD-Card
++++
 
-The kernel previously produced should be copied to the DOS partition of the SD-Card. It should be booted
-with SW1 on and SW0/2 off. If you already have a running Linux system, perhaps based on the pre-made
+As an install step, the Linux kernel (with BBL) can always be written on the host card reader. However,
+for regular use, it is inconvenient to keep swapping the card between devices.
+If you already have a running Linux system, perhaps based on the pre-made
 executables, it is possible to replace the kernel in the running system, which saves wear and tear from
 regularly swapping cards between target system and PC. To use this method proceed as follows:
 

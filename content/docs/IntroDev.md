@@ -2,6 +2,9 @@
 Description = ""
 date = "2015-04-14T13:26:41+01:00"
 title = "Introduction to Development"
+parent = "/docs/refresh-v0.6/"
+next = "/docs/refresh-v0.6/overview/"
+showdisqus = true
 
 +++
 
@@ -32,3 +35,7 @@ A number of options exist, the most ambitious being a full mask set for all tran
 It is apparent that the emulation phase of the development process is extremely important before any money should be spent on engineering the solution further. For certain applications the requirement for flexibility overrides the lower clock rate and in such cases (for example reconfigurable computing cards), the bulk of the development work involves optimising the design to make the most of the FPGA resources.
 
 For this project the development problem is a classic one, combining a CPU with caches, dynamic memory, ROM and peripherals to produce a usable computer.
+
+## Continue the process below:
+
+* [Overview of the Refresh system]({{< ref "docs/overview.md" >}})

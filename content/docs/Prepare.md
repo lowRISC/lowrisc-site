@@ -26,41 +26,8 @@ Do not succumb to the temptation to update the system libraries inside Vivado be
 If your machine cannot meet these requirements then synthesis should be able to run, albeit rather slowly, inside a virtual machine.
 The pre-build binary images were created with Ubuntu 16.04.3 LTS.
 
-Ensure you have all the necessary packages installed:
-
-    sudo apt-get install autoconf automake autotools-dev curl \
-    libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
-    flex texinfo gperf libncurses5-dev libusb-1.0-0-dev libboost-dev \
-    swig git libtool libreadline-dev libelf-dev python-dev \
-    microcom chrpath gawk texinfo nfs-kernel-server xinetd pseudo \
-    libusb-1.0-0-dev hugo device-tree-compiler zlib1g-dev libssl-dev \
-    multistrap debian-ports-archive-keyring qemu-user-static iverilog \
-    openjdk-8-jdk-headless iperf3 libglib2.0-dev libpixman-1-dev
-
-After installing microcom you will probably want to add your username to the dialout group:
-
-    sudo usermod -a -G dialout $USER
-
-This takes effect at next login. To use immediately you can use:
-
-    sudo gpasswd dialout
-
-followed by (your old shell settings will be forgotten):
-
-    newgrp dialout
-
-otherwise only the super user can make use of microcom
-
-Next steps:
-
- * [Install FPGA and simulation tools]({{<ref "docs/installtools.md">}})
-
-You might want to add the Vivado tools to your path first to keep the environment clean. This prevents system tools
-from trying to use shared libraries from the (older) Vivado install. Proceed as follows if you chose the default install
-location (or follow your system adminstrator instructions)
-
-    source /opt/Xilinx/Vivado/2018.1/settings64.sh
-    unset LD_LIBRARY_PATH
+You should have installed the prerequisites on the download page. If not do so now:
+[Download the source code] ({{< ref "docs/Download.md">}})
 
 ### Next steps
     
@@ -77,9 +44,11 @@ The following variables are overridable:
     $RISCV              Path to the riscv toolchain ($TOP/riscv).
     $FPGA_BOARD         The target FPGA board (nexys4_ddr).
 
-## The remainder of the preparation steps are optional and have been moved to the development page
-
 ## System on chip debug
 
-The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger from previous releases is not available.
+The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger from previous releases is not yet available.
 Some of its functionality (for example loading programs) is available from the GDB/openocd combination.
+
+### The remainder of the steps are flexible and a suggested order is given below:
+
+* [Develop an FPGA Bitstream] ({{< ref "docs/Bitstream.md">}})

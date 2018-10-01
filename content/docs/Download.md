@@ -23,6 +23,17 @@ The structure of the repository is as follows:
    * `test`: The Verilog/C++(DPI) test bench files
  * `qemu`: User mode emulation of RISCV instruction set
 
+### Ensure you have all the necessary packages installed:
+
+    sudo apt-get install autoconf automake autotools-dev curl \
+    libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison \
+    flex texinfo gperf libncurses5-dev libusb-1.0-0-dev libboost-dev \
+    swig git libtool libreadline-dev libelf-dev python-dev \
+    microcom chrpath gawk texinfo nfs-kernel-server xinetd pseudo \
+    libusb-1.0-0-dev hugo device-tree-compiler zlib1g-dev libssl-dev \
+    multistrap debian-ports-archive-keyring qemu-user-static iverilog \
+    openjdk-8-jdk-headless iperf3 libglib2.0-dev libpixman-1-dev
+
 ### Download the code
 
 The code is hosted in the
@@ -37,4 +48,6 @@ You need to clone the proper branch (`refresh-v0.6`):
 Submodules that did not need to be modified for this release are hosted in the original repository, but the version
 will be frozen at the version that we have tested, which probably will not be the latest.
 
+Next steps:
 
+* [Install Xilinx Vivado] ({{<ref "docs/xilinx.md">}})

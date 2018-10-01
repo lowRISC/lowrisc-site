@@ -1,17 +1,28 @@
++++
+Description = ""
+date = "2015-04-14T13:26:41+01:00"
+title = "Download and install Debian"
+
++++
+
 ## Build Linux and early stage root filesystem
 
 These instructions assume you are running our recommended distribution Ubuntu 16.04.5 LTS
 
-Proceed as follows, first generate an initial root file system for booting, we use debian to generate initial tmpfs for booting,
+Debian installation requires the ability to emulate RISCV execution on the host PC.
+
+Proceed as follows, first generate an initial root file system for booting, we use Debian to generate initial tmpfs for booting,
 and at the same time, the subsystems for multi-user operation:
 
     cd $TOP/debian-riscv64
     make cpio
     
 This stage could fail due to server timeouts or lack of signing keys. If so run the above step twice to make sure.
-Support non-debian derived base operating systems is outside the scope of this tutorial.
+Support for non-Debian derived base operating systems is outside the scope of this tutorial.
 
-Then continue to customise debian in the same directory as follows:
+The bootstrapping process requires the qemu binary built in the previous step. This needs to be registered if not already done by the quickstart procedure.
+
+Then continue to customise Debian in the same directory as follows:
 
     sudo cp $TOP/qemu/riscv64-linux-user/qemu-riscv64 work/debian-riscv64-chroot/usr/bin/qemu-riscv64-static
     sudo update-binfmts --import work/qemu-riscv64
@@ -20,7 +31,7 @@ Then continue to customise debian in the same directory as follows:
     sudo mount -o bind /dev/pts work/debian-riscv64-chroot/dev/pts
     sudo chroot work/debian-riscv64-chroot
 
-Which should eventually drop into a qemu riscv user shell. We use this facility to prepare the root filing system for debian-riscv
+Which should eventually drop into a qemu riscv user shell. We use this facility to prepare the root filing system for Debian-riscv
 
     apt install -f
     apt install locales
@@ -44,3 +55,7 @@ Now the rootfs is ready to copy to the NFS mount point / SD-Card
     sudo rsync -a work/debian-riscv64-chroot/. /mnt/nfs
     cd work/debian-riscv64-chroot
     sudo tar cJf $TOP/fpga/board/nexys4_ddr/debian-root.tar.xz .
+
+The next recommended step is:
+
+* [Build the Linux Kernel] ({{< ref "docs/Kernel.md">}})

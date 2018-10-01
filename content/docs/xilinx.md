@@ -93,6 +93,41 @@ The USB-UART bridge is normally shown in Ubuntu as /dev/ttyUSB0 ~ /dev/ttyUSB3. 
 
     microcom -p /dev/ttyUSB0 -s 115200
 
-By default, users are not allowed to connect to /dev/ttyUSB0 due to the lack of permission. The easiest way of resolving this issue is to add yourself to the dialout group.
+After installing microcom you will probably want to add your username to the dialout group:
 
-    sudo adduser <username> dialout
+    sudo usermod -a -G dialout $USER
+
+This takes effect at next login. To use immediately you can use:
+
+    sudo gpasswd dialout
+
+followed by (your old shell settings will be forgotten):
+
+    newgrp dialout
+
+otherwise only the super user can make use of microcom.
+
+You might want to add the Vivado tools to your path first to keep the environment clean. This prevents system tools
+from trying to use shared libraries from the (older) Vivado install. Proceed as follows if you chose the default install
+location (or follow your system adminstrator instructions)
+
+    source /opt/Xilinx/Vivado/2018.1/settings64.sh
+    unset LD_LIBRARY_PATH
+
+To use JTAG downloading with Vivado and the Digilent board you must install the drivers as follows (this one-off step might have to be performed by an administrator):
+
+cd /opt/Xilinx/Vivado/2018.1/data/xicom/cable_drivers/lin64/install_script/install_drivers
+sudo sh install_digilent.sh
+
+After this step the Digilent board should be unplugged and plugged in again.
+
+The above procedure may change your LD_LIBRARY_PATH to an older version of libraries than some systems expect. If this
+happens, you may get a message such as:
+
+* awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
+
+A work-around is to manually execute `unset LD_LIBRARY_PATH` afterwards before installing the cross-compiler.
+
+Continue the process below:
+
+ * [Prepare the environment and get started]({{< ref "docs/Prepare.md" >}})
