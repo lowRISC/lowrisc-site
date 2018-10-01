@@ -46,6 +46,7 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Build the Berkeley boot loader (BBL)] ({{< ref "docs/BBL.md">}})
 * [Initiate Remote Booting] ({{< ref "docs/BootRemote.md">}})
 * [Updating the kernel on a running system] ({{< ref "docs/BootMMC.md">}})
+* [Booting a customised NFS system] ({{< ref "docs/BootNFS.md">}})
 
 ## Releases
 [Current and previous releases are here] ({{< ref "docs/Releases.md">}})

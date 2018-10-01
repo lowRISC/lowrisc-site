@@ -25,17 +25,19 @@ On the host:
 
     cd $TOP/fpga/board/nexys4_ddr
     sftp upload@lowrisc5.sm.cl.cam.ac.uk # substitute your boards' own IP address
-    put boot_mmc.bin
+    put boot.bin
     quit
 
 On the target system, logged in as root, proceed as follows:
 
     cd /home/upload
-    mount -t msdos /dev/mmcblk0p1 /mnt
-    mv boot_mmc.bin /mnt/boot.bin # ignore error about preserving ownership
-    umount /mnt
+    mv boot.bin /mnt/dos # ignore error about preserving ownership
     halt
 
 You cannot upload directly to the DOS filing system because it does not support credentials so only
 root and write to it normally, and root login via sftp is disabled for security reasons. After the final
 shutdown message is printed, the reset button may be used to reboot.
+
+Next recommended step:
+
+* [Booting a customised NFS system] ({{< ref "docs/BootNFS.md">}})

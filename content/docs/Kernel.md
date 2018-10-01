@@ -19,9 +19,27 @@ Nevertheless certain helps are assumed to be always available which simplify mat
 
 In addition an initial root filing system is needed to allow site specific configuration. This is known
 as a cpio archive and it makes the initial decision which shall be the main boot device. This data structure
-is purely held and in RAM and should be discarded as soon as possible once the boot device is identified
+is purely held and in RAM and should be discarded as soon as possible once the boot device is identified.
 
-### You should already have prepared a cpio archive in the Debian directory. If not visit here first:
+The initial boot environment will interrogate the FPGA switch settings to decide how to boot:
+
+| FPGA Switch: | 15..12 | 11..8 | 7..4 | 3..0 |
+| ------ | ------ | ----- | ---- | ---- |
+| Don't boot ||||0000|
+| GDB boot ||||00?1|
+| SD boot ||||0010|
+| DHCP boot ||||0100|
+| SD root |||0000||
+| NFS root |||0001||
+| Custom root |||001?||
+| Reserved |||01??||
+| Reserved |||1???||
+| Reserved ||????|||
+| MAC LSB |????||||
+
+The LSB of the switches determines the boot address and should always be off unless GDB is in use. The SD boot and DHCP boot switches are interpreted by the boot loader to determine whether to check for an SD-Card presence or not. The SD root and NFS root options are determined by Linux using the /dev/gpio0 device, which also controls the LEDs. The decision making code is in debian-riscv64/work/busyboxinit.sh and is interpreted as an ash shell script. If a custom option is chosen the DOS partition the card will be mounted to search for further customisations (such as an address of a server to search for).
+
+### You should already have prepared a cpio archive in the Debian directory. If not, visit here first:
 
 * [Downloading and Installing Debian] ({{< ref "docs/Debian.md">}})
 
