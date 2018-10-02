@@ -50,9 +50,9 @@ Three files will be downloaded as follows:
     chip_top.bit - The FPGA bitstream containing the RISCV processor and peripherals and the first-stage booter
     rootfs.tar.xz - The compressed tape archive containing the Debian root filing system for RISCV
 
-## GNU license.
+## Linux license.
 
-Warning, boot.bin and Debian contain copylefted software. Source for the Debian system is available upstream in
+These prebuilt binaries contain GNU software, the implication being that source code must be provided. Source for the Debian system is available upstream in
 
     http://www.debianmirror.de/debian-ports/pool-riscv64
 

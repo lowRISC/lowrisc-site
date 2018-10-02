@@ -31,7 +31,7 @@ The structure of the repository is as follows:
     swig git libtool libreadline-dev libelf-dev python-dev \
     microcom chrpath gawk texinfo nfs-kernel-server xinetd pseudo \
     libusb-1.0-0-dev hugo device-tree-compiler zlib1g-dev libssl-dev \
-    multistrap debian-ports-archive-keyring qemu-user-static iverilog \
+    debootstrap debian-ports-archive-keyring qemu-user-static iverilog \
     openjdk-8-jdk-headless iperf3 libglib2.0-dev libpixman-1-dev
 
 ### Download the code

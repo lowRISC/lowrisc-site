@@ -49,7 +49,7 @@ This option would then not require the SD-Card and it could be reinitialised wit
 
 On your PC-workstation/server, create a suitable NFSroot mount point (replace the IP address of your FPGA board as necessary):
 
-    sudo mkdir /local/scratch/debian-riscv64
+    sudo mkdir -p /local/scratch/debian-riscv64
     sudo vi /etc/xinetd.d/time
     #Change the first occurence of "disable=yes" to "disable=no". This enables the time service.
     sudo /etc/init.d/xinetd restart
@@ -68,7 +68,7 @@ The dangerous option no_root_squash which allows the NFS client to run as root o
 
 It is certainly inconvenient requiring slow card operations during normal use. The use of a turbo super-user on the workstation
 
-    chroot /local/scratch/debian-riscv64
+    sudo chroot /local/scratch/debian-riscv64
 
 will rapidly allow the NFSroot to be customised for any possible application. For example if ocaml is to be installed, it can be done in a chroot on the PC, and it will immediately be available on the LowRISC without having to reboot or swap any cards.
 

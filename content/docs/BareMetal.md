@@ -21,7 +21,7 @@ title = "Baremetal toolchain"
 
     cd $TOP/rocket-chip/riscv-tools/
     bash ./build.sh
-    cd $TOP/riscv-tools/riscv-gnu-toolchain/build
+    cd $TOP/rocket-chip/riscv-tools/riscv-gnu-toolchain/build
     ../configure --prefix=$RISCV
     make -j$(nproc) linux
 

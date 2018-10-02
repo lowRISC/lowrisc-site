@@ -17,7 +17,8 @@ download the bitstream to the quad-SPI on the FPGA board:
     make cfgmem
     make program-cfgmem
 
-At this point, you should check the MODE jumper is in QSPI mode and then press the PROG button.
+At this point, you should check that the FPGA board switches are initially all off (except SW2),
+and the MODE jumper is in QSPI mode and then press the PROG button.
 
 ### Sample output (assuming Ethernet cable connectivity is sane)
 
@@ -76,6 +77,18 @@ This section is concerned with setting the MAC address, and reading it back. The
 
 #### FPGA demo with Fpga (alternative boot programs)
 
+If you already have a compiler installed, using either the quickstart process, or using this page:
+
+* [Developing BareMetal tool chain] ({{< ref "docs/BareMetal.md">}})
+
+You can proceed to compile the alternative boot programs/bare-metal programs
+
+Otherwise is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
+
+* [Configure DHCP] ({{< ref "docs/DHCP.md">}})
+
+To compile, alternative programs:
+
     cd $TOP/fpga/board/nexys4_ddr
     make target (where target is mmc, dram, hello etc.)
 
@@ -84,15 +97,20 @@ First time through, this will take some time (20-60 minutes depending on your co
 
 ### Program the alternative boot programs on FPGA
 
+There is a choice of programming volatile or non-volatile. Volatile programs are relatively fast
+to download, but naturally are lost when powered down (or overwritten, due to a bug).
+
 Next, turn on the FPGA board and connect the USB cable. Now you
 download the bitstream to the quad-SPI on the FPGA board:
 
+proceed with this command, for a volatile download:
+
+    make program-updated
+
+or these commands for a permanent download:
+
     make cfgmem-updated
     make program-cfgmem-updated
-
-It is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
-
-* [Configure DHCP] ({{< ref "docs/DHCP.md">}})
 
 ## Other useful Makefile targets
 

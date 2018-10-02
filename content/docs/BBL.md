@@ -35,7 +35,6 @@ Now configure and build Berkeley Boot loader
     mkdir -p build
     cd build
     ../configure --prefix=$RISCV --host=riscv64-unknown-elf --with-payload=$TOP/riscv-linux/vmlinux --enable-logo
-    $TOP/riscv-linux/scripts/dtc/dtc ../machine/lowrisc.dts -O dtb -o lowrisc.dtb    
     make
     cp -p bbl $TOP/fpga/board/nexys4_ddr/boot.bin
     riscv64-unknown-elf-strip $TOP/fpga/board/nexys4_ddr/boot.bin
