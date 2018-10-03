@@ -33,14 +33,36 @@ The device tree blob is a format for storing addresses of memory and peripherals
 
 The KC705 support has not been maintained since the v0.3 release. However it is interesting because it allows for more expansion space, the possibility of dual core symmetric processing, and out-of-order cores such as BOOM (Berkeley out of order machine). Support for this board has not been merged with the refresh-v0.6, however development is ongoing on the kc705_mii branch.
 
-The ArtyA7-A100 is a relatively recently released and very low cost board that has twice the memory of the Nexys4DDR. However it requires a separate PMOD (with reduced signal integrity), in order to support memory SD-Cards. The Ethernet PHY is a different type and development is taking place on the artya7_mii branch.
+The ArtyA7-A100 is a recently released and reduced cost board from Digilent that has the same FPGA and twice the memory of the Nexys4DDR. It uses DDR3 instead of DDR2. However it requires a separate PMOD (potentially with reduced signal integrity), in order to support SD-Cards. The Ethernet PHY is a different type and development is taking place on the artya7_mii branch.
 
 ### What happened to the L2-cache ?
 
 The L2-cache was retired with TileLink-1 when it was updated to TileLink-2. This was due to bugs in the multiprocessing support. No replacement L2-cache has been released by Berkeley Architecture Research since then.
 
-### What is the Coremark performacne of LowRISC ?
+### What is the Coremark performance of LowRISC ?
 
 LowRISC achieves 2.18 Coremarks/MHz, compared to 6.43 Coremarks/MHz for a core-i7-6700, and 2.32 for a Raspberry PI model B. Of course LowRISC at the moment is just an emulation, so the 50MHz clock rate is a bottleneck. Nevertheless useful work can be done, particularly in embedded and Internet-of-things type applications.
 
+### Why is the SD-Card reader so slow ?
 
+SD-Card architectures have gone through tremendous improvements recently to make them more suitable for digital cameras and other typical architectures. Some of these improvements are carried through to the FPGA board, and others not. Signal integrity reasons prevent the card operating at its best possible speed in these circumstances, also the on-board flash controller is optimised towards large FAT filing systems rather than the EXT4 system favoured by Linux. A further reason which needs reworking in due course is that the Rocket is interrupted at the end of every SD command and every data transfer (no offloading is done). Continuous read mode is not supported, which would reduce overheads considerably if implemented.
+
+### What is the Ethernet throughput ?
+
+The Nexys4DDR has a 10/100BaseT PHY. Support for 10BaseT was not included as it is considered obsolete. The 100BaseT performance will depend on the network but with the iperf3 program sustained performance is limited to about 2MBytes/sec. For software downloading and extracting the performance is around 130KBytes/sec. No offloading or Jumbo packet support is included, but the latter would present few difficulties.
+
+### What version of Linux kernel is available ?
+
+The majority of the RISCV support was upstreamed as of the 4.18 release. Generic RISCV patches off this release amount to 39K bytes, LowRISC specific patches (primarily device drivers) amount to 87K bytes. It is anticipated the generic patches will reduce to almost nothing by the time of the 4.19 release. There are no plans to upstream the LowRISC device drivers, because there is not corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
+
+### Why was the Debian distribution chosen? Isn't it rather unstable ?
+
+The Debian unstable distribution places a burden on maintainers to ensure that stable versions will not be impacted by changes required to support new architectures. Therefore it takes a while for support to move from unstable to a stable distribution. In addition some late changes to RISCV ABI have been made without fully appreciating the impact on O/S developers. Furthermore the list of control and status registers (CSRs) has been changing and some have been renamed or renumbered. LowRISC currently relies on several unstable packages that are not released. The Fedora picture is a little more rosy, but the use of DNF as a default package manager with its reliance on Python and friends, has too high an overhead for this hardware.
+
+### What about other Linux distributions ?
+
+The Debian distribution was chosen as it has the least burden on the processor. This is because its package manager is written in C++ and is streamlined. By contrast RPM based distributions such as Fedora and OpenSuse place a great deal of reliance on Python coding which is convenient but slow (especially when running a Python interpreter on an FPGA emulator).
+
+### What about other operating systems ?
+
+FreeBSD was ported to the RISCV architecture by Ruslan Bukin and supports Spike and QEMU out of the box. The port to Rocket is a little more involved because the current version of FreeBSD assumes hardware support for Access and Dirty bits in the MMU. Rocket only supports trapping this situation and resolving in software. This problem is currently being investigated and this site will be updated as and when FreeBSD is supported.
