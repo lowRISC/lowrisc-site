@@ -29,6 +29,10 @@ The memory map of the default Rocket consists of a large area of RAM (in our cas
 
 The device tree blob is a format for storing addresses of memory and peripherals for use in Linux and other O/S. It allows a generic kernel to be compiled and then configured for different systems later on at runtime. It is generated from device tree source using device tree compiler. In LowRISC it is associated with the Berkeley boot loader, because it would be inconvenient to keep changing the first stage boot loader when anything changes.
 
+### What's with the weird console support ?
+
+The first stage boot loader (FSBL) included with LowRISC does not provide a convenient way of choosing the console device (after all the interaction at this stage is limited to a few switches). Therefore the decision was taken to assume a visual console (also known as VT mode). This provides a facility similar to a PC with a 128 x 31 VGA text display with a variety of highlight colours, and a keyboard that generates PC-compatible up and down events that are needed by the operating system in certain modes. However we also need to allow for the common case when the board is purely controlled from a serial port. This support requires translating, as well as possible, serial ASCII input to keyboard up/down event numbers, as well as interpreting the characters sent to the VGA screen to the nearest equivalent ASCII output to the serial port. No attempt is made to translate cursor movement on the VGA screen to ANSI escape sequences. Therefore some strange effects can occur if editing in vim or similar programs is attempted on the serial console. Fortunately this capability is rarely needed because ssh support via Ethernet gives all the capabilities that could be wanted in the way of remote access.
+
 ### What about support for other boards and RISCV processors ?
 
 The KC705 support has not been maintained since the v0.3 release. However it is interesting because it allows for more expansion space, the possibility of dual core symmetric processing, and out-of-order cores such as BOOM (Berkeley out of order machine). Support for this board has not been merged with the refresh-v0.6, however development is ongoing on the kc705_mii branch.
@@ -66,3 +70,9 @@ The Debian distribution was chosen as it has the least burden on the processor. 
 ### What about other operating systems ?
 
 FreeBSD was ported to the RISCV architecture by Ruslan Bukin and supports Spike and QEMU out of the box. The port to Rocket is a little more involved because the current version of FreeBSD assumes hardware support for Access and Dirty bits in the MMU. Rocket only supports trapping this situation and resolving in software. This problem is currently being investigated and this site will be updated as and when FreeBSD is supported.
+
+### What about u-boot, is that supported ?
+
+The u-boot system has a number of powerful facilities, for example being able to store boot parameters in non-volatile memory, and enabling booting via TFTP or NFS. It can also read kernels from FAT partitions and carry out various self-tests. Unfortunately it is also rather large, and it was felt that an embedded environment should not have a large ROM on board. However, there is nothing to stop u-boot from being attached as an option instead of BBL, when launched from the first stage boot loader. In fact the MMC/SD-Card support routines in the latest release are based on a cut-down version of u-boot FSBL. The out-of-the-box FSBL support in u-boot needs modifying in order to eventually replace our own boot loader entirely.
+
+
