@@ -14,18 +14,22 @@ title = "GettingStarted"
     A micro-SD card (minimum 4GBytes capacity)
     A PC-compatible SD-card reader
 
-###    For the remote console option you will require
+## Choosing a hardware configuration
 
-    A USB memory stick (remote keyboard option via microcom only will be available)
-    Install microcom or your favourite terminal emulator program
+LowRISC can be configured standalone, mimicking a PC, or with a remote serial console (not to be confused with the tethered option mentioned in some RISCV documentation sources). For the remote console option the FPGA configuration can come from USB memory stick, so the large (up to 28GBytes) Vivado installation is not required. For the standalone option it has to come from Quad-SPI flash memory.
+
+### remote console requirements
+
+    A USB memory stick if you don't want to use Vivado and Quad-SPI.
+    Install microcom or your favourite terminal emulator program (remote keyboard option only will be available)
     You will need to use the following command to allow microcom to run as the non-superuser:
     sudo usermod -a -G dialout $USER
 
-###    For the standalone (PC free) option you will require
+### Standalone (PC free) requirements
     
     A VGA compatible LCD monitor
     A PS/2 style PC-AT keyboard with USB connector
-    A copy of Vivado 2018.1 webpack edition (with SDK if you plan to do development)
+    A copy of Vivado 2018.1 webpack edition (with SDK if you plan to do development) to program the Quad-SPI
 
 #### For both options a 100Base-T Ethernet cable to a home hub or corporate LAN is recommended.
 
@@ -49,22 +53,6 @@ Three files will be downloaded as follows:
     boot.bin - The Linux kernel, Berkeley boot loader, and initial cpio (ramdisk)
     chip_top.bit - The FPGA bitstream containing the RISCV processor and peripherals and the first-stage booter
     rootfs.tar.xz - The compressed tape archive containing the Debian root filing system for RISCV
-
-## Linux license.
-
-These prebuilt binaries contain GNU software, the implication being that source code must be provided. Source for the Debian system is available upstream in
-
-    http://www.debianmirror.de/debian-ports/pool-riscv64
-
-Source for boot.bin is available on kernel.org and patches are automatically applied by typing:
-
-    make all
-
-Source for the first stage bootloader is available by typing:
-
-    make lowrisc-fpga/STAMP.fpga
-
-It is then available in the lowrisc-fpga/bare_metal directory
 
 Type lsblk before and after inserting the SD-card and its adaptor into the computer. You should see new devices added, similar to the following:
 
@@ -772,5 +760,18 @@ consult the gdb documentation for details.
 
 GDB sessions will only properly in machine mode at present. To debug Linux, it needs to be cognizant of page table entries.
 
+## Software license.
 
+These prebuilt binaries contain GNU software, the implication being that source code must be provided. Source for the Debian system is available upstream in
 
+    http://www.debianmirror.de/debian-ports/pool-riscv64
+
+Source for boot.bin is available on kernel.org and patches are automatically applied by typing:
+
+    make all
+
+Source for the first stage bootloader is available by typing:
+
+    make lowrisc-fpga/STAMP.fpga
+
+It is then available in the lowrisc-fpga/bare_metal directory

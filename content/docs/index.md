@@ -47,6 +47,7 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Initiate Remote Booting] ({{< ref "docs/BootRemote.md">}})
 * [Updating the kernel on a running system] ({{< ref "docs/BootMMC.md">}})
 * [Booting a customised NFS system] ({{< ref "docs/BootNFS.md">}})
+* [Frequently asked questions for this release]  ({{< ref "docs/FAQ.md">}})
 
 ## Releases
 [Current and previous releases are here] ({{< ref "docs/Releases.md">}})

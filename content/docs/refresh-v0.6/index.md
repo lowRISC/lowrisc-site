@@ -64,6 +64,8 @@ The build environment and pre-built images support the same platform as the prev
   2. [Getting started with binary releases] ({{< ref "docs/GettingStarted.md">}})
 
   3. [Index of development documentation]  ({{< ref "docs/index.md">}})
+
+  4. [Frequently asked questions]  ({{< ref "docs/FAQ.md">}})
   
 ### Work planned / In progress / TO DO
 * Optimising card transfer speed / Implementing multi-block transfers.
