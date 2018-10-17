@@ -61,7 +61,7 @@ The build environment and pre-built images support the same platform as the prev
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
 
-  2. [Getting started with binary releases] ({{< ref "docs/GettingStarted.md">}})
+  2. [Getting started with binary releases] ({{< ref "docs/getting-started.md">}})
 
   3. [Index of development documentation]  ({{< ref "docs/index.md">}})
 

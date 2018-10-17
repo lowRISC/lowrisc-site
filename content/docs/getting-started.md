@@ -1,35 +1,38 @@
 +++
 Description = ""
 date = "2018-09-14T13:26:41+01:00"
-title = "GettingStarted"
+title = "Getting started"
 
 +++
 
 ## Getting Started with the refresh-v0.6 prebuilt binaries
 
-    You will require:
-    A Linux PC with sudo access with two readily accessible USB ports
-      (these instructions apply to Ubuntu 16.04.5 LTS)
-    A Nexys4-ddr FPGA board from Digilent with combined power and USB cable
-    A micro-SD card (minimum 4GBytes capacity)
-    A PC-compatible SD-card reader
+This guide will walk you through downloading the binaries of the latest lowRISC release and booting it
+on a Nexys4DDR FPGA.
+
+*    You will require:
+*    A Linux PC with sudo access with two readily accessible USB ports
+*      (these instructions apply to Ubuntu 16.04.5 LTS)
+*    A Nexys4-ddr FPGA board from Digilent with combined power and USB cable
+*    A micro-SD card (minimum 4GBytes capacity)
+*    A PC-compatible SD-card reader
 
 ## Choosing a hardware configuration
 
 LowRISC can be configured standalone, mimicking a PC, or with a remote serial console (not to be confused with the tethered option mentioned in some RISCV documentation sources). For the remote console option the FPGA configuration can come from USB memory stick, so the large (up to 28GBytes) Vivado installation is not required. For the standalone option it has to come from Quad-SPI flash memory.
 
-### remote console requirements
+### Remote console requirements
 
-    A USB memory stick if you don't want to use Vivado and Quad-SPI.
-    Install microcom or your favourite terminal emulator program (remote keyboard option only will be available)
-    You will need to use the following command to allow microcom to run as the non-superuser:
-    sudo usermod -a -G dialout $USER
+*   A USB memory stick if you don't want to use Vivado and Quad-SPI.
+*   Install microcom or your favourite terminal emulator program (remote keyboard option only will be available)
+*    You will need to use the following command to allow microcom to run as the non-superuser:
+*    sudo usermod -a -G dialout $USER
 
 ### Standalone (PC free) requirements
     
-    A VGA compatible LCD monitor
-    A PS/2 style PC-AT keyboard with USB connector
-    A copy of Vivado 2018.1 webpack edition (with SDK if you plan to do development) to program the Quad-SPI
+*   A VGA compatible LCD monitor
+*   A PS/2 style PC-AT keyboard with USB connector
+*   A copy of Vivado 2018.1 webpack edition (with SDK if you plan to do development) to program the Quad-SPI
 
 #### For both options a 100Base-T Ethernet cable to a home hub or corporate LAN is recommended.
 
@@ -50,9 +53,9 @@ However the Makefile was obtained, proceed as follows to obtain the release file
 
 Three files will be downloaded as follows:
 
-    boot.bin - The Linux kernel, Berkeley boot loader, and initial cpio (ramdisk)
-    chip_top.bit - The FPGA bitstream containing the RISCV processor and peripherals and the first-stage booter
-    rootfs.tar.xz - The compressed tape archive containing the Debian root filing system for RISCV
+*   boot.bin - The Linux kernel, Berkeley boot loader, and initial cpio (ramdisk)
+*   chip_top.bit - The FPGA bitstream containing the RISCV processor and peripherals and the first-stage booter
+*   rootfs.tar.xz - The compressed tape archive containing the Debian root filing system for RISCV
 
 Type lsblk before and after inserting the SD-card and its adaptor into the computer. You should see new devices added, similar to the following:
 
@@ -64,6 +67,7 @@ Type lsblk before and after inserting the SD-card and its adaptor into the compu
 
 ### IMPORTANT:
 
+The procedure below erases all data on the disk, so do not mistakenly specify your hard drive or external mass storage.
 If your USB disk shows up as something other than sdc, you need to run the following commands with the parameter
 
     USB=whatever, where whatever is whatever your removable disk is called
@@ -94,14 +98,6 @@ The next few steps can all be executed in one go:
 
 You will be asked to confirm if the card previously had readable data on it. The first step makes the new filing systems, the second step writes the kernel+BBL to the DOS partition, and the third step extracts the root filing system. Unmounting the disk at the end of this process can take a while due to buffering. Do not attempt to remove the card reader until the umount completes. This SD-card is ready to be inserted in the slot underneath the Digilent board near to the USB connector.
 
-## Standalone installation
-
-For standalone installation Vivado is required and the bitstream will be installed in QSPI memory. Even if you don't require standalone use, this method is preferred for reliability and performance. The Nexys4-DDR board should be plugged in and powered up, and the Digilent drivers should have been installed as per the manufacturer's recommendations.
-
-    make program-cfgmem
-
-This action will have no effect unless the programming jumper JP1 is in the QSPI position.
-
 ## Remote console installation
 
 For remote installation the USB master function is not needed and may be used to contain the required bitstream. Vivado is not needed which is an advantage since it is a multi-gigabyte download. You can use the following command (all the same caveats about being very careful to choose the correct disk apply as above)
@@ -111,6 +107,14 @@ For remote installation the USB master function is not needed and may be used to
 To use this method JP1 must be in the USB/SD position and JP2 should be in the USB position. Once configured, the USB stick is inaccessible to Linux and cannot be used to store other files. After pressing the PROG button with the USB memory stick inserted the BUSY light should glow amber steadily for 30 seconds or so, then the green DONE light will come on. In the event of failure, the amber BUSY light will flash slowly, in this case it is worth trying a different memory stick.
 
 Configuration from SD-Card is not supported in this release (because the onboard PIC places the SD-Card in 1-bit SPI mode, and we need it in 4-bit SD mode). If a method is found to return to 4-bit SD-mode, then this mode can be supported in a future release.
+
+## Standalone installation
+
+For standalone installation Vivado is required and the bitstream will be installed in QSPI memory. Even if you don't require standalone use, this method is preferred for reliability and performance. The Nexys4-DDR board should be plugged in and powered up, and the Digilent drivers should have been installed as per the manufacturer's recommendations.
+
+    make program-cfgmem
+
+This action will have no effect unless the programming jumper JP1 is in the QSPI position.
 
 ## Switch settings
 
@@ -143,7 +147,7 @@ Configuration from SD-Card is not supported in this release (because the onboard
 If it doesn't say Bus Width: 4-bit, then your SD-Card failed to be detected or was stuck in an incorrect mode.
 You should hit the CPU_RESET and/or power off to retry.
 
-### This is just a print out of the boot sector so you can check for RISCV boot sector viruses (?)
+### This is just a basic smoke test of the boot sector read capability
 
     0:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
     20:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
