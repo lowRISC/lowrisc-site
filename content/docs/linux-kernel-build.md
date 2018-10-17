@@ -41,7 +41,7 @@ The LSB of the switches determines the boot address and should always be off unl
 
 ### You should already have prepared a cpio archive in the Debian directory. If not, visit here first:
 
-* [Downloading and Installing Debian] ({{< ref "docs/Debian.md">}})
+* [Downloading and Installing Debian] ({{< ref "docs/download-install-debian.md">}})
 
 or generate directly with this command:
 
@@ -59,4 +59,4 @@ or copy from the quickstart binary release:
 
 The next recommended step is:
 
-* [Build the Berkeley boot loader (BBL)] ({{< ref "docs/BBL.md">}})
+* [Build the Berkeley boot loader (BBL)] ({{< ref "docs/build-berkeley-boot-loader.md">}})

@@ -27,4 +27,4 @@ title = "Baremetal toolchain"
 
 Proceed to the next step as follows:
 
-* [Install support for RISCV emulation] ({{< ref "docs/Qemu.md">}})
+* [Install support for RISCV emulation] ({{< ref "docs/RISCV-qemu-emulation.md">}})

@@ -79,13 +79,13 @@ This section is concerned with setting the MAC address, and reading it back. The
 
 If you already have a compiler installed, using either the quickstart process, or using this page:
 
-* [Developing BareMetal tool chain] ({{< ref "docs/BareMetal.md">}})
+* [Developing BareMetal tool chain] ({{< ref "docs/build-bare-metal-toolchain.md">}})
 
 You can proceed to compile the alternative boot programs/bare-metal programs
 
 Otherwise is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
 
-* [Configure DHCP] ({{< ref "docs/DHCP.md">}})
+* [Configure DHCP] ({{< ref "docs/DHCP-configuration.md">}})
 
 To compile, alternative programs:
 

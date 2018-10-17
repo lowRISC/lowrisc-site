@@ -2,8 +2,7 @@
 Description = ""
 date = "2015-12-17T17:00:00+00:00"
 title = "Install Xilinx Vivado"
-parent = "/docs/refresh-v0.6/dev-env/"
-next = "/docs/refresh-v0.6/verilator/"
+parent = "/docs/refresh-v0.6"
 showdisqus = true
 
 +++
@@ -130,4 +129,4 @@ A work-around is to manually execute `unset LD_LIBRARY_PATH` afterwards before i
 
 Continue the process below:
 
- * [Prepare the environment and get started]({{< ref "docs/Prepare.md" >}})
+ * [Prepare the environment and get started]({{< ref "docs/prepare-the-environment.md" >}})

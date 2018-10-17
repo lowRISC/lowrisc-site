@@ -39,7 +39,7 @@ as follows:
         exec switch_root /nfs /sbin/init
 
 This file should be saved as 5022.sh on the DOS partition of the SD-Card.
-The FPGA board switches should be set to match this value (in hex). Referring to the table in  [Build the Linux Kernel] ({{< ref "docs/Kernel.md">}}), it is clear that this means SD-boot, Custom-root, MAC ending in 5.
+The FPGA board switches should be set to match this value (in hex). Referring to the table in  [Build the Linux Kernel] ({{< ref "docs/linux-kernel-build.md">}}), it is clear that this means SD-boot, Custom-root, MAC ending in 5.
 
 If it is desired to boot the NFS Client kernel over the Ethernet (a common use case), the file should be called 5024.sh, corresponding to DHCP boot, Custom-root, MAC ending in 5.
 

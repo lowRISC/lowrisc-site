@@ -3,7 +3,6 @@ Description = ""
 date = "2018-01-12T13:00:00+00:00"
 title = "Overview of the Refresh system"
 parent = "/docs/refresh-v0.6/"
-next = "/docs/refresh-v0.6/Download/"
 showdisqus = true
 
 +++
@@ -46,4 +45,4 @@ and opinions about future directions we should take.
 
 Continue the process below:
 
-* [Download the source code] ({{< ref "docs/Download.md">}})
+* [Download the source code] ({{< ref "docs/download-the-code.md">}})

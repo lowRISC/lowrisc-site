@@ -1,7 +1,7 @@
 +++
 Description = ""
 date = "2018-01-11T13:00:00+00:00"
-title = "Build your own bitstream and images"
+title = "Boot remote instructions"
 parent = "/docs/fpga-v0.6/"
 showdisqus = true
 
@@ -49,5 +49,5 @@ It is convenient for development to work always from a development version of th
 But if the kernel only changes infrequently, it might be preferable to update on the live
 system as shown at the following link:
 
-* [Updating the kernel on a running system] ({{< ref "docs/BootMMC.md">}})
+* [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
 

@@ -43,4 +43,4 @@ The use of the strip command minimises the download size for use with Ethernet o
 
 Next step:
 
-* [Initiate Remote Booting] ({{< ref "docs/BootRemote.md">}})
+* [Initiate Remote Booting] ({{< ref "docs/boot-remote.md">}})

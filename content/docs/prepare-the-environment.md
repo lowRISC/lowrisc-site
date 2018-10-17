@@ -3,8 +3,6 @@ Description = ""
 date = "2018-01-11T13:00:00+00:00"
 title = "Prepare the environment"
 parent = "/docs/refresh-v0.6/"
-prev = "/docs/refresh-v0.6/softwaremethodology/"
-next = "/docs/refresh-v0.6/installtools/"
 showdisqus = true
 
 +++
@@ -27,7 +25,7 @@ If your machine cannot meet these requirements then synthesis should be able to 
 The pre-build binary images were created with Ubuntu 16.04.3 LTS.
 
 You should have installed the prerequisites on the download page. If not do so now:
-[Download the source code] ({{< ref "docs/Download.md">}})
+[Download the source code] ({{< ref "docs/download-the-code.md">}})
 
 ### Next steps
     
@@ -51,4 +49,4 @@ Some of its functionality (for example loading programs) is available from the G
 
 ### The remainder of the steps are flexible and a suggested order is given below:
 
-* [Develop an FPGA Bitstream] ({{< ref "docs/Bitstream.md">}})
+* [Develop an FPGA Bitstream] ({{< ref "docs/generate-the-bitstream.md">}})

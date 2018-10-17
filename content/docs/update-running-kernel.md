@@ -45,4 +45,4 @@ shutdown message is printed, the reset button may be used to reboot.
 
 Next recommended step:
 
-* [Booting a customised NFS system] ({{< ref "docs/BootNFS.md">}})
+* [Booting a customised NFS system] ({{< ref "docs/boot-customised-NFS.md">}})

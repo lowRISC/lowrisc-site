@@ -64,4 +64,4 @@ Because of the flexibility of DHCP, and the lack of a user interface on the FPGA
 
 It is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
 
-* [Developing BareMetal tool chain] ({{< ref "docs/BareMetal.md">}})
+* [Developing BareMetal tool chain] ({{< ref "docs/build-bare-metal-toolchain.md">}})

@@ -14,4 +14,4 @@ This first step creates a RISCV emulation environment to short-circuit the compl
 
 Next recommended step below:
 
-* [Downloading and Installing Debian] ({{< ref "docs/Debian.md">}})
+* [Downloading and Installing Debian] ({{< ref "docs/download-install-debian.md">}})

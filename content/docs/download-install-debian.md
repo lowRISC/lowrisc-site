@@ -33,4 +33,4 @@ build an SD-Card, or root file system served via NFS.
 
 The next recommended step is:
 
-* [Build the Linux Kernel] ({{< ref "docs/Kernel.md">}})
+* [Build the Linux Kernel] ({{< ref "docs/linux-kernel-build.md">}})
