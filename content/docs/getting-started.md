@@ -65,14 +65,14 @@ Type lsblk before and after inserting the SD-card and its adaptor into the compu
     ├─sdc3   8:35   1   512M  0 part 
     └─sdc4   8:36   1  12.3G  0 part /media/jrrk2/578a1c8d-92c9-48cb-9fdc-c593d5c68107
 
-### IMPORTANT:
+## READ THIS WARNING (!)
 
-The procedure below erases all data on the disk, so do not mistakenly specify your hard drive or external mass storage.
+The procedure below erases all data on the disk, so do not mistakenly specify your hard drive or external mass storage. Some checks will be carried out, such as skipping UUIDs found in /etc/fstab.
 If your USB disk shows up as something other than sdc, you need to run the following commands with the parameter
 
     USB=whatever, where whatever is whatever your removable disk is called
 
-### IF YOU DO NOT UNDERSTAND THIS, DO NOT PROCEED, GET SOME HELP !!!
+#### IF YOU DO NOT UNDERSTAND THIS, DO NOT PROCEED, GET SOME HELP !!!
 
 If you use a fresh card, only sdc1 will typically be present. If you use the recommended operating system Ubuntu 16.04.5 LTS, any known partitions will be mounted and automatically shown in windows. In this case do
 
