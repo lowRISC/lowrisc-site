@@ -9,7 +9,7 @@ year's [Google Summer of
 Code](https://developers.google.com/open-source/soc/). The Google Summer of 
 Code program funds students to work on open source projects over the summer. 
 We had 52 applications across the [range of project 
-ideas](http://www.lowrisc.org/docs/gsoc-2015-ideas/) we've been advertising. 
+ideas](https://www.lowrisc.org/docs/gsoc-2015-ideas/) we've been advertising. 
 As you can see from the range of project ideas, lowRISC is taking part as an 
 umbrella organisation, working with a number of our friends in the wider open 
 source software and hardware community.
@@ -57,7 +57,7 @@ simulator. It also features a network device, filesystem support, and
 a framebuffer. Prannoy will be adding support for RISC-V and look at
 supporting some of the features we offer on lowRISC such as [minion
 cores or tagged 
-memory](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/). 
+memory](https://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/). 
 This will be great not only as a demo, but
 also have practical uses in tutorial or educational material.
 
@@ -90,7 +90,7 @@ source IP cores, including most devices on
 [opencores.org](http://opencores.org/). The Berkeley
 [Rocket](https://github.com/ucb-bar/rocket-chip) RISC-V implementation uses 
 their own 'TileLink' protocol (we provide a [brief 
-overview](http://www.lowrisc.org/docs/tagged-memory-v0.1/rocket-chip/). By providing a 
+overview](https://www.lowrisc.org/docs/tagged-memory-v0.1/rocket-chip/). By providing a 
 reusable bridge, this project will allow the easy reuse of opencores devices 
 and leverage the many man-years of effort that has already gone in to them.
 

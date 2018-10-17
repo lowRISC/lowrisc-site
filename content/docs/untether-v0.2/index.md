@@ -62,7 +62,7 @@ test programs either in simulation or on an FPGA.
 ### Other useful sources of information
 
   * [Setting up the RISC-V tools](https://github.com/riscv/riscv-tools/blob/master/README.md)
-  * [Tagged memory and minion cores in the lowRISC SoC (lowRISC-MEMO 2014-001)](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
+  * [Tagged memory and minion cores in the lowRISC SoC (lowRISC-MEMO 2014-001)](https://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
   * [The RISC-V Instruction Set Manual -- Volume I: User-Level ISA](https://riscv.org/specifications/)
   * [The RISC-V Instruction Set Manual -- Volume II: Privileged Architecture](https://riscv.org/specifications/privileged-isa/)
 
@@ -86,5 +86,5 @@ Also thanks to Stefan Wallentowitz who has provided advice for this release.
 
 [RocketChip]: https://github.com/ucb-bar/rocket-chip
 [Chisel]: https://chisel.eecs.berkeley.edu/
-[lowRISC]: http://www.lowrisc.org/
+[lowRISC]: https://www.lowrisc.org/
 [RISCVLinux]: https://github.com/riscv/riscv-linux

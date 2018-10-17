@@ -64,7 +64,7 @@ This specification provides a detailed description of the TileLink protocol and 
 This CARRV 2017 paper provides a high-level description of why and how the Diplomacy and TileLink packages are developed.
 - **U54-MC Core Complex Manual: [https://www.sifive.com/documentation/risc-v-core/u54-mc-risc-v-core-ip-manual/](https://www.sifive.com/documentation/risc-v-core/u54-mc-risc-v-core-ip-manual/)**<br>
 U54-MC coreplex shows nearly all what the Rocket-Chip can provide at the point when this document is written. 
-- **Structure of the lowRISC SoC: [http://www.lowrisc.org/docs/minion-v0.4/](http://www.lowrisc.org/docs/minion-v0.4/)**<br>
+- **Structure of the lowRISC SoC: [https://www.lowrisc.org/docs/minion-v0.4/](https://www.lowrisc.org/docs/minion-v0.4/)**<br>
 The tutorial of the latest release from lowRISC. The difference between lowRISC and Rocket-Chip leads to the extension to the Diplomacy package.
 - **Notes for Rocket-Chip: [https://github.com/cnrv/rocket-chip-read](https://github.com/cnrv/rocket-chip-read)**<br>
 An unfinished but detailed note on the source code of the Rocket-Chip implementation.
@@ -449,4 +449,4 @@ It also describes the device as a Xilins UART16550 compatible device with one in
 [3] H. Cook, W. Terpstra and Y. Lee. "[Diplomatic design patterns: A TileLink case study.](https://carrv.github.io/papers/cook-diplomacy-carrv2017.pdf)" In proc. of Workshop on Computer Architecture Research with RISC-V (CARRV), 2017.
 
 <a name="lowRISC-v0.4"></a>
-[4] J. Kimmitt, W. Song and A. Bradbury. "[Tutorial for the v0.4 lowRISC release.](http://www.lowrisc.org/docs/minion-v0.4/)" lowRISC. June 2017.
+[4] J. Kimmitt, W. Song and A. Bradbury. "[Tutorial for the v0.4 lowRISC release.](https://www.lowrisc.org/docs/minion-v0.4/)" lowRISC. June 2017.

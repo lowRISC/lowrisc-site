@@ -11,7 +11,7 @@ blog post provides an update on the rapid progress we've been making towards
 that goal, outlines next steps and upcoming events, and tries to better 
 explain the approach that we're taking.
 As always, you 
-can track status [here](http://www.lowrisc.org/llvm/status/) and find the code 
+can track status [here](https://www.lowrisc.org/llvm/status/) and find the code 
 [here](https://github.com/lowRISC/riscv-llvm).
 
 ## Status
@@ -180,7 +180,7 @@ important for potential lowRISC adopters, but also benefits our own hardware
 development efforts. Specifically, we will be building the software component
 of our tagged memory mechanisms on top of LLVM. If our mission sounds
 interesting to you, there's good news - [we're
-hiring](http://www.lowrisc.org/blog/2017/09/were-hiring-work-on-making-open-source-hardware-a-reality/).
+hiring](https://www.lowrisc.org/blog/2017/09/were-hiring-work-on-making-open-source-hardware-a-reality/).
 
 ### Who do I contact to discuss further sponsoring this effort?
 

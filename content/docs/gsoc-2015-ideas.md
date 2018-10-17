@@ -266,7 +266,7 @@ various programs, or looking at the protection of heap metadata.
 
 **Links:**
 
-*   [Tagged memory and minion cores memo](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
+*   [Tagged memory and minion cores memo](https://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
 *   [LLVM](http://www.llvm.org)
 *   [RISC-V LLVM port](https://github.com/riscv/riscv-llvm)
 
@@ -296,7 +296,7 @@ towards the end of the project.
 
 **Links:**
 
-*   [Tagged memory and minion cores memo](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
+*   [Tagged memory and minion cores memo](https://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/)
 *   [Rump kernels](http://rumpkernel.org/)
 
 **Details:**

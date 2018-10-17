@@ -77,14 +77,14 @@ Vivado 2015.4 64bit install with Free webPACK licence. The project uses the
 programs reccomended by other lowRISC documentation. I had some issues while 
 installing all programs but it wasn’t anything that wasn't easily resolved.
 More information can be found 
-[here](http://www.lowrisc.org/docs/minion-v0.4/environment/).
+[here](https://www.lowrisc.org/docs/minion-v0.4/environment/).
 
 ### Verilator
 
 Verilator was installed based on these 
 [instructions](https://www.veripool.org/projects/verilator/wiki/Installing), 
 as recommended by the lowRISC 
-[documentation](http://www.lowrisc.org/docs/untether-v0.2/verilator/). I used 
+[documentation](https://www.lowrisc.org/docs/untether-v0.2/verilator/). I used 
 GTKWave for viewing the waveforms generated from verilator, installed using 
 `apt-get`. Verilator needed the following environment variables in order to 
 run:
@@ -209,9 +209,9 @@ machine.
 ## Minion SoC
 
 This section contains information for understanding the minion SoC. An 
-[overview](http://www.lowrisc.org/docs/minion-v0.4/overview/) on how the 
+[overview](https://www.lowrisc.org/docs/minion-v0.4/overview/) on how the 
 minion connects with the rocket core and some complementary 
-[information](http://www.lowrisc.org/docs/minion-v0.4/minion/) about the SoC 
+[information](https://www.lowrisc.org/docs/minion-v0.4/minion/) about the SoC 
 can be found in the lowRISC documentation.
 
 ### Project structure

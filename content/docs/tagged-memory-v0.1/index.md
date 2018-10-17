@@ -95,7 +95,7 @@ details of the Rocket core and chip.
 
 [RocketChipGit]: https://github.com/ucb-bar/rocket-chip#rocket-chip-generator
 [Chisel]: https://chisel.eecs.berkeley.edu/
-[lowRISC]: http://www.lowrisc.org/
+[lowRISC]: https://www.lowrisc.org/
 
 ### Bibliography
 <!-- References --> 
@@ -115,5 +115,5 @@ details of the Rocket core and chip.
 
 <a name="Memo1"></a>
 [3] [Tagged memory and minion cores
-in the lowRISC SoC](http://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/), lowRISC-MEMO 2014-001
+in the lowRISC SoC](https://www.lowrisc.org/docs/memo-2014-001-tagged-memory-and-minion-cores/), lowRISC-MEMO 2014-001
 
