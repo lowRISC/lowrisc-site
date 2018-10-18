@@ -11,6 +11,7 @@ browser by going to `http://localhost:1313`. livereload.js is injected in to
 the generated source in this mode, so you pages should be rebuilt and reloaded 
 as you save them.
 * Make your changes
+* Ideally, merge and reconcile to master branch first from release branch
 * Commit and push, make a pull request if you don't have push access
 
 To then update the live lowrisc.org website:
