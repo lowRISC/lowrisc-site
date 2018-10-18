@@ -33,6 +33,9 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
+**Oct 2018**: New lowRISC [code release]({{< ref "docs/refresh-v0.6/index.md" 
+>}}) upgrade Rocket to RV64GC, run/halt debug, Debian sid, performance upgrade.
+
 **Jan 2018**: New lowRISC [code release]({{< ref "docs/ethernet-v0.5/index.md" 
 >}}) focusing on the integration of open source Ethernet IP.
 

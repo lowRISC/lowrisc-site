@@ -28,7 +28,7 @@ This tutorial adds further functionality towards the final SoC design:
 * Ethernet boot-loader DHCP support, ten times faster boot-loading.
 * SD-Card boot-loader comprehensive card detection base on u-boot.
 * Platform-level interrupt controller support.
-* All peripheral data paths 64-bit.
+* All peripheral data paths 64-bit width.
 * Latest RISCV-kernel and Debian userland with advanced package tool.
 
 The build environment and pre-built images support the same platform as the previous releases, a competitively priced

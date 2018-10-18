@@ -14,6 +14,8 @@ architecure as well providing a robust tested platform for research into compute
 <br>*Release version 0.6, released October 2018*
 <br>This release updates the Rocket IP to March 2018 and includes compressed instructions and JTAG debugging conforming to the RISCV Debug Specification with custom JTAG DTM (see [JTAG internals]({{< ref "docs/jtag.md" >}}) for details). The root filing system is updated to use the mostly upstreamed Debian repository and the peripheral data path widths are increased to 64-bits for better performance.
 
+[All releases are available here] ({{< ref "docs/lowrisc-releases.md">}})
+
 ## What is included
 
 Here you can find selected software and hardware IP which works together to produce an (almost) fully open-source computer system, consisting of:
@@ -52,6 +54,3 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
 * [Booting a customised NFS system] ({{< ref "docs/boot-customised-NFS.md">}})
 * [Frequently asked questions for this release]  ({{< ref "docs/frequently-asked-questions.md">}})
-
-## Releases
-[Current and previous releases are here] ({{< ref "docs/lowrisc-releases.md">}})
