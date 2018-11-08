@@ -44,13 +44,19 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Install FPGA synthesis and simulation tools]({{< ref "docs/xilinx.md" >}})
 * [Preparing the development environment] ({{< ref "docs/prepare-the-environment.md">}})
 * [Produce an FPGA Bitstream] ({{< ref "docs/generate-the-bitstream.md">}})
-* [Configure DHCP] ({{< ref "docs/DHCP-configuration.md">}})
-* [Developing BareMetal tool chain] ({{< ref "docs/build-bare-metal-toolchain.md">}})
-* [Install support for RISCV emulation] ({{< ref "docs/RISCV-qemu-emulation.md">}})
+* [Configure DHCP] ({{< ref "docs/dhcp-configuration.md">}})
+* [Building a bare-metal tool chain] ({{< ref "docs/build-bare-metal-toolchain.md">}})
+* [Install support for RISCV emulation] ({{< ref "docs/riscv-qemu-emulation.md">}})
 * [Downloading and Installing Debian] ({{< ref "docs/download-install-debian.md">}})
 * [Build the Linux Kernel] ({{< ref "docs/linux-kernel-build.md">}})
 * [Build the Berkeley boot loader (BBL)] ({{< ref "docs/build-berkeley-boot-loader.md">}})
 * [Initiate Remote Booting] ({{< ref "docs/boot-remote.md">}})
 * [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
-* [Booting a customised NFS system] ({{< ref "docs/boot-customised-NFS.md">}})
-* [Frequently asked questions for this release]  ({{< ref "docs/frequently-asked-questions.md">}})
+* [Booting a customised NFS system] ({{< ref "docs/boot-customised-nfs.md">}})
+* [Frequently asked questions for this release]  ({{< ref "docs/current-release-faq.md">}})
+
+### Other content
+
+Our [first memo](
+{{< ref "docs/memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
+vision for tagged memory and minion cores in lowRISC.

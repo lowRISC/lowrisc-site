@@ -6,7 +6,7 @@ showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt (lead hardware developer), and Alex Bradbury (lead software developer)_ (also see acknowledgements below)
+_By Jonathan Kimmitt_ (also see acknowledgements below)
 
 **Release version 0.6** (06-2018)
 
@@ -65,7 +65,7 @@ The build environment and pre-built images support the same platform as the prev
 
   3. [Index of development documentation]  ({{< ref "docs/index.md">}})
 
-  4. [Frequently asked questions]  ({{< ref "docs/frequently-asked-questions.md">}})
+  4. [Frequently asked questions]  ({{< ref "docs/current-release-faq.md">}})
   
 ### Work planned / In progress / TO DO
 * Optimising card transfer speed / Implementing multi-block transfers.

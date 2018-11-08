@@ -85,7 +85,7 @@ You can proceed to compile the alternative boot programs/bare-metal programs
 
 Otherwise is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
 
-* [Configure DHCP] ({{< ref "docs/DHCP-configuration.md">}})
+* [Configure DHCP] ({{< ref "docs/dhcp-configuration.md">}})
 
 To compile, alternative programs:
 

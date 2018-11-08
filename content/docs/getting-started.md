@@ -13,13 +13,13 @@ on a Nexys4DDR FPGA.
 *    You will require:
 *    A Linux PC with sudo access with two readily accessible USB ports
 *      (these instructions apply to Ubuntu 16.04.5 LTS)
-*    A Nexys4-ddr FPGA board from Digilent with combined power and USB cable
+*    A Nexys4DDR FPGA board from Digilent with combined power and USB cable
 *    A micro-SD card (minimum 4GBytes capacity)
 *    A PC-compatible SD-card reader
 
 ## Choosing a hardware configuration
 
-LowRISC can be configured standalone, mimicking a PC, or with a remote serial console (not to be confused with the tethered option mentioned in some RISCV documentation sources). For the remote console option the FPGA configuration can come from USB memory stick, so the large (up to 28GBytes) Vivado installation is not required. For the standalone option it has to come from Quad-SPI flash memory.
+lowRISC can be configured standalone, mimicking a PC, or with a remote serial console (not to be confused with the tethered option mentioned in some RISCV documentation sources). For the remote console option the FPGA configuration can come from USB memory stick, so the large (up to 28GBytes) Vivado installation is not required. For the standalone option it has to come from Quad-SPI flash memory.
 
 ### Remote console requirements
 

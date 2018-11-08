@@ -5,9 +5,8 @@ title = "Jobs"
 +++
 
 ## lowRISC is hiring
-We are looking for an SoC/Security Hardware Design Engineer to join our team. 
-See the [job advert](https://lowrisc.workable.com/j/DBAC61322F) for full 
-details and instructions on how to apply.
 
-If we're not advertising something appropriate for you right now, feel free to 
-email info@lowrisc.org with a CV and background.
+More job adverts will be published shortly. In the mean time, if you're 
+interested in working on digital design, verification, secure system design, 
+firmware, or toolchains, feel free to email info@lowrisc.org with a CV and 
+background.

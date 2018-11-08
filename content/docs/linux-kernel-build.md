@@ -10,16 +10,17 @@ showdisqus = true
 ## What's this all about?
 
 Most of the support for RISCV specific development has taken place on very new versions of Linux.
-A generic kernel is hardly possible with all the possible scenarios where a RISCV could be used.
-Nevertheless certain helps are assumed to be always available which simplify matters:
+A fully generic kernel is hard to achieve given all the possible scenarios 
+where RISCV could be used. Nevertheless certain helperss are assumed to be 
+always available which simplify matters:
 
   1. The Kernel entry address is 0x80200000
   2. Berkeley boot loader (BBL) handles the initial console output using it's SBI interface
   3. A device tree blob (DTB) is passed to Linux to enable it to decide which devices to enable. This blob is analogous to the BIOS settings in a traditional PC.
 
-In addition an initial root filing system is needed to allow site specific configuration. This is known
-as a cpio archive and it makes the initial decision which shall be the main boot device. This data structure
-is purely held and in RAM and should be discarded as soon as possible once the boot device is identified.
+In addition an initial root filing system is needed to allow site specific 
+configuration. This initial filesystem is responsible for loading the real 
+rootfs, which might be on SD card or NFS.
 
 The initial boot environment will interrogate the FPGA switch settings to decide how to boot:
 

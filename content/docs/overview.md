@@ -8,7 +8,7 @@ showdisqus = true
 +++
 
 <a name="figure-overview"></a>
-<img src="../figures/lowRISC_tag.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
+<img src="figures/lowRISC_tag.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
 
 ## Pre-defined Design constraints
 
