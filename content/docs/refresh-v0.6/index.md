@@ -13,11 +13,10 @@ _By Jonathan Kimmitt_ (also see acknowledgements below)
 ## Introduction
 
 [lowRISC][lowRISC] is a not-for-profit organisation whose goal is to
-produce a fully open source System-on-Chip (SoC) in volume. We are
-building upon RISC-V processor core implementations from the RISC-V
-team at UC Berkeley. We will produce a SoC design to populate a
-low-cost community development board and to act as an ideal starting
-point for derivative open-source and commercial designs.
+produce a secure, flexible, and fully open source System-on-Chip (SoC). We are
+building upon RISC-V processor core implementations from the RISC-V team at UC
+Berkeley. This aims to be the ideal starting point for derivative open source
+and commercial designs.
 
 This tutorial adds further functionality towards the final SoC design:
 
