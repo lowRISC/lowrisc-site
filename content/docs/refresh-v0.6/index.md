@@ -8,7 +8,7 @@ showdisqus = true
 
 _By Jonathan Kimmitt_ (also see acknowledgements below)
 
-**Release version 0.6** (06-2018)
+**Release version 0.6** (10-2018)
 
 ## Introduction
 
