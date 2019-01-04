@@ -78,7 +78,7 @@ The build environment and pre-built images support the same platform as the prev
 * The Ethernet transceiver library is due to Alex Forencich (http://alexforencich.com/wiki/en/verilog/ethernet/readme). The preview version was translated from VHDL written by Philipp Kerling (https://github.com/pkerling/ethernet_mac)
 * Palmer Dabbelt maintained the Linux kernel port to RISCV
 * Andrew Waterman and a large team at SiFive developed the Rocket CPU
-* Manuel Montecelo developed the Debian port to RISCV (https://wiki.debian.org/RISC-V#Creating_a_riscv64_chroot_from_a_merged_repository_with_debootstrap)
+* Manuel Montecelo, Karsten Merker and Aurelien Jarno developed the Debian port to RISCV (https://wiki.debian.org/RISC-V#Creating_a_riscv64_chroot_from_a_merged_repository_with_debootstrap) and all assisted with debugging the bootstrap procedure on LowRISC.
 * Rick Chen and the u-boot team provided the basis of the first stage MMC/SD boot loader
 
 ### Other useful sources of information
