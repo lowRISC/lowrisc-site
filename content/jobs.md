@@ -6,7 +6,26 @@ title = "Jobs"
 
 ## lowRISC is hiring
 
-More job adverts will be published shortly. In the mean time, if you're 
-interested in working on digital design, verification, secure system design, 
-firmware, or toolchains, feel free to email info@lowrisc.org with a CV and 
-background.
+lowRISC C.IC. is a not-for-profit company that aims to demonstrate,
+promote and support the use of open-source hardware - bringing the
+benefits of open-source to the hardware world. We are producing
+high-quality, security-focused, open, and flexible IP. Our expertise
+includes the LLVM Compiler, novel hardware security extensions and
+RISC-V tools, hardware and processor design.
+
+We are hiring for multiple positions to deliver on an exciting, high
+impact, open source hardware roadmap in collaboration with Google and
+other industry partners.
+
+We are seeking applications for:
+
+* Hardware Design Engineer
+* Hardware Test and Verification Engineer
+* LLVM Compiler Toolchain Engineer
+* Project Manager
+* Secure Hardware Design Engineer
+* Senior Hardware Design Engineer
+* Software/Hardware Engineer
+
+For more details and to apply, see
+[lowrisc.applytojob.com](https://lowrisc.applytojob.com/).

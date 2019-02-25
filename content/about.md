@@ -7,13 +7,11 @@ title = "About lowRISC"
 
   lowRISC is creating a fully open-sourced, Linux-capable, RISC-V-based
   SoC, that can be used either directly or as the basis for a custom design.
-  We aim to complete our SoC design this year.
 
-  Our open-source SoC (System-on-a-Chip)
-  designs will be based on the 64-bit [RISC-V](http://riscv.org/) instruction
-  set architecture. Volume silicon manufacture is planned
-  as is a low-cost development board.
-  
+  We are [hiring](https://lowrisc.applytojob.com/) for multiple positions to
+  deliver on an exciting, high impact, open source hardware roadmap in
+  collaboration with Google and other industry partners.
+
   lowRISC is a not-for-profit organisation working closely with the University
   of Cambridge and the open-source community.
 
@@ -64,17 +62,23 @@ accompanied by [extensive documentation]({{< ref "docs/untether-v0.2/index.md"
 
 ### The Team
 
-lowRISC was founded by:
+The lowRISC CIC board consists of:
 
 * Robert Mullins - Computer Laboratory, University of Cambridge, co-founder of Raspberry Pi
 * Gavin Ferris - Dreamworks, Radioscape (co-founder), Aspect Capital (former CIO)
 * Alex Bradbury - Computer Laboratory, University of Cambridge and Raspberry Pi
+* Dominic Rizzo - Google
+* Ron Minnich - Google
 
-In addition to the above, the core development team at the University of 
-Cambridge Computer Laboratory is comprised of:
+The lowRISC CIC engineering team consists of:
 
-* Wei Song
-* Jonathan Kimmitt
+* Alex Bradbury
+* Luís Marques
+* Philipp Wagner
+* ...and soon more - we're [hiring](https://lowrisc.applytojob.com/)
+
+At the University of Cambridge Computer Laboratory, Jonathan Kimmitt also
+works as part of our core development team.
 
 We are also grateful to our collaborators elsewhere in the community, as well 
 as the undergraduates, graduate students, and interns who have contributed.
@@ -87,4 +91,4 @@ as the undergraduates, graduate students, and interns who have contributed.
 *   [Bunnie Huang (Hacker)](http://en.wikipedia.org/wiki/Andrew_Huang)
 *   [Andrew Katz (Moorcrofts LLP)](https://www.moorcrofts.com/about/andrew-katz/)
 *   [Dominic Rizzo (Google)](http://www.linkedin.com/pub/dominic-rizzo/28/3a6/b35)
-*   [Michael Taylor (UCSD)](http://cseweb.ucsd.edu/~mbtaylor/)
+*   [Michael Taylor (University of Washington)](https://www.cs.washington.edu/people/faculty/profmbt)
