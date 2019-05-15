@@ -2,6 +2,7 @@
 Description = ""
 date = "2016-07-27T14:23:34+01:00"
 title = "lowRISC+IMC internship: second update"
+slug = "lowriscimc-internship-second-update"
 
 +++
 _This is the second update from our team of interns, comprised of four 

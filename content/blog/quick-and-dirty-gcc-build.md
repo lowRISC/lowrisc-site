@@ -2,6 +2,7 @@
 Description = ""
 date = "2017-09-05T14:00:00+00:00"
 title = "Building upstream RISC-V GCC+binutils+newlib: the quick and dirty way"
+slug = "building-upstream-risc-v-gccbinutilsnewlib-the-quick-and-dirty-way"
 
 +++
 There are a number of available options for building a RISC-V GCC toolchain. 

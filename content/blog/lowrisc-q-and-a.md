@@ -2,6 +2,7 @@
 Description = ""
 date = "2016-12-09T17:00:00+00:00"
 title = "lowRISC Q+A"
+slug = "lowrisc-qa"
 
 +++
 Yesterday, lowRISC triggered a lot of discussion when someone submitted it to 
