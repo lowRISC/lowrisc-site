@@ -8,38 +8,34 @@ plainIDAnchors = false
 [permalinks]
 blog="/blog/:year/:month/:slug"
 
+
+
 [[menu.main]]
-    name = "Home"
-    identifier = "home"
-    url = "/"
+    name = "Jobs"
+    identifier = "jobs"
+    url = "/jobs/"
     weight = 1
 
 [[menu.main]]
-    name = "About"
-    identifier = "about"
-    url = "/about/"
+    name = "Our work"
+    identifier = "our-work"
+    url = "/our-work/"
     weight = 2
-
-[[menu.main]]
-    name = "Blog"
-    identifier = "blog"
-    url = "/blog/"
-    weight = 3
-
-[[menu.main]]
-    name = "FAQ"
-    identifier = "FAQ"
-    url = "/faq/"
-    weight = 4
-
-[[menu.main]]
-    name = "Docs"
-    identifier = "docs"
-    url = "/docs/"
-    weight = 5
 
 [[menu.main]]
     name = "Community"
     identifier = "community"
     url = "/community/"
-    weight = 6
+    weight = 3
+
+[[menu.main]]
+    name = "Blog"
+    identifier = "blog"
+    url = "/blog/"
+    weight = 4
+
+[[menu.main]]
+    name = "About us"
+    identifier = "about"
+    url = "/about/"
+    weight = 5
