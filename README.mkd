@@ -5,7 +5,7 @@ generator](http://gohugo.io/).
 If you would like to make changes:
 * Clone this repo
 * Ensure hugo is installed in your path (binaries are [available 
-here](https://github.com/spf13/hugo/releases))
+here](https://github.com/gohugoio/hugo/releases)
 * Execute `hugo server --watch` and view the local build of the site in your 
 browser by going to `http://localhost:1313`. livereload.js is injected in to 
 the generated source in this mode, so you pages should be rebuilt and reloaded 
