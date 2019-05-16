@@ -52,8 +52,8 @@ techniques. A demo is provided using a low-end
     * [Working with Zedboard]({{< ref "docs/debug-v0.3/zedboard.md" >}})
 
   5. [Release notes] ({{<ref "docs/debug-v0.3/release.md">}})
-     * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
-     * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+     * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/_index.md" >}})
+     * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/_index.md" >}})
 
 ### Other useful sources of information
 
@@ -62,6 +62,6 @@ techniques. A demo is provided using a low-end
 <!-- Links -->
 
 [lowRISC]: https://www.lowrisc.org/
-[TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/index.md" >}}
-[UntetheredTutorial]: {{< ref "docs/untether-v0.2/index.md" >}}
+[TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/_index.md" >}}
+[UntetheredTutorial]: {{< ref "docs/untether-v0.2/_index.md" >}}
 

@@ -56,13 +56,13 @@ The build environment and pre-built images support the same platform as the prev
      * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "docs/refresh-v0.6/release.md" >}})
      * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
-     * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
-     * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
-     * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+     * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/_index.md" >}})
+     * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/_index.md" >}})
+     * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/_index.md" >}})
 
   2. [Getting started with binary releases] ({{< ref "docs/getting-started.md">}})
 
-  3. [Index of development documentation]  ({{< ref "docs/index.md">}})
+  3. [Index of development documentation]  ({{< ref "docs/_index.md">}})
 
   4. [Frequently asked questions]  ({{< ref "docs/current-release-faq.md">}})
   
@@ -88,7 +88,7 @@ The build environment and pre-built images support the same platform as the prev
 <!-- Links -->
 
 [lowRISC]: https://www.lowrisc.org/
-[TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/index.md" >}}
-[UntetheredTutorial]: {{< ref "docs/untether-v0.2/index.md" >}}
-[DebugTutorial]: {{< ref "docs/debug-v0.3/index.md" >}}
+[TaggedMemoryTutorial]: {{< ref "docs/tagged-memory-v0.1/_index.md" >}}
+[UntetheredTutorial]: {{< ref "docs/untether-v0.2/_index.md" >}}
+[DebugTutorial]: {{< ref "docs/debug-v0.3/_index.md" >}}
 

@@ -44,7 +44,7 @@ showdisqus = true
 ### Previous releases
 
  * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
- * [**Version 0.4**: minion lowRISC (04-2017)]({{< ref "docs/minion-v0.4/index.md" >}})
- * [**Version 0.3**: core trace lowRISC (06-2016)]({{< ref "docs/debug-v0.3/index.md" >}})
- * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/index.md" >}})
- * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+ * [**Version 0.4**: minion lowRISC (04-2017)]({{< ref "docs/minion-v0.4/_index.md" >}})
+ * [**Version 0.3**: core trace lowRISC (06-2016)]({{< ref "docs/debug-v0.3/_index.md" >}})
+ * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "docs/untether-v0.2/_index.md" >}})
+ * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/_index.md" >}})
