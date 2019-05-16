@@ -48,10 +48,18 @@ The lowRISC platform aims to be the "Linux of the hardware world" - combining te
 
 The lowRISC platform will:
 
-provide a high quality, secure, and open IP base for derivative hardware designs
-lower the barrier of entry to producing custom silicon for specific applications, meeting growing needs for more specialist chips
-establish a vibrant ecosystem around open hardware designs and tools, making them reliable and sustainable
-enable great R&D and product development elsewhere, including universities
+* provide a high quality, secure, and open IP base for derivative hardware designs
+* lower the barrier of entry to producing custom silicon for specific applications, meeting growing needs for more specialist chips
+* establish a vibrant ecosystem around open hardware designs and tools, making them reliable and sustainable
+* enable great R&D and product development elsewhere, including universities
 
-In building the lowRISC platform, we are pioneering open hardware done right, developing an open ecosystem that together can make reliable and useful products at scale, and which is genuinely participatory and sustainable. On the technical side, we need new design methodologies, incorporating testing, open tools, coding standards, and useful and usable documentation in what we produce and maintain. On the community side, it means connecting software and hardware people and open and inclusive working practices. We are also developing governance and collaboration processes which involve the diverse partners essential to make open silicon a reality.
+In building the lowRISC platform, we are pioneering open hardware done right,
+developing an open ecosystem that together can make reliable and useful
+products at scale, and which is genuinely participatory and sustainable. On
+the technical side, we need new design methodologies, incorporating testing,
+open tools, coding standards, and useful and usable documentation in what we
+produce and maintain. On the community side, it means connecting software and
+hardware people and open and inclusive working practices. We are also
+developing governance and collaboration processes which involve the diverse
+partners essential to make open silicon a reality.
 

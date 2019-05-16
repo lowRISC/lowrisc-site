@@ -93,7 +93,28 @@
     </div>
     <div class="">
       <a href="jobs/" class="button button-big button-red" style="margin-top: 15px;">We are hiring!</a>
+    </div>
+  </section>
+
+</div>
   
+          <div class="announcements">
+
+      <section class="outer-container tabs">
+
+        <input type="radio" name="tabs" id="tab2" checked >
+        <label for="tab2">
+          <span>Blog<i></i></span>
+        </label>
+
+        <ul id="tab-content2" class="tab-content">
+          {{ range first 2 (where .Data.Pages "Type" "blog") }}
+          <li>
+            {{ .Render "summary"}}
+          </li>
+          {{ end }}
+        </ul>
+
 
 
 
