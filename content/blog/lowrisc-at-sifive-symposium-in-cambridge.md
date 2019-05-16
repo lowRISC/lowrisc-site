@@ -19,6 +19,9 @@ services. We also heard from SecureRF and IAR Systems.
 Alex gave a short talk about bringing the benefits of open source to the
 hardware world. (We hope to be able to share the video soon!)
 
+![Alex speaking](/img/sifive_symposium_alex1.jpg "Alex speaking")
+![Open source hardware in industry](/img/sifive_symposium_alex2.jpg "Open source hardware in industry")
+
 It was great to hear the latest news from SiFive and other RISC-V
 organisations, both from Cambridge and further afield. We also got to meet
 community members and to catch up with friends from Embecosm, the RISC-V
