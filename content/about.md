@@ -15,7 +15,7 @@ The lowRISC CIC board consists of:
 
  * Robert Mullins - Computer Laboratory, University of Cambridge, co-founder of Raspberry Pi
  * Gavin Ferris - Dreamworks, Radioscape (co-founder), Aspect Capital (former CIO)
- * Alex Bradbury - Computer Laboratory, University of Cambridge and Raspberry Pi
+ * Alex Bradbury - previously Computer Laboratory, University of Cambridge and Raspberry Pi
  * Dominic Rizzo - Google
  * Ron Minnich - Google
  * Luca Benini - ETH Zurich, University of Bologna
@@ -31,7 +31,7 @@ The lowRISC CIC board consists of:
  * Luís Marques
  * Pirmin Vogel
  * Philipp Wagner
- * …and soon more - [we’re hiring](http://lowrisc.org/jobs/)
+ * …and soon more - [we’re hiring](https://www.lowrisc.org/jobs/)
 
 At the [University of Cambridge Computer Laboratory](http://www.cst.cam.ac.uk), Jonathan Kimmitt also works as part of our core development team.
 

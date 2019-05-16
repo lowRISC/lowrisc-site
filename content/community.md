@@ -46,7 +46,7 @@ The lowRISC community has always worked to be a welcoming and respectful communi
 
 This isn’t an exhaustive list of things that you can’t do. Rather, take it in the spirit in which it’s intended - a guide to make it easier to communicate and participate in the community.
 
-[Read the full code of conduct and find out how to contact us about it](http://lowrisc.org/code-of-conduct).
+[Read the full code of conduct and find out how to contact us about it]({{< ref "code-of-conduct.md" >}}).
 
  ![illustrative icon](/img/people.png "people")
 
