@@ -1,10 +1,9 @@
 +++
 date = "2019-05-15T13:40:22Z"
-title = "Our work"
+title = "What lowRISC does"
 
 +++
 
-# What lowRISC does
 lowRISC brings together people from companies, universities and communities, to work on collaborative engineering to create high quality, secure and flexible silicon designs.
 
 We create high quality, verified open source silicon designs, and tools to develop, test and maintain these. We also maintain select open silicon IP and open source tools which have been developed elsewhere.
