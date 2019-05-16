@@ -18,7 +18,7 @@ The lowRISC CIC board consists of:
  * Alex Bradbury - previously Computer Laboratory, University of Cambridge and Raspberry Pi
  * Dominic Rizzo - Google
  * Ron Minnich - Google
- * Luca Benini - ETH Zurich, University of Bologna
+ * Prof. Luca Benini - ETH Zurich, University of Bologna
 
  ![lowRISC board photo](/img/board2.jpg "lowRISC board")
 
@@ -39,13 +39,13 @@ At the [University of Cambridge Computer Laboratory](http://www.cst.cam.ac.uk), 
 
 ### Technical Advisory Board
 
- *   [Krste Asanovic (UC Berkeley, SiFive)](http://www.eecs.berkeley.edu/~krste/)
+ *   [Prof. Krste Asanovic (UC Berkeley, SiFive)](http://www.eecs.berkeley.edu/~krste/)
  *   [Julius Baxter (FOSSi Foundation)](http://juliusbaxter.net)
  *   Frank Gurkaynak (ETH Zurich)
  *   [Bunnie Huang (Hacker)](http://en.wikipedia.org/wiki/Andrew_Huang)
  *   [Andrew Katz (Moorcrofts LLP)](https://www.moorcrofts.com/about/andrew-katz/)
  *   Scott Johnson (Google)
- *   [Michael Taylor (University of Washington)](https://www.cs.washington.edu/people/faculty/profmbt)
+ *   [Prof. Michael Taylor (University of Washington)](https://www.cs.washington.edu/people/faculty/profmbt)
 
 # lowRISC values
  Here are some of the things that distinguish us in the open hardware world, and which drive and shape our work:
