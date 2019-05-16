@@ -18,11 +18,16 @@ The best ways of keeping up with lowRISC developments are:
   </form>
 
 ### Mailing lists
-Development discussion takes place on the lowrisc-dev mailing list. Archives are [here](https://listmaster.pepperfish.net/pipermail/lowrisc-dev-lists.lowrisc.org/) and you can [subscribe here](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org). There’s also relevant discussion on the (RISC-V mailing lists)[http://riscv.org/mailing-lists/].
+Development discussion takes place on the lowrisc-dev mailing list. Archives are [here](https://listmaster.pepperfish.net/pipermail/lowrisc-dev-lists.lowrisc.org/) and you can [subscribe here](http://listmaster.pepperfish.net/cgi-bin/mailman/listinfo/lowrisc-dev-lists.lowrisc.org). There’s also relevant discussion on the [RISC-V mailing lists](http://riscv.org/mailing-lists/).
+
+ ![illustrative icon](/img/chat.png "chat")
+
 We used to use IRC (#lowRISC on irc.oftc.net) but mostly don’t now. We are looking into a new open source chat system - watch this space.
 
 ### Source code
 You can find source code for lowRISC projects on [our GitHub organisation page](https://github.com/lowrisc). We're also active on the upstreams of a range of other projects such as LLVM and the Ariane RISC-V core design.
+
+ ![illustrative icon](/img/code.png "code")
 
 # The lowRISC community
 The lowRISC community has always worked to be a welcoming and respectful community, and we want to ensure that doesn’t change as we grow and evolve. To that end, we have a few ground rules that we ask people to adhere to:
@@ -43,8 +48,12 @@ This isn’t an exhaustive list of things that you can’t do. Rather, take it i
 
 [Read the full code of conduct and find out how to contact us about it](http://lowrisc.org/code-of-conduct).
 
+ ![illustrative icon](/img/people.png "people")
+
 # Getting started with lowRISC
 We really appreciate contributions of code or ideas to our software and hardware development efforts. Take a look at our mailing list and source repos.  If you’re looking for ideas on where to start, perhaps introduce yourself on the mailing list detailing your interests.
 
 # For potential partners
 If you have a project you would like to discuss with us, or would like to support our work, get in touch with info@lowrisc.org
+
+ ![illustrative icon](/img/handshake.png "handshake")

@@ -13,12 +13,14 @@ We are hiring for multiple positions to deliver on an exciting, high impact, ope
 
   <section class="outer-container">
     <div class="">
-      <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px;">We are hiring!</a>
+      <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px;">Check out all our open roles</a>
     </div>
 </section>
 </div>
 
 This is a great time to join our growing team and be part of the open source silicon revolution. We’re based in [a friendly innovation space](https://www.ideaspace.cam.ac.uk/) in the beautiful city of Cambridge, UK, near the University of Cambridge’s [Department of Computer Science and Technology](http://www.cst.cam.ac.uk). Cambridge is home to a varied and lively tech cluster, arguably the most successful in Europe with more than 1,500 high-tech companies based in the area, employing more than 54,000 people.
+
+ ![photo of Hauser Forum where the lowRISC team are based](/img/ideaspacewest.JPG "ideaSpace")
 
 All [our open opportunities](https://lowrisc.applytojob.com/) are exciting positions for skilled engineers who will appreciate the freedom to explore and invent in the open. lowRISC also provides the opportunity to work within a team exploring the full hardware/software stack on a broad range of challenging projects.  
 
@@ -33,7 +35,9 @@ If you’ve got any questions about working at lowRISC C.I.C., the application p
 
   <section class="outer-container">
     <div class="">
-      <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px;">We are hiring!</a>
+      <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px;">Apply now!</a>
     </div>
 </section>
 </div>
+
+ ![photo of Cambridge](/img/cambridge1.jpg "Cambridge")

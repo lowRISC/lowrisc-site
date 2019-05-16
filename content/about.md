@@ -20,6 +20,8 @@ The lowRISC CIC board consists of:
  * Ron Minnich - Google
  * Luca Benini - ETH Zurich, University of Bologna
 
+ ![lowRISC board photo](/img/board2.jpg "lowRISC board")
+
 
 ### Team
  The lowRISC team is based in Cambridge, UK. We are:
@@ -55,12 +57,23 @@ At the [University of Cambridge Computer Laboratory](http://www.cst.cam.ac.uk), 
  *   Sustaining an open, inclusive and participatory community is important, so that different people and organisations are welcome and able to participate
  *   Hardware is hard. We are pragmatic, not fanatic. We make choices that enable us to take concrete steps towards our vision as best we can
 
+    ![illustrative icon](/img/values.png "values")
+
+# Our history
+lowRISC emerged from the University of Cambridge Computer Lab, where our early work was supported by a private donation and a grant from Google.
+
+We still work closely with the University of Cambridge, as well as other academic and corporate partners, and the wider open source community.
+
+
 # Ecosystem
   The open source hardware ecosystem includes organisations working in many different ways, and working together to drive adoption of open source silicon. New relationships and partnerships are developing all the time.
 
   lowRISC is a [Founding Silver member](https://riscv.org/members-at-a-glance/) of [the RISC-V Foundation](https://riscv.org/).
 
   lowRISC staff are actively engaged in numerous key community initiatives and are frequent speakers at events such as the RISC-V Workshops, ORConf, and LLVM Developers’ Meetings.
+
+
+   ![illustrative icon](/img/network.png "network")
 
 # lowRISC C.I.C.
 lowRISC Community Interest Company is a non-profit, private company limited by guarantee, registered in England and Wales with Company number 09272283.
