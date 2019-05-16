@@ -56,16 +56,3 @@ enable great R&D and product development elsewhere, including universities
 
 In building the lowRISC platform, we are pioneering open hardware done right, developing an open ecosystem that together can make reliable and useful products at scale, and which is genuinely participatory and sustainable. On the technical side, we need new design methodologies, incorporating testing, open tools, coding standards, and useful and usable documentation in what we produce and maintain. On the community side, it means connecting software and hardware people and open and inclusive working practices. We are also developing governance and collaboration processes which involve the diverse partners essential to make open silicon a reality.
 
-
-
-# The lowRISC ambition
-It is our mission for the lowRISC platform to be used and built upon by individuals, groups and organisations around the world. This will take many forms:
-
- * A fully open source Linux-capable SoC
- * A range of small, useful, specialist chips integrated into Internet infrastructure
- * A completely open source 64-bit development board that brings a new level of freedom, power and flexibility to hobbyists, students and entrepreneurs
- * An open source data collection and processing base for scientific hardware, flexible and extensible, and used in places which cannot afford high end proprietary solutions
- * Specialised silicon for distributed research equipment
- * Things we haven’t imagined yet!
-
-We are making significant progress towards this longer term ambition, with a range of projects developing infrastructure, best practices and community as part of this journey.
