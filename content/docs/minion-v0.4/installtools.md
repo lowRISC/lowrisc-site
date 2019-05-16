@@ -12,7 +12,7 @@ showdisqus = true
 This part is identical to the previous tutorial, simply perform those
 steps:
 
- * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
+ * [Install Xilinx Vivado] ({{<ref "/docs/xilinx.md">}})
  * [Install Verilator] ({{<ref "verilator.md">}})
 
 The above procedure may change your LD_LIBRARY_PATH to an older version of libraries than some systems expect. If this
@@ -24,4 +24,4 @@ A work-around is to manually execute `unset LD_LIBRARY_PATH` afterwards before i
 
 Follow these instructions _(caution: from a previous release)_ and then use the browser back button:
 
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<ref "/docs/riscv_compile.md">}})

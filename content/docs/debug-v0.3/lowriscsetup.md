@@ -12,7 +12,7 @@ showdisqus = true
 This part is identical to the previous tutorial, simply perform those
 steps:
 
- * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
+ * [Install Xilinx Vivado] ({{<ref "/docs/xilinx.md">}})
  * [Install Verilator] ({{<ref "verilator.md">}})
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<ref "/docs/riscv_compile.md">}})
 

@@ -10,7 +10,7 @@ showdisqus = true
 This part is identical to the previous tutorial, simply perform those
 steps:
 
- * [Install Xilinx Vivado] ({{<ref "xilinx.md">}})
+ * [Install Xilinx Vivado] ({{<ref "/docs/xilinx.md">}})
  * [Install Verilator] ({{<ref "verilator.md">}})
 
 The above procedure may change your LD_LIBRARY_PATH to an older version of libraries than some systems expect. If this

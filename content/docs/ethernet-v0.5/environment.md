@@ -100,7 +100,7 @@ This step is optional if you choose to use our pre-compiled images.
 
 Or for more detail, follow these instructions _(caution: from a previous release)_ and then use the browser back button:
 
- * [Compile and install RISC-V cross-compiler] ({{<ref "riscv_compile.md">}})
+ * [Compile and install RISC-V cross-compiler] ({{<ref "/docs/riscv_compile.md">}})
 
 ## Optional step
 
