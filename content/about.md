@@ -35,6 +35,8 @@ The lowRISC CIC board consists of:
  * Philipp Wagner
  * …and soon more - [we’re hiring](https://www.lowrisc.org/jobs/)
 
+ ![lowRISC team photo](/img/team.jpg "lowRISC team")
+
 At the [University of Cambridge Computer Laboratory](http://www.cst.cam.ac.uk), Jonathan Kimmitt also works as part of our core development team.
 
  We are also grateful to our collaborators elsewhere in the community, as well as the undergraduates, graduate students, and interns who have contributed.

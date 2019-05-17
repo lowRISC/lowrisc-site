@@ -22,7 +22,7 @@ Development discussion takes place on the lowrisc-dev mailing list. Archives are
 
  ![illustrative icon](/img/chat.png "chat")
 
-We used to use IRC (#lowRISC on irc.oftc.net) but mostly don’t now. We are looking into a new open source chat system - watch this space.
+We used to use IRC (#lowRISC on irc.oftc.net) but mostly don’t now. We have an open group chat on [Zulip](https://zulipchat.com/), which [community members are welcome to join](https://lowrisc.zulipchat.com/register/). 
 
 ### Source code
 You can find source code for lowRISC projects on [our GitHub organisation page](https://github.com/lowrisc). We're also active on the upstreams of a range of other projects such as LLVM and the Ariane RISC-V core design.
