@@ -7,8 +7,14 @@ title = "Documentation"
 
 ## Introduction
 
-The lowRISC series of code and documentation releases has the dual aim for easing the path of new users and students of computer
-architecure as well providing a robust tested platform for research into computer architecture whilst at the same time conforming to a license model which is compatible with commercial research and development as well as IC manufacture. The current release is:
+This page is an index to documentation for our 64-bit RISC-V SoC platform.
+We'll be refreshing with further pointers to documentation for our [other
+projects]({{< ref "our-work.md" >}}).
+
+These SoC platform code releases and documentation have the aim of easing the path of new users and students,
+providing a robust tested platform for research into computer architecture,
+and conforming to a license model which is compatible with commercial research
+and development as well as IC manufacture. The current release is:
 
 * [lowRISC with run/step debugging via JTAG and GDB]({{< ref "docs/refresh-v0.6/_index.md" >}})
 <br>*Release version 0.6, released October 2018*

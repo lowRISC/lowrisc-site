@@ -9,14 +9,10 @@ lowRISC C.I.C. is a not-for-profit company that aims to demonstrate, promote and
 
 We are hiring for multiple positions to deliver on an exciting, high impact, open source hardware roadmap in collaboration with Google and other industry partners.
 
-<div class="long-description">
 
-  <section class="outer-container">
-    <div class="">
-      <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px;">Check out all our open roles</a>
-    </div>
-</section>
-</div>
+  <div class="">
+    <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px; color: #fff;">Check out all our open roles</a>
+  </div>
 
 This is a great time to join our growing team and be part of the open source silicon revolution. We’re based in [a friendly innovation space](https://www.ideaspace.cam.ac.uk/) in the beautiful city of Cambridge, UK, near the University of Cambridge’s [Department of Computer Science and Technology](http://www.cst.cam.ac.uk). Cambridge is home to a varied and lively tech cluster, arguably the most successful in Europe with more than 1,500 high-tech companies based in the area, employing more than 54,000 people.
 
@@ -31,13 +27,8 @@ lowRISC culture is respectful, inclusive and professional. We’re in a ‘start
 If you’ve got any questions about working at lowRISC C.I.C., the application process, or about specific roles, get in touch with the team at hiring@lowrisc.org
 
 
-<div class="long-description">
-
-  <section class="outer-container">
-    <div class="">
-      <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px;">Apply now!</a>
-    </div>
-</section>
-</div>
+  <div class="">
+    <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px; color: #fff;">Apply now!</a>
+  </div>
 
  ![photo of Cambridge](/img/cambridge1.jpg "Cambridge")

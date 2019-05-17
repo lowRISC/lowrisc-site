@@ -39,3 +39,9 @@ blog="/blog/:year/:month/:slug"
     identifier = "about"
     url = "/about/"
     weight = 5
+
+[[menu.main]]
+    name = "Docs"
+    identifier = "docs"
+    url = "/docs/"
+    weight = 6
