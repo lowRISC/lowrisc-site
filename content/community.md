@@ -22,7 +22,7 @@ Development discussion takes place on the lowrisc-dev mailing list. Archives are
 
  ![illustrative icon](/img/chat.png "chat")
 
-We used to use IRC (#lowRISC on irc.oftc.net) but mostly don’t now. We have an open group chat on [Zulip](https://zulipchat.com/), which [community members are welcome to join](https://lowrisc.zulipchat.com/register/). 
+We used to use IRC (#lowRISC on irc.oftc.net) but mostly don’t now. We have an open group chat on [Zulip](https://zulipchat.com/), which [community members are welcome to join](https://lowrisc.zulipchat.com/register/).
 
 ### Source code
 You can find source code for lowRISC projects on [our GitHub organisation page](https://github.com/lowrisc). We're also active on the upstreams of a range of other projects such as LLVM and the Ariane RISC-V core design.
@@ -50,10 +50,8 @@ This isn’t an exhaustive list of things that you can’t do. Rather, take it i
 
  ![illustrative icon](/img/people.png "people")
 
- ![illustrative icon](/img/people.png "people")
-
 # Getting started with lowRISC
-We really appreciate contributions of code or ideas to our software and hardware development efforts. Take a look at our mailing list and source repos.  If you’re looking for ideas on where to start, perhaps introduce yourself on the mailing list detailing your interests.
+We really appreciate contributions of code or ideas to our software and hardware development efforts. Take a look at our mailing list and source repos.  If you’re looking for ideas on where to start, perhaps introduce yourself on the mailing list or group chat detailing your interests.
 
 # For potential partners
 If you have a project you would like to discuss with us, or would like to support our work, get in touch with info@lowrisc.org

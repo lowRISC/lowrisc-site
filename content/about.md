@@ -22,8 +22,6 @@ The lowRISC CIC board consists of:
 
  ![lowRISC board photo](/img/board2.jpg "lowRISC board")
 
- ![lowRISC board photo](/img/board2.jpg "lowRISC board")
-
 
 ### Team
  The lowRISC team is based in Cambridge, UK. We are:
