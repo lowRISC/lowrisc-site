@@ -19,7 +19,7 @@ beginning of May. At lowRISC, we are working on open-source hardware/software
 ecosystems with a fully open-sourced, Linux-capable, RISC-V-based SoC being the
 ultimate goal.
 
-Having done my PhD in the Digital Circuits and Systems group of ETH Zurich,
+"Having done my PhD in the Digital Circuits and Systems group of ETH Zurich,
 i.e., a research group that very early started to promote and push for
 open-source hardware, it was important for me to continue along the open-source
 path. Open-source hardware and software are powerful catalysts for education,
@@ -38,7 +38,7 @@ ecosystem has gained quite some traction since its start in 2013 serving both as
 a starting point for custom designs and also creating [new business opportunities]
 (https://www.pulp-platform.org/pulp_users.html).
 
-At lowRISC, I am currently working on our RISC-V processor core [Ibex]
+"At lowRISC, I am currently working on our RISC-V processor core [Ibex]
 (https://github.com/lowRISC/ibex). This core has its origins in academia – it
 has been designed by my former colleagues of the PULP team under the name
 Zero-riscy – and leveraging its design in a professional context offers
@@ -60,7 +60,7 @@ scale). It builds on my varied career to date working to make emerging
 technologies a reality in real products and services, and in growing innovative
 organisations.
 
-lowRISC works on open source hardware at the silicon layer (and related open
+"lowRISC works on open source hardware at the silicon layer (and related open
 source software tools), and so builds on my longstanding interest in open stuff,
 and particularly the challenges of bringing open to new areas. Open source
 silicon isn't a totally new idea, but producing products at scale with it is
@@ -77,7 +77,7 @@ understand what is in them (which you can't do with a proprietary processor core
 which you've licensed - it's just a black box). So open hardware at the silicon
 level is going to be important for the future of computing.
 
-lowRISC itself is still quite small (but growing), but the team size doesn't
+"lowRISC itself is still quite small (but growing), but the team size doesn't
 reflect the range of people I’m working with day to day, because there's lots of
 collaboration going on. Open source ecosystems have different kinds of
 organisation and activity in them; lowRISC is focussing on providing quality
@@ -89,7 +89,7 @@ itself. I'm looking forward to being part of changing how hardware is developed,
 making it fundamentally more collaborative and factoring in testing and
 maintenance sensibly. 
 
-There are some really interesting challenges. For instance, you can't be 100%
+"There are some really interesting challenges. For instance, you can't be 100%
 open right now in silicon, because in an actual manufactured chip there's a lot
 of analogue components as well as the open source digital bits, and those
 analogue bits are generally closely linked to the big foundries which
@@ -103,12 +103,14 @@ the usual startup challenge, that we need to make reliable, high quality
 products, in a reasonable time, which people actually want and are willing to
 pay for.
 
-I’m really looking forward to seeing what we can accomplish, and being part of
+"I’m really looking forward to seeing what we can accomplish, and being part of
 the move towards open source silicon.
 
-(If you’d like to learn more about how I ended up here, I wrote on [my personal
+"(If you’d like to learn more about how I ended up here, I wrote on [my personal
 blog](https://lbj20.blogspot.com/2019/04/new-challenges-ahead.html) about this
 role and how it fits with things I’ve been working on.)"
+
+----
 
 We're thrilled to have Pirmin and Laura join the lowRISC team and if you'd like
 to be part of the open source silicon revolution, we presently have a number
