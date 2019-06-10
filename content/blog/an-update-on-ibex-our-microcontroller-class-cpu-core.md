@@ -85,7 +85,7 @@ what’s coming.
 Do you want to join us making Ibex even better? For example, do you want to set
 up world-class continuous integration for this core? lowRISC is hiring, and
 we’re looking for a broad range of engineers: hardware, software and tooling.
-[Join us!](https://www.lowrisc.org/jobs/)
+[Join us!](/jobs/)
 
 You want to know more about Ibex and how lowRISC develops it to be a piece of
 high-quality free and open source IP? [Join Philipp for a talk at the Week of
