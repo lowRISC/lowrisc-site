@@ -43,13 +43,14 @@ help you get your favorite feature added to Ibex!
 ![Ibex block diagram](/img/Ibex_block_diagram-100619.png "Ibex block diagram")
 
 If you're interested in using Ibex in your design, you'd be in good company.
-Researchers at the University of Manchester are already working on taping out a
-design including the Ibex core, with reconfigurable FPGA instruction set
+Researchers at the University of Manchester (with support from Andrew Attwood
+from the STFC Hartree Centre) are already working on taping out a design including
+the Ibex core, with reconfigurable FPGA instruction set
 extensions. Do get in touch at [info@lowrisc.org](mailto:info@lowrisc.org) if
 you’re looking to integrate Ibex into one of your designs…
 
 ![University of Manchester design with Ibex
-core](/img/forte_soc_rtl4_mult1_640w.png "University of Manchester design with
+core](/img/forte_placement.png "University of Manchester design with
 Ibex core")
 
 Ibex stands on an impressive mountain of engineering, erected by many great
