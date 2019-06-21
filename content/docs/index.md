@@ -10,9 +10,11 @@ title = "Documentation"
 The lowRISC series of code and documentation releases has the dual aim for easing the path of new users and students of computer
 architecure as well providing a robust tested platform for research into computer architecture whilst at the same time conforming to a license model which is compatible with commercial research and development as well as IC manufacture. The current release is:
 
-* [lowRISC with run/step debugging via JTAG and GDB]({{< ref "docs/refresh-v0.6/index.md" >}})
-<br>*Release version 0.6, released October 2018*
-<br>This release updates the Rocket IP to March 2018 and includes compressed instructions and JTAG debugging conforming to the RISCV Debug Specification with custom JTAG DTM (see [JTAG internals]({{< ref "docs/jtag.md" >}}) for details). The root filing system is updated to use the mostly upstreamed Debian repository and the peripheral data path widths are increased to 64-bits for better performance.
+* [lowRISC with Ariane SystemVerilog CPU and X-windows support]({{< ref "docs/ariane-v0.7/index.md" >}})
+<br>*Release version 0.7, released June 2019*
+<br>This release supports the Rocket CPU from the refresh-v0.6 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
+
+[All releases are available here] ({{< ref "docs/lowrisc-releases.md">}})
 
 ## What is included
 
