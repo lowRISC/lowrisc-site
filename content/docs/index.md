@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-04-14T13:26:41+01:00"
+date = "2019-06-24T00:00:00+01:00"
 title = "Documentation"
 
 +++
@@ -20,12 +20,12 @@ architecure as well providing a robust tested platform for research into compute
 
 Here you can find selected software and hardware IP which works together to produce an (almost) fully open-source computer system, consisting of:
 
-* RISCV CPU written in the Chisel/Scala hardware description language
-* A variety of useful peripherals, UART, MMC/SD-Card controller, Ethernet(100BaseT), VGA compatible screen, keyboard
-* AXI compatible interface to proprietary DDR memory controller from Xilinx
-* Boot loader for MMC/SD-Cards, based on u-boot
-* Ethernet booter incorporating DHCP
-* RISCV-Linux, adapted with drivers to attach to the above peripherals
+* RISCV CPU, either Rocket written in the Chisel/Scala hardware description language, or Ariane written in System Verilog
+* A variety of useful peripherals, UART, MMC/SD-Card controller, Ethernet(100/1000BaseT), X-windows compatible screen
+* PC-Compatible keyboard, mouse (additional interfacing hardware required)
+* AXI compatible interface to proprietary DDR memory controller from Xilinx (included in Vivado)
+* Choice of three boot loaders (QSPI flash memory, MMC/SD-Card, tftp Ethernet)
+* RISCV-Linux kernel v5.1.3, supplemented with drivers to attach to the above peripherals
 * RISCV-Debian operating system
 
 ## Quick Start

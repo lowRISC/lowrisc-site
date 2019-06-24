@@ -1,11 +1,11 @@
 +++
 Description = ""
-date = "2018-09-14T13:26:41+01:00"
+date = "2019-06-24T00:00:00+01:00"
 title = "Getting started"
 
 +++
 
-## Getting Started with the refresh-v0.6 prebuilt binaries
+## Getting Started with the ariane-v0.7 prebuilt binaries
 
 This guide will walk you through downloading the binaries of the latest lowRISC release and booting it
 on a Nexys4DDR FPGA.
@@ -13,13 +13,14 @@ on a Nexys4DDR FPGA.
 *    You will require:
 *    A Linux PC with sudo access with two readily accessible USB ports
 *      (these instructions apply to Ubuntu 16.04.5 LTS)
-*    A Nexys4-ddr FPGA board from Digilent with combined power and USB cable
+*    A Nexys4-ddr or GenesysII FPGA board from Digilent with supplied cables
 *    A micro-SD card (minimum 4GBytes capacity)
 *    A PC-compatible SD-card reader
 
 ## Choosing a hardware configuration
 
-LowRISC can be configured standalone, mimicking a PC, or with a remote serial console (not to be confused with the tethered option mentioned in some RISCV documentation sources). For the remote console option the FPGA configuration can come from USB memory stick, so the large (up to 28GBytes) Vivado installation is not required. For the standalone option it has to come from Quad-SPI flash memory.
+LowRISC can be configured to talk to a remote serial console (this is the most convenient mode for development), or the on-board screen, keyboard and mouse may be used. This tutorial assumes a serial console to ensure that important diagnostic messages will be captured. Advanced Linux users will know how to configure the Linux kernel to redirect the console locally. Moreover the remote option gives flexibility over boot methods
+(for the standalone option the FPGA bitstream must come from JTAG or Quad-SPI flash memory.
 
 ### Remote console requirements
 
@@ -32,20 +33,21 @@ LowRISC can be configured standalone, mimicking a PC, or with a remote serial co
     
 *   A VGA compatible LCD monitor
 *   A PS/2 style PC-AT keyboard with USB connector
-*   A copy of Vivado 2018.1 webpack edition (with SDK if you plan to do development) to program the Quad-SPI
+*   To support X-windows a PS/2 mouse and PmodPS2 adaptor (PN 410-094) and small hardware modifications are required
+*   A copy of Vivado 2018.2 webpack edition (with SDK if you plan to do development) to program the Quad-SPI
 
-#### For both options a 100Base-T Ethernet cable to a home hub or corporate LAN is recommended.
+#### For both options a 100BaseT (Nexys4DDR) or 1000BaseT (GenesysII) compatible Ethernet cable to a home hub or corporate LAN is recommended.
 
 The quickstart Makefile should be installed as follows:
 
-    git clone https://github.com/lowRISC/lowrisc-quickstart.git
+    git clone -b ariane-v0.7 https://github.com/lowRISC/lowrisc-quickstart.git
     cd lowrisc-quickstart
     
 If you don't have git installed the following workaround may be used:
 
-    wget https://github.com/lowRISC/lowrisc-quickstart/archive/master.zip
-    unzip master
-    cd lowrisc-quickstart-master
+    wget https://github.com/lowRISC/lowrisc-quickstart/archive/ariane-v0.7.zip
+    unzip ariane-v0.7
+    cd lowrisc-quickstart-ariane-v0.7
 
 However the Makefile was obtained, proceed as follows to obtain the release files:
 
