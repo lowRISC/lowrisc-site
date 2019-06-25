@@ -5,9 +5,9 @@ title = "lowRISC 0-5 milestone release"
 
 +++
 
-The [lowRISC 0.5 milestone release]({{< ref "docs/ethernet-v0.5/index.md" >}})
+The [lowRISC 0.5 milestone release]({{< ref "docs/ethernet-v0.5/_index.md" >}})
 is now available. The various changes are best described in our [accompanying
-documentation]({{< ref "docs/ethernet-v0.5/index.md" >}}), but the main focus 
+documentation]({{< ref "docs/ethernet-v0.5/_index.md" >}}), but the main focus 
 is the integration of open-source Ethernet IP. The tutorial demonstrates how 
 to use Ethernet support to boot with an NFS root, as well as with a rootfs on 
 SD card.

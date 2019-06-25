@@ -5,9 +5,9 @@ title = "lowRISC 0-4 milestone release"
 
 +++
 
-The [lowRISC 0.4 milestone release]({{< ref "docs/minion-v0.4/index.md" >}})
+The [lowRISC 0.4 milestone release]({{< ref "docs/minion-v0.4/_index.md" >}})
 is now available. The various changes are best described in our [accompanying
-documentation]({{< ref "docs/minion-v0.4/index.md" >}}), but in summary this
+documentation]({{< ref "docs/minion-v0.4/_index.md" >}}), but in summary this
 release:
 
 * Moves forward our support for tagged memory by re-integrating the tag cache,

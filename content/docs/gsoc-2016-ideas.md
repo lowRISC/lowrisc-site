@@ -167,7 +167,7 @@ feature, and modifying the underlying hardware to better support it).
 **Summary:** Introduce open-source IP for components such as UART, SPI, and 
 the memory controller.
 
-The current [untethered lowRISC release]({{< ref "docs/untether-v0.2/index.md" 
+The current [untethered lowRISC release]({{< ref "docs/untether-v0.2/_index.md" 
 >}}) makes use of Xilinx IP for its memory controller, SPI controller, and 
 UART. Replacing these with open-source IP from OpenCores or elsewhere would 
 allow customisation of the whole system, and may be a useful step towards 

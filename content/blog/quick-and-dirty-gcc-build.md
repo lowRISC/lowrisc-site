@@ -2,6 +2,7 @@
 Description = ""
 date = "2017-09-05T14:00:00+00:00"
 title = "Building upstream RISC-V GCC+binutils+newlib: the quick and dirty way"
+slug = "building-upstream-risc-v-gccbinutilsnewlib-the-quick-and-dirty-way"
 
 +++
 There are a number of available options for building a RISC-V GCC toolchain. 
@@ -29,7 +30,7 @@ build, but for a quick test you might find the following recipe useful:
     --disable-shared --disable-threads --disable-multilib --disable-gdb \
     --disable-libssp --with-newlib \
     --with-arch=rv32ima --with-abi=ilp32 --prefix=$(pwd)/built
-    make -j
+    make -j$(nproc)
     make install
 
 This will produce a newlib toolchain targeting RV32IMA in the `built/` 

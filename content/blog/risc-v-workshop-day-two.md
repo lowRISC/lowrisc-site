@@ -129,7 +129,7 @@ microarchitectural-states and ISA-level states.
 ## Towards General-Purpose Tagged Memory: Wei Song
 
 * Wei Song is presenting his [work on tagged memory support in 
-lowRISC](https://www.lowrisc.org/blog/2015/04/lowrisc-tagged-memory-preview-release/).  
+lowRISC](https://www.lowrisc.org/blog/2015/04/lowrisc-tagged-memory-preview-release/).
 I'll post the slides shortly.
 
 ## Raven3, a 28nm RISC-V Vector Processor with On-Chip DC/DC Convertors: Brian Zimmer

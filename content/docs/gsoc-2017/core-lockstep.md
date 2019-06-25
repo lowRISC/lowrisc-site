@@ -84,7 +84,7 @@ More information can be found
 Verilator was installed based on these 
 [instructions](https://www.veripool.org/projects/verilator/wiki/Installing), 
 as recommended by the lowRISC 
-[documentation](https://www.lowrisc.org/docs/untether-v0.2/verilator/). I used 
+[documentation](https://www.lowrisc.org/docs/untether-v0.2/verilator/). I used
 GTKWave for viewing the waveforms generated from verilator, installed using 
 `apt-get`. Verilator needed the following environment variables in order to 
 run:
@@ -209,9 +209,9 @@ machine.
 ## Minion SoC
 
 This section contains information for understanding the minion SoC. An 
-[overview](https://www.lowrisc.org/docs/minion-v0.4/overview/) on how the 
+[overview](https://www.lowrisc.org/docs/minion-v0.4/overview/) on how the
 minion connects with the rocket core and some complementary 
-[information](https://www.lowrisc.org/docs/minion-v0.4/minion/) about the SoC 
+[information](https://www.lowrisc.org/docs/minion-v0.4/minion/) about the SoC
 can be found in the lowRISC documentation.
 
 ### Project structure

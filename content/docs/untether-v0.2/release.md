@@ -34,10 +34,10 @@ showdisqus = true
    * Merge the latest (10-2015) cross-compiler updates from RISC-V.
    * Replace VCS with opensourced Verilator. [[RTL simulation]] ({{<ref "docs/untether-v0.2/vsim.md">}})
    * Rewrite all Makefile support.
- * Missing from this release vs the previous [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+ * Missing from this release vs the previous [**Version 0.1**: tagged memory (04/2015)]({{< ref "docs/tagged-memory-v0.1/_index.md" >}})
    * No tagged memory support (will be added back soon).
    * No support for ZedBoard.
 
 ### Previous releases
 
- * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/index.md" >}})
+ * [**Version 0.1**: tagged memory (04-2015)]({{< ref "docs/tagged-memory-v0.1/_index.md" >}})

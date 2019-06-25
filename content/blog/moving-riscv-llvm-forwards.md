@@ -11,7 +11,7 @@ blog post provides an update on the rapid progress we've been making towards
 that goal, outlines next steps and upcoming events, and tries to better 
 explain the approach that we're taking.
 As always, you 
-can track status [here](https://www.lowrisc.org/llvm/status/) and find the code 
+can track status [here](https://www.lowrisc.org/llvm/status/) and find the code
 [here](https://github.com/lowRISC/riscv-llvm).
 
 ## Status

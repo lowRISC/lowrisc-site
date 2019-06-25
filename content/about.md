@@ -33,13 +33,13 @@ If you want to get in touch, please email info@lowrisc.org
 
 ### Recent milestones
 
-**Jan 2018**: New lowRISC [code release]({{< ref "docs/ethernet-v0.5/index.md" 
+**Jan 2018**: New lowRISC [code release]({{< ref "/docs/ethernet-v0.5/_index.md" 
 >}}) focusing on the integration of open source Ethernet IP.
 
-**May 2017**: New lowRISC [code release]({{< ref "docs/minion-v0.4/index.md" 
+**May 2017**: New lowRISC [code release]({{< ref "/docs/minion-v0.4/_index.md" 
 >}}) brings back tagged memory with builtin support in Rocket core and has a minion driven SD.
 
-**July 2016**: New lowRISC [code release]({{< ref "docs/debug-v0.3/index.md" 
+**July 2016**: New lowRISC [code release]({{< ref "/docs/debug-v0.3/_index.md" 
 >}}) including support for trace debug.
 
 **June 2016**: Presented a brief [tutorial at 
@@ -55,7 +55,7 @@ for more information about their projects.
 [untethered](https://www.lowrisc.org/blog/2015/12/untethered-lowrisc-release/) 
 the Rocket SoC, which now runs standalone on the KC705 and Nexys4DDR FPGAs.
 This release also includes support for simulation using Verilator and is 
-accompanied by [extensive documentation]({{< ref "docs/untether-v0.2/index.md" 
+accompanied by [extensive documentation]({{< ref "/docs/untether-v0.2/_index.md" 
 >}}).
 
 

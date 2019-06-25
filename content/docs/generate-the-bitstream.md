@@ -85,12 +85,12 @@ You can proceed to compile the alternative boot programs/bare-metal programs
 
 Otherwise is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
 
-* [Configure DHCP] ({{< ref "docs/DHCP-configuration.md">}})
+* [Configure DHCP] ({{< ref "docs/dhcp-configuration.md">}})
 
 To compile, alternative programs:
 
     cd $TOP/fpga/board/nexys4_ddr
-    make target (where target is mmc, dram, hello etc.)
+    make target (where target is boot, dram, hello etc.)
 
 The generated bitstream is located at `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.new.bit`.
 First time through, this will take some time (20-60 minutes depending on your computer).
@@ -126,12 +126,12 @@ Open the Vivado GUI using the current project.
 #### `make bitstream`
 Generate the default bitstream according to the `CONFIG` in Makefile and the program loaded in `src/boot.mem`. The default bitstream is generated at `lowrisc-chip-imp/lowrisc-chip-imp.runs/impl_1/chip_top.bit`
 
-#### `make <hello|dram|eth|mmc>`
+#### `make <hello|dram|eth|boot>`
 Generate bitstreams for bare-metal tests:
 
  * **hello** A hello world program.
  * **dram** A DDR RAM test.
- * **mmc** A 1st bootloader that loads `boot.bin` from SD to DDR RAM and executes `boot.bin` afterwards.
+ * **boot** A 1st bootloader that loads `boot.bin` from SD to DDR RAM and executes `boot.bin` afterwards.
 
 For each bare-metal test `<test>`, the executable is generated to 
 `examples/<test>.riscv`. It is also converted into a hex

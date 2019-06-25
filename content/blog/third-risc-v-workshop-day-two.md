@@ -7,7 +7,7 @@ title = "Third RISC-V Workshop: Day Two"
 Today is the second day of the [third RISC-V 
 workshop](https://riscv.org/2015/12/prelim-agenda-3rd-risc-v-workshop/). Again, I'll be keeping a
 semi-live blog of talks and announcements throughout the day. See
-[here](https://www.lowrisc.org/blog/2016/01/third-risc-v-workshop-day-one) for 
+[here](https://www.lowrisc.org/blog/2016/01/third-risc-v-workshop-day-one) for
 notes from the first day.
 
 
