@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2019-06-30T13:00:00+00:00"
+date = "2018-01-11T13:00:00+00:00"
 title = "Release notes"
 parent = "/docs/ariane-v0.7/"
 showdisqus = true
