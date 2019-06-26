@@ -53,8 +53,8 @@ as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
 | X-windows |              |                  |              |               |                 |  | * |
 ### Contents
 
-  1. [Release notes] ({{<ref "docs/refresh-v0.6/release.md">}})
-     * [**Version 0.7**: Ariane lowRISC (06-2019)]({{< ref "docs/ariane-v0.7/release.md" >}})
+  1. [Release notes] ({{<ref "/docs/ariane-v0.7/release.md">}})
+     * [**Version 0.7**: Ariane lowRISC (06-2019)]({{< ref "/docs/ariane-v0.7/release.md" >}})
      * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "/docs/refresh-v0.6/release.md" >}})
      * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "/docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "/docs/minion-v0.4/release.md" >}})
