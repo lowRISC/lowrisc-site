@@ -3,8 +3,8 @@ Description = ""
 date = "2017-04-18T15:00:00+00:00"
 title = "lowRISC Minion internals"
 parent = "/docs/minion-v0.4/"
-prev = "/docs/minion-v0.4/index/"
-next = "/docs/minion-v0.4/index/"
+prev = "/docs/minion-v0.4/_index/"
+next = "/docs/minion-v0.4/_index/"
 showdisqus = true
 
 +++

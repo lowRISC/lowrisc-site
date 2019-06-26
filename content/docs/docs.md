@@ -1,6 +1,6 @@
 +++
 Description = ""
-date = "2015-04-14T13:26:41+01:00"
+date = "2019-06-24T00:00:00+01:00"
 title = "Documentation"
 
 +++
@@ -8,17 +8,17 @@ title = "Documentation"
 ## Introduction
 
 This page is an index to documentation for our 64-bit RISC-V SoC platform.
-We'll be refreshing with further pointers to documentation for our [other
-projects]({{< ref "our-work.md" >}}).
+We'll be refreshing with further pointers to documentation for our
+[other projects]({{< ref "/our-work" >}}).
 
 These SoC platform code releases and documentation have the aim of easing the path of new users and students,
 providing a robust tested platform for research into computer architecture,
 and conforming to a license model which is compatible with commercial research
 and development as well as IC manufacture. The current release is:
 
-* [lowRISC with run/step debugging via JTAG and GDB]({{< ref "docs/refresh-v0.6/_index.md" >}})
-<br>*Release version 0.6, released October 2018*
-<br>This release updates the Rocket IP to March 2018 and includes compressed instructions and JTAG debugging conforming to the RISCV Debug Specification with custom JTAG DTM (see [JTAG internals]({{< ref "docs/jtag.md" >}}) for details). The root filing system is updated to use the mostly upstreamed Debian repository and the peripheral data path widths are increased to 64-bits for better performance.
+* [lowRISC with Ariane SystemVerilog CPU and X-windows support]({{< ref "docs/ariane-v0.7/tutorial.md" >}})
+<br>*Release version 0.7, released June 2019*
+<br>This release supports the Rocket CPU from the refresh-v0.6 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
 
 [All releases are available here] ({{< ref "docs/lowrisc-releases.md">}})
 
@@ -26,12 +26,12 @@ and development as well as IC manufacture. The current release is:
 
 Here you can find selected software and hardware IP which works together to produce an (almost) fully open-source computer system, consisting of:
 
-* RISCV CPU written in the Chisel/Scala hardware description language
-* A variety of useful peripherals, UART, MMC/SD-Card controller, Ethernet(100BaseT), VGA compatible screen, keyboard
-* AXI compatible interface to proprietary DDR memory controller from Xilinx
-* Boot loader for MMC/SD-Cards, based on u-boot
-* Ethernet booter incorporating DHCP
-* RISCV-Linux, adapted with drivers to attach to the above peripherals
+* RISCV CPU, either Rocket written in the Chisel/Scala hardware description language, or Ariane written in System Verilog
+* A variety of useful peripherals, UART, MMC/SD-Card controller, Ethernet(100/1000BaseT), X-windows compatible screen
+* PC-Compatible keyboard, mouse (additional interfacing hardware required)
+* AXI compatible interface to proprietary DDR memory controller from Xilinx (included in Vivado)
+* Choice of three boot loaders (QSPI flash memory, MMC/SD-Card, tftp Ethernet)
+* RISCV-Linux kernel v5.1.3, supplemented with drivers to attach to the above peripherals
 * RISCV-Debian operating system
 
 ## Quick Start

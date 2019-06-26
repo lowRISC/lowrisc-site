@@ -3,8 +3,8 @@ Description = ""
 date = "2018-01-11T11:00:00+00:00"
 title = "lowRISC Refresh internals"
 parent = "/docs/refresh-v0.6/"
-prev = "/docs/refresh-v0.6/index/"
-next = "/docs/refresh-v0.6/index/"
+prev = "/docs/refresh-v0.6/_index"
+next = "/docs/refresh-v0.6/_index"
 showdisqus = true
 
 +++

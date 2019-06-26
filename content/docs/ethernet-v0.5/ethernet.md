@@ -3,8 +3,8 @@ Description = ""
 date = "2018-01-11T11:00:00+00:00"
 title = "lowRISC Ethernet internals"
 parent = "/docs/ethernet-v0.5/"
-prev = "/docs/ethernet-v0.5/index/"
-next = "/docs/ethernet-v0.5/index/"
+prev = "/docs/ethernet-v0.5/_index"
+next = "/docs/ethernet-v0.5/_index"
 showdisqus = true
 
 +++
