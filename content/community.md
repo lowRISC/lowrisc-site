@@ -51,7 +51,10 @@ This isn’t an exhaustive list of things that you can’t do. Rather, take it i
  ![illustrative icon](/img/people.png "people")
 
 # Getting started with lowRISC
-We really appreciate contributions of code or ideas to our software and hardware development efforts. Take a look at our mailing list and source repos.  If you’re looking for ideas on where to start, perhaps introduce yourself on the mailing list or group chat detailing your interests.
+We really appreciate contributions of code or ideas to our software and
+hardware development efforts. Take a look at our mailing list and source
+repos.  If you’re looking for ideas on where to start, perhaps introduce
+yourself on the mailing list or group chat detailing your interests.
 
 # For potential partners
 If you have a project you would like to discuss with us, or would like to support our work, get in touch with info@lowrisc.org
