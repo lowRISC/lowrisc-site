@@ -7,11 +7,12 @@ title = "Jobs"
 ## lowRISC is hiring
 lowRISC C.I.C. is a not-for-profit company that aims to demonstrate, promote and support the use of open-source hardware - bringing the benefits of open-source to the hardware world. We are producing high-quality, security-focused, open, and flexible IP.
 
-We are hiring for multiple positions to deliver on an exciting, high impact, open source hardware roadmap in collaboration with Google and other industry partners.
+We have an open call for applications to deliver on an exciting, high impact, open source hardware roadmap in collaboration with Google and other industry partners.  lowRISC welcomes speculative applications for [several example roles](https://lowrisc.applytojob.com/).
 
+We also have a general call for candidates whose skills and experience don't perfectly match any of the roles - if you could make a difference to the lowRISC mission, do [apply and explain how you could contribute in your cover letter](https://lowrisc.applytojob.com/apply/NHq7IqDaqL/Speculative-Applications-General).
 
   <div class="">
-    <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px; color: #fff;">Check out all our open roles</a>
+    <a href="https://lowrisc.applytojob.com/" class="button button-big button-red" style="margin-top: 15px; color: #fff;">Apply to join lowRISC</a>
   </div>
 
 This is a great time to join our growing team and be part of the open source silicon revolution. We’re based in [a friendly innovation space](https://www.ideaspace.cam.ac.uk/) in the beautiful city of Cambridge, UK, near the University of Cambridge’s [Department of Computer Science and Technology](http://www.cst.cam.ac.uk). Cambridge is home to a varied and lively tech cluster, arguably the most successful in Europe with more than 1,500 high-tech companies based in the area, employing more than 54,000 people.
