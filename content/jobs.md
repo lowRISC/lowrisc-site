@@ -7,7 +7,7 @@ title = "Jobs"
 ## lowRISC is hiring
 lowRISC C.I.C. is a not-for-profit company that aims to demonstrate, promote and support the use of open-source hardware - bringing the benefits of open-source to the hardware world. We are producing high-quality, security-focused, open, and flexible IP.
 
-We have an open call for applications to deliver on an exciting, high impact, open source hardware roadmap in collaboration with Google and other industry partners.  lowRISC welcomes speculative applications for [several example roles](https://lowrisc.applytojob.com/).
+We have an open call for applications to deliver on an exciting, high impact, open source hardware roadmap in collaboration with Google and other industry partners.  lowRISC welcomes speculative applications for [several example roles](https://lowrisc.applytojob.com/) which are assessed on a rolling basis.
 
 We also have a general call for candidates whose skills and experience don't perfectly match any of the roles - if you could make a difference to the lowRISC mission, do [apply and explain how you could contribute in your cover letter](https://lowrisc.applytojob.com/apply/NHq7IqDaqL/Speculative-Applications-General).
 
