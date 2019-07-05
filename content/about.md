@@ -99,8 +99,5 @@ lowRISC Community Interest Company is a non-profit, private company limited by g
 
   Registered office address: 4a Newmarket Road, Cambridge, CB5 8DT, UK
 
-
 # Contact us
   You can contact lowRISC at info@lowrisc.org
-
-  Please send any post to: lowRISC CIC, ideaSpace West, The Hauser Forum, 3 Charles Babbage Rd, Cambridge CB3 0GT
