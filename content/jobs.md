@@ -9,7 +9,7 @@ lowRISC C.I.C. is a not-for-profit company that aims to demonstrate, promote and
 
 We are currently growing our team to deliver on an exciting, high impact, open source hardware roadmap in collaboration with Google and other industry partners.
 
-You can get a sense of some of our activities from [the lowRISC GitHub repo](https://github.com/lowRISC), and our open source RISC-V core [Ibex](https://github.com/lowRISC/ibex) is in active development. Our mission is to make open hardware a reality at scale, and that means making pragmatic choices in what we do. Some of our work is embargoed for now. This enables us to host high potential projects which advance our mission. All our engineering work will be open source later. 
+You can get a sense of some of our activities from [the lowRISC GitHub repo](https://github.com/lowRISC), and our open source RISC-V core [Ibex](https://github.com/lowRISC/ibex) is in active development. Our mission is to make open hardware a reality at scale, and that means making pragmatic choices in what we do. Some of our work is embargoed for now. This enables us to host high potential projects which advance our mission. All our engineering work will be open source later.
 
 All our open roles are [listed here](https://lowrisc.applytojob.com/) for online applications.
 
