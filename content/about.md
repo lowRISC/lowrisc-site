@@ -31,6 +31,7 @@ The lowRISC CIC board consists of:
  * Luís Marques
  * Pirmin Vogel
  * Philipp Wagner
+ * Sam Elliott
  * …and soon more - [we’re hiring](https://www.lowrisc.org/jobs/)
 
  ![lowRISC team photo](/img/team.jpg "lowRISC team")
