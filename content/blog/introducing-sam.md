@@ -60,9 +60,9 @@ RISC-V and quickly get started on the platform."
 
 ----
 
-We're thrilled to have Sam join the lowRISC team and if you'd like
-to be part of the open source silicon revolution, we presently have a number
-of openings and I'd encourage you to take a look at the [jobs page]({{< ref
-"jobs.md" >}}).
+We're excited to have Sam join our team and help further accelerate our
+toolchain and LLVM-related efforts. If you're interested in joining us on our
+mission, check out our [jobs page]({{< ref "jobs.md" >}}) for details on
+positions we are looking to fill.
 
 _Alex Bradbury, CTO and Co-Founder_
