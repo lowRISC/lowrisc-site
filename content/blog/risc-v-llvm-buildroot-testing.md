@@ -15,9 +15,9 @@ current status of experimental to an official target. This post explains how
 our testing strategy has evolved as the compiler matured.
 
 **TL;DR**: we now successfully compile more than 90% of the 2000+ Linux packages
-built by the buildroot tool. The remaining packages mostly fail due to relying
-on GCC-specific C constructs and configurations, and not due to anything
-fundamental related to the new backend.
+built by the [buildroot](https://buildroot.org/) tool. The remaining packages
+mostly fail due to relying on GCC-specific C constructs and configurations,
+and not due to anything fundamental related to the new backend.
 
 During the initial development of the backend our testing approach consisted
 mostly of unit tests. As each feature was implemented corresponding unit tests
@@ -67,8 +67,8 @@ From within QEMU we saw that we could login into the system and use it
 normally, including making HTTP requests served by nginx.
 
 In the terminal session below you can see me booting a clang-built rootfs
-(everything other than the kernel and glibc is built by Clang) in qemu, and
-browsing the web using links:
+(everything other than the kernel, opensbi, and glibc is built by Clang) in
+qemu, and browsing the web using links:
 
 <script id="asciicast-9Cde6gZq8KljgZD50BhLFSms6" src="https://asciinema.org/a/9Cde6gZq8KljgZD50BhLFSms6.js" async></script>
 
