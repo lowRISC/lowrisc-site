@@ -62,4 +62,3 @@ produce and maintain. On the community side, it means connecting software and
 hardware people and open and inclusive working practices. We are also
 developing governance and collaboration processes which involve the diverse
 partners essential to make open silicon a reality.
-

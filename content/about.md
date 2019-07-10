@@ -32,7 +32,7 @@ The lowRISC CIC board consists of:
  * Pirmin Vogel
  * Philipp Wagner
  * Sam Elliott
- * …and soon more - [we’re hiring](https://www.lowrisc.org/jobs/)
+ * …and soon more! Plus [we’re hiring](https://www.lowrisc.org/jobs/)
 
  ![lowRISC team photo](/img/team.jpg "lowRISC team")
 
@@ -79,7 +79,7 @@ We still work closely with the University of Cambridge, as well as other academi
    ![illustrative icon](/img/network.png "network")
 
 # lowRISC C.I.C.
-lowRISC Community Interest Company is a non-profit, private company limited by guarantee, registered in England and Wales with Company number 09272283.
+lowRISC Community Interest Company is a not-for-profit, private company limited by guarantee, registered in England and Wales with Company number 09272283.
 
 ### What’s a CIC?
   A community interest company (CIC) is a type of company, designed for social enterprises
@@ -92,7 +92,7 @@ lowRISC Community Interest Company is a non-profit, private company limited by g
   lowRISC CIC undertakes collaborative engineering to develop and maintain open source silicon designs and tools. We’re funded by companies and others who want to support this activity, often targeted at particular projects, and we use any surplus resource to support our wider goals and community. We take on contract work, partner projects resourced through a mix of funds and shared engineering effort, and also receive support from grants and donors.
 
 ### Bigger than the sum of our parts
-  We're never going to have a team of 500 engineers, but our model and approach allows us to have significant impact. We work with engineering teams at other companies, researchers, and the wider community to accelerate our projects. We always look for opportunities to fix blocking problems and accelerate development.
+  Our model and approach allows us to have significant impact, regardless of our team size. We work with engineering teams at other companies, researchers, and the wider community to accelerate our projects. We always look for opportunities to fix blocking problems and accelerate development.
 
 ### Incorporation information
 
