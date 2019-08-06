@@ -29,6 +29,7 @@ The lowRISC CIC board consists of:
  * Alex Bradbury
  * Laura James
  * Luís Marques
+ * Tom Roberts
  * Pirmin Vogel
  * Philipp Wagner
  * Sam Elliott
@@ -104,4 +105,4 @@ lowRISC Community Interest Company is a not-for-profit, private company limited 
 # Contact us
   You can contact lowRISC at info@lowrisc.org
 
-  Please send any post to: lowRISC CIC, ideaSpace West, The Hauser Forum, 3 Charles Babbage Rd, Cambridge CB3 0GT
+  Please send any post to: lowRISC CIC, c/o Repositive, Betjeman House, 104 Hills Road, Cambridge, CB2 1LQ, UK
