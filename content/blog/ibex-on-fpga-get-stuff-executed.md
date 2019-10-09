@@ -48,7 +48,7 @@ with suitable compilers, libraries and even example applications. This complete
 ecosystem makes PULPissimo a useful starting point for your own project and
 explorations. 
 
-Besides re-integrating Ibex into PULPissimo we also created new FPGA port for
+Besides re-integrating Ibex into PULPissimo we also created a new FPGA port for
 the latest version (Commit ID d37549e). PULPissimo can now be instantiated on
 the Digilent Nexys Video Artix-7 FPGA board. This board is equipped with a
 XC7A200T device - the largest Artix-7 FPGA supported by the free Vivado WebPACK
@@ -74,7 +74,7 @@ the PULP team!
 ## What’s next?
 
 We continue our efforts on making Ibex more robust and extending functionality.
-We recently added support for Physical Memory Protection U-mode support. This
+We recently added support for Physical Memory Protection and U-mode. This
 will make Ibex a good candidate for porting embedded and real-time operating
 systems.
 
