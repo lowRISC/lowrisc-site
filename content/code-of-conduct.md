@@ -1,5 +1,5 @@
 +++
-date = "2019-05-15T13:40:22Z"
+date = "2019-11-01T13:40:22Z"
 title = "Code of Conduct"
 
 +++
@@ -17,16 +17,16 @@ The lowRISC community has always worked to be a welcoming and respectful communi
 
 This isn’t an exhaustive list of things that you can’t do. Rather, take it in the spirit in which it’s intended - a guide to make it easier to communicate and participate in the community.
 
-This code of conduct applies to all spaces managed by lowRISC or lowRISC CIC. This includes IRC and other chat channels, mailing lists, bug trackers, events such as workshops or socials, and any other forums created by lowRISC that the community uses for communication. It applies to all of your communication and conduct in these spaces, including emails, chats, things you say, slides, videos, posters, signs, or even t-shirts you display in these spaces. In addition, violations of this code outside these spaces may, in rare cases, affect a person’s ability to participate within them, when the conduct amounts to an egregious violation of this code.
+This code of conduct applies to all spaces managed by lowRISC or lowRISC CIC. This includes Zulip, IRC and other chat channels, mailing lists, bug trackers, events such as workshops or socials, and any other forums created by lowRISC that the community uses for communication. It applies to all of your communication and conduct in these spaces, including emails, chats, things you say, slides, videos, posters, signs, avatars, emojis, or even t-shirts you display in these spaces. In addition, violations of this code outside these spaces may, in rare cases, affect a person’s ability to participate within them, when the conduct amounts to an egregious violation of this code.
 
 If you believe someone is violating the code of conduct, we ask that you report it by emailing conduct@lowrisc.org. For more details please see our Reporting Guide below.
 
 * **Be friendly and patient.**
 * **Be welcoming.**
 We strive to be a community that welcomes and supports people of all backgrounds and identities. This includes, but is not limited to members of any race, ethnicity, culture, national origin, colour, immigration status, social and economic class, educational level, sex, sexual orientation, gender identity and expression, age, size, family status, political belief, religion or lack thereof, and mental and physical ability.
-* **Be considerate.** Your work will be used by other people, and you in turn will depend on the work of others. Any decision you take will affect users and colleagues, and you should take those consequences into account. Remember that we’re a world-wide community, so you might not be communicating in someone else’s primary language.
-* **Be respectful.** Not all of us will agree all the time, but disagreement is no excuse for poor behavior and poor manners. We might all experience some frustration now and then, but we cannot allow that frustration to turn into a personal attack. It’s important to remember that a community where people feel uncomfortable or threatened is not a productive one. Members of the lowRISC community should be respectful when dealing with other members as well as with people outside the lowRISC community.
-* **Be careful in the words that you choose and be kind to others.** Do not insult or put down other participants. Harassment and other exclusionary behavior aren’t acceptable.  In general, if someone asks you to stop, then stop. Persisting in such behavior after being asked to stop is considered harassment.
+* **Be considerate.** Your work will be used by other people, and you in turn will depend on the work of others. Any decision you take will affect users and colleagues, and you should take those consequences into account. Remember that we’re a world-wide community, so you might not be communicating in someone else’s primary language. Many of our community members are here as part of their work, and content (words, images, videos) you share should be appropriate for professional workplaces, including in Europe, North America and other cultures.
+* **Be respectful.** Not all of us will agree all the time, but disagreement is no excuse for poor behaviour and poor manners. We might all experience some frustration now and then, but we cannot allow that frustration to turn into a personal attack. It’s important to remember that a community where people feel uncomfortable or threatened is not a productive one. Members of the lowRISC community should be respectful when dealing with other members as well as with people outside the lowRISC community.
+* **Be careful in the words and images that you choose and be kind to others.** Do not insult or put down other participants. Harassment and other exclusionary behaviour aren’t acceptable.  In general, if someone asks you to stop, then stop. Persisting in such behaviour after being asked to stop is considered harassment.
 This includes, but is not limited to:
   * Violent threats or language directed against another person.
   * Discriminatory jokes and language.
@@ -34,7 +34,7 @@ This includes, but is not limited to:
   * Posting (or threatening to post) other people’s personally identifying information (“doxing”).
   * Personal insults, especially those using racist or sexist terms.
   * Unwelcome sexual attention.
-  * Advocating for, or encouraging, any of the above behavior.
+  * Advocating for, or encouraging, any of the above behaviour.
 * **When we disagree, try to understand why.** Disagreements, both social and technical, happen all the time and lowRISC is no exception. It is important that we resolve disagreements and differing views constructively. Remember that we’re different. The strength of lowRISC comes from its varied community, people from a wide range of backgrounds. Different people have different perspectives on issues. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human to err and blaming each other doesn’t get us anywhere. Instead, focus on helping to resolve issues and learning from mistakes.
 
 ### Questions?
@@ -45,7 +45,7 @@ If you believe someone is violating the code of conduct you can always report it
 
 If you believe anyone is in physical danger, please notify appropriate law enforcement first. If you are unsure what law enforcement agency is appropriate, please include this in your report and we will attempt to notify them.
 
-If the violation occurs at an event such as a conference or workshop and requires immediate attention, you can also reach out to any of the event organizers or staff. Event organizers and staff will be prepared to handle the incident and able to help. If you cannot find one of the organizers, the venue staff can locate one for you. We will also post detailed contact information for specific events as part of each events’ information. In person reports will still be kept confidential exactly as above, but also feel free to (anonymously if needed) email conduct@lowRISC.org.
+If the violation occurs at an event such as a conference or workshop and requires immediate attention, you can also reach out to any of the event organisers or staff. Event organisers and staff will be prepared to handle the incident and able to help. If you cannot find one of the organisers, the venue staff can locate one for you. We will also post detailed contact information for specific events as part of each events’ information. In person reports will still be kept confidential exactly as above, but also feel free to (anonymously if needed) email conduct@lowRISC.org.
 
 ### Filing a report
 Reports can be as formal or informal as needed for the situation at hand. If possible, please include as much information as you can. If you feel comfortable, please consider including:
