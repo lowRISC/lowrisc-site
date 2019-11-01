@@ -108,7 +108,7 @@
         </label>
 
         <ul id="tab-content2" class="tab-content">
-          {{ range first 3 (where .Data.Pages "Type" "blog") }}
+          {{ range first 3 (where .Site.RegularPages "Type" "blog") }}
           <li>
             {{ .Render "summary"}}
           </li>
