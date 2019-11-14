@@ -17,7 +17,7 @@ and conforming to a license model which is compatible with commercial research
 and development as well as IC manufacture. The current release is:
 
 * [lowRISC with Ariane SystemVerilog CPU and X-windows support]({{< ref "docs/ariane-v0.7/tutorial.md" >}})
-<br>*Release version 0.7, released June 2019*
+<br>*Release version 0.7, released November 2019*
 <br>This release supports the Rocket CPU from the refresh-v0.6 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
 
 [All releases are available here] ({{< ref "docs/lowrisc-releases.md">}})

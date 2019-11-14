@@ -6,14 +6,17 @@ showdisqus = true
 
 +++
 
-### Introduction of the RISC-V cross-compilation tools
+### Introduction to the RISC-V cross-compilation tools
 
-A number of cross-compilation tools are provided in the $TOP/riscv-tools directory:
+A number of cross-compilation tools are provided in the riscv-gnu-toolchain directory:
 
- * `riscv-fesvr`: The front-end server that serves system calls on the host machine.
- * `riscv-gnu-toolchain`: The GNU GCC cross-compiler for RISC-V ISA.
- * `riscv-isa-sim`: The RISC-V ISA simulator ([Spike](https://github.com/riscv/riscv-isa-sim#risc-v-isa-simulator))
- * `riscv-pk`: The proxy kernel that serves system calls on target machine.
+ * `qemu`: The RISCV emulator
+ * `riscv-binutils`: The binary utilities
+ * `riscv-dejagnu`: The testing framework
+ * `riscv-gcc`: The core C compiler
+ * `riscv-gdb`: The GNU debugger
+ * `riscv-glibc`: The Posix standard C library
+ * `riscv-newlib`: The bare-metal standard C library
 
 There are four ways to test a program:
 

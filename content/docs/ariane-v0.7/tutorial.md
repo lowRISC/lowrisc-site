@@ -6,7 +6,7 @@ showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt (lead hardware developer), and Alex Bradbury (lead software developer)_ (also see acknowledgements below)
+_By Jonathan Kimmitt (lead developer), and Alex Bradbury (lead reviewer)_ (also see acknowledgements below)
 
 **Release version 0.7** (06-2019)
 
@@ -78,10 +78,10 @@ as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
 * Furkan Turan provided the Zedboard patches
 * Philipp Jantscher did the initial tagged memory port to debug-v0.3
 * The Ethernet transceiver library is due to Alex Forencich (http://alexforencich.com/wiki/en/verilog/ethernet/readme). The preview version was translated from VHDL written by Philipp Kerling (https://github.com/pkerling/ethernet_mac)
-* Palmer Dabbelt maintained the Linux kernel port to RISCV
-* Andrew Waterman and a large team at SiFive developed the Rocket CPU
+* Palmer Dabbelt maintains the Linux kernel port to RISCV
+* Andrew Waterman and a large team now at SiFive developed the Rocket CPU
 * Manuel Montecelo, Karsten Merker and Aurelien Jarno developed the Debian port to RISCV (https://wiki.debian.org/RISC-V#Creating_a_riscv64_chroot_from_a_merged_repository_with_debootstrap) and all assisted with debugging the bootstrap procedure on LowRISC.
-* Rick Chen and the u-boot team provided the basis of the first stage MMC/SD boot loader
+* Ang Li of Princeton University (angl@princeton.edu) provided the new SD-Card block interface hardware
 * Florian Zaruba and the pulp-platform team at ETH Zurich developed and released the Ariane SystemVerilog core
 
 ### Other useful sources of information
