@@ -2,7 +2,7 @@
 Description = ""
 date = "2015-12-17T17:00:00+00:00"
 title = "Install Xilinx Vivado"
-parent = "/docs/refresh-v0.6"
+parent = "/docs/ariane-v0.7"
 showdisqus = true
 
 +++

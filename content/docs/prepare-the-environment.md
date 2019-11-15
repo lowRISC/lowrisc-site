@@ -2,7 +2,7 @@
 Description = ""
 date = "2018-01-11T13:00:00+00:00"
 title = "Prepare the environment"
-parent = "/docs/refresh-v0.6/"
+parent = "/docs/ariane-v0.7/"
 showdisqus = true
 
 +++

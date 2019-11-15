@@ -18,7 +18,7 @@ and development as well as IC manufacture. The current release is:
 
 * [lowRISC with Ariane SystemVerilog CPU and X-windows support]({{< ref "docs/ariane-v0.7/tutorial.md" >}})
 <br>*Release version 0.7, released November 2019*
-<br>This release supports the Rocket CPU from the refresh-v0.6 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
+<br>This release supports the Rocket CPU from the ariane-v0.7 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
 
 [All releases are available here] ({{< ref "docs/lowrisc-releases.md">}})
 
@@ -33,12 +33,6 @@ Here you can find selected software and hardware IP which works together to prod
 * Choice of three boot loaders (QSPI flash memory, MMC/SD-Card, tftp Ethernet)
 * RISCV-Linux kernel v5.1.3, supplemented with drivers to attach to the above peripherals
 * RISCV-Debian operating system
-
-## Quick Start
-
-As the source distribution is large, effort has been put into to making an easy-to-use quickstart procedure. This procedure does not require a huge amount of prior knowledge.
-
-* [Getting started with binary releases] ({{< ref "docs/getting-started.md">}})
 
 ### Getting started breakdown
 

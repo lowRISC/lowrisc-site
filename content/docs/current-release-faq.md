@@ -35,7 +35,7 @@ The first stage boot loader (FSBL) included with LowRISC does not provide a conv
 
 ### What about support for other boards and RISCV processors ?
 
-The KC705 support has not been maintained since the v0.3 release. However it is interesting because it allows for more expansion space, the possibility of dual core symmetric processing, and out-of-order cores such as BOOM (Berkeley out of order machine). Support for this board has not been merged with the refresh-v0.6, however development is ongoing on the kc705_mii branch.
+The KC705 support has not been maintained since the v0.3 release. However it is interesting because it allows for more expansion space, the possibility of dual core symmetric processing, and out-of-order cores such as BOOM (Berkeley out of order machine). Support for this board has not been merged with the ariane-v0.7, however development is ongoing on the kc705_mii branch.
 
 The ArtyA7-A100 is a recently released and reduced cost board from Digilent that has the same FPGA and twice the memory of the Nexys4DDR. It uses DDR3 instead of DDR2. However it requires a separate PMOD (potentially with reduced signal integrity), in order to support SD-Cards. The Ethernet PHY is a different type and development is taking place on the artya7_mii branch.
 

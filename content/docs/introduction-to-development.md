@@ -2,8 +2,8 @@
 Description = ""
 date = "2015-04-14T13:26:41+01:00"
 title = "Introduction to Development"
-parent = "/docs/refresh-v0.6/"
-next = "/docs/refresh-v0.6/overview/"
+parent = "/docs/ariane-v0.7/"
+next = "/docs/ariane-v0.7/overview/"
 showdisqus = true
 
 +++

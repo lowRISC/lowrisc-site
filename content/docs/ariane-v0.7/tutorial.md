@@ -60,18 +60,16 @@ The Nexys4-DDR has now been replaced by the
 
   1. [Release notes] ({{<ref "/docs/ariane-v0.7/release.md">}})
      * [**Version 0.7**: Ariane lowRISC (06-2019)]({{< ref "/docs/ariane-v0.7/release.md" >}})
-     * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "/docs/refresh-v0.6/release.md" >}})
+     * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "/docs/ariane-v0.7/release.md" >}})
      * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "/docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "/docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "/docs/debug-v0.3/_index.md" >}})
      * [**Version 0.2**: untethered lowRISC (12-2015)]({{< ref "/docs/untether-v0.2/_index.md" >}})
      * [**Version 0.1**: tagged memory (04-2015)]({{< ref "/docs/tagged-memory-v0.1/_index.md" >}})
 
-  2. [Getting started with binary releases] ({{< ref "/docs/getting-started.md">}})
+  2. [Index of development documentation]  ({{< ref "/docs/docs.md">}})
 
-  3. [Index of development documentation]  ({{< ref "/docs/docs.md">}})
-
-  4. [Frequently asked questions]  ({{< ref "/docs/frequently-asked-questions.md">}})
+  3. [Frequently asked questions]  ({{< ref "/docs/frequently-asked-questions.md">}})
   
 ### Work planned / In progress / TO DO
 * Implementing multi-block writes in the hardware accelerator.

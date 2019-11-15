@@ -1,16 +1,16 @@
 +++
 Description = ""
 date = "2018-11-12T09:50:00+00:00"
-title = "lowRISC 0-6 milestone release"
+title = "lowRISC 0-7 milestone release"
 
 +++
 
-The [lowRISC 0.6 milestone release]({{< ref "docs/refresh-v0.6/_index.md" >}})
+The [lowRISC 0.7 milestone release]({{< ref "docs/ariane-v0.7/tutorial.md" >}})
 is now available. This release includes an updated version of the Rocket 
 RISC-V core, a higher core clock frequency, JTAG debugging support, Ethernet 
 improvements, and more. See the [release notes]({{< ref 
-"docs/refresh-v0.6/_index.md" >}}), for full details. We've also taken the 
-opportunity to re-organise our [documentation]({{< ref "docs/refresh-v0.6/_index.md" >}}), 
+"docs/ariane-v0.7/tutorial.md" >}}), for full details. We've also taken the 
+opportunity to re-organise our [documentation]({{< ref "docs/ariane-v0.7/tutorial.md" >}}), 
 adding an easy to follow quick-start guide.
 
 Our next development focus is to add support for dropping in the [Ariane 
