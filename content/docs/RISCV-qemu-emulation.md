@@ -11,9 +11,7 @@ will execute RISC-V binaries, and intercept Linux syscalls to be handled by
 the host OS). This is in contrast to QEMU's full system emulation mode, which 
 provides emulation devices and requires you to boot a native operating system.
 
-    cd $TOP/qemu
-    ./configure --static --disable-system --target-list=riscv64-linux-user
-    make
+    make -C debian-riscv64 qemu
 
 Next recommended step below:
 

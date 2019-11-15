@@ -10,33 +10,37 @@ showdisqus = true
 ### Release notes
 
  * Rocket-core (Chisel)
-   * Core unchanged from refresh-v0.6 release, JTAG debug uses separate channel to avoid Vivado conflicts
+   * Core unchanged from previous release.
 
- * Ariane-core (SystemVerilog)
-   * Wrapped with replacement UNIX platform components to emulate Rocket Coreplex
-   * 10-15% larger and slower than Rocket
-   * Preliminary release
+ * Preliminary Ariane-core support (SystemVerilog)
+   * Wrapped with replacement UNIX platform components to emulate Rocket Coreplex.
+   * 10-15% larger and slower than Rocket. Does not boot X-Windows.
    
  * Software environment
-   * Ethernet boot loader supports TFTP (trivial file transfer protocol) and is standards compliant
-   * SD-Card boot loader skips over debug ELF segments
-   * QSPI boot loader supports OEM Ethernet MAC address on Genesys2 allows for future diskless operation
-   * Linux kernel updated to 5.1.3
-
+   * Ethernet boot loader supports TFTP (trivial file transfer protocol) and is standards compliant.
+   * SD-Card boot loader skips over debug ELF segments.
+   * QSPI boot loader supports rescue kernel and OEM Ethernet MAC address on Genesys2.
+   * JTAG debug Xilinx custom chain number support merged upstream.
+   * riscv-gcc and riscv-gdb updated to latest upstream version.
+   * Linux kernel updated to 5.3.8. LowRISC device driver patches updated locally.
+   * RISCV-pk support for ns16750 compatible UART merged upstream. No local modifications needed.
+   * Debian installer supported at alpha status.
+   * Linux frame buffer driver integrated in kernel, no X-windows binary modifications required.
+   
  * lowRISC system-on-chip
    * Integrated PS/2 mouse driver (power supply voltage modification required)
-   * VGA graphics colour screen
-   * 16550 compatible UART
+   * VGA graphics colour screen 640x480x8 bit depth
+   * Genesys2 supports 1000BaseT Ethernet with compatible infrastructure.
+   * SD-Card block driver layer in hardware from the open-piton project.
+   * 16750 compatible UART from the Ariane project (VHDL and Verilog provided)
    
  * Design environment
    * Updated Vivado synthesis and release to version 2018.2
    * NEXYS4-DDR FPGA and Genesys2 FPGA boards supported.
-   * Rocket and Ariane supported in the same system-on-chip
+   * Rocket and Ariane supported in the same socket in the system-on-chip
    * Streamlined build more easily meets design constraints.
+   * Most toolchain stages automated in a top-level Makefile.
    
- * Missing from this release vs the previous
-   * Jtag debugging requires separate PMOD device on Nexys4DDR
-
 ### Previous releases
 
  * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "/docs/refresh-v0.6/release.md" >}})

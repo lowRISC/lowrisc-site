@@ -10,6 +10,8 @@ showdisqus = true
 <a name="figure-overview"></a>
 <img src="/img/screenshot3.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
 
+_The lowRISC Rocket system running X-windows with an xterm running vim showing the boot loader Ethernet handling code highlighted, load average, clock display and xfishtank in the background on a 640x512 screen with 8-bit pseudo-colour._
+
 ## Pre-defined Design constraints
 
 Our goal of supporting the same FPGA board as the previous release

@@ -9,14 +9,15 @@ showdisqus = true
 
 +++
 
-This lowRISC release introduces refresh debugging and compressed instructions, allowing upstream debian Linux distribution to be used.
+This lowRISC release supports JTAG debugging and compressed instructions, allowing upstream debian Linux distribution to be used.
 
 ## RTL changes
 
-The JTAG uses Xilinx built-in instruction register of 6 bits and available user data registers.
+The JTAG interface uses Xilinx built-in instruction register of 6 bits and available user data registers.
 These data register numbers deviate from the RISC-V specification but otherwise conforms to the Berkeley Rocket standard.
 This deviation eliminates the requirement for separate hardware to implement the debug interface and keeps costs low,
-allowing the same board (Nexys4DDR) as previously to be used.
+allowing the same board (Nexys4DDR) as previously to be used. It cannot be used at the same time as Vivado.
+
 The impact on the Chisel is restricted to a small part which invokes BSCANE2 as a primitive.
 
 | Function              | _Berkeley Rocket_ | _LowRISC Rocket_ |

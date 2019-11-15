@@ -6,7 +6,7 @@ showdisqus = true
 
 +++
 
-_By Jonathan Kimmitt (lead developer), and Alex Bradbury (lead reviewer)_ (also see acknowledgements below)
+_By [Jonathan Kimmitt]({{< ref "/docs/jonathankimmitt.md" >}}) (lead developer), and Alex Bradbury (lead reviewer)_ (also see acknowledgements below)
 
 **Release version 0.7** (06-2019)
 
@@ -23,7 +23,7 @@ This tutorial adds further functionality towards the final SoC design:
 
 * Graphical Colour Console with X-windows support incorporating mouse and keyboard events.
 * Choice of SD-Card, Quad-SPI or Ethernet TFTP boot-loader with DHCP support.
-* Linux 5.1.3 RISCV kernel and updated Debian userland with advanced package tool.
+* Linux 5.3.8 RISCV kernel and updated Debian userland with advanced package tool.
 * Choice of RV64-GC Rocket (Chisel) or Ariane (SystemVerilog) CPU
 
 The build environment and pre-built images support a competitively priced
@@ -31,6 +31,10 @@ The build environment and pre-built images support a competitively priced
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/),
 as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
 (https://store.digilentinc.com/genesys-2-kintex-7-fpga-development-board/).
+
+The Nexys4-DDR has now been replaced by the
+[Nexys A7-100T](https://store.digilentinc.com/nexys-a7-fpga-trainer-board-recommended-for-ece-curriculum/) on Digilent's website.
+
 
 | Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ | _Ethernet-v0.5_ | _Refresh-v0.6_     | _Ariane-v0.7_     |
 | --------------        | :----------:   | :--------------:  | :----------: | :-----------: | :-------------: | :-------------: | :-------------: |
@@ -51,6 +55,7 @@ as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
 | Ariane SystemVerilog CPU |              |                  |              |               |                 |  | * |
 | frame buffer /dev/fb0 |              |                  |              |               |                 |  | * |
 | X-windows |              |                  |              |               |                 |  | * |
+| SD-Card block layer accelerator |              |                  |              |               |                 |  | * |
 ### Contents
 
   1. [Release notes] ({{<ref "/docs/ariane-v0.7/release.md">}})
@@ -69,8 +74,9 @@ as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
   4. [Frequently asked questions]  ({{< ref "/docs/frequently-asked-questions.md">}})
   
 ### Work planned / In progress / TO DO
-* Optimising card transfer speed / Implementing multi-block transfers.
-* Offloading SD-card acceleration and Video scrolling to Minion.
+* Implementing multi-block writes in the hardware accelerator.
+* Eliminating any discrepancies between Rocket and Ariane behaviour.
+* Expanding the available graphics resolution using DDR memory backing store.
 
 ### Acknowledgements
 * Wei Song was lead hardware developer up to v0.4
@@ -82,7 +88,9 @@ as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
 * Andrew Waterman and a large team now at SiFive developed the Rocket CPU
 * Manuel Montecelo, Karsten Merker and Aurelien Jarno developed the Debian port to RISCV (https://wiki.debian.org/RISC-V#Creating_a_riscv64_chroot_from_a_merged_repository_with_debootstrap) and all assisted with debugging the bootstrap procedure on LowRISC.
 * Ang Li of Princeton University (angl@princeton.edu) provided the new SD-Card block interface hardware
-* Florian Zaruba and the pulp-platform team at ETH Zurich developed and released the Ariane SystemVerilog core
+* Florian Zaruba and the pulp-platform team at ETH Zurich developed and released the Ariane System-Verilog core
+* The QPSI peripheral was adapted from a design written by Ilia Sergachev.
+* The riscv set_ir command to set IR value for JTAG registers was contributed by Darius Rad <darius@bluespec.com>
 
 ### Other useful sources of information
 
