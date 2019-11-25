@@ -51,12 +51,8 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Build the Linux Kernel] ({{< ref "docs/linux-kernel-build.md">}})
 * [Build the Berkeley boot loader (BBL)] ({{< ref "docs/build-berkeley-boot-loader.md">}})
 * [Initiate Remote Booting] ({{< ref "docs/boot-remote.md">}})
+* [Booting the kernel from QSPI memory] ({{< ref "docs/boot-qspi.md">}})
+* [Preparing to launch X-windows] ({{< ref "docs/launch-xwindows.md">}})
 * [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
 * [Booting a customised NFS system] ({{< ref "docs/boot-customised-nfs.md">}})
 * [Frequently asked questions for this release]  ({{< ref "docs/current-release-faq.md">}})
-
-### Other content
-
-Our [first memo](
-{{< ref "docs/memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
-vision for tagged memory and minion cores in lowRISC.
