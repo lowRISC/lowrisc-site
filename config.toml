@@ -35,7 +35,7 @@ blog="/blog/:year/:month/:slug"
 [[menu.main]]
     name = "Docs"
     identifier = "docs"
-    url = "/docs/lowrisc-releases"
+    url = "/docs/docs"
     weight = 5
 
 [[menu.main]]
