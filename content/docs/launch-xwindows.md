@@ -27,7 +27,12 @@ There should be no special reason to modify this file in the hardware configurat
 obvious there needs to be a mouse device, and a core keyboard which generates X-events as opposed to ASCII that a remote
 serial connection would generate. The LowRISC team recommends that a Bluetooth mouse and keyboard should be used though other
 obsolescent options are possible (for example the PS/2 over USB keyboard that the previous release supported, and/or a PS/2 mouse
-which unfortunately requires 5V power and the PMOD PS/2 adaptor only supplies 3.3V)
+which unfortunately requires 5V power and the PMOD PS/2 adaptor only supplies 3.3V). To use this support, check out revision 601c4db411b44eb8c3f3ac1ffa0e32b8f60c4448 of the lowrisc-chip repository hot-wire the 5V supply as shown below:
+
+<a name="PS/2 mouse hot wiring"></a>
+<img src="/img/ps2mouse.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
+
+## Configuration section
 
     Section "ServerFlags"
             Option "AutoAddDevices" "false"
