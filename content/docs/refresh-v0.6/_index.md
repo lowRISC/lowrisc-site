@@ -52,8 +52,8 @@ The build environment and pre-built images support the same platform as the prev
 
 ### Contents
 
-  1. [Release notes] ({{<ref "docs/refresh-v0.6/release.md">}})
-     * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "docs/refresh-v0.6/release.md" >}})
+  1. [Release notes] ({{<ref "docs/ariane-v0.7/release.md">}})
+     * [**Version 0.6**: technical refresh lowRISC (06-2018)]({{< ref "docs/ariane-v0.7/release.md" >}})
      * [**Version 0.5**: ethernet multiuser lowRISC (12-2017)]({{< ref "docs/ethernet-v0.5/release.md" >}})
      * [**Version 0.4**: minion tag cache lowRISC (6-2017)]({{< ref "docs/minion-v0.4/release.md" >}})
      * [**Version 0.3**: trace debugger lowRISC (7-2016)]({{< ref "docs/debug-v0.3/_index.md" >}})

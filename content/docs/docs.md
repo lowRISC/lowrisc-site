@@ -17,8 +17,8 @@ and conforming to a license model which is compatible with commercial research
 and development as well as IC manufacture. The current release is:
 
 * [lowRISC with Ariane SystemVerilog CPU and X-windows support]({{< ref "docs/ariane-v0.7/tutorial.md" >}})
-<br>*Release version 0.7, released June 2019*
-<br>This release supports the Rocket CPU from the refresh-v0.6 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
+<br>*Release version 0.7, released November 2019*
+<br>This release supports the Rocket CPU from the ariane-v0.7 release as well as the Ariane CPU. The Debian distribution has been updated and now includes preliminary support for X-windows
 
 [All releases are available here] ({{< ref "docs/lowrisc-releases.md">}})
 
@@ -33,12 +33,6 @@ Here you can find selected software and hardware IP which works together to prod
 * Choice of three boot loaders (QSPI flash memory, MMC/SD-Card, tftp Ethernet)
 * RISCV-Linux kernel v5.1.3, supplemented with drivers to attach to the above peripherals
 * RISCV-Debian operating system
-
-## Quick Start
-
-As the source distribution is large, effort has been put into to making an easy-to-use quickstart procedure. This procedure does not require a huge amount of prior knowledge.
-
-* [Getting started with binary releases] ({{< ref "docs/getting-started.md">}})
 
 ### Getting started breakdown
 
@@ -57,12 +51,8 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Build the Linux Kernel] ({{< ref "docs/linux-kernel-build.md">}})
 * [Build the Berkeley boot loader (BBL)] ({{< ref "docs/build-berkeley-boot-loader.md">}})
 * [Initiate Remote Booting] ({{< ref "docs/boot-remote.md">}})
+* [Booting the kernel from QSPI memory] ({{< ref "docs/boot-qspi.md">}})
+* [Preparing to launch X-windows] ({{< ref "docs/launch-xwindows.md">}})
 * [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
 * [Booting a customised NFS system] ({{< ref "docs/boot-customised-nfs.md">}})
-* [Frequently asked questions for this release]  ({{< ref "docs/current-release-faq.md">}})
-
-### Other content
-
-Our [first memo](
-{{< ref "docs/memo-2014-001-tagged-memory-and-minion-cores.md" >}}) describes our
-vision for tagged memory and minion cores in lowRISC.
+* [Frequently asked questions for this release]  ({{< ref "docs/frequently-asked-questions.md">}})

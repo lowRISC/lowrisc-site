@@ -7,23 +7,24 @@ title = "Baremetal toolchain"
 
 ### Why is is this step needed ?
 
-* Because you haven't used the quickstart procedure to install pre-built executables.
-* Because you want to build everything from source or for a different O/S version.
-* Because you don't trust binaries.
+This release of lowRISC uses the upstream gcc and friends from the RISCV repository.
+Many users will already have access to a RISCV toolchain, but the latest one is included
+here because the latest kernel makes use of some recent flags.
 
 ### What is it used for ?
 
-* The bare-metal boot loader and test programs require a newlib based flow.
-* The Linux kernel and BBL requires a bare-metal flow.
+* The bare-metal boot loader requires a newlib based flow.
+* The Linux kernel and BBL are configured to use either a bare-metal flow or the linux compiler.
 * You might want to build custom software from source on the workstation.
+
+## Install location
+
+The default installation location is /opt/riscv. If this location is forbidden then $HOME/riscv might
+be a suitable alternative. This should be customised in the top-level Makefile before starting the toolchain step.
 
 ## Build the bare-metal RISCV toolchain (slow, but see quickstart procedure to see if build is necessary)
 
-    cd $TOP/rocket-chip/riscv-tools/
-    bash ./build.sh
-    cd $TOP/rocket-chip/riscv-tools/riscv-gnu-toolchain/build
-    ../configure --prefix=$RISCV
-    make -j$(nproc) linux
+    make toolchain
 
 Proceed to the next step as follows:
 

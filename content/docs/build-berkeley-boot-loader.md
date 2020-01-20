@@ -2,7 +2,7 @@
 Description = ""
 date = "2018-01-11T13:00:00+00:00"
 title = "Build Berkeley boot loader"
-parent = "/docs/refresh-v0.6/"
+parent = "/docs/ariane-v0.7/"
 showdisqus = true
 
 +++
@@ -28,18 +28,20 @@ A simple summary of BBL is that it is the executable of last-resort when neither
   2. Initiation and responding to timer interrupts.
   3. Handling unaligned memory accesses (deprecated because it slows things a great deal).
   4. Chain loading and initial console access when Linux is booting, to simplify the first-stage boot loader.
-  
-Now configure and build Berkeley Boot loader
 
-    cd $TOP/rocket-chip/riscv-tools/riscv-pk/
-    mkdir -p build
-    cd build
-    ../configure --prefix=$RISCV --host=riscv64-unknown-elf --with-payload=$TOP/riscv-linux/vmlinux --enable-logo
+The ariane version of lowRISC incorporates a UART which is software compatible with the ns16750, this enables BBL to be build
+directly from upstream sources. This will happen automatically with the Makefile dependencies, but should you wish to build
+manually it can be done as follows:
+
+    mkdir -p riscv-pk/build
+    cd riscv-pk/build
+    export RISCV=/opt/riscv
+    export PATH=$(RISCV)/bin:$PATH
+    ../configure --host=riscv64-unknown-elf --enable-print-device-tree --with-payload=../../linux-5.3.8-lowrisc/vmlinux
     make
-    cp -p bbl $TOP/fpga/board/nexys4_ddr/boot.bin
-    riscv64-unknown-elf-strip $TOP/fpga/board/nexys4_ddr/boot.bin
+    riscv64-unknown-elf-strip bbl
 
-The use of the strip command minimises the download size for use with Ethernet or MMC/SD-Card loading.
+The optional use of the strip command minimises the download size for use with Ethernet or MMC/SD-Card loading.
 
 Next step:
 

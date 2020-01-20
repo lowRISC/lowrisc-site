@@ -13,8 +13,7 @@ A powerful but confusing feature for new users is the Ethernet interface availab
   2. The Netmask to be used
   3. The default route gateway (to allow you to talk to the internet)
   4. Caching Name servers
-  5. A subsequent server for NFS booting and other goodies
-
+  5. A subsequent server for NTP (clock) and other goodies
 
 If the Ethernet is unplugged or incapable of 100BaseT-DX operation, the display will likely stick after 'Waiting for DHCP_OFFER'.
 
@@ -31,7 +30,7 @@ You need to install isc-dhcp-server (or similar) and create a config which inclu
       option routers 192.168.0.53;
     }
 
-    # Configuration assuming switch 15:12 is binary 0100
+    # Configuration assuming switch 3:0 is binary 0100
     
     host lowrisc {
       hardware ethernet ee:e1:e2:e3:e4:e4;
@@ -42,13 +41,13 @@ An FPGA booted with this configuration will only be able to see your own PC by d
 
 ## Institutional LAN connection
 
-This option is the option that talks to your institution IT infrastructure. For security reasons you will need to request that the MAC address be registered as valid centrally. Emphasize that it is a locally administered value and not a registered company value.
+This option is the option that talks to your institution IT infrastructure. For security reasons you will need to request that the MAC address be registered as valid centrally. If you use the Nexys4-DDR board, Emphasize that it is a locally administered value and not a registered company value. The Genesys2 board has a genuine company value.
 
-The use of the DIP switches 15:12 on the FPGA card allows up to 16 different boards to be used. The least significant nibble of the MAC address will be influenced. This value may be changed in the source code if your organisation has a globally valid range of MAC addresses assigned by: (https://standards.ieee.org/products-services/regauth/index.html).
+The use of the DIP switches 3:0 on the FPGA card allows up to 16 different boards to be used. The least significant nibble of the MAC address will be influenced. This value may be changed in the boot loader source code if your organisation has a globally valid range of MAC addresses assigned by: (https://standards.ieee.org/products-services/regauth/index.html).
 
 You should ensure that nobody else on the same VLAN (or your entire site if you aren't sure if VLANs are in use) is making use of the same range. It is a good idea to avoid changing the MAC address after powering up on a certain network port. Otherwise your router may decide you are a bad actor and refuse to talk to you.
 
-If VLANs are in use there could be delays or retries needed to talk to a newly configured target.
+If VLANs are in use there could be delays or retries needed to talk to a newly configured target. Also if you reset your board, without giving up the lease, there could be problems re-establishing communication. Power cycle the board in this case.
 
 Forwarding of packets to the internet will normally be handled automatically and the replies routed back to the FPGA. Incoming session initiation will most likely be blocked by default.
 
@@ -62,6 +61,6 @@ Usually registration of the MAC address is not necessary, but you can fix the va
 
 Because of the flexibility of DHCP, and the lack of a user interface on the FPGA board, it was decided not to offer static IP as an option on this release. If a static address is required, it can be offered via DHCP (recommended usage).
 
-It is suggested you proceed to the link below (or for development purposes, checkout the alternative targets)
+It is suggested you proceed to the link below
 
 * [Developing BareMetal tool chain] ({{< ref "docs/build-bare-metal-toolchain.md">}})

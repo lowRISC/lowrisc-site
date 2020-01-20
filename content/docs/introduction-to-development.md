@@ -2,8 +2,8 @@
 Description = ""
 date = "2015-04-14T13:26:41+01:00"
 title = "Introduction to Development"
-parent = "/docs/refresh-v0.6/"
-next = "/docs/refresh-v0.6/overview/"
+parent = "/docs/ariane-v0.7/"
+next = "/docs/ariane-v0.7/overview/"
 showdisqus = true
 
 +++
@@ -20,7 +20,7 @@ The remainder of the project uses a mixture of System Verilog and (legacy) Veril
 
 ### Simulation of the hardware description
 
-Vivado from Xilinx incorporates a form of simulation built in. It has a number of limitations. Essentially each flip-flop in the design is modelled by a memory location and all paths that change after an event will get updated one by one. Naturally this is very slow on a large hardware simulation.
+Vivado from Xilinx incorporates a form of simulation built in. It has a number of limitations. Essentially each flip-flop in the design is modelled by a memory location and all paths that change after an event will get updated one by one. Naturally this is very slow on a large hardware simulation. It also has capacity limits and at this time cannot simulation the LowRISC release. A limited form of simulation is possible for those who have access to simulators such as VCS(Verilog compiled simulator) from Synopsys, in conjunction with the Vivado 'export simulation model' feature.
 
 ### Emulation of the hardware description
 
@@ -38,4 +38,4 @@ For this project the development problem is a classic one, combining a CPU with 
 
 ## Continue the process below:
 
-* [Overview of the Refresh system]({{< ref "docs/overview.md" >}})
+* [Overview of the Latest release]({{< ref "docs/overview.md" >}})

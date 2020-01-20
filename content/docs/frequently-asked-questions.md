@@ -5,9 +5,9 @@ title = "Frequently asked questions"
 
 +++
 
-### Why are you releasing a separate binary installation guide ?
+### What about binary installs ?
 
-The source code installation and build environment is 20GBytes for this release. The Vivado installation is 28GBytes. The quickstart binary distribution is 5GBytes, and hence is more suitable for older computers and/or users with limited internet bandwidth. Also there are a lot of technologies to understand to succeed with new development from source. We think users will want to see what can be achieved before going to the trouble of learning about everything.
+This release incorporates support for Nexys4-DDR boards and GenesysII boards. The latter is a paid license (though it does come with the board). It is unclear at the moment whether it is legal to offer non-webpack bitstreams generated using academic licenses to the general public.
 
 ### Why are you releasing a version of Rocket that does not have the security enhancements available in the previous releases ?
 
@@ -27,21 +27,20 @@ The memory map of the default Rocket consists of a large area of RAM (in our cas
 
 ### What is the device tree blob and where is it ?
 
-The device tree blob is a format for storing addresses of memory and peripherals for use in Linux and other O/S. It allows a generic kernel to be compiled and then configured for different systems later on at runtime. It is generated from device tree source using device tree compiler. In LowRISC it is associated with the Berkeley boot loader, because it would be inconvenient to keep changing the first stage boot loader when anything changes.
+The device tree blob is a format for storing addresses of memory and peripherals for use in Linux and other O/S. It allows a generic kernel to be compiled and then configured for different systems later on at runtime. It also allows different FPGA boards with memory sizes to be supported from one binary. For this reason the first stage boot loader (FSBL) included with LowRISC is customised for each processor and FPGA board.
 
-### What's with the weird console support ?
+### What kernels are provided with this release ?
 
-The first stage boot loader (FSBL) included with LowRISC does not provide a convenient way of choosing the console device (after all the interaction at this stage is limited to a few switches). Therefore the decision was taken to assume a visual console (also known as VT mode). This provides a facility similar to a PC with a 128 x 31 VGA text display with a variety of highlight colours, and a keyboard that generates PC-compatible up and down events that are needed by the operating system in certain modes. However we also need to allow for the common case when the board is purely controlled from a serial port. This support requires translating, as well as possible, serial ASCII input to keyboard up/down event numbers, as well as interpreting the characters sent to the VGA screen to the nearest equivalent ASCII output to the serial port. No attempt is made to translate cursor movement on the VGA screen to ANSI escape sequences. Therefore some strange effects can occur if editing in vim or similar programs is attempted on the serial console. Fortunately this capability is rarely needed because ssh support via Ethernet gives all the capabilities that could be wanted in the way of remote access.
+All kernels are based on the same linux release, a patched version of linux-5.2.8. In addition there is an install variant that can launch debian installer, a rescue variant that can repair the SD-Card root partition before mounting it, a visual variant that redirects the console to the frame buffer, and a plain variant that just boots via a serial port.
 
 ### What about support for other boards and RISCV processors ?
 
-The KC705 support has not been maintained since the v0.3 release. However it is interesting because it allows for more expansion space, the possibility of dual core symmetric processing, and out-of-order cores such as BOOM (Berkeley out of order machine). Support for this board has not been merged with the refresh-v0.6, however development is ongoing on the kc705_mii branch.
-
-The ArtyA7-A100 is a recently released and reduced cost board from Digilent that has the same FPGA and twice the memory of the Nexys4DDR. It uses DDR3 instead of DDR2. However it requires a separate PMOD (potentially with reduced signal integrity), in order to support SD-Cards. The Ethernet PHY is a different type and development is taking place on the artya7_mii branch.
+This release introduces a socket that can host Rocket or Ariane, analogous to the motherboards of old that allowed processors from different vendors to be used. In principle BOOM (Berkeley out-of-order machine) can fit the same template, but it would need a larger FPGA board. Because the Ariane was developed on a Genesys-2, and this has similar peripherals to a Nexys4-DDR, both FPGA boards are supported in this release. The majority of other RV64GC cores are Bluespec based. It is unclear what the license situation regarding distributing RTL based on modified Bluespec code (for memory maps and so-on). The KC705 support has not been maintained. Its Ethernet PHY is incompatible with the GenesysII design, nor does it have VGA or HID capabilities. An unmaintained version is available on the kc705_mii branch.
 
 ### What happened to the L2-cache ?
 
-The L2-cache was retired with TileLink-1 when it was updated to TileLink-2. This was due to bugs in the multiprocessing support. No replacement L2-cache has been released by Berkeley Architecture Research since then.
+The L2-cache was retired with TileLink-1 when it was updated to TileLink-2. This was due to bugs in the multiprocessing support. Since then multi-core support has moved to [chipyard](https://chipyard.readthedocs.io/en/latest/).
+In theory two medum BOOM cores can fit in a GenesysII board. For Ariane use the [Ariane+OpenPiton project](https://openpiton-blog.princeton.edu/2018/11/announcing-openpiton-with-ariane/) using L1.5 cache is an active research activity.
 
 ### What is the Coremark performance of LowRISC ?
 
@@ -49,30 +48,30 @@ LowRISC achieves 2.18 Coremarks/MHz, compared to 6.43 Coremarks/MHz for a core-i
 
 ### Why is the SD-Card reader so slow ?
 
-SD-Card architectures have gone through tremendous improvements recently to make them more suitable for digital cameras and other typical architectures. Some of these improvements are carried through to the FPGA board, and others not. Signal integrity reasons prevent the card operating at its best possible speed in these circumstances, also the on-board flash controller is optimised towards large FAT filing systems rather than the EXT4 system favoured by Linux. A further reason which needs reworking in due course is that the Rocket is interrupted at the end of every SD command and every data transfer (no offloading is done). Continuous read mode is not supported, which would reduce overheads considerably if implemented.
+The use of the hardware state machine from the OpenPiton project to drive the SD-Card boosts the performance considerably compared to previous releases and cuts the CPU overhead of disk reads and writes. However the DMA solution is not connected to the processor's slave bus to be compatible with Ariane which does not have any such bus.
 
 ### What is the Ethernet throughput ?
 
-The Nexys4DDR has a 10/100BaseT PHY. Support for 10BaseT was not included as it is considered obsolete. The 100BaseT performance will depend on the network but with the iperf3 program sustained performance is limited to about 2MBytes/sec. For software downloading and extracting the performance is around 130KBytes/sec. No offloading or Jumbo packet support is included, but the latter would present few difficulties.
+The Nexys4DDR has a 10/100BaseT PHY. Support for 10BaseT was not included as it is considered obsolete. The 100BaseT performance will depend on the network but with the iperf3 program sustained performance is limited to about 2MBytes/sec. The Genesys-2 has an RTL8211E Gigabit Ethernet PHY, however no offloading is done. For software downloading and extracting the performance is around 130KBytes/sec. No offloading or Jumbo packet support is included, but the latter would present few difficulties.
 
 ### What version of Linux kernel is available ?
 
-The majority of the RISCV support was upstreamed as of the 4.18 release. Generic RISCV patches off this release amount to 39K bytes, LowRISC specific patches (primarily device drivers) amount to 87K bytes. It is anticipated the generic patches will reduce to almost nothing by the time of the 4.19 release. There are no plans to upstream the LowRISC device drivers, because there is not corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
+The generic RISCV support is upstreamed as of the 5.2.8 release used in this project. LowRISC patches relative to this consist of FPGA specific device drivers and build configuration defaults amounting to 283K bytes. There are no plans to upstream the LowRISC device drivers, because there is no corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
 
-### Why was the Debian distribution chosen? Isn't it rather unstable ?
+### What are the advantages and disadvantages of choosing different RISCV Linux distributions?
 
-The Debian unstable distribution places a burden on maintainers to ensure that stable versions will not be impacted by changes required to support new architectures. Therefore it takes a while for support to move from unstable to a stable distribution. In addition some late changes to RISCV ABI have been made without fully appreciating the impact on O/S developers. Furthermore the list of control and status registers (CSRs) has been changing and some have been renamed or renumbered. LowRISC currently relies on several unstable packages that are not released. The Fedora picture is a little more rosy, but the use of DNF as a default package manager with its reliance on Python and friends, has too high an overhead for this hardware.
-
-### What about other Linux distributions ?
-
-The Debian distribution was chosen as it has the least burden on the processor. This is because its package manager is written in C++ and is streamlined. By contrast RPM based distributions such as Fedora and OpenSuse place a great deal of reliance on Python coding which is convenient but slow (especially when running a Python interpreter on an FPGA emulator).
+See the [main Linux Distribution page] ({{< ref "docs/distributions" >}}).
 
 ### What about other operating systems ?
 
-FreeBSD was ported to the RISCV architecture by Ruslan Bukin and supports Spike and QEMU out of the box. The port to Rocket is a little more involved because the current version of FreeBSD assumes hardware support for Access and Dirty bits in the MMU. Rocket only supports trapping this situation and resolving in software. This problem is currently being investigated and this site will be updated as and when FreeBSD is supported.
+FreeBSD was ported to the RISCV architecture by Ruslan Bukin and supports Spike and QEMU out of the box. The port to Rocket is a little more involved because originally FreeBSD assumed hardware support for Access and Dirty bits in the MMU. Rocket only supports trapping this situation and resolving in software. UART support is relatively generic but there are no plans to port the LowRISC specific device drivers from Linux to FreeBSD at the moment.
+
+### What about X-windows, is that supported ?
+
+The X-windows support is new for this release, it clearly requires a core pointer device. [Bluetooth HID](https://store.digilentinc.com/pmod-bt2-bluetooth-interface/) may be used (or an obsolete PS/2 mouse [Digilent PMOD PS/2 adaptor](https://store.digilentinc.com/pmod-ps2-keyboard-mouse-connector/)) The latter is deprecated because it normally requires 5V power, and the PMOD only delivers 3.3V, necessitating a hardware modification. The details are [here] ({{< ref "docs/launch-xwindows" >}}).
+
+![screenshot](/img/screenshot3.png "ariane-0.7 release shapshot")
 
 ### What about u-boot, is that supported ?
 
-The u-boot system has a number of powerful facilities, for example being able to store boot parameters in non-volatile memory, and enabling booting via TFTP or NFS. It can also read kernels from FAT partitions and carry out various self-tests. Unfortunately it is also rather large, and it was felt that an embedded environment should not have a large ROM on board. However, there is nothing to stop u-boot from being attached as an option instead of BBL, when launched from the first stage boot loader. In fact the MMC/SD-Card support routines in the latest release are based on a cut-down version of u-boot FSBL. The out-of-the-box FSBL support in u-boot needs modifying in order to eventually replace our own boot loader entirely.
-
-
+U-boot RISCV support is upstream. LowRISC specific u-boot support (Ethernet and SD-Card support) is available on the [lowrisc branch of u-boot] (https://github.com/lowRISC/u-boot/tree/lowrisc). This version can boot from a remote tftp server. It runs in machine mode. It cannot boot vmlinux directly, only BBL+vmlinux images. If wanted, it should be launched instead of BBL+payload.

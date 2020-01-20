@@ -5,6 +5,9 @@ title = "Releases"
 
 +++
 
+* [lowRISC with interchangeable Rocket/Ariane CPUs, accelerated block device, and X-windows support]({{< ref "docs/ariane-v0.7/tutorial.md" >}})
+<br>*Release version 0.7, released November 2019*
+<br>This release offers a choice of CPUs, a choice of FPGA boards, and most development tools updated to upstream versions
 * [lowRISC with run/step debugging via JTAG and GDB]({{< ref "docs/refresh-v0.6/_index.md" >}})
 <br>*Release version 0.6, released October 2018*
 <br>This release updates the Rocket IP to March 2018 and includes compressed instructions and JTAG debugging conforming to the RISCV Debug Specification with custom JTAG DTM (see [JTAG internals]({{< ref "docs/jtag.md" >}}) for details). The root filing system is updated to use the mostly upstreamed Debian repository and the peripheral data path widths are increased to 64-bits for better performance.

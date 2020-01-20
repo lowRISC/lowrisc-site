@@ -11,35 +11,35 @@ blog="/blog/:year/:month/:slug"
 [[menu.main]]
     name = "Home"
     identifier = "home"
-    url = "/"
+    url = "https://www.lowrisc.org/"
     weight = 1
 
 [[menu.main]]
     name = "About"
     identifier = "about"
-    url = "/about/"
+    url = "https://www.lowrisc.org/about/"
     weight = 2
 
 [[menu.main]]
     name = "Blog"
     identifier = "blog"
-    url = "/blog/"
+    url = "https://www.lowrisc.org/blog/"
     weight = 3
 
 [[menu.main]]
     name = "FAQ"
     identifier = "FAQ"
-    url = "/faq/"
+    url = "https://www.lowrisc.org/faq/"
     weight = 4
 
 [[menu.main]]
     name = "Docs"
     identifier = "docs"
-    url = "/docs"
+    url = "https://www.lowrisc.org/docs/docs"
     weight = 5
 
 [[menu.main]]
     name = "Community"
     identifier = "community"
-    url = "/community/"
+    url = "https://www.lowrisc.org/community/"
     weight = 6
