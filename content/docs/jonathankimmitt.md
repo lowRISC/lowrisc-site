@@ -8,4 +8,4 @@ showdisqus = true
 +++
 
 <a name="figure-overview"></a>
-<img src="/img/rocket.png" alt="Drawing" style="width: 600px; padding: 20px 0px;"/>
+<img src="/img/rocket.png">
