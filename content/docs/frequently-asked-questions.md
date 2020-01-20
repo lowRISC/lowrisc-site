@@ -5,9 +5,9 @@ title = "Frequently asked questions"
 
 +++
 
-### Why are you releasing a separate binary installation guide ?
+### What about binary installs ?
 
-The source code installation and build environment is 20GBytes for this release. The Vivado installation is 28GBytes. The quickstart binary distribution is 5GBytes, and hence is more suitable for older computers and/or users with limited internet bandwidth. Also there are a lot of technologies to understand to succeed with new development from source. We think users will want to see what can be achieved before going to the trouble of learning about everything.
+This release incorporates support for Nexys4-DDR boards and GenesysII boards. The latter is a paid license (though it does come with the board). It is unclear at the moment whether it is legal to offer non-webpack bitstreams generated using academic licenses to the general public.
 
 ### Why are you releasing a version of Rocket that does not have the security enhancements available in the previous releases ?
 
@@ -17,22 +17,30 @@ The version of Rocket used as the basis of the previous releases was too old to 
 
 In principle yes. Rocket does not have a stable release schedule so some intelligent browsing of the commit logs is necessary to find a good point to branch off. Learning the lesson from previous experience, a minimum of changes have been made to the Chisel code, and only in areas which are not changing rapidly.
 
+### Why is it necessary to change Rocket at all ?
+
+The out-of-box configuration hangs on boot waiting for the debugger to connect. This is convenient for a tethered release (i.e. one that requires GDB or a separate ARM or other processor) to initialise the state of memory. In LowRISC there is no such other processor so it is more convenient to boot from specially written boot loader code. This necessitates a change of reset vector address to the start of boot ROM. It is also convenient to allow the TestHarness to set the reset address to a custom value to facilitate ISA testing.
+
+In addition the other important change is customising the JTAG instruction register length and data capture registers to meet Xilinx FPGA restrictions (see [JTAG internals]({{< ref "docs/jtag.md" >}}) for more details).
+
+The memory map of the default Rocket consists of a large area of RAM (in our case double data rate dynamic memory) plus an area of peripheral memory. To avoid making a lot of changes it was not though worthwhile separating out different peripherals into their own address space in Chisel, as per previous releases of LowRISC. In machine mode, this will result in a reduction of memory protection, but under Linux each peripheral space will be individually mapped in MMU space. A side effect of this approach is that it will not be possible to rely on the device tree blob built into ROM as part of the Rocket synthesis.
+
 ### What is the device tree blob and where is it ?
 
 The device tree blob is a format for storing addresses of memory and peripherals for use in Linux and other O/S. It allows a generic kernel to be compiled and then configured for different systems later on at runtime. It also allows different FPGA boards with memory sizes to be supported from one binary. For this reason the first stage boot loader (FSBL) included with LowRISC is customised for each processor and FPGA board.
 
 ### What kernels are provided with this release ?
 
-All kernels are based on the same linux release, a patched version of linux-5.1.3. In addition there is an install variant that can launch debian installer, a rescue variant that can repair the SD-Card root partition before mounting it, a visual variant that redirects the console to the frame buffer, and a plain variant that just boots via a serial port.
+All kernels are based on the same linux release, a patched version of linux-5.2.8. In addition there is an install variant that can launch debian installer, a rescue variant that can repair the SD-Card root partition before mounting it, a visual variant that redirects the console to the frame buffer, and a plain variant that just boots via a serial port.
 
 ### What about support for other boards and RISCV processors ?
 
-This release introduces a socket that can host Rocket or Ariane, analogous to the motherboards of old that allowed processors from different vendors to be used. In principle BOOM (Berkeley out-of-order machine) can fit the same template, but it would need a larger FPGA board. Because the Ariane was developed on a Genesys-2, and this has similar peripherals to a Nexys4-DDR, both FPGA boards are supported in this release.
-The KC705 support has not been maintained since the v0.3 release. However it is interesting because it allows for more expansion space, the possibility of dual core symmetric processing, and out-of-order cores such as BOOM (Berkeley out of order machine). Support for this board has not been merged with the ariane-v0.7, however development is ongoing on the kc705_mii branch.
+This release introduces a socket that can host Rocket or Ariane, analogous to the motherboards of old that allowed processors from different vendors to be used. In principle BOOM (Berkeley out-of-order machine) can fit the same template, but it would need a larger FPGA board. Because the Ariane was developed on a Genesys-2, and this has similar peripherals to a Nexys4-DDR, both FPGA boards are supported in this release. The majority of other RV64GC cores are Bluespec based. It is unclear what the license situation regarding distributing RTL based on modified Bluespec code (for memory maps and so-on). The KC705 support has not been maintained. Its Ethernet PHY is incompatible with the GenesysII design, nor does it have VGA or HID capabilities. An unmaintained version is available on the kc705_mii branch.
 
 ### What happened to the L2-cache ?
 
-The L2-cache was retired with TileLink-1 when it was updated to TileLink-2. This was due to bugs in the multiprocessing support. No replacement L2-cache has been released by Berkeley Architecture Research since then.
+The L2-cache was retired with TileLink-1 when it was updated to TileLink-2. This was due to bugs in the multiprocessing support. Since then multi-core support has moved to [chipyard](https://chipyard.readthedocs.io/en/latest/).
+In theory two medum BOOM cores can fit in a GenesysII board. For Ariane use the [Ariane+OpenPiton project](https://openpiton-blog.princeton.edu/2018/11/announcing-openpiton-with-ariane/) using L1.5 cache is an active research activity.
 
 ### What is the Coremark performance of LowRISC ?
 
@@ -48,15 +56,11 @@ The Nexys4DDR has a 10/100BaseT PHY. Support for 10BaseT was not included as it 
 
 ### What version of Linux kernel is available ?
 
-The generic RISCV support is upstreamed as of the 5.1.3 release. LowRISC patches relative to this consist of FPGA specific device drivers amounting to 268K bytes. There are no plans to upstream the LowRISC device drivers, because there is not corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
+The generic RISCV support is upstreamed as of the 5.2.8 release used in this project. LowRISC patches relative to this consist of FPGA specific device drivers and build configuration defaults amounting to 283K bytes. There are no plans to upstream the LowRISC device drivers, because there is no corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
 
-### Why was the Debian distribution chosen? Isn't it rather unstable ?
+### What are the advantages and disadvantages of choosing different RISCV Linux distributions?
 
-The Debian unstable distribution places a burden on maintainers to ensure that stable versions will not be impacted by changes required to support new architectures. Therefore it takes a while for support to move from unstable to a stable distribution. In addition some late changes to RISCV ABI have been made without fully appreciating the impact on O/S developers. Furthermore the list of control and status registers (CSRs) has been changing and some have been renamed or renumbered. LowRISC currently relies on several unstable packages that are not released. The Fedora picture is a little more rosy, but the use of DNF as a default package manager with its reliance on Python and friends, has too high an overhead for this hardware.
-
-### What about other Linux distributions ?
-
-The Debian distribution was chosen as it has the least burden on the processor. This is because its package manager is written in C++ and is streamlined. By contrast RPM based distributions such as Fedora and OpenSuse place a great deal of reliance on Python coding which is convenient but slow (especially when running a Python interpreter on an FPGA emulator). Even so the use of apt (advanced package tool) at the same time as other software should be avoided due to memory constraints.
+See the [main Linux Distribution page] ({{< ref "docs/distributions" >}}).
 
 ### What about other operating systems ?
 
@@ -64,6 +68,10 @@ FreeBSD was ported to the RISCV architecture by Ruslan Bukin and supports Spike 
 
 ### What about X-windows, is that supported ?
 
-The X-windows support is new for this release, it requires some hardware modifications to support a PS/2 mouse. The nexys4_ddr board doesn't have a convenient way to support mouse and keyboard simultaneously. The easiest solution for testing is to use a [Digilent PMOD PS/2 adaptor](https://store.digilentinc.com/pmod-ps2-keyboard-mouse-connector/) and manually wire the 5V supply from the power connector. PS/2 mice are obsolete but are readily available second hand.
+The X-windows support is new for this release, it clearly requires a core pointer device. [Bluetooth HID](https://store.digilentinc.com/pmod-bt2-bluetooth-interface/) may be used (or an obsolete PS/2 mouse [Digilent PMOD PS/2 adaptor](https://store.digilentinc.com/pmod-ps2-keyboard-mouse-connector/)) The latter is deprecated because it normally requires 5V power, and the PMOD only delivers 3.3V, necessitating a hardware modification. The details are [here] ({{< ref "docs/launch-xwindows" >}}).
 
 ![screenshot](/img/screenshot3.png "ariane-0.7 release shapshot")
+
+### What about u-boot, is that supported ?
+
+U-boot RISCV support is upstream. LowRISC specific u-boot support (Ethernet and SD-Card support) is available on the [lowrisc branch of u-boot] (https://github.com/lowRISC/u-boot/tree/lowrisc). This version can boot from a remote tftp server. It runs in machine mode. It cannot boot vmlinux directly, only BBL+vmlinux images. If wanted, it should be launched instead of BBL+payload.
