@@ -7,6 +7,9 @@ showdisqus = true
 
 +++
 
+Most CAD tools assume that /bin/sh is a link to /bin/bash. However Ubuntu links to /bin/dash by default, which is not fully
+backward compatible. Change this default before proceeding.
+
 lowRISC tools and source code are robust between versions of Linux, but it has been
 found that
 Vivado (the Xilinx FPGA implementation suite) [is particular about the O/S](https://www.xilinx.com/support/answers/54242.html)
@@ -30,7 +33,7 @@ You should have installed the prerequisites on the download page. If not do so n
     
 ## System on chip debug
 
-The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger from previous releases is not yet available.
+The built-in hardware [Open SystemOnChip Debug](http://opensocdebug.org) trace debugger from previous releases is not available.
 Some of its functionality (for example loading programs) is available from the GDB/openocd combination.
 
 ### The remainder of the steps are flexible and a suggested order is given below:

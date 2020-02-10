@@ -12,50 +12,52 @@ _By [Jonathan Kimmitt]({{< ref "/docs/jonathankimmitt.md" >}}) (lead developer),
 
 ## Introduction
 
-[lowRISC][lowRISC] is a not-for-profit organisation whose goal is to
+[lowRISC][lowRISC] is a not-for-profit community interest company whose goal is to
 produce a fully open source System-on-Chip (SoC) in volume. We are
 building upon RISC-V processor core implementations from the RISC-V
-team at UC Berkeley. We will produce a SoC design to populate a
+team at UC Berkeley, and the pulp-platform team at ETH-Zurich. We will produce a SoC design to populate a
 low-cost community development board and to act as an ideal starting
-point for derivative open-source and commercial designs.
+point for derivative open-source and commercial designs. At the moment LowRISC CIC does not have the resources to harden
+the IP itself into a chip, however the FPGA demonstrator will continue to improve.
 
 This tutorial adds further functionality towards the final SoC design:
 
-* Graphical Colour Console with X-windows support incorporating mouse and keyboard events.
+* Graphical Colour Console with X-windows support incorporating Bluetooth™ mouse and keyboard events.
 * Choice of SD-Card, Quad-SPI or Ethernet TFTP boot-loader with DHCP support.
-* Linux 5.3.8 RISCV kernel and updated Debian userland with advanced package tool.
-* Choice of RV64-GC Rocket (Chisel) or Ariane (SystemVerilog) CPU
+* Linux 5.3.18 mainline RISCV kernel and buildroot-2019.11-1 configurable userland (Debian support optional).
+* Choice of 64-bit general purpose compressed (RV64-GC) Rocket (Chisel) or Ariane (SystemVerilog) CPU.
 
-The build environment and pre-built images support a competitively priced
+The build environment and pre-built images (if legally allowed to be distributed) support a competitively priced
 [Nexys™4 DDR Artix-7 FPGA Board with 128M RAM]
 (http://store.digilentinc.com/nexys-4-ddr-artix-7-fpga-trainer-board-recommended-for-ece-curriculum/),
 as well as the [Genesys2 Kintex-7 FPGA Board with 1GB RAM]
 (https://store.digilentinc.com/genesys-2-kintex-7-fpga-development-board/).
 
-The Nexys4-DDR has now been replaced by the
+The Nexys4-DDR has now been replaced by the functionally equivalent
 [Nexys A7-100T](https://store.digilentinc.com/nexys-a7-fpga-trainer-board-recommended-for-ece-curriculum/) on Digilent's website.
 
 
-| Function              | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_ | _Minion-v0.4_ | _Ethernet-v0.5_ | _Refresh-v0.6_     | _Ariane-v0.7_     |
-| --------------        | :----------:   | :--------------:  | :----------: | :-----------: | :-------------: | :-------------: | :-------------: |
-| Rocket Priv. Spec.    |      ?         |       ?           |      1.7     | nearly 1.9.1   | nearly 1.9.1     | 1.10 | 1.10 |
-| Tagged memory         |   *            |                   |              | *             | *               |      |      |
-| untethered operation  |                |   *               |      *       | *             | optional        | *    | *    |
-| SD card               | tethered       |   SPI             |      SPI     | SD            | SD              | SD   | SD   |
-| UART console          | tethered       |   standard        |  standard/trace | standard/trace/VGA |standard/VGA | standard/VGA | serial/frame-buffer |
-| PS/2 keyboard         |                |                   |              | *             | *               | * | * |
-| PS/2 mouse            |                |                   |              |               |                 |   | * |
-| Minion Core           |                |                   |              | *             |                 |   |   |
-| Kernel md5 boot check |                |                   |              | *             | *               | * | optional |
-| PC-free operation     |                |                   |              | *             | *               | * | optional |
-| Remote booting        |                |                   |              |               | *               | * | * |
-| Multiuser operation   |                |                   |              |               | *               | * | * |
-| Compressed instructions |               |                  |              |               |                 | * | * |
-| Debian binary compatible |              |                  |              |               |                 | * | * |
-| Ariane SystemVerilog CPU |              |                  |              |               |                 |  | * |
-| frame buffer /dev/fb0 |              |                  |              |               |                 |  | * |
-| X-windows |              |                  |              |               |                 |  | * |
-| SD-Card block layer accelerator |              |                  |              |               |                 |  | * |
+| Function                 | _Tagged-v0.1_  | _Untethered-v0.2_ | _Debug-v0.3_   | _Minion-v0.4_      | _Ethernet-v0.5_ | _Refresh-v0.6_  | _Ariane-v0.7_   |
+| --------------           | :----------:   | :--------------:  | :----------:   | :-----------:      | :-------------: | :-------------: | :-------------: |
+| Rocket Priv. Spec.       |      ?         |       ?           |      1.7       | nearly 1.9.1       | nearly 1.9.1    | 1.10            | 1.10            |
+| Tagged memory            |   *            |                   |                | *                  | *               |                 |                 |
+| untethered operation     |                |   *               |      *         | *                  | optional        | *               | *               |
+| SD card                  | tethered       |   SPI             |      SPI       | SD                 | SD              | SD              | SD              |
+| UART console             | tethered       |   standard        | standard/trace | standard/trace/VGA | standard/VGA    | standard/VGA    | serial          |
+| PS/2 keyboard            |                |                   |                | *                  | *               | *               | *               |
+| PS/2 mouse               |                |                   |                |                    |                 |                 | *               |
+| Minion Core              |                |                   |                | *                  |                 |                 |                 |
+| Kernel md5 boot check    |                |                   |                | *                  | *               | *               | optional        |
+| PC-free operation        |                |                   |                | *                  | *               | *               | optional        |
+| Remote booting           |                |                   |                |                    | *               | *               | *               |
+| Multiuser operation      |                |                   |                |                    | *               | *               | *               |
+| Compressed instructions  |                |                   |                |                    |                 | *               | *               |
+| Debian binary compatible |                |                   |                |                    |                 | *               | *               |
+| Ariane SystemVerilog CPU |                |                   |                |                    |                 |                 | *               |
+| frame buffer /dev/fb0    |                |                   |                |                    |                 |                 | *               |
+| X-windows                |                |                   |                |                    |                 |                 | *               |
+| SD-Card H/W accelerator  |                |                   |                |                    |                 |                 | *               |
+
 ### Contents
 
   1. [Release notes] ({{<ref "/docs/ariane-v0.7/release.md">}})
@@ -86,7 +88,7 @@ The Nexys4-DDR has now been replaced by the
 * Andrew Waterman and a large team now at SiFive developed the Rocket CPU
 * Manuel Montecelo, Karsten Merker and Aurelien Jarno developed the Debian port to RISCV (https://wiki.debian.org/RISC-V#Creating_a_riscv64_chroot_from_a_merged_repository_with_debootstrap) and all assisted with debugging the bootstrap procedure on LowRISC.
 * Ang Li of Princeton University (angl@princeton.edu) provided the new SD-Card block interface hardware
-* Florian Zaruba and the pulp-platform team at ETH Zurich developed and released the Ariane System-Verilog core
+* Florian Zaruba and the pulp-platform team at ETH Zurich developed and released the Ariane System-Verilog core, and the new build system.
 * The QPSI peripheral was adapted from a design written by Ilia Sergachev.
 * The riscv set_ir command to set IR value for JTAG registers was contributed by Darius Rad <darius@bluespec.com>
 
@@ -97,7 +99,3 @@ The Nexys4-DDR has now been replaced by the
 <!-- Links -->
 
 [lowRISC]: https://www.lowrisc.org/
-[TaggedMemoryTutorial]: {{< ref "/docs/tagged-memory-v0.1/_index.md" >}}
-[UntetheredTutorial]: {{< ref "/docs/untether-v0.2/_index.md" >}}
-[DebugTutorial]: {{< ref "/docs/debug-v0.3/_index.md" >}}
-

@@ -10,17 +10,17 @@ showdisqus = true
 
 ## Introduction to Development
 
-This project uses Field-programmable Gate Array (FPGA) manufacturered by Xilinx as the underlying technology. These devices are manufacturered in large volumes, hence are relatively inexpensive, but the overhead of programmability results in a large area increase and consequent high leakage current, as well as a considerably lower clock rate than mask programmed Application Specific Integrated Circuits (ASICs). Manufacturers try their best to products as usable as possible, but at the end of the day some of the error messages will not be very comprehensible to non-specialists. The Xilinx software that supports these chips is called Vivado.
+This project uses Field-programmable Gate Array (FPGA) manufacturered by Xilinx as the underlying technology. These devices are manufacturered in large volumes, hence are relatively inexpensive, but the overhead of programmability results in a large area increase and consequent high leakage current, as well as a considerably lower clock rate than mask programmed Application Specific Integrated Circuits (ASICs). Manufacturers try their best their CAD tools as usable as possible, but at the end of the day some of the error messages will not be very comprehensible to non-specialists. The Xilinx software that supports these chips is called Vivado.
 
 ### Hardware description language
 
-This project incorporates a processor generator that uses Scala, a functional language that incorporates a shallow embedding of hardware concepts. As such it is difficult to predict in advance what size of hardware will be generated until the program runs. Because of the shallow embedding, errors in generation of hardware will frequently not be noticed until much later. For this reason it is advisable to run a test suite whenever the Scala description changes.
+This project incorporates a processor generator that uses Scala, a functional language that incorporates a shallow embedding of hardware concepts. As such it is difficult to predict in advance what size of hardware will be generated until the program runs. Because of the shallow embedding, errors in generation of hardware will frequently not be noticed until much later. For this reason it is advisable to run a test suite whenever the Scala description changes. It is also unfortunately true that not all combinations of parameters that might be selected are valid. For example, the number of ways in a cache might have an impact on its allowable depth.
 
-The remainder of the project uses a mixture of System Verilog and (legacy) Verilog. In the subset of this language that makes sense in hardware, there is more or less a one-to-one correspondence between what is written and the hardware generated.
+The remainder of the project hardware description files uses a mixture of System Verilog and (legacy) Verilog. In the subset of this language that makes sense in hardware, there is more or less a one-to-one correspondence between what is written and the hardware generated.
 
 ### Simulation of the hardware description
 
-Vivado from Xilinx incorporates a form of simulation built in. It has a number of limitations. Essentially each flip-flop in the design is modelled by a memory location and all paths that change after an event will get updated one by one. Naturally this is very slow on a large hardware simulation. It also has capacity limits and at this time cannot simulation the LowRISC release. A limited form of simulation is possible for those who have access to simulators such as VCS(Verilog compiled simulator) from Synopsys, in conjunction with the Vivado 'export simulation model' feature.
+Vivado from Xilinx incorporates a form of simulation built in. It has a number of limitations. Essentially each flip-flop in the design is modelled by a memory location and all paths that change after an event will get updated one by one. Naturally this is very slow on a large hardware simulations. It also has capacity limits and at this time cannot simulate the LowRISC release. A limited form of simulation is possible for those who have access to simulators such as VCS(Verilog compiled simulator) from Synopsys, in conjunction with the Vivado 'export simulation model' feature. Verilator (a Verilog to C++ translator) may also be used for the majority of the logic used, however it is not compatible with the coding style used in Vivado models, such as memories.
 
 ### Emulation of the hardware description
 
@@ -34,7 +34,7 @@ A number of options exist, the most ambitious being a full mask set for all tran
 
 It is apparent that the emulation phase of the development process is extremely important before any money should be spent on engineering the solution further. For certain applications the requirement for flexibility overrides the lower clock rate and in such cases (for example reconfigurable computing cards), the bulk of the development work involves optimising the design to make the most of the FPGA resources.
 
-For this project the development problem is a classic one, combining a CPU with caches, dynamic memory, ROM and peripherals to produce a usable computer.
+For this project the development problem is a classic one, combining a CPU with caches, dynamic memory, ROM and peripherals to produce a usable computer. However some parts such as the Ethernet and SD-Card interface, have the capability to operate autonomously to a degree, this allows the main processor to carry out other tasks such as user programs, whilst waiting for network or disk service.
 
 ## Continue the process below:
 
