@@ -11,11 +11,11 @@ This release incorporates support for Nexys4-DDR boards and GenesysII boards. Th
 
 ### Why are you releasing a version of Rocket that does not have the security enhancements available in the previous releases ?
 
-The version of Rocket used as the basis of the previous releases was too old to backport any improvements, in particular it lacked the compressed instruction set (C extension), deemed essential by Debian, Fedora and OpenSuse O/S developers. Also it lacked run/step debug support, making software development tedious and error prone. Internally it only supported TileLink-1.
+The version of Rocket used as the basis of the previous releases was too old to backport any improvements, in particular it lacked the compressed instruction set (C extension), deemed essential by Debian, Fedora and OpenSuse O/S developers. Also it lacked run/step debug support, making software development tedious and error prone. Internally it only supported TileLink-1. It would be entirely possible to support a larger ecosystem with buildroot. But this would require older versions of compilers with different control and status register numbers and is outside the scope of this tutorial.
 
 ### Is it easy to upgrade the Rocket version in this new release ?
 
-In principle yes. Rocket does not have a stable release schedule so some intelligent browsing of the commit logs is necessary to find a good point to branch off. Learning the lesson from previous experience, a minimum of changes have been made to the Chisel code, and only in areas which are not changing rapidly.
+In principle yes. Rocket does not have a stable release schedule so some intelligent browsing of the commit logs is necessary to find a good point to branch off. Learning the lesson from previous experience, a minimum of changes have been made to the Chisel code, and only in areas which are not changing rapidly. The patches to the debug system are in an area that does not change frequently.
 
 ### Why is it necessary to change Rocket at all ?
 
@@ -27,15 +27,15 @@ The memory map of the default Rocket consists of a large area of RAM (in our cas
 
 ### What is the device tree blob and where is it ?
 
-The device tree blob is a format for storing addresses of memory and peripherals for use in Linux and other O/S. It allows a generic kernel to be compiled and then configured for different systems later on at runtime. It also allows different FPGA boards with memory sizes to be supported from one binary. For this reason the first stage boot loader (FSBL) included with LowRISC is customised for each processor and FPGA board.
+The device tree blob is a format for storing addresses of memory and peripherals for use in Linux and other O/S. It allows a generic kernel to be compiled and then configured for different systems later on at runtime. It also allows different FPGA boards with memory sizes to be supported from one binary. For this reason the first stage boot loader (FSBL) included with LowRISC is customised for each processor and FPGA board. The source code for the lowRISC device tree blob is in fpga/src/generic.dts. It requires pre-processing to customise it for FPGA board and CPU.
 
 ### What kernels are provided with this release ?
 
-All kernels are based on the same linux release, a patched version of linux-5.2.8. In addition there is an install variant that can launch debian installer, a rescue variant that can repair the SD-Card root partition before mounting it, a visual variant that redirects the console to the frame buffer, and a plain variant that just boots via a serial port.
+All kernels are based on the same linux release, a patched version of linux-5.3.18. In theory only one kernel is needed, but there are efficiency gains to be had by skipping the initial ramdisk option, if it isn't needed.
 
 ### What about support for other boards and RISCV processors ?
 
-This release introduces a socket that can host Rocket or Ariane, analogous to the motherboards of old that allowed processors from different vendors to be used. In principle BOOM (Berkeley out-of-order machine) can fit the same template, but it would need a larger FPGA board. Because the Ariane was developed on a Genesys-2, and this has similar peripherals to a Nexys4-DDR, both FPGA boards are supported in this release. The majority of other RV64GC cores are Bluespec based. It is unclear what the license situation regarding distributing RTL based on modified Bluespec code (for memory maps and so-on). The KC705 support has not been maintained. Its Ethernet PHY is incompatible with the GenesysII design, nor does it have VGA or HID capabilities. An unmaintained version is available on the kc705_mii branch.
+This release introduces a socket that can host Rocket or Ariane, analogous to the motherboards of old that allowed processors from different vendors to be used. In principle BOOM (Berkeley out-of-order machine) can fit the same template, but it would need a larger FPGA board. Because the Ariane was developed on a Genesys-2, and this has similar peripherals to a Nexys4-DDR, both FPGA boards are supported in this release. The majority of other RV64GC cores are Bluespec based. Now that Bluespec the language has become open source, I would expect research processors based on Bluespec to move to an open source model as well. The KC705 support has not been maintained. Its Ethernet PHY is incompatible with the GenesysII design, nor does it have VGA or HID capabilities. An unmaintained version is available on the kc705_mii branch. It has not been updated since the refresh-v0.6 release and does not support VGA. The HDMI connector favoured by high-end boards has a shortage of open-source specifications and drivers, largely because DCMA considerations (media copyrights and anti-circumvention measures).
 
 ### What happened to the L2-cache ?
 
@@ -56,7 +56,7 @@ The Nexys4DDR has a 10/100BaseT PHY. Support for 10BaseT was not included as it 
 
 ### What version of Linux kernel is available ?
 
-The generic RISCV support is upstreamed as of the 5.2.8 release used in this project. LowRISC patches relative to this consist of FPGA specific device drivers and build configuration defaults amounting to 283K bytes. There are no plans to upstream the LowRISC device drivers, because there is no corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
+The generic RISCV support is upstreamed as of the 5.3.18 release used in this project. LowRISC patches relative to this consist of FPGA specific device drivers and build configuration defaults amounting to 283K bytes. There are no plans to upstream the LowRISC device drivers, because there is no corresponding version of silicon to be supported. If it was decided to support these drivers long-term, it would unnecessarily hamper the process of introducing improvements such as DMA access and other goodies.
 
 ### What are the advantages and disadvantages of choosing different RISCV Linux distributions?
 

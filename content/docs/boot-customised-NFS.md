@@ -6,7 +6,7 @@ title = "Booting a customised NFS system"
 +++
 
 It is possible to boot LowRISC in the absence of an SD-Card using the rescue image. However the new
-block driver does not yet supprot hot-swapping of cards. To support X-windows systemd is used as
+block driver does not yet support hot-swapping of cards. To support X-windows systemd is used as
 the startup manager. This places a heavy load on the filing system with many parallel threads. As
 a result NFS accesses, which operate at the file level, will be slower and less reliable.
 
@@ -41,7 +41,8 @@ the server configuration is outside the scope of this tutorial.
 ## Turbo super-user
 
 It is certainly inconvenient requiring slow card operations during normal use. The use of a turbo super-user on the workstation
-is recommended for slow operations such as installing new packages.
+is recommended for slow operations such as installing new packages. This technique applies if you use the optional Debian install.
+On buildroot new package installation is possible in principle with rpm. However there is no pre-made repository of compatible packages.
 
 The SD-Card will be put into the workstation via a USB-adaptor, the lsblk command reveals the mount points (for example):
 
