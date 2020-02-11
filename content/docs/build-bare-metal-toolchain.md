@@ -28,4 +28,4 @@ be a suitable alternative. This should be customised in the top-level Makefile b
 
 Proceed to the next step as follows:
 
-* [Install support for RISCV emulation] ({{< ref "docs/riscv-qemu-emulation.md">}})
+* [Install support for RISCV emulation] ({{< ref "docs/download-install-debian.md">}})

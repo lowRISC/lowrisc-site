@@ -9,7 +9,11 @@ showdisqus = true
 
 ### Download and install Xilinx Vivado
 
-The Xilinx Vivado design suite can be downloaded from [http://www.xilinx.com/support/download.html](http://www.xilinx.com/support/download.html) free of charge for registered users (registration is also free). For this release, we recommend Vivado 2018.x. The version used in previous releases 2015.4 is known NOT to work on this release.
+The Xilinx Vivado design suite can be downloaded from [http://www.xilinx.com/support/download.html](http://www.xilinx.com/support/download.html) free of charge
+for registered users (registration is also free). For this release, we recommend Vivado 2018.x.
+The version used in some previous releases 2015.4 is known NOT to work on this release.
+Moreover the code needs modernisation to work with Vivado 2019.x, because Xilinx thinks 'input' is not equivalent to 'input wire'. Generally this is not a problem with ASIC tools.
+
 During the installation process, when asked for "Select Edition to Install", 
 please choose "Vivado Design Edition". When choosing which packages to 
 install, please add "Software Development Kit". It is not required to install 

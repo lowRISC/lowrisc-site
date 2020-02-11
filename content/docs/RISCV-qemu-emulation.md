@@ -5,14 +5,6 @@ title = "RISCV emulation"
 
 +++
 
-No pre-build installation images are available for our setup. So we accelerate the bootstrapping process using qemu.
-This first step builds qemu binary that provides user-space emulation (i.e.
-will execute RISC-V binaries, and intercept Linux syscalls to be handled by 
-the host OS). This is in contrast to QEMU's full system emulation mode, which 
-provides emulation devices and requires you to boot a native operating system.
-
-    make -C debian-riscv64 qemu
-
-Next recommended step below:
-
-* [Downloading and Installing Debian] ({{< ref "docs/download-install-debian.md">}})
+The optional Debian install requires the ability to execute the new root filing system.
+It is not necessary to build qemu any more because buildroot does it and places the result in
+buildroot-2019.11.1-lowrisc/mainfs/host/bin/qemu-riscv64

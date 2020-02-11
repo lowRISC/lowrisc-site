@@ -9,22 +9,30 @@ showdisqus = true
 
 ### X-windows introduction
 
-X-windows operates a bit differently from imitators such as Microsoft Windows, the core protocol
+X-windows operates a bit differently from imitators such as Microsoft Windows. The core protocol
 is designed to run over a network connection or serial line to a separate display device, this connection
 can also be a unix local socket, and although the display (known as the server) is frequently on the same computer as the
 client(s), it need not be so and the configuration options (in particular the DISPLAY environment variable) reflect
-the extra complexity. For remote usage authentication is typically managed using the -X or -Y options of the ssh client
+the extra complexity. Remote usage (with a performance penalty) is possible with lowRISC. In this case,
+authentication is typically managed using the -X or -Y options of the ssh client
 on the remote client machine. This obviates the need for the server to have a display at all (known as headless operation).
-The best performance is associated with local rendering (client==server) usually.
-
-* [Booting the kernel from QSPI memory] ({{< ref "docs/boot-qspi.md">}})
-* [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
+Usually the best performance is associated with local rendering (client==server). In this case a more efficient communication
+between client and server is available. Clients that require 3-D or accelerated graphics (such as Mesa or OpenGL) cannot
+run on lowRISC, due to lack of necessary hardware support.
 
 ### Configuring X-windows
 
-An initial configuration for X-windows will be created automatically in the sdcard-install step and its dependencies.
+An initial configuration for X-windows will be created automatically in the sdcard-install step and its dependencies. Should
+it be necessary to modify this file it will be found in the buildroot overlay area:
+
+buildroot-2019.11.1-lowrisc/mainfs/target/usr/share/X11/xorg.conf.d/00-fbdev.conf
+
+If you use the optional Debian install then it will be located here:
+
+debian-riscv64/work/00-fbdev.conf
+
 There should be no special reason to modify this file in the hardware configurations offered by LowRISC, but pointing out the
-obvious there needs to be a mouse device, and a core keyboard which generates X-events as opposed to ASCII that a remote
+obvious there needs to be a display (fbdev), a mouse device, and a core keyboard which generates X-events as opposed to ASCII that a remote
 serial connection would generate. The LowRISC team recommends that a Bluetooth mouse and keyboard should be used though other
 obsolescent options are possible (for example the PS/2 over USB keyboard that the previous release supported, and/or a PS/2 mouse
 which unfortunately requires 5V power and the PMOD PS/2 adaptor only supplies 3.3V). To use this support, check out revision 601c4db411b44eb8c3f3ac1ffa0e32b8f60c4448 of the lowrisc-chip repository hot-wire the 5V supply as shown below:
@@ -82,7 +90,8 @@ which unfortunately requires 5V power and the PMOD PS/2 adaptor only supplies 3.
 
 ## X startup clients
 
-These are customised based on the file /etc/X11/xinit/xinitrc. These may readily be changed by the user, by copying this file into ~/.xinitrc
+These are customised based on the file /etc/X11/xinit/xinitrc. The screenshot in the overview was generated from the following configuration (xfishtank is Debian only).
+These may readily be changed by the user, by copying this file into ~/.xinitrc
 
     oclock -geometry 75x75-0-0 &
     xload -geometry -80-0 &
@@ -90,15 +99,16 @@ These are customised based on the file /etc/X11/xinit/xinitrc. These may readily
     twm &
     /usr/games/xfishtank
 
-The order of clients is significant on an 8-bit server. Only 256 colours are available, so the most greedy client in terms of colours usage should be last. This will have the side effect that the X-server will shutdown if xfishtank crashes.
+The order of clients is significant on an 8-bit server. Only 256 colours are available, so the most greedy client in terms of colours usage should be last. In this case, it will have the side effect that the X-server will shutdown if xfishtank crashes.
 
 ## Preparing the Bluetooth keyboard and mouse.
 
-The only Bluetooth device available as a PMOD from Digilent is the PmodBT2 which uses Roving Networks [RN42 module] (http://ww1.microchip.com/downloads/en/devicedoc/rn-42-ds-v2.32r.pdf) which uses a CSR BC04-EXT internally. Out of the box it only supports a serial port profile (SPP), it needs to be switched to host command interface (HCI) mode. This is a once only procedure per module and is explained [here]({{< ref "docs/pmod-bt.md">}})
+The only off-the shelf Bluetooth device available as a PMOD from Digilent is the PmodBT2 which uses Roving Networks [RN42 module] (http://ww1.microchip.com/downloads/en/devicedoc/rn-42-ds-v2.32r.pdf) which in turn uses a CSR BC04-EXT internally. Out of the box it only supports a serial port profile (SPP), it needs to be switched to host command interface (HCI) mode. This is a once only procedure per module and is explained [here]({{< ref "docs/pmod-bt.md">}})
 
 ## Pairing the Bluetooth HID devices
 
-After booting, log in as root. First of all attach the serial port to the kernel bluez stack:
+After booting, log in as root (on the serial port if necessary). The default configuration tries to install the hciattach Bluetooth service automatically.
+If hciattach is not running, use the following command to attach the serial port to the kernel bluez stack (default 115200 baud):
 
     hciattach ttyS1 bcsp
 
@@ -110,10 +120,12 @@ expect to see output like this:
 
 In spite of this, the attachment succeeds.
 
-Next launch bluetoothctl (first-time situation with a new Bluetooth module):
+Next launch bluetoothctl (first-time situation with a new Bluetooth module or SD-Card installation). You may need to issue the optional power on command.
+The optional trust command will cause the bluez stack to try to reconnect after a sleep state (such as blanking the screen).
 
     bluetoothctl 
     Agent registered
+    [bluetooth]# power on
     [bluetooth]# paired-devices 
     [bluetooth]# scan on
     ...other devices...
@@ -122,6 +134,7 @@ Next launch bluetoothctl (first-time situation with a new Bluetooth module):
     [CHG] Device E8:06:88:42:AA:4E Name: Apple Wireless Keyboard
     ...other devices...
     [bluetooth]# scan off
+    [bluetooth]# trust 00:14:51:CB:E7:1A
     [bluetooth]# pair 00:14:51:CB:E7:1A
     [CHG] Device 00:14:51:CB:E7:1A Connected: yes
     [CHG] Device 00:14:51:CB:E7:1A Modalias: usb:v05ACp030Cd0200
@@ -132,6 +145,7 @@ Next launch bluetoothctl (first-time situation with a new Bluetooth module):
     Pairing successful
     [CHG] Device 00:14:51:CB:E7:1A ServicesResolved: no
     [CHG] Device 00:14:51:CB:E7:1A Connected: no
+    [bluetooth]# trust E8:06:88:42:AA:4E
     [bluetooth]# pair E8:06:88:42:AA:4E
     Attempting to pair with E8:06:88:42:AA:4E
     [CHG] Device E8:06:88:42:AA:4E Connected: yes
@@ -181,6 +195,6 @@ If the wired PS/2 over USB keyboard is used as well the keyboard events will bot
 
 ## Launching X windows
 
-X-windows cannot be launched from the serial port, unless run by the super-user. In any case it will appear on the VGA console, which will only respond to the wired keyboard/previously paired keyboard and mouse. A restricted form of X-windows is also available remotely using the ssh -Y lowrisc@ipaddr command. Any windows created in this mode will appear on the remote computer.
+X-windows cannot be launched from the serial port, unless run by the super-user. In any case it will appear on the VGA console, which will only respond to the wired keyboard/previously paired keyboard and mouse. A restricted form of X-windows client support is also available remotely using the ssh -Y lowrisc@ipaddr command. Any windows created in this mode will appear on the remote computer.
 
 

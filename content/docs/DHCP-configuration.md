@@ -17,6 +17,9 @@ A powerful but confusing feature for new users is the Ethernet interface availab
 
 If the Ethernet is unplugged or incapable of 100BaseT-DX operation, the display will likely stick after 'Waiting for DHCP_OFFER'.
 
+Once you have obtained an IP address, if the board crashes or is reset without giving up that address, the server may refuse to offer a new address.
+Most problems of this kind will be solved by turning the board off and on again to renegotiate the connection. The obsolete 10BaseT mode is not supported.
+
 ## Direct cable connection
 
 If you use a direct cable (recommended if you are experimenting), connect with your own PC's Ethernet port.
@@ -41,7 +44,7 @@ An FPGA booted with this configuration will only be able to see your own PC by d
 
 ## Institutional LAN connection
 
-This option is the option that talks to your institution IT infrastructure. For security reasons you will need to request that the MAC address be registered as valid centrally. If you use the Nexys4-DDR board, Emphasize that it is a locally administered value and not a registered company value. The Genesys2 board has a genuine company value.
+This option is the option that talks to your institution IT infrastructure. For security reasons you may need the cooperation of your IT department to request that the MAC address be registered as valid centrally. If you use the Nexys4-DDR board, emphasize that it is a locally administered value and not a registered company value. The Genesys2 board has a genuine company value.
 
 The use of the DIP switches 3:0 on the FPGA card allows up to 16 different boards to be used. The least significant nibble of the MAC address will be influenced. This value may be changed in the boot loader source code if your organisation has a globally valid range of MAC addresses assigned by: (https://standards.ieee.org/products-services/regauth/index.html).
 
@@ -51,16 +54,14 @@ If VLANs are in use there could be delays or retries needed to talk to a newly c
 
 Forwarding of packets to the internet will normally be handled automatically and the replies routed back to the FPGA. Incoming session initiation will most likely be blocked by default.
 
+Mis-configured FPGA boards have a bit of a bad reputation for disrupting LAN traffic (for example by responding to the wrong ARP address or by duplicating an IP address). This should not happen in this case, but you might want to ask to be put on an isolated VLAN or DMZ (de-militarised zone).
+
 ## Broadband network address translation hub
 
-This option will have one internet facing IP address (which may change at any arbitrary moment, but usually not more than once/day) and several port which are in the private range 192.168.x.x and/or 10.x.x.x
+This option will have one internet facing IP address (which may change at any arbitrary moment, but usually not more than once per day) and several ports which are typically in the private range 192.168.x.x and/or 10.x.x.x
 
-Usually registration of the MAC address is not necessary, but you can fix the value in a manufacturer specific manner in the hub control panel, and this is usually more convenient than a random value. No particular effort is needed to route packets to the internet or get the responses. Protocols that require the IP address to be passed in the packet in ASCII can go wrong when NAT is used, but in my experience this is a rare occurence.
+Usually registration of the MAC address is not necessary, but you can conveniently fix the IP address associated with FPGA board MAC address in a manufacturer specific manner in the hub control panel, and this is usually more convenient than a random value. No particular effort is needed to route packets to the internet or get the responses. Protocols that require the IP address to be passed in the packet in ASCII can go wrong when NAT is used, but in my experience this is a rare occurence.
 
 ## Static IP
 
-Because of the flexibility of DHCP, and the lack of a user interface on the FPGA board, it was decided not to offer static IP as an option on this release. If a static address is required, it can be offered via DHCP (recommended usage).
-
-It is suggested you proceed to the link below
-
-* [Developing BareMetal tool chain] ({{< ref "docs/build-bare-metal-toolchain.md">}})
+Because of the flexibility of DHCP, and the lack of a user interface on the FPGA board, it was decided not to offer static IP as an option on this release. If a static address is required, it can be offered via DHCP (recommended usage). There is no reason why Linux could not be configured for a static IP, once it is booted and a user interface is available, if static DHCP is not available from the server. However this will usually mean parameters such as gateways and name servers will not be automatically provided.

@@ -10,29 +10,30 @@ showdisqus = true
 ### Release notes
 
  * Rocket-core (Chisel)
-   * Core unchanged from previous release.
+   * Core unchanged from previous release (JTAG chain modified to suit FPGA constraints)
 
  * Preliminary Ariane-core support (SystemVerilog)
    * Wrapped with replacement UNIX platform components to emulate Rocket Coreplex.
-   * 10-15% larger and slower than Rocket. Does not boot X-Windows.
+   * 10-15% larger and slower than Rocket. Boots X-Windows (with some screen size limitations on Nexys4-DDR).
    
  * Software environment
    * Ethernet boot loader supports TFTP (trivial file transfer protocol) and is standards compliant.
-   * SD-Card boot loader skips over debug ELF segments.
-   * QSPI boot loader supports rescue kernel and OEM Ethernet MAC address on Genesys2.
-   * JTAG debug Xilinx custom chain number support merged upstream.
-   * riscv-gcc and riscv-gdb updated to latest upstream version.
-   * Linux kernel updated to 5.3.8. LowRISC device driver patches updated locally.
+   * SD-Card boot loader only loads needed ELF segments.
+   * QSPI boot loader supports mini-root filing system with verbose pre-boot file-system check of SD-Card.
+   * Pseudo-unique OEM Ethernet MAC address supported on Genesys2, locally administered MAC on Nexys4-DDR.
+   * JTAG debug Xilinx custom chain number support merged into upstream riscv-openocd.
+   * riscv-gcc, riscv-gdb, Linux kernel 5.3.18. riscv-pk managed by buildroot.
+   * LowRISC device driver patches updated locally.
    * RISCV-pk support for ns16750 compatible UART merged upstream. No local modifications needed.
-   * Debian installer supported at alpha status.
-   * Linux frame buffer driver integrated in kernel, no X-windows binary modifications required.
-   
+   * Linux 8-bit pseudo-colour frame buffer driver integrated in kernel, no X-windows binary modifications required.
+   * Userland built from recent sources, managed by buildroot-2019.11-1.
+
  * lowRISC system-on-chip
-   * Integrated PS/2 mouse driver (power supply voltage modification required)
-   * VGA graphics colour screen 640x480x8 bit depth
-   * Genesys2 supports 1000BaseT Ethernet with compatible infrastructure.
-   * SD-Card block driver layer in hardware from the open-piton project.
-   * 16750 compatible UART from the Ariane project (VHDL and Verilog provided)
+   * Integrated HCI Bluetooth interface with keyboard and mouse driver (requires non-standard UART buffer capacity).
+   * VGA graphics colour screen 640x480x8 bit depth.
+   * Genesys2 supports 1000BaseT Ethernet with compatible infrastructure / Nexys4-DDR supports 100BaseT.
+   * SD-Card block driver layer managed in hardware (adapted from the OpenPiton project).
+   * 16750 compatible UART from the Ariane project (VHDL, translated to Verilog)
    
  * Design environment
    * Updated Vivado synthesis and release to version 2018.2
