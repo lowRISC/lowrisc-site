@@ -56,6 +56,7 @@ The latest release has the instructions broken down by topic, instead of the rel
 * [Preparing to launch X-windows] ({{< ref "docs/launch-xwindows.md">}})
 * [Updating the kernel on a running system] ({{< ref "docs/update-running-kernel.md">}})
 * [Booting a customised network filing system] ({{< ref "docs/boot-customised-NFS.md">}})
+* [Debugging with gdb]  ({{< ref "docs/gdb.md">}})
 * [Frequently asked questions for this release]  ({{< ref "docs/frequently-asked-questions.md">}})
 
 ### Internals description

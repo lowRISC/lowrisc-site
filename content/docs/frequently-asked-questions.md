@@ -7,7 +7,8 @@ title = "Frequently asked questions"
 
 ### What about binary installs ?
 
-This release incorporates support for Nexys4-DDR boards and GenesysII boards. The latter is a paid license (though it does come with the board). It is unclear at the moment whether it is legal to offer non-webpack bitstreams generated using academic licenses to the general public.
+This release incorporates support for Nexys4-DDR boards and GenesysII boards. The latter is a paid license (though it does come with the board). It is unclear at the moment whether there is any legal distinction between non-webpack bitstreams generated using academic licenses and commercial licenses to the general public. Consequently, it is recommended that these images should only be used for research and demonstration purposes. The majority of the LowRISC release is open-source, however to take advantage of certain Xilinx features, such as DDR memory interfacing, certain distributable components can only be distributed in bitstream form for use with Xilinx parts only. There seems to be no distinction between WebPack and non-WebPack devices, from the point of view of [legal redistribution](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2018_2/end-user-license-agreement.pdf).
+
 
 ### Why are you releasing a version of Rocket that does not have the security enhancements available in the previous releases ?
 
