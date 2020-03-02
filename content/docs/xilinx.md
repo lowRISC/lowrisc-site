@@ -27,13 +27,20 @@ to make a symbolic link to a larger disk (which could be a server), for example:
       cd /opt
       sudo ln -s /local/scratch/Xilinx .
 
+For this version of Vivado the Xilinx recommended O/S 64-bit Ubuntu 16.04.3 LTS / 18.04 LTS.
+
+Xilinx installation trees contain their own incompatible version of certain system libraries to "improve portability". This will prevent more modern tools such as cmake from running properly. To avoid contaminating the LD\_LIBRARY\_PATH this flow explicitly sets the path to Vivado in fpga/Makefile. By default the Xilinx installer installs to /opt/Xilinx (which will typically be a symbolic link to a shared disk). If your administater mandated a different path, update the XILINX_ROOT and if necessary XILINX_VER in fpga/Makefile. Do not attempt to use a version of Vivado earlier than 2018.2. Use 2019.x at your own risk. If you must add the Xilinx tools to the path (for example to facilitate interactive use) make sure the version of cmake on the path is not too old when running buildroot.
+
+If your machine cannot meet these requirements then synthesis should be able to run, albeit rather slowly, inside a virtual machine.
+The pre-build binary images were created with Ubuntu 18.04 LTS.
+
 ### License
 
 A license is required to use the Xilinx Vivado suite. For users who bought an 
 FPGA development kit, such as the Genesys2 kit, a voucher may be enclosed. This 
 voucher will allow the user to generate a site and device locked license 
 (version limited as well). Such a license will allow a user to implement 
-designs targeting the sepecific FPGA used in the development kit, such as 
+designs targeting the specific FPGA used in the development kit, such as 
 Kintex-7 FPGAs for the Genesys2 kit. This license is a version limited one. Users 
 are allowed to install and update the Xilinx Vivado suite for one year. Once 
 the license is expired, the old Xilinx Vivado is still usable but not 
@@ -53,8 +60,8 @@ or equivalent schemes.
 
 ### Future Board options
 
-Nexys4-DDR is supported because it is low cost and widely available. Genesys2 is partially supported
-(excluding a mouse solution) because it is the default platform for Ariane, also its peripherals are
+Nexys4-DDR is supported because it is low cost and widely available. Genesys2 is also supported
+because it is the default platform for Ariane. Moreover its peripherals are largely
 complementary to the Nexys4-DDR, rather than being leading edge propietary parts.
 
 It would be relatively easy to support the ArtyA7-100 which is cheaper and has a larger DDR3 ram than
